@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
-
+//arturo vidal
 public class Admin {
     private String codigo;
     private String contrasena;
