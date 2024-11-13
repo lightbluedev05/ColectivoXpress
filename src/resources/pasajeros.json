@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "1",
+    "correo": "1",
+    "dni": "1",
+    "fecha_nacimiento": "2011/11/11",
+    "contrasena": "1",
+    "distrito": "1",
+    "provincia": "1",
+    "departamento": "1"
+  },
+  {
+    "nombre": "2",
+    "correo": "2",
+    "dni": "2",
+    "fecha_nacimiento": "2022/02/22",
+    "contrasena": "2",
+    "distrito": "2",
+    "provincia": "2",
+    "departamento": "2"
+  },
+  {
+    "nombre": "3",
+    "correo": "3",
+    "dni": "3",
+    "fecha_nacimiento": "2005-12-12",
+    "contrasena": "3",
+    "distrito": "3",
+    "provincia": "3",
+    "departamento": "3"
+  }
+]
