@@ -70,6 +70,7 @@ public class Conductor extends Usuario{
         return new ConductorRepository().actualizar(this);
     }
 
+<<<<<<< HEAD
     public boolean actualizar_distrito(String nueva_distrito) {
         this.distrito = nueva_distrito;
         return new ConductorRepository().actualizar(this);
@@ -84,6 +85,8 @@ public class Conductor extends Usuario{
         return new ConductorRepository().actualizar(this);
     }
     
+=======
+>>>>>>> d91492e1c1b768fa7166d57a8ad7d0d6597aee14
     public String get_dias_descanso(){
         return dias_descanso;
     }
