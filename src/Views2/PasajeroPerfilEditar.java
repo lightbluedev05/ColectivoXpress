@@ -10,14 +10,14 @@ import Models.Pasajero;
  *
  * @author Mihae
  */
-public class PerfilPasajero extends javax.swing.JPanel {
+public class PasajeroPerfilEditar extends javax.swing.JPanel {
 
     /**
      * Creates new form PerfilAdmin
      */
     
     private Pasajero pasajero;
-    public PerfilPasajero(Pasajero pasajero) {
+    public PasajeroPerfilEditar(Pasajero pasajero) {
         this.pasajero = pasajero;
         initComponents();
         nuevo_contra_label.setVisible(false);

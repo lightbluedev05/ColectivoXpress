@@ -6,7 +6,7 @@ import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
 import Views2.Nosotros;
-import Views2.PerfilPasajero;
+import Views2.PasajeroPerfil;
 import Views2.PasajeroCompraViaje;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
@@ -261,7 +261,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonComprarActionPerformed
 
     private void buttonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarSesionActionPerformed
-    ShowJPanel(new PerfilPasajero(pasajero));
+    ShowJPanel(new PasajeroPerfil(pasajero));
     }//GEN-LAST:event_buttonIniciarSesionActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed

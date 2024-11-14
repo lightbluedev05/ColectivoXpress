@@ -138,4 +138,33 @@ public class Pasajero extends Usuario {
     public int calcular_edad(){
         return Period.between(this.fecha_nacimiento, LocalDate.now()).getYears();
     }
+    
+    public String get_nombre() {
+    return nombre;
+    }
+
+    public String get_correo() {
+        return correo;
+    }
+
+    public String get_dni() {
+        return dni;
+    }
+
+    public LocalDate get_fecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public String get_distrito() {
+        return distrito;
+    }
+
+    public String get_provincia() {
+        return provincia;
+    }
+
+    public String get_departamento() {
+        return departamento;
+}
+    
 }
