@@ -100,7 +100,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         buttonInicio.setBackground(new java.awt.Color(0,0,0,0));
         buttonInicio.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         buttonInicio.setForeground(new java.awt.Color(255, 255, 255));
-        buttonInicio.setText("INICIO");
+        buttonInicio.setText("PERFIL");
         buttonInicio.setBorder(null);
         buttonInicio.setBorderPainted(false);
         buttonInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
