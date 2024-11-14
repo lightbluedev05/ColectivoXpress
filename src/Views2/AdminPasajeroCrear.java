@@ -66,7 +66,7 @@ public class AdminPasajeroCrear extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(62, 82, 162));
-        jLabel1.setText("Registro Conductor");
+        jLabel1.setText("Registro Pasajero");
 
         jLabel2.setText("DNI");
 

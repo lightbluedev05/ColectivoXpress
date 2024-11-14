@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,21 +19,23 @@ public class ViajeRepository implements CRUD<Viaje>{
 
     private static class ViajeDTO {
         private String id_viaje;
-        private String fecha_salida; // Almacenaremos la fecha como String
-        private String id_ruta; // Almacenaremos el id de la ruta
-        private String dni_conductor; // Almacenaremos el DNI del conductor
+        private String fecha_salida;
+        private String hora_salida;
+        private String id_ruta;
+        private String dni_conductor; 
     }
 
     private static Viaje convertirDto_Viaje(ViajeDTO dto) {
         Ruta ruta = new RutaRepository().buscar(dto.id_ruta); // Buscar ruta por id_ruta
         Conductor conductor = new ConductorRepository().buscar(dto.dni_conductor); // Buscar conductor por DNI
-        return new Viaje(dto.id_viaje, LocalDate.parse(dto.fecha_salida), ruta, conductor);
+        return new Viaje(dto.id_viaje, LocalDate.parse(dto.fecha_salida), ruta, conductor, LocalTime.parse(dto.hora_salida));
     }
 
     private static ViajeDTO convertirViaje_Dto(Viaje viaje) {
         ViajeDTO dto = new ViajeDTO();
         dto.id_viaje = viaje.get_id_viaje();
         dto.fecha_salida = viaje.get_fecha_salida().toString();
+        dto.hora_salida = viaje.get_hora_salida().toString();
         dto.id_ruta = viaje.get_ruta().get_id_ruta(); // Suponiendo que Ruta tiene un método get_id_ruta()
         dto.dni_conductor = viaje.get_conductor().get_dni(); // Suponiendo que el Conductor tiene un método get_dni()
         return dto;

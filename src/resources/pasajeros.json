@@ -1,32 +1,102 @@
 [
   {
-    "nombre": "1",
-    "correo": "1",
-    "dni": "1",
-    "fecha_nacimiento": "2011/11/11",
-    "contrasena": "1",
-    "distrito": "1",
-    "provincia": "1",
-    "departamento": "1"
+    "nombre": "María García",
+    "correo": "maria.garcia@example.com",
+    "dni": "87654321",
+    "fecha_nacimiento": "1985-05-22",
+    "contrasena": "securePass456",
+    "distrito": "Miraflores",
+    "provincia": "Lima",
+    "departamento": "Lima"
   },
   {
-    "nombre": "2",
-    "correo": "2",
-    "dni": "2",
-    "fecha_nacimiento": "2022/02/22",
-    "contrasena": "2",
-    "distrito": "2",
-    "provincia": "2",
-    "departamento": "2"
+    "nombre": "Carlos López",
+    "correo": "carlos.lopez@example.com",
+    "dni": "11223344",
+    "fecha_nacimiento": "1992-03-18",
+    "contrasena": "lopezPass789",
+    "distrito": "Surco",
+    "provincia": "Lima",
+    "departamento": "Lima"
   },
   {
-    "nombre": "3",
-    "correo": "3",
-    "dni": "3",
-    "fecha_nacimiento": "2005-12-12",
-    "contrasena": "3",
-    "distrito": "3",
-    "provincia": "3",
-    "departamento": "3"
+    "nombre": "Ana Rodríguez",
+    "correo": "ana.rodriguez@example.com",
+    "dni": "44332211",
+    "fecha_nacimiento": "1994-08-10",
+    "contrasena": "ana12345",
+    "distrito": "La Molina",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "Luis Fernández",
+    "correo": "luis.fernandez@example.com",
+    "dni": "55667788",
+    "fecha_nacimiento": "1988-12-05",
+    "contrasena": "fernandezPass",
+    "distrito": "San Borja",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "Sofía Castro",
+    "correo": "sofia.castro@example.com",
+    "dni": "33445566",
+    "fecha_nacimiento": "1996-07-21",
+    "contrasena": "castro7890",
+    "distrito": "Jesús María",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "Jorge Rojas",
+    "correo": "jorge.rojas@example.com",
+    "dni": "77889900",
+    "fecha_nacimiento": "1983-11-02",
+    "contrasena": "rojas123",
+    "distrito": "Pueblo Libre",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "Lucía Ramírez",
+    "correo": "lucia.ramirez@example.com",
+    "dni": "99887766",
+    "fecha_nacimiento": "1998-06-25",
+    "contrasena": "ramirez456",
+    "distrito": "San Miguel",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "Ricardo Morales",
+    "correo": "ricardo.morales@example.com",
+    "dni": "22334455",
+    "fecha_nacimiento": "1993-09-09",
+    "contrasena": "moralesPass",
+    "distrito": "Barranco",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "Valeria Torres",
+    "correo": "valeria.torres@example.com",
+    "dni": "66554433",
+    "fecha_nacimiento": "1995-04-14",
+    "contrasena": "torres123",
+    "distrito": "Chorrillos",
+    "provincia": "Lima",
+    "departamento": "Lima"
+  },
+  {
+    "nombre": "14",
+    "correo": "14",
+    "dni": "14",
+    "fecha_nacimiento": "2006-12-14",
+    "contrasena": "14",
+    "distrito": "14",
+    "provincia": "14",
+    "departamento": "14"
   }
 ]

@@ -3,6 +3,7 @@ package Models;
 import Repository.ViajeRepository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,16 @@ public class Viaje {
 
     private String id_viaje;
     private LocalDate fecha_salida;
+    private LocalTime hora_salida;
     private Ruta ruta;
     private Conductor conductor;
 
     static ViajeRepository vr = new ViajeRepository();
 
-    public Viaje(String id_viaje, LocalDate fecha_salida, Ruta ruta, Conductor conductor) {
+    public Viaje(String id_viaje, LocalDate fecha_salida, Ruta ruta, Conductor conductor, LocalTime hora_salida) {
         this.id_viaje = id_viaje;
         this.fecha_salida = fecha_salida;
+        this.hora_salida = hora_salida;
         this.ruta = ruta;
         this.conductor = conductor;
     }
@@ -57,5 +60,13 @@ public class Viaje {
 
     public void set_conductor(Conductor conductor) {
         this.conductor = conductor;
+    }
+    
+    public LocalTime get_hora_salida(){
+        return hora_salida;
+    }
+    
+    public void set_hora_salida(LocalTime hora_salida){
+        this.hora_salida = hora_salida;
     }
 }

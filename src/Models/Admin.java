@@ -4,6 +4,7 @@ import Repository.*;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 //arturo vidal
@@ -140,7 +141,7 @@ public class Admin {
     }
 
     //--------------------- ACCIONES SOBRE VIAJES -----------------------
-    public boolean crear_viaje(LocalDate fecha_salida, String id_ruta, String dni_conductor){
+    public boolean crear_viaje(LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida){
         Ruta ruta = new RutaRepository().buscar(id_ruta);
         if(ruta == null){
             return false;
@@ -157,7 +158,7 @@ public class Admin {
             id_viaje = String.valueOf(codigo);
         } while(new ViajeRepository().buscar(id_viaje)!=null);
 
-        Viaje nuevo_viaje = new Viaje(id_viaje, fecha_salida, ruta, conductor);
+        Viaje nuevo_viaje = new Viaje(id_viaje, fecha_salida, ruta, conductor, hora_salida);
         return new ViajeRepository().crear(nuevo_viaje);
     }
 

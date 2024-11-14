@@ -10,6 +10,7 @@ import Views2.Inicio;
 import Views2.Nosotros;
 import Views2.AdminPerfilPanel;
 import Views2.AdminRutasPanel;
+import Views2.AdminViajesPanel;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -80,7 +81,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         perfil_button = new javax.swing.JButton();
         rutas_button = new javax.swing.JButton();
         conductores_button = new javax.swing.JButton();
-        regulacion_button = new javax.swing.JButton();
+        viajes_button = new javax.swing.JButton();
         pasajeros_button = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         fecha = new javax.swing.JLabel();
@@ -143,17 +144,17 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
-        regulacion_button.setBackground(new java.awt.Color(0,0,0,0));
-        regulacion_button.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        regulacion_button.setForeground(new java.awt.Color(255, 255, 255));
-        regulacion_button.setText("REGULACION LABORAL");
-        regulacion_button.setBorder(null);
-        regulacion_button.setBorderPainted(false);
-        regulacion_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        regulacion_button.setMargin(new java.awt.Insets(0, 14, 2, 14));
-        regulacion_button.addActionListener(new java.awt.event.ActionListener() {
+        viajes_button.setBackground(new java.awt.Color(0,0,0,0));
+        viajes_button.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        viajes_button.setForeground(new java.awt.Color(255, 255, 255));
+        viajes_button.setText("VIAJES");
+        viajes_button.setBorder(null);
+        viajes_button.setBorderPainted(false);
+        viajes_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viajes_button.setMargin(new java.awt.Insets(0, 14, 2, 14));
+        viajes_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regulacion_buttonActionPerformed(evt);
+                viajes_buttonActionPerformed(evt);
             }
         });
 
@@ -183,7 +184,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addComponent(pasajeros_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(regulacion_button, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +198,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pasajeros_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(regulacion_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -285,9 +286,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
         ShowJPanel(new AdminPasajerosPanel(admin));
     }//GEN-LAST:event_pasajeros_buttonActionPerformed
 
-    private void regulacion_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regulacion_buttonActionPerformed
-        ShowJPanel(new Nosotros());
-    }//GEN-LAST:event_regulacion_buttonActionPerformed
+    private void viajes_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viajes_buttonActionPerformed
+        ShowJPanel(new AdminViajesPanel(admin));
+    }//GEN-LAST:event_viajes_buttonActionPerformed
 
     private void conductores_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conductores_buttonActionPerformed
         ShowJPanel(new AdminConductoresPanel(admin));
@@ -349,7 +350,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel menu;
     private javax.swing.JButton pasajeros_button;
     private javax.swing.JButton perfil_button;
-    private javax.swing.JButton regulacion_button;
     private javax.swing.JButton rutas_button;
+    private javax.swing.JButton viajes_button;
     // End of variables declaration//GEN-END:variables
 }
