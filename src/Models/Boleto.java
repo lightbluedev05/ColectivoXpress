@@ -21,19 +21,22 @@ public class Boleto {
         this.precio = precio;
     }
 
-    public static boolean generar_boleto(Viaje viaje, Pasajero pasajero) {
+    public static String generarIdBoleto() {
         Random random = new Random();
-
         String id;
+        BoletoRepository repository = new BoletoRepository();
+        
         do {
             int id_aux = 10000 + random.nextInt(90000);
             id = String.format("%05d", id_aux);
+        } while (repository.buscar(id) != null);
+        
+        return id;
+    }
 
-        } while (new BoletoRepository().buscar(id) != null);
-
-        Boleto nuevo_boleto = new Boleto(id, pasajero, viaje, viaje.get_ruta().get_precio());
-
-        return new BoletoRepository().crear(nuevo_boleto);
+    // Método para guardar el boleto
+    public static boolean guardar(Boleto boleto) {
+        return new BoletoRepository().crear(boleto);
     }
 
 

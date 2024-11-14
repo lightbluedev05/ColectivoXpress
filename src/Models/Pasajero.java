@@ -73,16 +73,55 @@ public class Pasajero extends Usuario {
 
         return pasajero.contrasena.equals(contrasena);
     }
-    
-    public boolean comprar_boleto(String id_viaje){
-        Viaje viaje = new ViajeRepository().buscar(id_viaje);
-        if(viaje==null){
-            return false;
-        }
 
-        return Boleto.generar_boleto(viaje, this);
+     public boolean comprar_boleto(String id_viaje) {
+    // Buscar el viaje
+    Viaje viaje = new ViajeRepository().buscar(id_viaje);
+    if (viaje == null) {
+        return false;
     }
 
+    // Verificar el pago
+    String externalReference = "BOLETO-" + System.currentTimeMillis();
+    if (!PagoMP.verificarEstadoPago(externalReference)) {
+        return false;
+    }
+
+    // Generar el boleto
+    String idBoleto = Boleto.generarIdBoleto();
+    Boleto nuevoBoleto = new Boleto(
+        idBoleto, 
+        this, 
+        viaje, 
+        viaje.get_ruta().get_precio()
+    );
+    
+    // Generar descripción de la ruta
+    String descripcionRuta = "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino();
+
+    // Guardar el boleto
+    boolean guardado = Boleto.guardar(nuevoBoleto);
+    
+    // Si se guardó, enviar correo
+    if (guardado) {
+        PagoMP.enviarCorreo(
+            this.get_nombre(),                     // nombreCliente
+            viaje.get_conductor().get_nombre(),    // nombreConductor
+            descripcionRuta,         // nombreRuta
+            String.valueOf(viaje.get_ruta().get_precio()),  // precio
+            viaje.get_fecha_salida().toString(),   // fechaSalida
+            idBoleto,                              // codigoTicket
+            this.get_correo()                      // emailTo
+        );
+    }
+
+    return guardado;
+}
+  
+     public List<Viaje> ver_viajes(){
+        return new ViajeRepository().listar();
+    }
+     
     public List<Viaje> ver_historial_viajes(){
         List<Boleto> boletos = new BoletoRepository().listar();
         List<Viaje> viajes = new ArrayList<>();
