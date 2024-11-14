@@ -123,6 +123,12 @@ public class RutaRepository implements CRUD<Ruta>{
         if(rutas == null){
             return false;
         }
+        
+        for (RutaDTO ruta: rutas){
+            if(ruta.origen.equals(ruta_editar.get_origen()) && ruta.destino.equals(ruta_editar.get_destino())){
+                return false;
+            }
+        }
 
         for(int i=0; i<rutas.size(); i++){
             RutaDTO ruta = rutas.get(i);

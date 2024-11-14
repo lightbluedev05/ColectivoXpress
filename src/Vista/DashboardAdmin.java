@@ -3,6 +3,7 @@ package Vista;
 
 import Models.Admin;
 import Views2.AdminConductoresPanel;
+import Views2.AdminPasajerosPanel;
 import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
@@ -281,7 +282,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pasajeros_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasajeros_buttonActionPerformed
-        // TODO add your handling code here:
+        ShowJPanel(new AdminPasajerosPanel(admin));
     }//GEN-LAST:event_pasajeros_buttonActionPerformed
 
     private void regulacion_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regulacion_buttonActionPerformed

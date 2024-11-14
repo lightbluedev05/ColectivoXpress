@@ -7,13 +7,6 @@
     "precio": 40.0
   },
   {
-    "id_ruta": "29518",
-    "origen": "Piura",
-    "destino": "Tumbes",
-    "tiempo_aproximado": "02:30",
-    "precio": 50.0
-  },
-  {
     "id_ruta": "63197",
     "origen": "Lima",
     "destino": "Huancayo",

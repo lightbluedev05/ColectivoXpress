@@ -177,21 +177,26 @@ public class AdminRutasEditar extends javax.swing.JFrame {
         String origen = origen_input.getText();
         String destino = destino_input.getText();
         String tiempo_aproximado = tiempo_aproximado_input.getText();
-        
-        if(origen.isEmpty() || destino.isEmpty() || tiempo_aproximado.isEmpty()){
-            resultado_text.setText("Rellene todos los campos");
-            return;
-        }
+        String precio_text = precio_input.getText();
         
         Duration tiempo_duration;
         float precio;
         
         try{   
-            precio = Float.parseFloat(precio_input.getText());
-            String[] tiempo = tiempo_aproximado.split(":");
-            int horas = Integer.parseInt(tiempo[0]);
-            int minutos = Integer.parseInt(tiempo[1]);
-            tiempo_duration = Duration.ofHours(horas).plusMinutes(minutos);
+            if(precio_text.isEmpty()){
+                precio = 0;
+            } else {            
+                precio = Float.parseFloat(precio_text);
+            }
+            
+            if(tiempo_aproximado.isEmpty()){
+                tiempo_duration = null;
+            } else {   
+                String[] tiempo = tiempo_aproximado.split(":");
+                int horas = Integer.parseInt(tiempo[0]);
+                int minutos = Integer.parseInt(tiempo[1]);
+                tiempo_duration = Duration.ofHours(horas).plusMinutes(minutos);
+            }
         } catch(Exception e){
             resultado_text.setText("Ingrese bien los campos");
             return;
