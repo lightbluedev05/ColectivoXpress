@@ -7,6 +7,7 @@ import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
 import Views2.Nosotros;
 import Views2.PerfilPasajero;
+import Views2.PasajeroCompraViaje;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -38,9 +39,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new Inicio());
         ShowJPanel(new Nosotros());
-        ShowJPanel(new Destinos());
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -73,7 +72,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
         jPanelConEncabezadoColectivo1 = new Vista.JPanelConEncabezadoColectivo();
         menu = new javax.swing.JPanel();
         buttonInicio = new javax.swing.JButton();
-        buttonDestinos = new javax.swing.JButton();
+        buttonComprar = new javax.swing.JButton();
         buttonIniciarSesion = new javax.swing.JButton();
         buttonNosotros = new javax.swing.JButton();
         header = new javax.swing.JPanel();
@@ -111,23 +110,23 @@ public class DashboardPasajero extends javax.swing.JFrame {
             }
         });
 
-        buttonDestinos.setBackground(new java.awt.Color(0,0,0,0));
-        buttonDestinos.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonDestinos.setForeground(new java.awt.Color(255, 255, 255));
-        buttonDestinos.setText("DESTINOS");
-        buttonDestinos.setBorder(null);
-        buttonDestinos.setBorderPainted(false);
-        buttonDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonDestinos.addActionListener(new java.awt.event.ActionListener() {
+        buttonComprar.setBackground(new java.awt.Color(0,0,0,0));
+        buttonComprar.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        buttonComprar.setForeground(new java.awt.Color(255, 255, 255));
+        buttonComprar.setText("COMPRAR");
+        buttonComprar.setBorder(null);
+        buttonComprar.setBorderPainted(false);
+        buttonComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDestinosActionPerformed(evt);
+                buttonComprarActionPerformed(evt);
             }
         });
 
         buttonIniciarSesion.setBackground(new java.awt.Color(0,0,0,0));
         buttonIniciarSesion.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         buttonIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIniciarSesion.setText("Perfil");
+        buttonIniciarSesion.setText("PERFIL");
         buttonIniciarSesion.setBorder(null);
         buttonIniciarSesion.setBorderPainted(false);
         buttonIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -159,7 +158,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
                     .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
         menuLayout.setVerticalGroup(
@@ -167,13 +166,13 @@ public class DashboardPasajero extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(buttonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(buttonDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
+                .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
         header.setBackground(new java.awt.Color(0, 153, 255));
@@ -257,9 +256,9 @@ public class DashboardPasajero extends javax.swing.JFrame {
         ShowJPanel(new Inicio());
     }//GEN-LAST:event_buttonInicioActionPerformed
 
-    private void buttonDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDestinosActionPerformed
-        ShowJPanel(new Destinos());
-    }//GEN-LAST:event_buttonDestinosActionPerformed
+    private void buttonComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonComprarActionPerformed
+        ShowJPanel(new PasajeroCompraViaje(pasajero));
+    }//GEN-LAST:event_buttonComprarActionPerformed
 
     private void buttonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarSesionActionPerformed
     ShowJPanel(new PerfilPasajero(pasajero));
@@ -307,7 +306,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JButton buttonDestinos;
+    private javax.swing.JButton buttonComprar;
     private javax.swing.JButton buttonIniciarSesion;
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonNosotros;
