@@ -32,7 +32,9 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                 dto.distrito, dto.provincia, dto.departamento);
     }
     private static PasajeroDTO convertirPasajero_Dto(Pasajero pasajero){
-        String fecha = pasajero.get_fecha_nacimiento().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    String fecha = pasajero.get_fecha_nacimiento().format(formatter);
+    
         PasajeroDTO pasajerodto = new PasajeroDTO();
         pasajerodto.nombre = pasajero.get_nombre();
         pasajerodto.correo = pasajero.get_correo();

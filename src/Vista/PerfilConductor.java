@@ -2,23 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views2;
+package Vista;
 
-import Models.Pasajero;
+import Models.Conductor;
 
 /**
  *
  * @author Mihae
  */
-public class PerfilPasajero extends javax.swing.JPanel {
+public class PerfilConductor extends javax.swing.JPanel {
 
     /**
      * Creates new form PerfilAdmin
      */
     
-    private Pasajero pasajero;
-    public PerfilPasajero(Pasajero pasajero) {
-        this.pasajero = pasajero;
+    private Conductor conductor;
+    public PerfilConductor(Conductor conductor) {
+        this.conductor = conductor;
         initComponents();
         nuevo_contra_label.setVisible(false);
         nuevo_contra_input.setVisible(false);
@@ -291,7 +291,7 @@ public class PerfilPasajero extends javax.swing.JPanel {
 
     private void ingresar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar_buttonActionPerformed
         String contra = new String(contra_input.getPassword());
-        if(pasajero.get_contrasena().equals(contra)){
+        if(conductor.get_contrasena().equals(contra)){
             nuevo_contra_label.setVisible(true);
             nuevo_contra_input.setVisible(true);
             nuevo_contra_button.setVisible(true);
@@ -322,7 +322,7 @@ public class PerfilPasajero extends javax.swing.JPanel {
             return;
         }
         
-        boolean exito = pasajero.actualizar_contrasena(contra);
+        boolean exito = conductor.actualizar_contrasena(contra);
         if(!exito){
             nuevo_contra_message.setText("No se pudo cambiar la contraseña");
             return;
@@ -358,7 +358,7 @@ public class PerfilPasajero extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = pasajero.actualizar_nombre(nombre);
+        boolean exito = conductor.actualizar_nombre(nombre);
         if(!exito){
             nuevo_nombre_message.setText("No se pudo cambiar el nombre");
             return;
@@ -374,7 +374,7 @@ public class PerfilPasajero extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = pasajero.actualizar_distrito(distrito);
+        boolean exito = conductor.actualizar_distrito(distrito);
         if(!exito){
             nuevo_distrito_message.setText("No se pudo cambiar el distrito");
             return;
@@ -390,7 +390,7 @@ public class PerfilPasajero extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = pasajero.actualizar_provincia(provincia);
+        boolean exito = conductor.actualizar_provincia(provincia);
         if(!exito){
             nuevo_provincia_message.setText("No se pudo cambiar la provincia");
             return;
@@ -406,7 +406,7 @@ public class PerfilPasajero extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = pasajero.actualizar_departamento(departamento);
+        boolean exito = conductor.actualizar_departamento(departamento);
         if(!exito){
             nuevo_departamento_message.setText("No se pudo cambiar el departamento");
             return;

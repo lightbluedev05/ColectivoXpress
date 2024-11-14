@@ -2,6 +2,7 @@ package Models;
 
 import Repository.AdminRepository;
 import Repository.ConductorRepository;
+import Repository.PasajeroRepository;
 import Repository.RegulacionLaboral;
 
 import java.time.LocalDate;
@@ -63,9 +64,24 @@ public class Conductor extends Usuario{
         LocalDate hoy = LocalDate.now();
         return Period.between(this.fecha_nacimiento, hoy).getYears();
     }
-
-
-
+    
+    public boolean actualizar_departamento(String nueva_departamento) {
+        this.departamento = nueva_departamento;
+        return new ConductorRepository().actualizar(this);
+    }
+    public boolean actualizar_distrito(String nueva_distrito) {
+        this.distrito = nueva_distrito;
+        return new ConductorRepository().actualizar(this);
+    }
+    
+    public boolean actualizar_provincia(String nueva_provincia) {
+        this.provincia = nueva_provincia;
+        return new ConductorRepository().actualizar(this);
+    }
+    public boolean actualizar_nombre(String nueva_nombre) {
+        this.nombre = nueva_nombre;
+        return new ConductorRepository().actualizar(this);
+    }
     public String get_dias_descanso(){
         return dias_descanso;
     }
