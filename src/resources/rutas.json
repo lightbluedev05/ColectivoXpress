@@ -1,19 +1,5 @@
 [
   {
-    "id_ruta": "51704",
-    "origen": "Lima",
-    "destino": "Trujillo",
-    "tiempo_aproximado": "08:00",
-    "precio": 90.0
-  },
-  {
-    "id_ruta": "46392",
-    "origen": "Trujillo",
-    "destino": "Chiclayo",
-    "tiempo_aproximado": "03:15",
-    "precio": 45.5
-  },
-  {
     "id_ruta": "87064",
     "origen": "Chiclayo",
     "destino": "Piura",
@@ -47,5 +33,12 @@
     "destino": "Piura",
     "tiempo_aproximado": "01:02",
     "precio": 12.0
+  },
+  {
+    "id_ruta": "60788",
+    "origen": "Trujillo",
+    "destino": "Ayacucho",
+    "tiempo_aproximado": "01:12",
+    "precio": 45.0
   }
 ]

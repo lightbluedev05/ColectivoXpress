@@ -73,7 +73,7 @@ public class Pasajero extends Usuario {
 
         return pasajero.contrasena.equals(contrasena);
     }
-
+    
     public boolean comprar_boleto(String id_viaje){
         Viaje viaje = new ViajeRepository().buscar(id_viaje);
         if(viaje==null){

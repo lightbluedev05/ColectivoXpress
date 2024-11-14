@@ -235,6 +235,11 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         editar_ruta_button.setMaximumSize(new java.awt.Dimension(161, 40));
         editar_ruta_button.setMinimumSize(new java.awt.Dimension(161, 40));
         editar_ruta_button.setPreferredSize(new java.awt.Dimension(161, 40));
+        editar_ruta_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_ruta_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -327,6 +332,21 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         AdminRutasCrear crear_ruta = new AdminRutasCrear(admin);
         crear_ruta.setVisible(true);
     }//GEN-LAST:event_agregar_ruta_buttonActionPerformed
+
+    private void editar_ruta_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_ruta_buttonActionPerformed
+        String id_ruta = id_buscar_input.getText();
+        
+        Ruta ruta = admin.buscar_ruta(id_ruta);
+        if(ruta == null){
+            DefaultTableModel modelo = (DefaultTableModel)tabla_datos_ruta.getModel();
+            modelo.setRowCount(0);
+            modelo.addRow(new Object[]{"ERROR", "ID NO EXISTE"});
+            tabla_datos_ruta.setModel(modelo);
+        }
+        
+        AdminRutasEditar editar_ruta = new AdminRutasEditar(admin, id_ruta);
+        editar_ruta.setVisible(true);
+    }//GEN-LAST:event_editar_ruta_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
