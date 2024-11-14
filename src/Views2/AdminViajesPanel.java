@@ -334,8 +334,8 @@ public class AdminViajesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminar_viaje_buttonActionPerformed
 
     private void agregar_viaje_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_viaje_buttonActionPerformed
-        AdminRutasCrear crear_ruta = new AdminRutasCrear(admin);
-        crear_ruta.setVisible(true);
+        AdminViajesCrear crear_viaje = new AdminViajesCrear(admin);
+        crear_viaje.setVisible(true);
     }//GEN-LAST:event_agregar_viaje_buttonActionPerformed
 
     private void editar_viaje_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_viaje_buttonActionPerformed

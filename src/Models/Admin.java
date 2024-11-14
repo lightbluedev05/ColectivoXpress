@@ -162,7 +162,7 @@ public class Admin {
         return new ViajeRepository().crear(nuevo_viaje);
     }
 
-    public boolean editar_viaje(String id_viaje, LocalDate fecha_salida, String id_ruta, String dni_conductor){
+    public boolean editar_viaje(String id_viaje, LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida){
         Viaje viaje_editar = new ViajeRepository().buscar(id_viaje);
         if(viaje_editar == null){
             return false;
@@ -176,6 +176,9 @@ public class Admin {
         }
         if(!dni_conductor.isEmpty()){
             viaje_editar.set_conductor(new ConductorRepository().buscar(dni_conductor));
+        }
+        if(hora_salida != null){
+            viaje_editar.set_hora_salida(hora_salida);
         }
 
         return new ViajeRepository().actualizar(viaje_editar);
