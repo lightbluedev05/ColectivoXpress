@@ -64,8 +64,6 @@ public class Conductor extends Usuario{
         return Period.between(this.fecha_nacimiento, hoy).getYears();
     }
 
-
-
     public String get_dias_descanso(){
         return dias_descanso;
     }
