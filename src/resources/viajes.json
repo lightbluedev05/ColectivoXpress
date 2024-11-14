@@ -1,44 +1,38 @@
 [
-  {
-    "id": "11213",
-    "fecha": "2024-10-22",
-    "ruta": {
-      "origen": "Lima",
-      "destino": "Ica",
-      "tiempo_aproximado": "6",
-      "precio": 1.5,
-      "precio_oferta": 0.0
+    {
+        "id_viaje": "11213",
+        "fecha_salida": "2024-12-05",
+        "id_ruta": "87064",
+        "dni_conductor": "87654321"
     },
-    "capacidad_pasajeros": 10,
-    "pasajeros": [],
-    "dni_conductor": "12345678"
-  },
-  {
-    "id": "69859",
-    "fecha": "2024-10-22",
-    "ruta": {
-      "origen": "Lima",
-      "destino": "Chancay",
-      "tiempo_aproximado": "10",
-      "precio": 1.5,
-      "precio_oferta": 0.0
+    {
+        "id_viaje": "69859",
+        "fecha_salida": "2024-12-15",
+        "id_ruta": "29518",
+        "dni_conductor": "11223344"
     },
-    "capacidad_pasajeros": 10,
-    "pasajeros": [],
-    "dni_conductor": "87654321"
-  },
-  {
-    "id": "94417",
-    "fecha": "2024-10-22",
-    "ruta": {
-      "origen": "Lima",
-      "destino": "Tacna",
-      "tiempo_aproximado": "10h",
-      "precio": 1.5,
-      "precio_oferta": 0.0
+    {
+        "id_viaje": "94417",
+        "fecha_salida": "2025-01-10",
+        "id_ruta": "63197",
+        "dni_conductor": "22334455"
     },
-    "capacidad_pasajeros": 10,
-    "pasajeros": [],
-    "dni_conductor": "11111111"
-  }
+    {
+        "id_viaje": "96717",
+        "fecha_salida": "2025-02-20",
+        "id_ruta": "47916",
+        "dni_conductor": "33445566"
+    },
+    {
+        "id_viaje": "94467",
+        "fecha_salida": "2025-03-15",
+        "id_ruta": "80420",
+        "dni_conductor": "87654321"
+    },
+    {
+        "id_viaje": "23417",
+        "fecha_salida": "2025-04-05",
+        "id_ruta": "60788",
+        "dni_conductor": "11223344"
+    }
 ]

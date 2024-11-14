@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import kotlin.random.Random;
+import java.time.Duration;
 
 /**
  *
@@ -33,15 +34,34 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         tabla_viajes.setBackground(new Color(230, 230, 230));
     }
     
-    private void listar_viajes(){
-        DefaultTableModel modelo = (DefaultTableModel)tabla_viajes.getModel();
-        modelo.setRowCount(0);      
-        List<Viaje> viajes = pasajero.ver_viajes();
-        for(Viaje viaje:viajes){
-            modelo.addRow(new Object[]{viaje.get_id_viaje(), viaje.get_fecha_salida(), viaje.get_ruta()});
-        }   
-        tabla_viajes.setModel(modelo);
-    }
+private void listar_viajes(){
+    DefaultTableModel modelo = (DefaultTableModel)tabla_viajes.getModel();
+    modelo.setRowCount(0);      
+    List<Viaje> viajes = pasajero.ver_viajes(); 
+
+    for(Viaje viaje : viajes){
+        String origen = viaje.get_ruta().get_origen(); 
+        String destino = viaje.get_ruta().get_destino(); 
+        
+        // Obtener la duración y convertirla a String
+        Duration tiempoAprox = viaje.get_ruta().get_tiempo_aproximado(); 
+        long horas = tiempoAprox.toHours();
+        long minutos = tiempoAprox.toMinutesPart(); 
+        String tiempo_string = String.format("%02d:%02d", horas, minutos); 
+
+        double precio = viaje.get_ruta().get_precio(); 
+
+        modelo.addRow(new Object[]{
+            viaje.get_id_viaje(), // ID Viaje
+            viaje.get_fecha_salida(), // Fecha
+            origen, // Origen
+            destino, // Destino
+            tiempo_string, // Tiempo Aproximado en formato "HH:mm"
+            precio // Precio
+        });
+    }   
+    tabla_viajes.setModel(modelo);
+}
     
     
     /**
@@ -124,7 +144,7 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
