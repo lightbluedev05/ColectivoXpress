@@ -73,7 +73,7 @@ public class AdminViajesCrear extends javax.swing.JFrame {
 
         jLabel4.setText("Conductor");
 
-        jLabel5.setText("Hora de Salida (hh:mm:ss)");
+        jLabel5.setText("Hora de Salida (HH:MM)");
 
         anadir_button.setBackground(new java.awt.Color(80, 99, 161));
         anadir_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
@@ -88,6 +88,11 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         resultado_text.setText("Respuesta");
 
         ruta_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ruta_combobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ruta_comboboxActionPerformed(evt);
+            }
+        });
 
         conductor_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -106,11 +111,10 @@ public class AdminViajesCrear extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(82, 82, 82)
-                                    .addComponent(jLabel1)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jLabel1))
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
@@ -210,10 +214,12 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         
         LocalTime hora_salida;
         try{
-            hora_salida = LocalTime.parse(hora_salida_input.getText());
+            // Usar un formateador específico para hh:mm
+            DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            hora_salida = LocalTime.parse(hora_salida_input.getText(), horaFormatter);
         } catch (Exception e){
             System.out.println("Hora de salida error");
-            resultado_text.setText("Ingrese bien el formato");
+            resultado_text.setText("Ingrese bien el formato (HH:mm)");
             return;
         }
         
@@ -233,6 +239,10 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         resultado_text.setText("Creacion exitosa");
         
     }//GEN-LAST:event_anadir_buttonActionPerformed
+
+    private void ruta_comboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruta_comboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ruta_comboboxActionPerformed
 
     /**
      * @param args the command line arguments

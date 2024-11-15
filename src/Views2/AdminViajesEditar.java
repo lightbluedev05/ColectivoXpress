@@ -75,7 +75,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
 
         jLabel4.setText("Conductor");
 
-        jLabel5.setText("Hora de Salida (hh:mm:ss)");
+        jLabel5.setText("Hora de Salida (HH:MM)");
 
         editar_button.setBackground(new java.awt.Color(80, 99, 161));
         editar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
@@ -222,14 +222,16 @@ public class AdminViajesEditar extends javax.swing.JFrame {
             hora_salida = null;
         } else {
             try{
-                hora_salida = LocalTime.parse(hora_salida_input.getText());
+                // Usar un formateador específico para hh:mm
+                DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                hora_salida = LocalTime.parse(hora_salida_input.getText(), horaFormatter);
             } catch (Exception e){
                 System.out.println("Hora de salida error");
-                resultado_text.setText("Ingrese bien el formato");
+                resultado_text.setText("Ingrese bien el formato (HH:mm)");
                 return;
             }
         }
-        
+
         String id_ruta = ruta_combobox.getSelectedItem().toString().split(":")[0].trim();
         if(id_ruta.equals("-----")){
             id_ruta = "";
