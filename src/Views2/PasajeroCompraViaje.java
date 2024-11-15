@@ -4,9 +4,12 @@
  */
 package Views2;
 
+import Models.PagoMP;
 import Models.Ruta;
 import Models.Pasajero;
 import Models.Viaje;
+import Repository.ViajeRepository;
+import com.mercadopago.resources.Preference;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -15,6 +18,10 @@ import javax.swing.table.DefaultTableModel;
 import kotlin.random.Random;
 import java.time.Duration;
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -128,6 +135,11 @@ private void listar_viajes(){
         });
 
         id_buscar_input.setCaretColor(new java.awt.Color(168, 168, 168));
+        id_buscar_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                id_buscar_inputActionPerformed(evt);
+            }
+        });
 
         Terminar_Compra.setBackground(new java.awt.Color(30, 30, 30));
         Terminar_Compra.setForeground(new java.awt.Color(245, 245, 245));
@@ -252,13 +264,67 @@ private void listar_viajes(){
     }//GEN-LAST:event_listar_viajes_buttonActionPerformed
 
     private void Comprar_BoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar_BoletoActionPerformed
-        mensaje_pago.setText("Pago Verificiado!!");
-        Terminar_Compra.setVisible(true);
+    String id_viaje = id_buscar_input.getText().trim();
+    
+    if (id_viaje.isEmpty()) {
+        mensaje_pago.setText("Ingrese un ID de viaje");
+        return;
+    }
+    
+    Viaje viaje = new ViajeRepository().buscar(id_viaje);
+    
+    if (viaje == null) {
+        mensaje_pago.setText("El viaje no existe");
+        return;
+    }
+    
+    try {
+        PagoMP.init();
+        
+        Preference preference = PagoMP.crearPreferencia(
+            "Boleto de Viaje", 
+            "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino(), 
+            viaje.get_ruta().get_precio(),
+            pasajero.get_correo()
+        );
+        
+        // Redirigir a la página de pago
+        PagoMP.redirigirAWeb(preference);
+
+        // Mostrar diálogo para confirmar pago
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this, 
+            "¿Has completado el pago en Mercado Pago?.\n"+
+            "Si desea cancelar, pulse no",
+            "Confirmar Pago", 
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            // Verificar estado del pago
+            boolean pagoExitoso = pasajero.comprar_boleto(id_viaje);
+            
+            if (pagoExitoso) {
+                mensaje_pago.setText("Pago Verificado!!");
+                Terminar_Compra.setVisible(true);
+            } else {
+                mensaje_pago.setText("Pago no verificado");
+            }
+        }
+        
+    } catch (Exception e) {
+        mensaje_pago.setText("Error al procesar el pago");
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_Comprar_BoletoActionPerformed
 
     private void Terminar_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Terminar_CompraActionPerformed
 
     }//GEN-LAST:event_Terminar_CompraActionPerformed
+
+    private void id_buscar_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_buscar_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_buscar_inputActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

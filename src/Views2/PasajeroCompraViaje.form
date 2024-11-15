@@ -189,6 +189,9 @@
           <Color blue="a8" green="a8" red="a8" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="id_buscar_inputActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Terminar_Compra">
       <Properties>
