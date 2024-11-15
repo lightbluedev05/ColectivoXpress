@@ -1,8 +1,8 @@
 [
   {
-    "dni_pasajero": "71632395",
-    "id_viaje": "68327",
-    "metodoPago": "MercadoPago",
-    "precio": 0.0
+    "id_boleto": "16641",
+    "dni_pasajero": "14",
+    "id_viaje": "86887",
+    "precio": 1.4
   }
 ]

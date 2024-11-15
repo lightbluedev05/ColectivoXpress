@@ -1,5 +1,8 @@
 package Models;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPConfException;
 import com.mercadopago.exceptions.MPException;
@@ -16,6 +19,8 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+
+import java.util.Arrays;
 
 public class PagoMP {
 
@@ -67,7 +72,20 @@ public class PagoMP {
         String status;
     }
 
-    public static boolean verificarEstadoPago(String externalReference) {
+    public static boolean verificarEstadoPago(Preference preference) {
+        if (preference == null) {
+            System.out.println("Preferencia de pago es nula");
+            return false;
+        }
+
+        // Usar el external_reference de la preferencia
+        String externalReference = preference.getExternalReference();
+        
+        if (externalReference == null || externalReference.isEmpty()) {
+            System.out.println("No se encontró referencia externa");
+            return false;
+        }
+
         OkHttpClient client = new OkHttpClient();
 
         String url = "https://api.mercadopago.com/v1/payments/search?external_reference=" + externalReference;
@@ -78,39 +96,48 @@ public class PagoMP {
                 .build();
 
         try {
-            // Hacer la llamada de forma síncrona
             Response response = client.newCall(request).execute();
+            String responseBody = response.body().string();
+            
+            // Imprimir respuesta completa para depuración
+            System.out.println("Respuesta completa de verificación de pago: " + responseBody);
+
             if (response.isSuccessful()) {
-                String responseBody = response.body().string();
-                return procesarRespuesta(responseBody); // Retorna si el pago fue exitoso o no
+                return procesarRespuesta(responseBody);
             } else {
                 System.out.println("Error en la consulta del pago: " + response.message());
+                return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
-
-        return false;
     }
 
     private static boolean procesarRespuesta(String responseBody) {
-        Gson gson = new Gson();
-        PagoResponse pagoResponse = gson.fromJson(responseBody, PagoResponse.class);
-
-        if (pagoResponse != null && pagoResponse.results != null && !pagoResponse.results.isEmpty()) {
-            Pago pago = pagoResponse.results.get(0);
-            System.out.println("Estado del pago: " + pago.status);
-            System.out.println("ID del pago: " + pago.id);
-
-            if ("approved".equals(pago.status)) {
-                //PAGO APROBADO
-                return true;
-            } else {
-                //PAGO NO APROBADO O PENDIENTE
-                return false;
+        try {
+            Gson gson = new Gson();
+            JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
+            
+            // Verificar si hay resultados
+            JsonArray results = jsonResponse.getAsJsonArray("results");
+            
+            if (results != null && !results.isEmpty()) {
+                for (JsonElement element : results) {
+                    JsonObject payment = element.getAsJsonObject();
+                    String status = payment.get("status").getAsString();
+                    
+                    System.out.println("Estado del pago: " + status);
+                    
+                    // Considerar múltiples estados como exitosos
+                    return Arrays.asList("approved", "completed", "processed").contains(status);
+                }
             }
-        } else {
-            //NO SE ENCONTRO PAGO CON LA REFERENCIA
+            
+            System.out.println("No se encontraron pagos");
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

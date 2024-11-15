@@ -301,14 +301,21 @@ private void listar_viajes(){
         );
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            // Verificar estado del pago
-            boolean pagoExitoso = pasajero.comprar_boleto(id_viaje);
+            // Verificar estado del pago usando la preferencia
+            boolean pagoExitoso = PagoMP.verificarEstadoPago(preference);
             
             if (pagoExitoso) {
-                mensaje_pago.setText("Pago Verificado!!");
-                Terminar_Compra.setVisible(true);
+                // Procesar compra de boleto
+                boolean compraRealizada = pasajero.comprar_boleto(id_viaje);
+                
+                if (compraRealizada) {
+                    mensaje_pago.setText("Pago Verificado!");
+                    Terminar_Compra.setVisible(true);
+                } else {
+                    mensaje_pago.setText("Error con el boleto"); //el boleto no se guarda
+                }
             } else {
-                mensaje_pago.setText("Pago no verificado");
+                mensaje_pago.setText("Pago no verificado.");
             }
         }
         

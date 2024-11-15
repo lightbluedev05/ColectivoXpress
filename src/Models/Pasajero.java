@@ -81,19 +81,13 @@ public class Pasajero extends Usuario {
         return false;
     }
 
-    // Verificar el pago
-    String externalReference = "BOLETO-" + System.currentTimeMillis();
-    if (!PagoMP.verificarEstadoPago(externalReference)) {
-        return false;
-    }
-
     // Generar el boleto
     String idBoleto = Boleto.generarIdBoleto();
     Boleto nuevoBoleto = new Boleto(
         idBoleto, 
         this, 
         viaje, 
-        viaje.get_ruta().get_precio()
+        (float)viaje.get_ruta().get_precio()
     );
     
     // Generar descripción de la ruta
@@ -107,15 +101,16 @@ public class Pasajero extends Usuario {
         PagoMP.enviarCorreo(
             this.get_nombre(),                     // nombreCliente
             viaje.get_conductor().get_nombre(),    // nombreConductor
-            descripcionRuta,         // nombreRuta
+            descripcionRuta,                       // nombreRuta
             String.valueOf(viaje.get_ruta().get_precio()),  // precio
             viaje.get_fecha_salida().toString(),   // fechaSalida
             idBoleto,                              // codigoTicket
             this.get_correo()                      // emailTo
         );
+        return true;
     }
 
-    return guardado;
+    return false;
 }
   
      public List<Viaje> ver_viajes(){
