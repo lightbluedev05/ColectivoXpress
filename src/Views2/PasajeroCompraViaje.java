@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import kotlin.random.Random;
 import java.time.Duration;
+import java.time.LocalTime;
 
 /**
  *
@@ -50,12 +51,16 @@ private void listar_viajes(){
         String tiempo_string = String.format("%02d:%02d", horas, minutos); 
 
         double precio = viaje.get_ruta().get_precio(); 
+        
+        LocalTime horaSalida = viaje.get_hora_salida();
+        String horaSalidaString = horaSalida.toString(); // Convertir LocalTime a String
 
         modelo.addRow(new Object[]{
             viaje.get_id_viaje(), // ID Viaje
             viaje.get_fecha_salida(), // Fecha
             origen, // Origen
             destino, // Destino
+            horaSalidaString,
             tiempo_string, // Tiempo Aproximado en formato "HH:mm"
             precio // Precio
         });
@@ -140,14 +145,14 @@ private void listar_viajes(){
 
             },
             new String [] {
-                "ID ", "Fecha", "Origen", "Destino", "Tiempo Aprox.", "Precio"
+                "ID ", "Fecha", "Origen", "Destino", "Hora de Salida (HH:MM)", "Duracion (HH:MM)", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -158,7 +163,17 @@ private void listar_viajes(){
                 return canEdit [columnIndex];
             }
         });
+        tabla_viajes.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tabla_viajes);
+        if (tabla_viajes.getColumnModel().getColumnCount() > 0) {
+            tabla_viajes.getColumnModel().getColumn(0).setMaxWidth(200);
+            tabla_viajes.getColumnModel().getColumn(1).setMaxWidth(150);
+            tabla_viajes.getColumnModel().getColumn(2).setMaxWidth(150);
+            tabla_viajes.getColumnModel().getColumn(3).setMaxWidth(150);
+            tabla_viajes.getColumnModel().getColumn(4).setMaxWidth(420);
+            tabla_viajes.getColumnModel().getColumn(5).setMaxWidth(300);
+            tabla_viajes.getColumnModel().getColumn(6).setMaxWidth(50);
+        }
 
         jLabel4.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(23, 23, 23));
@@ -174,9 +189,9 @@ private void listar_viajes(){
                         .addGap(35, 35, 35)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(id_buscar_input, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -188,7 +203,7 @@ private void listar_viajes(){
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(jLabel2)))
-                .addGap(52, 52, 52))
+                .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addComponent(listar_viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,9 +216,6 @@ private void listar_viajes(){
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(jLabel2)
                         .addGap(28, 28, 28)
@@ -213,10 +225,13 @@ private void listar_viajes(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Comprar_Boleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)
-                        .addComponent(Terminar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Terminar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listar_viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
