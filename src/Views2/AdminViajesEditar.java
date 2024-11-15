@@ -26,8 +26,10 @@ public class AdminViajesEditar extends javax.swing.JFrame {
      * Creates new form LoginPasajero
      */
     Admin admin;
+    String id_viaje;
    
-    public AdminViajesEditar(Admin admin) {
+    public AdminViajesEditar(Admin admin, String id_viaje) {
+        this.id_viaje = id_viaje;
         this.admin = admin;
         initComponents();
         resultado_text.setText("");
@@ -54,7 +56,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         hora_salida_input = new javax.swing.JTextField();
-        anadir_button = new javax.swing.JButton();
+        editar_button = new javax.swing.JButton();
         resultado_text = new javax.swing.JLabel();
         ruta_combobox = new javax.swing.JComboBox<>();
         conductor_combobox = new javax.swing.JComboBox<>();
@@ -75,13 +77,13 @@ public class AdminViajesEditar extends javax.swing.JFrame {
 
         jLabel5.setText("Hora de Salida (hh:mm:ss)");
 
-        anadir_button.setBackground(new java.awt.Color(80, 99, 161));
-        anadir_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
-        anadir_button.setForeground(new java.awt.Color(255, 255, 255));
-        anadir_button.setText("Añadir");
-        anadir_button.addActionListener(new java.awt.event.ActionListener() {
+        editar_button.setBackground(new java.awt.Color(80, 99, 161));
+        editar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        editar_button.setForeground(new java.awt.Color(255, 255, 255));
+        editar_button.setText("Editar");
+        editar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anadir_buttonActionPerformed(evt);
+                editar_buttonActionPerformed(evt);
             }
         });
 
@@ -99,7 +101,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(anadir_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(resultado_text))
@@ -141,7 +143,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hora_salida_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(anadir_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(resultado_text))
         );
@@ -195,46 +197,61 @@ public class AdminViajesEditar extends javax.swing.JFrame {
             }
         }
         ruta_combobox.addItem("-----");
-        ruta_combobox.addItem("-----");
+        ruta_combobox.setSelectedItem("-----");
     }
     
-    private void anadir_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadir_buttonActionPerformed
+    private void editar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_buttonActionPerformed
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate fecha;
-        try{
-            fecha = LocalDate.parse(fecha_salida_input.getText(), formatter);
-        } catch(Exception e){
-            System.out.println("Fecha de salida error");
-            resultado_text.setText("Ingrese bien el formato");
-            return;
+        
+        if(fecha_salida_input.getText().isEmpty()){
+            fecha = null;
+        } else {
+            try{
+                fecha = LocalDate.parse(fecha_salida_input.getText(), formatter);
+            } catch(Exception e){
+                System.out.println("Fecha de salida error");
+                resultado_text.setText("Ingrese bien el formato");
+                return;
+            }
         }
         
         LocalTime hora_salida;
-        try{
-            hora_salida = LocalTime.parse(hora_salida_input.getText());
-        } catch (Exception e){
-            System.out.println("Hora de salida error");
-            resultado_text.setText("Ingrese bien el formato");
-            return;
+        if(hora_salida_input.getText().isEmpty()){
+            hora_salida = null;
+        } else {
+            try{
+                hora_salida = LocalTime.parse(hora_salida_input.getText());
+            } catch (Exception e){
+                System.out.println("Hora de salida error");
+                resultado_text.setText("Ingrese bien el formato");
+                return;
+            }
         }
         
         String id_ruta = ruta_combobox.getSelectedItem().toString().split(":")[0].trim();
+        if(id_ruta.equals("-----")){
+            id_ruta = "";
+        }
         
         String id_conductor = conductor_combobox.getSelectedItem().toString().split(":")[0].trim();
+        if(id_conductor.equals("-----")){
+            id_conductor = "";
+        }
         
-        boolean exito = admin.crear_viaje(fecha, id_ruta, id_conductor, hora_salida);
+        boolean exito = admin.editar_viaje(id_viaje, fecha, id_ruta, id_conductor, hora_salida);
         
         if(!exito){
-            resultado_text.setText("No se pudo crear el viaje");
+            resultado_text.setText("No se pudo editar el viaje");
             return;
         }
         
-        resultado_text.setText("Viaje creado!!");
-        JOptionPane.showMessageDialog(null, "Creacion exitosa", "Creacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-        resultado_text.setText("Creacion exitosa");
+        resultado_text.setText("Viaje editado!!");
+        JOptionPane.showMessageDialog(null, "Edicion exitosa", "Edicion exitosa", JOptionPane.INFORMATION_MESSAGE);
+        resultado_text.setText("Edicion exitosa");
         
-    }//GEN-LAST:event_anadir_buttonActionPerformed
+    }//GEN-LAST:event_editar_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,8 +321,8 @@ public class AdminViajesEditar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelError;
-    private javax.swing.JButton anadir_button;
     private javax.swing.JComboBox<String> conductor_combobox;
+    private javax.swing.JButton editar_button;
     private javax.swing.JTextField fecha_salida_input;
     private javax.swing.JTextField hora_salida_input;
     private org.jdatepicker.JDateComponentFactory jDateComponentFactory1;

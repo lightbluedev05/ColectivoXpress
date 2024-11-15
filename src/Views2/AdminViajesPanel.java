@@ -339,18 +339,18 @@ public class AdminViajesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_agregar_viaje_buttonActionPerformed
 
     private void editar_viaje_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_viaje_buttonActionPerformed
-        String id_ruta = id_buscar_input.getText();
+        String id_viaje = id_buscar_input.getText();
         
-        Ruta ruta = admin.buscar_ruta(id_ruta);
-        if(ruta == null){
+        Viaje viaje = admin.buscar_viaje(id_viaje);
+        if(viaje == null){
             DefaultTableModel modelo = (DefaultTableModel)tabla_datos_viaje.getModel();
             modelo.setRowCount(0);
             modelo.addRow(new Object[]{"ERROR", "ID NO EXISTE"});
             tabla_datos_viaje.setModel(modelo);
         }
         
-        AdminRutasEditar editar_ruta = new AdminRutasEditar(admin, id_ruta);
-        editar_ruta.setVisible(true);
+        AdminViajesEditar editar_viaje = new AdminViajesEditar(admin, id_viaje);
+        editar_viaje.setVisible(true);
     }//GEN-LAST:event_editar_viaje_buttonActionPerformed
 
 
