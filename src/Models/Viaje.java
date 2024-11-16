@@ -69,4 +69,4 @@ public class Viaje {
     public void set_hora_salida(LocalTime hora_salida){
         this.hora_salida = hora_salida;
     }
-}
+} 

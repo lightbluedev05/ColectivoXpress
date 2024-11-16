@@ -2,10 +2,12 @@
 package Vista;
 
 import Models.Conductor;
+import Views2.ConductorPerfil;
 import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
 import Views2.Nosotros;
+import Views2.ViajeAsignado;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,9 +39,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new Inicio());
-        ShowJPanel(new Nosotros());
-        ShowJPanel(new Destinos());
+        ShowJPanel(new ConductorPerfil(conductor));
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -49,6 +49,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         content.revalidate();
         content.repaint(); 
     }
+    
     
     /*private void ShowJPanel(JPanel n){
         n.setSize(1010, 580);
@@ -73,7 +74,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         menu = new javax.swing.JPanel();
         buttonInicio = new javax.swing.JButton();
         buttonDestinos = new javax.swing.JButton();
-        buttonIniciarSesion = new javax.swing.JButton();
+        buttonViajeAsignado = new javax.swing.JButton();
         buttonNosotros = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         fecha = new javax.swing.JLabel();
@@ -123,16 +124,16 @@ public class DashboardConductor extends javax.swing.JFrame {
             }
         });
 
-        buttonIniciarSesion.setBackground(new java.awt.Color(0,0,0,0));
-        buttonIniciarSesion.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIniciarSesion.setText("MENU DE INGRESO");
-        buttonIniciarSesion.setBorder(null);
-        buttonIniciarSesion.setBorderPainted(false);
-        buttonIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+        buttonViajeAsignado.setBackground(new java.awt.Color(0,0,0,0));
+        buttonViajeAsignado.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        buttonViajeAsignado.setForeground(new java.awt.Color(255, 255, 255));
+        buttonViajeAsignado.setText("VIAJES ASIGNADOS");
+        buttonViajeAsignado.setBorder(null);
+        buttonViajeAsignado.setBorderPainted(false);
+        buttonViajeAsignado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonViajeAsignado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIniciarSesionActionPerformed(evt);
+                buttonViajeAsignadoActionPerformed(evt);
             }
         });
 
@@ -154,7 +155,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(buttonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(buttonViajeAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(buttonDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -164,7 +165,7 @@ public class DashboardConductor extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(buttonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonViajeAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(buttonDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -249,16 +250,16 @@ public class DashboardConductor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInicioActionPerformed
-        ShowJPanel(new Inicio());
+        ShowJPanel(new ConductorPerfil(conductor));
     }//GEN-LAST:event_buttonInicioActionPerformed
 
     private void buttonDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDestinosActionPerformed
         ShowJPanel(new Destinos());
     }//GEN-LAST:event_buttonDestinosActionPerformed
 
-    private void buttonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarSesionActionPerformed
-        
-    }//GEN-LAST:event_buttonIniciarSesionActionPerformed
+    private void buttonViajeAsignadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViajeAsignadoActionPerformed
+        ShowJPanel (new ViajeAsignado(conductor));
+    }//GEN-LAST:event_buttonViajeAsignadoActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed
         ShowJPanel(new Nosotros());
@@ -305,9 +306,9 @@ public class DashboardConductor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton buttonDestinos;
-    private javax.swing.JButton buttonIniciarSesion;
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonNosotros;
+    private javax.swing.JButton buttonViajeAsignado;
     private javax.swing.JPanel content;
     private javax.swing.JLabel fecha;
     private javax.swing.JPanel header;

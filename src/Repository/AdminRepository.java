@@ -47,7 +47,14 @@ public class AdminRepository implements CRUD<Admin>{
     public boolean crear(Admin nuevo_admin) {
         
         try {
-            String query = "INSERT INTO admins (codigo, contrasena) VALUES ('"+nuevo_admin.get_codigo()+"', '"+nuevo_admin.get_contrasena()+"')";
+            String query = "INSERT INTO admins (codigo, contrasena) "
+             + "SELECT '" + nuevo_admin.get_codigo() + "', '"
+             + nuevo_admin.get_contrasena() + "' "
+             + "WHERE NOT EXISTS ("
+             + "    SELECT 1 FROM admins WHERE codigo = '" + nuevo_admin.get_codigo() + "'"
+             + ")";
+
+            
             Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             

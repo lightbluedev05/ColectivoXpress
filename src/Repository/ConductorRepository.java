@@ -63,24 +63,25 @@ public class ConductorRepository implements CRUD<Conductor>{
     public boolean crear(Conductor nuevo_conductor) {
         
         try {
-            if(this.buscar(nuevo_conductor.get_dni()) != null){
-                return false;
-            }
             
             ConductorDTO conductorDto = convertirConductor_Dto(nuevo_conductor);
             
             String query = "INSERT INTO conductores (dni, nombre, correo, fecha_nacimiento, contrasena, "
              + "distrito, provincia, departamento, dias_descanso) "
-             + "VALUES ("
-             + "'" + conductorDto.dni + "', "
-             + "'" + conductorDto.nombre + "', "
-             + "'" + conductorDto.correo + "', "
-             + "'" + conductorDto.fecha_nacimiento + "', "
-             + "'" + conductorDto.contrasena + "', "
-             + "'" + conductorDto.distrito + "', "
-             + "'" + conductorDto.provincia + "', "
-             + "'" + conductorDto.departamento + "', "
-             + "'" + conductorDto.dias_descanso + "'"
+             + "SELECT '"
+             + conductorDto.dni + "', '"
+             + conductorDto.nombre + "', '"
+             + conductorDto.correo + "', '"
+             + conductorDto.fecha_nacimiento + "', '"
+             + conductorDto.contrasena + "', '"
+             + conductorDto.distrito + "', '"
+             + conductorDto.provincia + "', '"
+             + conductorDto.departamento + "', '"
+             + conductorDto.dias_descanso + "' "
+             + "WHERE NOT EXISTS ("
+             + "    SELECT 1 FROM conductores "
+             + "    WHERE dni = '" + conductorDto.dni + "' "
+             + "    OR correo = '" + conductorDto.correo + "'"
              + ")";
 
 
@@ -137,17 +138,24 @@ public class ConductorRepository implements CRUD<Conductor>{
     @Override
     public boolean actualizar(Conductor conductor_editar){
         try {
-            String query = "UPDATE conductores SET "
-             + "nombre = '"+conductor_editar.get_nombre()+"', "
-             + "correo = '"+conductor_editar.get_correo()+"', "
-             + "fecha_nacimiento = '"+conductor_editar.get_fecha_nacimiento()+"', "
-             + "contrasena = '"+conductor_editar.get_contrasena()+"', "
-             + "distrito = '"+conductor_editar.get_distrito()+"', "
-             + "provincia = '"+conductor_editar.get_provincia()+"', "
-             + "departamento = '"+conductor_editar.get_departamento()+"', "
-             + "dias_descanso = '"+conductor_editar.get_dias_descanso()+"' "
-             + "WHERE dni = '"+conductor_editar.get_dni()+"'";
+            
+            ConductorDTO conductorDto = convertirConductor_Dto(conductor_editar);
 
+            String query = "UPDATE conductores SET "
+             + "nombre = '" + conductorDto.nombre + "', "
+             + "correo = '" + conductorDto.correo + "', "
+             + "fecha_nacimiento = '" + conductorDto.fecha_nacimiento + "', "
+             + "contrasena = '" + conductorDto.contrasena + "', "
+             + "distrito = '" + conductorDto.distrito + "', "
+             + "provincia = '" + conductorDto.provincia + "', "
+             + "departamento = '" + conductorDto.departamento + "', "
+             + "dias_descanso = '" + conductorDto.dias_descanso + "' "
+             + "WHERE dni = '" + conductorDto.dni + "' "
+             + "AND NOT EXISTS ("
+             + "    SELECT 1 FROM conductores "
+             + "    WHERE correo = '" + conductorDto.correo + "' "
+             + "    AND dni != '" + conductorDto.dni + "'"
+             + ")";
 
             Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);

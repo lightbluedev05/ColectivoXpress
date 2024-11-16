@@ -8,6 +8,7 @@ import Views2.Inicio;
 import Views2.Nosotros;
 import Views2.PasajeroPerfil;
 import Views2.PasajeroCompraViaje;
+import Views2.PasajeroHistorial;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -71,10 +72,11 @@ public class DashboardPasajero extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         jPanelConEncabezadoColectivo1 = new Vista.JPanelConEncabezadoColectivo();
         menu = new javax.swing.JPanel();
-        buttonInicio = new javax.swing.JButton();
+        buttonPerfil = new javax.swing.JButton();
         buttonComprar = new javax.swing.JButton();
-        buttonIniciarSesion = new javax.swing.JButton();
+        buttonHistorial = new javax.swing.JButton();
         buttonNosotros = new javax.swing.JButton();
+        buttonInicio = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         fecha = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
@@ -97,16 +99,16 @@ public class DashboardPasajero extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(0, 0, 204));
 
-        buttonInicio.setBackground(new java.awt.Color(0,0,0,0));
-        buttonInicio.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonInicio.setForeground(new java.awt.Color(255, 255, 255));
-        buttonInicio.setText("INICIO");
-        buttonInicio.setBorder(null);
-        buttonInicio.setBorderPainted(false);
-        buttonInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonInicio.addActionListener(new java.awt.event.ActionListener() {
+        buttonPerfil.setBackground(new java.awt.Color(0,0,0,0));
+        buttonPerfil.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        buttonPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        buttonPerfil.setText("PERFIL");
+        buttonPerfil.setBorder(null);
+        buttonPerfil.setBorderPainted(false);
+        buttonPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonInicioActionPerformed(evt);
+                buttonPerfilActionPerformed(evt);
             }
         });
 
@@ -123,16 +125,16 @@ public class DashboardPasajero extends javax.swing.JFrame {
             }
         });
 
-        buttonIniciarSesion.setBackground(new java.awt.Color(0,0,0,0));
-        buttonIniciarSesion.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIniciarSesion.setText("PERFIL");
-        buttonIniciarSesion.setBorder(null);
-        buttonIniciarSesion.setBorderPainted(false);
-        buttonIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+        buttonHistorial.setBackground(new java.awt.Color(0,0,0,0));
+        buttonHistorial.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        buttonHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        buttonHistorial.setText("HISTORIAL");
+        buttonHistorial.setBorder(null);
+        buttonHistorial.setBorderPainted(false);
+        buttonHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIniciarSesionActionPerformed(evt);
+                buttonHistorialActionPerformed(evt);
             }
         });
 
@@ -149,25 +151,41 @@ public class DashboardPasajero extends javax.swing.JFrame {
             }
         });
 
+        buttonInicio.setBackground(new java.awt.Color(0,0,0,0));
+        buttonInicio.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        buttonInicio.setForeground(new java.awt.Color(255, 255, 255));
+        buttonInicio.setText("INICIO");
+        buttonInicio.setBorder(null);
+        buttonInicio.setBorderPainted(false);
+        buttonInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonInicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addComponent(buttonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -260,13 +278,17 @@ public class DashboardPasajero extends javax.swing.JFrame {
         ShowJPanel(new PasajeroCompraViaje(pasajero));
     }//GEN-LAST:event_buttonComprarActionPerformed
 
-    private void buttonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarSesionActionPerformed
+    private void buttonPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPerfilActionPerformed
     ShowJPanel(new PasajeroPerfil(pasajero));
-    }//GEN-LAST:event_buttonIniciarSesionActionPerformed
+    }//GEN-LAST:event_buttonPerfilActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed
         ShowJPanel(new Nosotros());
     }//GEN-LAST:event_buttonNosotrosActionPerformed
+
+    private void buttonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHistorialActionPerformed
+        ShowJPanel(new PasajeroHistorial(pasajero));
+    }//GEN-LAST:event_buttonHistorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,9 +329,10 @@ public class DashboardPasajero extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton buttonComprar;
-    private javax.swing.JButton buttonIniciarSesion;
+    private javax.swing.JButton buttonHistorial;
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonNosotros;
+    private javax.swing.JButton buttonPerfil;
     private javax.swing.JPanel content;
     private javax.swing.JLabel fecha;
     private javax.swing.JPanel header;

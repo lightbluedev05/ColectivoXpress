@@ -50,14 +50,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nuevo_departamento_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="nuevo_dias_descanso_label1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="nuevo_departamento_input" min="-2" pref="370" max="-2" attributes="0"/>
+                          <Component id="nuevo_dias_descanso_input1" min="-2" pref="370" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_departamento_button" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_departamento_message" min="-2" max="-2" attributes="0"/>
+                          <Component id="nuevo_dias_descanso_button1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="nuevo_dias_descanso_message" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="nuevo_departamento_label" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_nombre_label" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="ingresar_button" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
@@ -100,8 +101,15 @@
                               <Component id="nuevo_provincia_message" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="nuevo_departamento_input" min="-2" pref="370" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nuevo_departamento_button" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nuevo_departamento_message" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="377" max="32767" attributes="0"/>
+                  <EmptySpace pref="397" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -154,7 +162,15 @@
                       <Component id="nuevo_departamento_button" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_departamento_message" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="99" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="nuevo_dias_descanso_label1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nuevo_dias_descanso_input1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nuevo_dias_descanso_button1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nuevo_dias_descanso_message" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -318,6 +334,32 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nuevo_departamento_message">
+        </Component>
+        <Component class="javax.swing.JLabel" name="nuevo_dias_descanso_label1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Sans" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="14" green="14" red="14" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Actualiza dias de descanso"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nuevo_dias_descanso_input1">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_dias_descanso_input1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="nuevo_dias_descanso_button1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_dias_descanso_button1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="nuevo_dias_descanso_message">
         </Component>
       </SubComponents>
     </Container>

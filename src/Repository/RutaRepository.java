@@ -66,13 +66,16 @@ public class RutaRepository implements CRUD<Ruta>{
             RutaDTO rutaDto = convertirRuta_Dto(nueva_ruta);
             
             String query = "INSERT INTO rutas (id_ruta, origen, destino, tiempo_aproximado, precio) "
-             + "VALUES ("
-             + "'" + rutaDto.id_ruta + "', "
+             + "SELECT '" + rutaDto.id_ruta + "', "
              + "'" + rutaDto.origen + "', "
              + "'" + rutaDto.destino + "', "
              + "'" + rutaDto.tiempo_aproximado + "', "
              + rutaDto.precio
-             + ")";
+             + " WHERE NOT EXISTS ("
+             + "    SELECT 1 FROM rutas "
+             + "    WHERE (origen = '" + rutaDto.origen + "' "
+             + "           AND destino = '" + rutaDto.destino + "' "
+             + "           OR id_ruta = '" + rutaDto.id_ruta + "'))";
             
             Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
@@ -190,25 +193,22 @@ public class RutaRepository implements CRUD<Ruta>{
             List<Ruta> rutas;
             rutas = new ArrayList<>();
             
-            do{
-                PasajeroRepository.PasajeroDTO pasajeroDto = new PasajeroRepository.PasajeroDTO();
-                pasajeroDto.nombre = rs.getString("nombre");
-                pasajeroDto.correo = rs.getString("correo");
-                pasajeroDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
-                pasajeroDto.contrasena = rs.getString("contrasena");
-                pasajeroDto.distrito = rs.getString("distrito");
-                pasajeroDto.provincia = rs.getString("provincia");
-                pasajeroDto.departamento = rs.getString("departamento");
-                pasajeroDto.dni = rs.getString("dni");
-                
-                rutas.add(convertirDto_Pasajero(pasajeroDto));
-                
-            } while(rs.next());
+            do {
+                RutaRepository.RutaDTO rutaDto = new RutaRepository.RutaDTO();
+                rutaDto.id_ruta = rs.getString("id_ruta");
+                rutaDto.origen = rs.getString("origen");
+                rutaDto.destino = rs.getString("destino");
+                rutaDto.tiempo_aproximado = rs.getString("tiempo_aproximado");
+                rutaDto.precio = rs.getFloat("precio");
+
+                rutas.add(convertirDto_Ruta(rutaDto));
+            } while (rs.next());
+
             
             cx.desconectar();
             return rutas;
         } catch (SQLException ex) {
-            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
             cx.desconectar();
             return null;
         }

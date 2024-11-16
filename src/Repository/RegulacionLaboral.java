@@ -19,7 +19,9 @@ import java.util.logging.Logger;
 
 public class RegulacionLaboral {
     private static final String RUTA_ARCHIVO = "src/resources/regulacion_laboral.json";
+
     private int limite_dias_descanso;
+
 
     public int get_limite_dias_descanso() {
         return limite_dias_descanso;

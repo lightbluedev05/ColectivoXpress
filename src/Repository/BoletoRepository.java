@@ -56,12 +56,14 @@ public class BoletoRepository implements CRUD<Boleto>{
             BoletoDTO boletoDto = convertirBoleto_Dto(nuevo_boleto);
             
             String query = "INSERT INTO boletos (id_boleto, dni_pasajero, id_viaje, precio) "
-             + "VALUES ("
-             + "'" + boletoDto.id_boleto + "', "
-             + "'" + boletoDto.dni_pasajero + "', "
-             + "'" + boletoDto.id_viaje + "', "
-             + boletoDto.precio // Sin comillas porque es un float
+             + "SELECT '" + boletoDto.id_boleto + "', '"
+             + boletoDto.dni_pasajero + "', '"
+             + boletoDto.id_viaje + "', "
+             + boletoDto.precio + " "
+             + "WHERE NOT EXISTS ("
+             + "    SELECT 1 FROM boletos WHERE id_boleto = '" + boletoDto.id_boleto + "'"
              + ")";
+
             Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             
@@ -108,9 +110,15 @@ public class BoletoRepository implements CRUD<Boleto>{
     @Override
     public boolean actualizar(Boleto boleto_editar) {
         try {
-            String query = "UPDATE boletos SET dni_pasajero ='"+ boleto_editar.get_pasajero().get_dni()+"'"
-                    + ", id_viaje = '"+boleto_editar.get_viaje().get_id_viaje()+"', "
-                    + "precio = '"+boleto_editar.get_precio()+"' WHERE id_boleto = '"+ boleto_editar.get_id_boleto()+"'";
+            
+            BoletoDTO boletoDto = convertirBoleto_Dto(boleto_editar);
+            
+            String query = "UPDATE boletos SET "
+             + "dni_pasajero = '" + boletoDto.dni_pasajero + "', "
+             + "id_viaje = '" + boletoDto.id_viaje + "', "
+             + "precio = " + boletoDto.precio + " "
+             + "WHERE id_boleto = '" + boletoDto.id_boleto + "'";
+
             Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);
             

@@ -9,6 +9,7 @@ import Models.Ruta;
 import Models.Pasajero;
 import Models.Viaje;
 import Repository.ViajeRepository;
+import Vista.DashboardPasajero;
 import com.mercadopago.resources.Preference;
 import java.awt.Color;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -103,11 +105,11 @@ private void listar_viajes(){
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
-        jLabel1.setText("Listado de Viajes");
+        jLabel1.setText("Listado de Viajes Disponibles");
 
         listar_viajes_button.setBackground(new java.awt.Color(30, 30, 30));
         listar_viajes_button.setForeground(new java.awt.Color(245, 245, 245));
-        listar_viajes_button.setText("Listar Viajes");
+        listar_viajes_button.setText("Listar Viajes Disponibles");
         listar_viajes_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
         listar_viajes_button.setMaximumSize(new java.awt.Dimension(170, 40));
         listar_viajes_button.setPreferredSize(new java.awt.Dimension(170, 40));
@@ -326,7 +328,7 @@ private void listar_viajes(){
     }//GEN-LAST:event_Comprar_BoletoActionPerformed
 
     private void Terminar_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Terminar_CompraActionPerformed
-
+        ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroHistorial(pasajero));
     }//GEN-LAST:event_Terminar_CompraActionPerformed
 
     private void id_buscar_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_buscar_inputActionPerformed

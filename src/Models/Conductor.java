@@ -1,11 +1,14 @@
 package Models;
 
+import Models.Viaje;
 import Repository.AdminRepository;
 import Repository.ConductorRepository;
 import Repository.PasajeroRepository;
 import Repository.RegulacionLaboral;
+import Repository.ViajeRepository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +31,18 @@ public class Conductor extends Usuario{
         this.provincia = provincia;
         this.departamento = departamento;
         this.dias_descanso = "";
+    }
+    public List<Viaje> ver_viaje_asignado() {
+        List<Viaje> todos_viajes = new ViajeRepository().listar();
+        List<Viaje> viajes_asignados = new ArrayList<>();
+        
+        for (Viaje viaje : todos_viajes) {
+            if (viaje.get_conductor() != null && 
+                viaje.get_conductor().get_dni().equals(this.get_dni())) {
+                viajes_asignados.add(viaje);
+            }
+        }
+        return viajes_asignados;
     }
 
     @Override
@@ -89,4 +104,17 @@ public class Conductor extends Usuario{
     public void set_dias_descanso(String dias_descanso){
         this.dias_descanso = dias_descanso;
     }
+    public boolean tieneViajeActivo() {
+    List<Viaje> viajesAsignados = ver_viaje_asignado();
+    if (viajesAsignados.isEmpty()) {
+        return false;
+    }
+    
+    // Verificar si el viaje está activo (no ha pasado la fecha y hora de salida)
+    Viaje viajeActivo = viajesAsignados.get(0); // Asumiendo que solo hay un viaje activo
+    LocalDate fechaActual = LocalDate.now();
+    LocalTime horaActual = LocalTime.now();
+    
+    return viajeActivo.get_fecha_salida().isEqual(fechaActual) && viajeActivo.get_hora_salida().isAfter(horaActual);
+}
 }

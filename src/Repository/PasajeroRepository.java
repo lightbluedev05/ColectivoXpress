@@ -57,25 +57,25 @@ public class PasajeroRepository implements CRUD<Pasajero>{
     @Override
     public boolean crear(Pasajero nuevo_pasajero){
         try {
-            if(this.buscar(nuevo_pasajero.get_dni()) != null){
-                return false;
-            }
             
             PasajeroDTO pasajeroDto = convertirPasajero_Dto(nuevo_pasajero);
             
             String query = "INSERT INTO pasajeros (dni, nombre, correo, fecha_nacimiento, contrasena, "
              + "distrito, provincia, departamento) "
-             + "VALUES ("
-             + "'" + pasajeroDto.dni + "', "
-             + "'" + pasajeroDto.nombre + "', "
-             + "'" + pasajeroDto.correo + "', "
-             + "'" + pasajeroDto.fecha_nacimiento + "', "
-             + "'" + pasajeroDto.contrasena + "', "
-             + "'" + pasajeroDto.distrito + "', "
-             + "'" + pasajeroDto.provincia + "', "
-             + "'" + pasajeroDto.departamento + "'"
+             + "SELECT '"
+             + pasajeroDto.dni + "', '"
+             + pasajeroDto.nombre + "', '"
+             + pasajeroDto.correo + "', '"
+             + pasajeroDto.fecha_nacimiento + "', '"
+             + pasajeroDto.contrasena + "', '"
+             + pasajeroDto.distrito + "', '"
+             + pasajeroDto.provincia + "', '"
+             + pasajeroDto.departamento + "' "
+             + "WHERE NOT EXISTS ("
+             + "    SELECT 1 FROM pasajeros "
+             + "    WHERE dni = '" + pasajeroDto.dni + "' "
+             + "    OR correo = '" + pasajeroDto.correo + "'"
              + ")";
-
 
             Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
@@ -129,16 +129,23 @@ public class PasajeroRepository implements CRUD<Pasajero>{
     @Override
     public boolean actualizar(Pasajero pasajero_editar){
         try {
-            String query = "UPDATE pasajeros SET "
-             + "nombre = '"+pasajero_editar.get_nombre()+"', "
-             + "correo = '"+pasajero_editar.get_correo()+"', "
-             + "fecha_nacimiento = '"+pasajero_editar.get_fecha_nacimiento()+"', "
-             + "contrasena = '"+pasajero_editar.get_contrasena()+"', "
-             + "distrito = '"+pasajero_editar.get_distrito()+"', "
-             + "provincia = '"+pasajero_editar.get_provincia()+"', "
-             + "departamento = '"+pasajero_editar.get_departamento()+"' "
-             + "WHERE dni = '"+pasajero_editar.get_dni()+"'";
+            
+            PasajeroDTO pasajeroDto = convertirPasajero_Dto(pasajero_editar);
 
+            String query = "UPDATE pasajeros SET "
+                + "nombre = '" + pasajeroDto.nombre + "', "
+                + "correo = '" + pasajeroDto.correo + "', "
+                + "fecha_nacimiento = '" + pasajeroDto.fecha_nacimiento + "', "
+                + "contrasena = '" + pasajeroDto.contrasena + "', "
+                + "distrito = '" + pasajeroDto.distrito + "', "
+                + "provincia = '" + pasajeroDto.provincia + "', "
+                + "departamento = '" + pasajeroDto.departamento + "' "
+                + "WHERE dni = '" + pasajeroDto.dni + "' "
+                + "AND NOT EXISTS ("
+                + "    SELECT 1 FROM pasajeros "
+                + "    WHERE correo = '" + pasajeroDto.correo + "' "
+                + "    AND dni != '" + pasajeroDto.dni + "'"
+                + ")";
 
             Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);
