@@ -1,5 +1,6 @@
 package Repository;
 
+import Models.Pasajero;
 import Models.Ruta;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,9 +11,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RutaRepository implements CRUD<Ruta>{
 
@@ -50,166 +56,161 @@ public class RutaRepository implements CRUD<Ruta>{
         return dto;
     }
     
+    private Conexion cx = new Conexion();
+    
     @Override
     public boolean crear(Ruta nueva_ruta){
-        List<RutaDTO> rutas = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<RutaDTO>>(){}.getType();
-            Gson gson = new Gson();
-            rutas = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(rutas != null){
-            for(RutaDTO ruta : rutas){
-                if(ruta.origen.equals(nueva_ruta.get_origen()) && ruta.destino.equals(nueva_ruta.get_destino())){
-                    return false;
-                }
-            }
-        } else {
-            rutas = new ArrayList<>();
-        }
-
-        rutas.add(convertirRuta_Dto(nueva_ruta));
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String clientes_json = gson.toJson(rutas);
-
-        try(FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(clientes_json);
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
+        
+        try {
+            
+            RutaDTO rutaDto = convertirRuta_Dto(nueva_ruta);
+            
+            String query = "INSERT INTO rutas (id_ruta, origen, destino, tiempo_aproximado, precio) "
+             + "VALUES ("
+             + "'" + rutaDto.id_ruta + "', "
+             + "'" + rutaDto.origen + "', "
+             + "'" + rutaDto.destino + "', "
+             + "'" + rutaDto.tiempo_aproximado + "', "
+             + rutaDto.precio
+             + ")";
+            
+            Statement st = cx.conectar().createStatement();
+            int filas_afectadas = st.executeUpdate(query);
+            
+            cx.desconectar();
+            return filas_afectadas > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public Ruta buscar(String id_ruta){
-        List<RutaDTO> rutas = null;
+        
+        ResultSet rs;
+        
+        try {
+            String query = "SELECT * FROM rutas WHERE id_ruta='"+ id_ruta +"'";
+            Statement st = cx.conectar().createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+                System.out.println("Se encontro en la bd");
+            } else {
+                cx.desconectar();
+                return null;
+            }
+            
+            RutaDTO rutaDto = new RutaDTO();
+            rutaDto.id_ruta = rs.getString("id_ruta");
+            rutaDto.origen = rs.getString("origen");
+            rutaDto.destino = rs.getString("destino");
+            rutaDto.tiempo_aproximado = rs.getString("tiempo_aproximado");
+            rutaDto.precio = rs.getFloat("precio");
 
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<RutaDTO>>(){}.getType();
-            Gson gson = new Gson();
-            rutas = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(rutas == null){
+            cx.desconectar();
+            
+            return convertirDto_Ruta(rutaDto);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return null;
         }
-
-        for(RutaDTO ruta : rutas){
-            if(ruta.id_ruta.equals(id_ruta)){
-                return convertirDto_Ruta(ruta);
-            }
-        }
-
-        return null;
     }
 
     @Override
     public boolean actualizar(Ruta ruta_editar){
-        List<RutaDTO> rutas = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<RutaDTO>>(){}.getType();
-            Gson gson = new Gson();
-            rutas = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(rutas == null){
-            return false;
-        }
         
-        for (RutaDTO ruta: rutas){
-            if(ruta.origen.equals(ruta_editar.get_origen()) && ruta.destino.equals(ruta_editar.get_destino())){
-                return false;
-            }
-        }
+        try {
+            
+            RutaDTO rutaDto = convertirRuta_Dto(ruta_editar);
+            
+            String query = "UPDATE rutas SET "
+             + "origen = '" + rutaDto.origen + "', "
+             + "destino = '" + rutaDto.destino + "', "
+             + "tiempo_aproximado = '" + rutaDto.tiempo_aproximado + "', "
+             + "precio = " + rutaDto.precio + " " // Sin comillas porque es float
+             + "WHERE id_ruta = '" + rutaDto.id_ruta + "' "
+             + "AND NOT EXISTS ("
+             + "    SELECT 1 FROM rutas "
+             + "    WHERE origen = '" + rutaDto.origen + "' "
+             + "    AND destino = '" + rutaDto.destino + "' "
+             + "    AND id_ruta != '" + rutaDto.id_ruta + "'"
+             + ")";
 
-        for(int i=0; i<rutas.size(); i++){
-            RutaDTO ruta = rutas.get(i);
-            if(ruta.id_ruta.equals(ruta_editar.get_id_ruta())){
-                rutas.set(i, convertirRuta_Dto(ruta_editar));
-                break;
-            }
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String rutas_json = gson.toJson(rutas);
-
-        try(FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(rutas_json);
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
+            Statement st = cx.conectar().createStatement();
+            int rows_update = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_update > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public boolean eliminar(String id_ruta){
-        List<RutaDTO> rutasDto = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<RutaDTO>>(){}.getType();
-            Gson gson = new Gson();
-            rutasDto = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(rutasDto == null){
-            return false;
-        }
         
-        
-        boolean encontrado = false;
-        for(int i=0; i<rutasDto.size(); i++){
-            RutaDTO ruta = rutasDto.get(i);
-            if(ruta.id_ruta.equals(id_ruta)){
-                rutasDto.remove(i);
-                encontrado = true;
-                break;
-            }
-        }
-        
-        if(!encontrado){
-            return false;
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String rutas_json = gson.toJson(rutasDto);
-
-        try(FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(rutas_json);
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
+        try {
+            String query = "DELETE FROM rutas WHERE id_ruta = '"+ id_ruta +"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_deleted = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_deleted > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
     
     @Override
     public List<Ruta> listar(){
-        List<RutaDTO> rutasDto = null;
-        List<Ruta> rutas = new ArrayList<>();
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<RutaDTO>>(){}.getType();
-            Gson gson = new Gson();
-            rutasDto = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
+        try {
+            String query = "SELECT * FROM rutas";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;  
+            } 
+            
+            List<Ruta> rutas;
+            rutas = new ArrayList<>();
+            
+            do{
+                PasajeroRepository.PasajeroDTO pasajeroDto = new PasajeroRepository.PasajeroDTO();
+                pasajeroDto.nombre = rs.getString("nombre");
+                pasajeroDto.correo = rs.getString("correo");
+                pasajeroDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+                pasajeroDto.contrasena = rs.getString("contrasena");
+                pasajeroDto.distrito = rs.getString("distrito");
+                pasajeroDto.provincia = rs.getString("provincia");
+                pasajeroDto.departamento = rs.getString("departamento");
+                pasajeroDto.dni = rs.getString("dni");
+                
+                rutas.add(convertirDto_Pasajero(pasajeroDto));
+                
+            } while(rs.next());
+            
+            cx.desconectar();
+            return rutas;
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-
-        if(rutasDto != null){
-            for(RutaDTO ruta : rutasDto){
-                rutas.add(convertirDto_Ruta(ruta));
-            }
-        }
-
-        return rutas;
     }
 }

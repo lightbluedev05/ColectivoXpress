@@ -4,15 +4,21 @@ import Models.Admin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AdminRepository implements CRUD<Admin>{
 
@@ -35,198 +41,127 @@ public class AdminRepository implements CRUD<Admin>{
         return adminDto;
     }
     
-    
+    Conexion cx = new Conexion();
     
     @Override
     public boolean crear(Admin nuevo_admin) {
-        List<AdminDTO> admins = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<AdminDTO>>(){}.getType();
-            Gson gson = new Gson();
-            admins = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(admins == null){
-            admins = new ArrayList<>();
-        } else {
-            for(AdminDTO admin : admins){
-                if(admin.codigo.equals(nuevo_admin.get_codigo())){
-                    return false;
-                }
-            }
-        }
-
-        admins.add(convertirAdmin_Dto(nuevo_admin));
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String admins_json = gson.toJson(admins);
-
-        try(FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(admins_json);
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
+        
+        try {
+            String query = "INSERT INTO admins (codigo, contrasena) VALUES ('"+nuevo_admin.get_codigo()+"', '"+nuevo_admin.get_contrasena()+"')";
+            Statement st = cx.conectar().createStatement();
+            int filas_afectadas = st.executeUpdate(query);
+            
+            cx.desconectar();
+            return filas_afectadas > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public Admin buscar(String codigo) {
-        List<AdminDTO> admins = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<AdminDTO>>(){}.getType();
-            Gson gson = new Gson();
-            admins = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(admins == null){
-            return null;
-        } else {
-            for (AdminDTO admin : admins) {
-                if (admin.codigo.equals(codigo)) {
-                    return convertirDto_Admin(admin);
-                }
+        
+        ResultSet rs;
+        
+        try {
+            String query = "SELECT * FROM admins WHERE codigo='"+ codigo +"'";
+            Statement st = cx.conectar().createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+                System.out.println("Se encontro en la bd");
+            } else {
+                cx.desconectar();
+                return null;
             }
+            
+            AdminDTO admindto = new AdminDTO();
+            admindto.codigo = rs.getString("codigo");
+            admindto.contrasena = rs.getString("contrasena");
+            cx.desconectar();
+            
+            return convertirDto_Admin(admindto);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-        return null;
+        
     }
 
     @Override
     public boolean actualizar(Admin admin_editar) {
-        List<AdminDTO> admins = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<AdminDTO>>(){}.getType();
-            Gson gson = new Gson();
-            admins = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        boolean encontrado = false;
-        if(admins == null){
-            return false;
-        } else {
-            for (int i=0; i<admins.size(); i++){
-                AdminDTO admin = admins.get(i);
-                if (admin.codigo.equals(admin_editar.get_codigo())) {
-                    admins.set(i, convertirAdmin_Dto(admin_editar));
-                    encontrado = true;
-                    break;
-                }
-            }
-        }
-
-        if(!encontrado){
-            return false;
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String admins_json = gson.toJson(admins);
-
-        try(FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(admins_json);
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
+        
+        try {
+            String query = "UPDATE admins SET contrasena ='"+ admin_editar.get_contrasena()+"' WHERE codigo = '"+ admin_editar.get_codigo() +"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_update = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_update > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public boolean eliminar(String codigo) {
-        List<AdminDTO> admins = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<AdminDTO>>(){}.getType();
-            Gson gson = new Gson();
-            admins = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        boolean encontrado = false;
-        if(admins==null){
-            return false;
-        } else {
-            for(int i=0; i<admins.size(); i++){
-                AdminDTO admin = admins.get(i);
-                if(admin.codigo.equals(codigo)){
-                    admins.remove(i);
-                    encontrado = true;
-                    break;
-                }
-            }
-        }
-
-        if(!encontrado){
-            return false;
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String admins_json = gson.toJson(admins);
-
-        try(FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(admins_json);
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
+        
+        try {
+            String query = "DELETE FROM admins WHERE codigo = '"+ codigo +"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_deleted = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_deleted > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public List<Admin> listar() {
-        List<Admin> admins = new ArrayList<>();
-        List<AdminDTO> adminsDTO = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<AdminDTO>>(){}.getType();
-            Gson gson = new Gson();
-            adminsDTO = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(adminsDTO != null){
-            for(AdminDTO admin : adminsDTO){
-                admins.add(convertirDto_Admin(admin));
-            }
-        }
-
-        return admins;
-    }
-
-    
-
-
-    public static HashMap<String, Object> obtener_configuraciones(){
-        Gson gson = new Gson();
-        Type tipoMapa = new TypeToken<HashMap<String, Object>>(){}.getType();
-        HashMap<String, Object> configuraciones;
-
-        try (FileReader reader = new FileReader("src/resources/configuraciones.json")) {
-            configuraciones = gson.fromJson(reader, tipoMapa);
-
-            return configuraciones;
-        } catch (IOException e) {
-            e.printStackTrace();
+        
+        try {
+            String query = "SELECT * FROM admins";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;  
+            } 
+            
+            List<Admin> admins;
+            admins = new ArrayList<>();
+            
+            do{
+                AdminDTO admindto = new AdminDTO();
+                admindto.codigo = rs.getString("codigo");
+                admindto.contrasena = rs.getString("contrasena");
+                
+                admins.add(convertirDto_Admin(admindto));
+                
+            } while(rs.next());
+            
+            cx.desconectar();
+            return admins;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return null;
         }
     }
-
-    public static boolean guardar_configuraciones(HashMap<String, Object> configuraciones){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonString = gson.toJson(configuraciones);
-
-        try (FileWriter writer = new FileWriter("src/resources/configuraciones.json")) {
-            writer.write(jsonString);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
 }

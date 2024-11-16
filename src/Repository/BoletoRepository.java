@@ -13,8 +13,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BoletoRepository implements CRUD<Boleto>{
 
@@ -42,154 +47,135 @@ public class BoletoRepository implements CRUD<Boleto>{
         return boletoDto;
     }
     
+    private Conexion cx = new Conexion();
+    
     @Override
     public boolean crear(Boleto nuevo_boleto) {
-        List<BoletoDTO> boletos = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<BoletoDTO>>(){}.getType();
-            Gson gson = new Gson();
-            boletos = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if (boletos != null) {
-            for (BoletoDTO boleto : boletos) {
-                if (boleto.id_boleto.equals(nuevo_boleto.get_id_boleto())) {
-                    return false;
-                }
-            }
-        } else {
-            boletos = new ArrayList<>();
-        }
-
-        boletos.add(convertirBoleto_Dto(nuevo_boleto));
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String boletos_json = gson.toJson(boletos);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(boletos_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        
+        try {
+            BoletoDTO boletoDto = convertirBoleto_Dto(nuevo_boleto);
+            
+            String query = "INSERT INTO boletos (id_boleto, dni_pasajero, id_viaje, precio) "
+             + "VALUES ("
+             + "'" + boletoDto.id_boleto + "', "
+             + "'" + boletoDto.dni_pasajero + "', "
+             + "'" + boletoDto.id_viaje + "', "
+             + boletoDto.precio // Sin comillas porque es un float
+             + ")";
+            Statement st = cx.conectar().createStatement();
+            int filas_afectadas = st.executeUpdate(query);
+            
+            cx.desconectar();
+            return filas_afectadas > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
     
     @Override
     public Boleto buscar(String id_boleto) {
-        List<BoletoDTO> boletos = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<BoletoDTO>>(){}.getType();
-            Gson gson = new Gson();
-            boletos = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if (boletos == null) {
+        ResultSet rs;
+        
+        try {
+            String query = "SELECT * FROM boletos WHERE id_boleto='"+ id_boleto +"'";
+            Statement st = cx.conectar().createStatement();
+            rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;
+            }
+            
+            BoletoDTO boletoDto = new BoletoDTO();
+            boletoDto.id_boleto = rs.getString("id_boleto");
+            boletoDto.dni_pasajero = rs.getString("dni_pasajero");
+            boletoDto.id_viaje = rs.getString("id_viaje");
+            boletoDto.precio = rs.getFloat("precio");
+            cx.desconectar();
+            
+            return convertirDto_Boleto(boletoDto);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return null;
         }
-
-        for (BoletoDTO boleto : boletos) {
-            if (boleto.id_boleto.equals(id_boleto)) {
-                return convertirDto_Boleto(boleto);
-            }
-        }
-
-        return null;
     }
 
     @Override
     public boolean actualizar(Boleto boleto_editar) {
-        List<BoletoDTO> boletos = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<BoletoDTO>>(){}.getType();
-            Gson gson = new Gson();
-            boletos = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if (boletos == null) {
-            return false;
-        }
-
-        for (int i = 0; i < boletos.size(); i++) {
-            BoletoDTO boleto = boletos.get(i);
-            if (boleto.id_boleto.equals(boleto_editar.get_id_boleto())) {
-                boletos.set(i, convertirBoleto_Dto(boleto_editar));
-                break;
-            }
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String boletos_json = gson.toJson(boletos);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(boletos_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            String query = "UPDATE boletos SET dni_pasajero ='"+ boleto_editar.get_pasajero().get_dni()+"'"
+                    + ", id_viaje = '"+boleto_editar.get_viaje().get_id_viaje()+"', "
+                    + "precio = '"+boleto_editar.get_precio()+"' WHERE id_boleto = '"+ boleto_editar.get_id_boleto()+"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_update = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_update > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
     
     @Override
     public boolean eliminar(String id_boleto) {
-        List<BoletoDTO> boletos = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<BoletoDTO>>(){}.getType();
-            Gson gson = new Gson();
-            boletos = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if (boletos == null) {
-            return false;
-        }
-
-        for(int i=0; i<boletos.size(); i++){
-            BoletoDTO boleto = boletos.get(i);
-            if(boleto.id_boleto.equals(id_boleto)){
-                boletos.remove(i);
-                break;
-            }
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String boletos_json = gson.toJson(boletos);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(boletos_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            String query = "DELETE FROM boletos WHERE id_boleto = '"+ id_boleto +"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_deleted = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_deleted > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
     
     @Override
     public List<Boleto> listar() {
-        List<BoletoDTO> boletosDto = null;
-        List<Boleto> boletos = new ArrayList<>();
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<BoletoDTO>>(){}.getType();
-            Gson gson = new Gson();
-            boletosDto = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
+        try {
+            String query = "SELECT * FROM boletos";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;  
+            } 
+            
+            List<Boleto> boletos;
+            boletos = new ArrayList<>();
+            
+            do{
+                BoletoDTO boletoDto = new BoletoDTO();
+                boletoDto.id_boleto = rs.getString("id_boleto");
+                boletoDto.dni_pasajero = rs.getString("dni_pasajero");
+                boletoDto.id_viaje = rs.getString("id_viaje");
+                boletoDto.precio = rs.getFloat("precio");
+                
+                boletos.add(convertirDto_Boleto(boletoDto));
+                
+            } while(rs.next());
+            
+            cx.desconectar();
+            return boletos;
+        } catch (SQLException ex) {
+            Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-
-        if (boletosDto != null) {
-            for (BoletoDTO boleto : boletosDto) {
-                boletos.add(convertirDto_Boleto(boleto));
-            }
-        }
-
-        return boletos;
     }
 }
 

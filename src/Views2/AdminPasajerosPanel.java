@@ -45,6 +45,9 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         modelo.setRowCount(0);
         
         List<Pasajero> pasajeros = admin.ver_pasajeros();
+        if(pasajeros == null){
+            return;
+        }
         for(Pasajero pasajero:pasajeros){
             modelo.addRow(new Object[]{pasajero.get_dni(), pasajero.get_correo(), pasajero.get_departamento()});
         }

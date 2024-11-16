@@ -8,6 +8,7 @@ import Models.Admin;
 import Models.Conductor;
 import Models.Pasajero;
 import Repository.AdminRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -138,7 +139,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         boolean login = Admin.login_admin(dni, contra);
         
         if(!login){
-            
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar", "No se pudo ingresar", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         

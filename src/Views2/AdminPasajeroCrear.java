@@ -80,7 +80,7 @@ public class AdminPasajeroCrear extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Fecha de Nacimiento (aaaa/mm/dd)");
+        jLabel5.setText("Fecha de Nacimiento (aaaa-mm-dd)");
 
         jLabel6.setText("Nombres y Apellidos");
 
@@ -206,10 +206,11 @@ public class AdminPasajeroCrear extends javax.swing.JFrame {
         String contra = new String(contra_input.getPassword());
         String correo = correo_input.getText();
         String nombre = nombres_input.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        
         LocalDate fecha;
         try{
-            fecha = LocalDate.parse(fecha_input.getText(), formatter);
+            fecha = LocalDate.parse(fecha_input.getText());
+            System.out.println(fecha);
         } catch(Exception e){
             fecha_input.setText("Ingrese bien el formato");
             return;

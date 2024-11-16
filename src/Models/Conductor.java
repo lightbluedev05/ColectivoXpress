@@ -56,8 +56,8 @@ public class Conductor extends Usuario{
 
     public boolean verificar_dias_descanso(){
         String[] dias = this.dias_descanso.split(",");
-
-        return dias.length <= RegulacionLaboral.obtener_configuraciones().get_limite_dias_descanso();
+        
+        return dias.length <= new RegulacionLaboral().get_limite_dias_descanso();
     }
 
     public int calcular_edad(){

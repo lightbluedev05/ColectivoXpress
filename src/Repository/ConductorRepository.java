@@ -10,6 +10,12 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.sql.ResultSet;
+import java.time.format.DateTimeFormatter;
 
 public class ConductorRepository implements CRUD<Conductor>{
 
@@ -36,7 +42,8 @@ public class ConductorRepository implements CRUD<Conductor>{
     }
 
     private static ConductorDTO convertirConductor_Dto(Conductor conductor){
-        String fecha = conductor.get_fecha_nacimiento().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fecha = conductor.get_fecha_nacimiento().format(formatter);
         ConductorDTO conductordto = new ConductorDTO();
         conductordto.nombre = conductor.get_nombre();
         conductordto.correo = conductor.get_correo();
@@ -50,144 +57,126 @@ public class ConductorRepository implements CRUD<Conductor>{
         return conductordto;
     }
     
+    private Conexion cx = new Conexion();
+    
     @Override
     public boolean crear(Conductor nuevo_conductor) {
-        List<ConductorDTO> conductores = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<ConductorDTO>>() {
-            }.getType();
-            Gson gson = new Gson();
-            conductores = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if (conductores == null) {
-            conductores = new ArrayList<>();
-        } else {
-            for (ConductorDTO conductor : conductores) {
-                if (conductor.dni.equals(nuevo_conductor.get_dni())) {
-                    return false;
-                }
+        
+        try {
+            if(this.buscar(nuevo_conductor.get_dni()) != null){
+                return false;
             }
-        }
+            
+            ConductorDTO conductorDto = convertirConductor_Dto(nuevo_conductor);
+            
+            String query = "INSERT INTO conductores (dni, nombre, correo, fecha_nacimiento, contrasena, "
+             + "distrito, provincia, departamento, dias_descanso) "
+             + "VALUES ("
+             + "'" + conductorDto.dni + "', "
+             + "'" + conductorDto.nombre + "', "
+             + "'" + conductorDto.correo + "', "
+             + "'" + conductorDto.fecha_nacimiento + "', "
+             + "'" + conductorDto.contrasena + "', "
+             + "'" + conductorDto.distrito + "', "
+             + "'" + conductorDto.provincia + "', "
+             + "'" + conductorDto.departamento + "', "
+             + "'" + conductorDto.dias_descanso + "'"
+             + ")";
 
-        conductores.add(convertirConductor_Dto(nuevo_conductor));
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String conductores_json = gson.toJson(conductores);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(conductores_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+            Statement st = cx.conectar().createStatement();
+            int filas_afectadas = st.executeUpdate(query);
+            
+            cx.desconectar();
+            return filas_afectadas > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public Conductor buscar(String dni){
-        List<ConductorDTO> conductores = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<ConductorDTO>>() {
-            }.getType();
-            Gson gson = new Gson();
-            conductores = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if (conductores != null) {
-            for (ConductorDTO conductor : conductores) {
-                if (conductor.dni.equals(dni)) {
-                    return convertirDto_Conductor(conductor);
-                }
+        ResultSet rs;
+        
+        try {
+            String query = "SELECT * FROM conductores WHERE dni='"+ dni +"'";
+            Statement st = cx.conectar().createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+                System.out.println("Se encontro en la bd");
+            } else {
+                cx.desconectar();
+                return null;
             }
+            
+            ConductorDTO conductorDto = new ConductorDTO();
+            conductorDto.dni = rs.getString("dni");
+            conductorDto.contrasena = rs.getString("contrasena");
+            conductorDto.nombre = rs.getString("nombre");
+            conductorDto.correo = rs.getString("correo");
+            conductorDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+            conductorDto.distrito = rs.getString("distrito");
+            conductorDto.provincia = rs.getString("provincia");
+            conductorDto.departamento = rs.getString("departamento");
+            conductorDto.dias_descanso = rs.getString("dias_descanso");
+            cx.desconectar();
+            
+            return convertirDto_Conductor(conductorDto);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-        return null;
     }
     
     @Override
     public boolean actualizar(Conductor conductor_editar){
-        List<ConductorDTO> conductores = null;
+        try {
+            String query = "UPDATE conductores SET "
+             + "nombre = '"+conductor_editar.get_nombre()+"', "
+             + "correo = '"+conductor_editar.get_correo()+"', "
+             + "fecha_nacimiento = '"+conductor_editar.get_fecha_nacimiento()+"', "
+             + "contrasena = '"+conductor_editar.get_contrasena()+"', "
+             + "distrito = '"+conductor_editar.get_distrito()+"', "
+             + "provincia = '"+conductor_editar.get_provincia()+"', "
+             + "departamento = '"+conductor_editar.get_departamento()+"', "
+             + "dias_descanso = '"+conductor_editar.get_dias_descanso()+"' "
+             + "WHERE dni = '"+conductor_editar.get_dni()+"'";
 
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<ConductorDTO>>() {
-            }.getType();
-            Gson gson = new Gson();
-            conductores = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
 
-        if(conductores == null){
-            return false;
-        }
-
-        boolean encontrado=false;
-        for(int i=0; i<conductores.size(); i++){
-            ConductorDTO conductor = conductores.get(i);
-            if(conductor.dni.equals(conductor_editar.get_dni())){
-                conductores.set(i, convertirConductor_Dto(conductor_editar));
-                encontrado = true;
-                break;
-            }
-        }
-
-        if(!encontrado){
-            return false;
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String conductores_json = gson.toJson(conductores);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(conductores_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+            Statement st = cx.conectar().createStatement();
+            int rows_update = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_update > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
     
     @Override
     public boolean eliminar(String dni){
-        List<ConductorDTO> conductores = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<ConductorDTO>>() {
-            }.getType();
-            Gson gson = new Gson();
-            conductores = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(conductores == null){
-            return false;
-        }
-
-        boolean encontrado = false;
-        for(int i=0; i<conductores.size(); i++){
-            ConductorDTO conductor = conductores.get(i);
-            if(conductor.dni.equals(dni)){
-                conductores.remove(i);
-                encontrado = true;
-                break;
-            }
-        }
-
-        if(!encontrado){
-            return false;
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String conductores_json = gson.toJson(conductores);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(conductores_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            String query = "DELETE FROM conductores WHERE dni = '"+ dni +"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_deleted = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_deleted > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
@@ -195,24 +184,42 @@ public class ConductorRepository implements CRUD<Conductor>{
     @Override
     public List<Conductor> listar(){
 
-        List<ConductorDTO> conductoresDto = null;
-        List<Conductor> conductores = new ArrayList<>();
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<ConductorDTO>>() {
-            }.getType();
-            Gson gson = new Gson();
-            conductoresDto = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
+        try {
+            String query = "SELECT * FROM conductores";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;  
+            } 
+            
+            List<Conductor> conductores;
+            conductores = new ArrayList<>();
+            
+            do{
+                ConductorDTO conductorDto = new ConductorDTO();
+                conductorDto.nombre = rs.getString("nombre");
+                conductorDto.correo = rs.getString("correo");
+                conductorDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+                conductorDto.contrasena = rs.getString("contrasena");
+                conductorDto.distrito = rs.getString("distrito");
+                conductorDto.provincia = rs.getString("provincia");
+                conductorDto.departamento = rs.getString("departamento");
+                conductorDto.dias_descanso = rs.getString("dias_descanso");
+                conductorDto.dni = rs.getString("dni");
+                
+                conductores.add(convertirDto_Conductor(conductorDto));
+                
+            } while(rs.next());
+            
+            cx.desconectar();
+            return conductores;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-
-        if(conductoresDto != null){
-            for(ConductorDTO conductor : conductoresDto){
-                conductores.add(convertirDto_Conductor(conductor));
-            }
-        }
-
-        return conductores;
     }
 
 }

@@ -9,48 +9,75 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegulacionLaboral {
     private static final String RUTA_ARCHIVO = "src/resources/regulacion_laboral.json";
-    private static int limite_dias_descanso;
+    private int limite_dias_descanso;
 
     public int get_limite_dias_descanso() {
         return limite_dias_descanso;
     }
 
     public void set_limite_dias_descanso(int limite_dias_descanso) {
-        RegulacionLaboral.limite_dias_descanso = limite_dias_descanso;
+        this.limite_dias_descanso = limite_dias_descanso;
+    }
+    
+    private Conexion cx = new Conexion();
+    
+    public RegulacionLaboral(){
+        this.obtener_configuraciones();
     }
 
-    public static RegulacionLaboral obtener_configuraciones(){
-        List<RegulacionLaboral> regulacion_list;
-        RegulacionLaboral regulacion = new RegulacionLaboral();
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<RegulacionLaboral>>() {
-            }.getType();
-            Gson gson = new Gson();
-            regulacion_list = gson.fromJson(reader, listType);
-            regulacion = regulacion_list.get(0);
-        } catch (IOException ignored) {
-        }
-
-        return regulacion;
-    }
-
-    public static boolean guardar_configuraciones(RegulacionLaboral configuraciones){
-        List<RegulacionLaboral> regulacion_list = new ArrayList<>();
-        regulacion_list.add(configuraciones);
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String regulacion_json = gson.toJson(regulacion_list);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(regulacion_json);
+    public boolean obtener_configuraciones(){  
+        ResultSet rs;
+        
+        try {
+            String query = "SELECT * FROM regulacion";
+            Statement st = cx.conectar().createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+                System.out.println("Se encontro en la bd");
+            } else {
+                cx.desconectar();
+                return false;
+            }
+            
+            this.limite_dias_descanso = rs.getInt("valor");
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return false;
+        }
+    }
+
+    public boolean guardar_configuraciones(int limite_dias_descanso){
+        
+        try {
+            
+            String query = "UPDATE regulacion SET "
+                + "valor = " + limite_dias_descanso + ", "
+                + "WHERE limite_dias_descanso = 'limite_dias_descanso' "
+                + ")";
+
+            Statement st = cx.conectar().createStatement();
+            int rows_update = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_update > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }

@@ -174,7 +174,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fecha de Nacimiento (aaaa/mm/dd)"/>
+            <Property name="text" type="java.lang.String" value="Fecha de Nacimiento (aaaa-mm-dd)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="fecha_input">

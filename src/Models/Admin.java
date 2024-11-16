@@ -197,18 +197,8 @@ public class Admin {
     }
 
     public boolean editar_limite_dias_descanso(int limite_dias){
-        RegulacionLaboral regulacion = RegulacionLaboral.obtener_configuraciones();
-        if(regulacion == null){
-            return false;
-        }
-        regulacion.set_limite_dias_descanso(limite_dias);
-        return RegulacionLaboral.guardar_configuraciones(regulacion);
+        return new RegulacionLaboral().guardar_configuraciones(limite_dias);
     }
-
-
-
-
-
 
 
     public String get_codigo(){

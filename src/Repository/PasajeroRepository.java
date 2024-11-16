@@ -10,6 +10,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.sql.ResultSet;
 
 public class PasajeroRepository implements CRUD<Pasajero>{
 
@@ -32,8 +37,8 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                 dto.distrito, dto.provincia, dto.departamento);
     }
     private static PasajeroDTO convertirPasajero_Dto(Pasajero pasajero){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-    String fecha = pasajero.get_fecha_nacimiento().format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fecha = pasajero.get_fecha_nacimiento().format(formatter);
     
         PasajeroDTO pasajerodto = new PasajeroDTO();
         pasajerodto.nombre = pasajero.get_nombre();
@@ -47,151 +52,163 @@ public class PasajeroRepository implements CRUD<Pasajero>{
         return pasajerodto;
     }
     
+    private Conexion cx = new Conexion();
+    
     @Override
     public boolean crear(Pasajero nuevo_pasajero){
-        List<PasajeroDTO> pasajeros = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<PasajeroDTO>>(){}.getType();
-            Gson gson = new Gson();
-            pasajeros = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(pasajeros == null){
-            pasajeros = new ArrayList<>();
-        } else {
-            for(PasajeroDTO pasajero : pasajeros){
-                if(pasajero.dni.equals(nuevo_pasajero.get_dni())){
-                    return false;
-                }
+        try {
+            if(this.buscar(nuevo_pasajero.get_dni()) != null){
+                return false;
             }
-        }
+            
+            PasajeroDTO pasajeroDto = convertirPasajero_Dto(nuevo_pasajero);
+            
+            String query = "INSERT INTO pasajeros (dni, nombre, correo, fecha_nacimiento, contrasena, "
+             + "distrito, provincia, departamento) "
+             + "VALUES ("
+             + "'" + pasajeroDto.dni + "', "
+             + "'" + pasajeroDto.nombre + "', "
+             + "'" + pasajeroDto.correo + "', "
+             + "'" + pasajeroDto.fecha_nacimiento + "', "
+             + "'" + pasajeroDto.contrasena + "', "
+             + "'" + pasajeroDto.distrito + "', "
+             + "'" + pasajeroDto.provincia + "', "
+             + "'" + pasajeroDto.departamento + "'"
+             + ")";
 
-        pasajeros.add(convertirPasajero_Dto(nuevo_pasajero));
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String pasajeros_json = gson.toJson(pasajeros);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(pasajeros_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+            Statement st = cx.conectar().createStatement();
+            int filas_afectadas = st.executeUpdate(query);
+            
+            cx.desconectar();
+            return filas_afectadas > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
     
     @Override
     public Pasajero buscar(String dni){
-        List<PasajeroDTO> pasajeros = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<PasajeroDTO>>(){}.getType();
-            Gson gson = new Gson();
-            pasajeros = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(pasajeros!=null){
-            for(PasajeroDTO pasajero : pasajeros){
-                if(pasajero.dni.equals(dni)){
-                    return convertirDto_Pasajero(pasajero);
-                }
+        ResultSet rs;
+        
+        try {
+            String query = "SELECT * FROM pasajeros WHERE dni='"+ dni +"'";
+            Statement st = cx.conectar().createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+                System.out.println("Se encontro en la bd");
+            } else {
+                cx.desconectar();
+                return null;
             }
+            
+            PasajeroDTO pasajeroDto = new PasajeroDTO();
+            pasajeroDto.dni = rs.getString("dni");
+            pasajeroDto.contrasena = rs.getString("contrasena");
+            pasajeroDto.nombre = rs.getString("nombre");
+            pasajeroDto.correo = rs.getString("correo");
+            pasajeroDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+            pasajeroDto.distrito = rs.getString("distrito");
+            pasajeroDto.provincia = rs.getString("provincia");
+            pasajeroDto.departamento = rs.getString("departamento");
+            cx.desconectar();
+            
+            return convertirDto_Pasajero(pasajeroDto);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-
-        return null;
     }
 
     @Override
     public boolean actualizar(Pasajero pasajero_editar){
-        List<PasajeroDTO> pasajeros = null;
+        try {
+            String query = "UPDATE pasajeros SET "
+             + "nombre = '"+pasajero_editar.get_nombre()+"', "
+             + "correo = '"+pasajero_editar.get_correo()+"', "
+             + "fecha_nacimiento = '"+pasajero_editar.get_fecha_nacimiento()+"', "
+             + "contrasena = '"+pasajero_editar.get_contrasena()+"', "
+             + "distrito = '"+pasajero_editar.get_distrito()+"', "
+             + "provincia = '"+pasajero_editar.get_provincia()+"', "
+             + "departamento = '"+pasajero_editar.get_departamento()+"' "
+             + "WHERE dni = '"+pasajero_editar.get_dni()+"'";
 
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<PasajeroDTO>>(){}.getType();
-            Gson gson = new Gson();
-            pasajeros = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
 
-        if(pasajeros == null){
-            return false;
-        }
-
-        for(int i=0; i<pasajeros.size(); i++){
-            PasajeroDTO pasajero = pasajeros.get(i);
-            if(pasajero.dni.equals(pasajero_editar.get_dni())){
-                pasajeros.set(i, convertirPasajero_Dto(pasajero_editar));
-                break;
-            }
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String pasajeros_json = gson.toJson(pasajeros);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(pasajeros_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+            Statement st = cx.conectar().createStatement();
+            int rows_update = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_update > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public boolean eliminar(String dni){
-        List<PasajeroDTO> pasajeros = null;
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<PasajeroDTO>>(){}.getType();
-            Gson gson = new Gson();
-            pasajeros = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
-        }
-
-        if(pasajeros == null){
-            return false;
-        }
-
-        for(int i=0; i<pasajeros.size(); i++){
-            PasajeroDTO pasajero = pasajeros.get(i);
-            if(pasajero.dni.equals(dni)){
-                pasajeros.remove(i);
-                break;
-            }
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String pasajeros_json = gson.toJson(pasajeros);
-
-        try (FileWriter file = new FileWriter(RUTA_ARCHIVO)) {
-            file.write(pasajeros_json);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            String query = "DELETE FROM pasajeros WHERE dni = '"+ dni +"'";
+            Statement st = cx.conectar().createStatement();
+            int rows_deleted = st.executeUpdate(query);
+            
+            cx.desconectar();
+            
+            return rows_deleted > 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
             return false;
         }
     }
 
     @Override
     public List<Pasajero> listar(){
-        List<PasajeroDTO> pasajeros = null;
-        List<Pasajero> pasajeros2 = new ArrayList<>();
-
-        try (Reader reader = new FileReader(RUTA_ARCHIVO)) {
-            Type listType = new TypeToken<ArrayList<PasajeroDTO>>(){}.getType();
-            Gson gson = new Gson();
-            pasajeros = gson.fromJson(reader, listType);
-        } catch (IOException ignored) {
+        try {
+            String query = "SELECT * FROM pasajeros";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;  
+            } 
+            
+            List<Pasajero> pasajeros;
+            pasajeros = new ArrayList<>();
+            
+            do{
+                PasajeroDTO pasajeroDto = new PasajeroDTO();
+                pasajeroDto.nombre = rs.getString("nombre");
+                pasajeroDto.correo = rs.getString("correo");
+                pasajeroDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+                pasajeroDto.contrasena = rs.getString("contrasena");
+                pasajeroDto.distrito = rs.getString("distrito");
+                pasajeroDto.provincia = rs.getString("provincia");
+                pasajeroDto.departamento = rs.getString("departamento");
+                pasajeroDto.dni = rs.getString("dni");
+                
+                pasajeros.add(convertirDto_Pasajero(pasajeroDto));
+                
+            } while(rs.next());
+            
+            cx.desconectar();
+            return pasajeros;
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
         }
-
-        if(pasajeros!=null){
-            for(PasajeroDTO pasajero : pasajeros){
-                pasajeros2.add(convertirDto_Pasajero(pasajero));
-            }
-        }
-        return pasajeros2;
     }
 
 }
