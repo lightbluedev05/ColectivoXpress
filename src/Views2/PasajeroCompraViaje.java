@@ -37,6 +37,7 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         initComponents();
         correcciones_iniciales();
         Terminar_Compra.setVisible(false);
+   
     }
     
     private void correcciones_iniciales(){
@@ -45,16 +46,45 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         tabla_viajes.setBackground(new Color(230, 230, 230));
     }
     
-private void listar_viajes(){
+private void listar_viajes() {
     DefaultTableModel modelo = (DefaultTableModel)tabla_viajes.getModel();
     modelo.setRowCount(0);      
+    
+    // Verificar si la lista de viajes es null
     List<Viaje> viajes = pasajero.ver_viajes(); 
+    if (viajes == null) {
+        // Mostrar mensaje en consola
+        System.out.println("No hay viajes disponibles.");
+        
+        // Mostrar mensaje en la interfaz
+        JOptionPane.showMessageDialog(this, 
+            "No hay viajes disponibles en este momento.", 
+            "Sin Viajes", 
+            JOptionPane.INFORMATION_MESSAGE);
+        
+        // Deshabilitar botón de compra
+        Comprar_Boleto.setEnabled(false);
+        return;
+    }
 
+    // Si la lista está vacía
+    if (viajes.isEmpty()) {
+        System.out.println("La lista de viajes está vacía.");
+        
+        JOptionPane.showMessageDialog(this, 
+            "No hay viajes disponibles en este momento.", 
+            "Sin Viajes", 
+            JOptionPane.INFORMATION_MESSAGE);
+        
+        Comprar_Boleto.setEnabled(false);
+        return;
+    }
+
+    // Si hay viajes, continuar con el llenado de la tabla
     for(Viaje viaje : viajes){
         String origen = viaje.get_ruta().get_origen(); 
         String destino = viaje.get_ruta().get_destino(); 
         
-        // Obtener la duración y convertirla a String
         Duration tiempoAprox = viaje.get_ruta().get_tiempo_aproximado(); 
         long horas = tiempoAprox.toHours();
         long minutos = tiempoAprox.toMinutesPart(); 
@@ -63,19 +93,22 @@ private void listar_viajes(){
         double precio = viaje.get_ruta().get_precio(); 
         
         LocalTime horaSalida = viaje.get_hora_salida();
-        String horaSalidaString = horaSalida.toString(); // Convertir LocalTime a String
+        String horaSalidaString = horaSalida.toString();
 
         modelo.addRow(new Object[]{
-            viaje.get_id_viaje(), // ID Viaje
-            viaje.get_fecha_salida(), // Fecha
-            origen, // Origen
-            destino, // Destino
+            viaje.get_id_viaje(),
+            viaje.get_fecha_salida(),
+            origen,
+            destino,
             horaSalidaString,
-            tiempo_string, // Tiempo Aproximado en formato "HH:mm"
-            precio // Precio
+            tiempo_string,
+            precio
         });
     }   
     tabla_viajes.setModel(modelo);
+    
+    // Habilitar el botón de compra si hay viajes
+    Comprar_Boleto.setEnabled(!viajes.isEmpty());
 }
     
     
