@@ -117,17 +117,38 @@ public class Pasajero extends Usuario {
         return new ViajeRepository().listar();
     }
      
-    public List<Viaje> ver_historial_viajes(){
-        List<Boleto> boletos = new BoletoRepository().listar();
-        List<Viaje> viajes = new ArrayList<>();
+    public List<Viaje> ver_historial_viajes() {
+        List<Viaje> viajes_historico = new ArrayList<>();
 
-        for(Boleto boleto : boletos){
-            if(boleto.get_pasajero().get_dni().equals(this.dni)){
-                viajes.add(boleto.get_viaje());
+        try {
+            // Obtener la lista de boletos
+            List<Boleto> boletos = new BoletoRepository().listar();
+
+            // Si boletos es null, devolver lista vacía
+            if (boletos == null) {
+                return viajes_historico;
             }
-        }
 
-        return viajes;
+            // Filtrar boletos por el DNI del pasajero
+            for (Boleto boleto : boletos) {
+                if (boleto != null && 
+                    boleto.get_pasajero() != null && 
+                    boleto.get_pasajero().get_dni().equals(this.get_dni())) {
+
+                    // Verificar que el viaje no sea null antes de agregarlo
+                    if (boleto.get_viaje() != null) {
+                        viajes_historico.add(boleto.get_viaje());
+                    }
+                }
+            }
+
+            return viajes_historico;
+
+        } catch (Exception e) {
+            // Manejo de cualquier otra excepción
+            System.err.println("Error al obtener historial de viajes: " + e.getMessage());
+            return viajes_historico;
+        }
     }
 
     public int calcular_edad(){

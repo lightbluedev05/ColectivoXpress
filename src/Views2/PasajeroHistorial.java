@@ -23,6 +23,7 @@ import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.Timer;
 
 /**
@@ -43,50 +44,80 @@ public class PasajeroHistorial extends javax.swing.JPanel {
         tabla_viajes.setBackground(new Color(230, 230, 230));
     }
     
-private void listar_viajes(){
-    DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
-    modelo.setRowCount(0);      
-    
-    // Utilizar el método ver_historial_viajes() de Pasajero
-    List<Viaje> viajes = pasajero.ver_historial_viajes(); 
+    private void listar_viajes() {
+        DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
+        modelo.setRowCount(0);      
 
-    for (Viaje viaje : viajes) {
-        // Buscar el boleto correspondiente a este viaje
-        List<Boleto> boletos = new BoletoRepository().listar();
-        String idBoleto = "N/A";
+        // Obtener el historial de viajes
+        List<Viaje> viajes = pasajero.ver_historial_viajes(); 
 
-        for (Boleto boleto : boletos) {
-            if (boleto.get_viaje().get_id_viaje().equals(viaje.get_id_viaje()) && 
-                boleto.get_pasajero().get_dni().equals(pasajero.get_dni())) {
-                idBoleto = boleto.get_id_boleto();
-                break;
-            }
+        // Verificar si la lista de viajes está vacía
+        if (viajes.isEmpty()) {
+            System.out.println("No hay historial de viajes disponible.");
+
+            JOptionPane.showMessageDialog(this, 
+                "No tiene viajes en su historial.", 
+                "Sin Viajes", 
+                JOptionPane.INFORMATION_MESSAGE);
+
+            return;
         }
-        
-        String origen = viaje.get_ruta().get_origen(); 
-        String destino = viaje.get_ruta().get_destino(); 
-        
-        // Obtener la duración y convertirla a String
-        Duration tiempoAprox = viaje.get_ruta().get_tiempo_aproximado(); 
-        long horas = tiempoAprox.toHours();
-        long minutos = tiempoAprox.toMinutesPart(); 
-        String tiempo_string = String.format("%02d:%02d", horas, minutos); 
-        
-        LocalTime horaSalida = viaje.get_hora_salida();
-        String horaSalidaString = horaSalida.toString(); // Convertir LocalTime a String
 
-        modelo.addRow(new Object[]{
-            idBoleto, // ID Boleto
-            viaje.get_id_viaje(), // ID Viaje
-            viaje.get_fecha_salida(), // Fecha
-            origen, // Origen
-            destino, // Destino
-            horaSalidaString,
-            tiempo_string, // Tiempo Aproximado en formato "HH:mm"
-        });
-    }   
-    tabla_viajes.setModel(modelo);
-}
+        // Obtener la lista de boletos
+        List<Boleto> boletos = new BoletoRepository().listar();
+
+        // Si boletos es null, inicializar como lista vacía
+        if (boletos == null) {
+            boletos = new ArrayList<>();
+        }
+
+        // Procesar los viajes y boletos
+        for (Viaje viaje : viajes) {
+            String idBoleto = "N/A";
+
+            for (Boleto boleto : boletos) {
+                if (boleto != null && 
+                    boleto.get_viaje() != null && 
+                    boleto.get_viaje().get_id_viaje().equals(viaje.get_id_viaje()) && 
+                    boleto.get_pasajero().get_dni().equals(pasajero.get_dni())) {
+                    idBoleto = boleto.get_id_boleto();
+                    break;
+                }
+            }
+
+            String origen = viaje.get_ruta().get_origen(); 
+            String destino = viaje.get_ruta().get_destino(); 
+
+            // Obtener la duración y convertirla a String
+            Duration tiempoAprox = viaje.get_ruta().get_tiempo_aproximado(); 
+            long horas = tiempoAprox.toHours();
+            long minutos = tiempoAprox.toMinutesPart(); 
+            String tiempo_string = String.format("%02d:%02d", horas, minutos); 
+
+            LocalTime horaSalida = viaje.get_hora_salida();
+            String horaSalidaString = horaSalida.toString(); // Convertir LocalTime a String
+
+            modelo.addRow(new Object[]{
+                idBoleto, // ID Boleto
+                viaje.get_id_viaje(), // ID Viaje
+                viaje.get_fecha_salida(), // Fecha
+                origen, // Origen
+                destino, // Destino
+                horaSalidaString,
+                tiempo_string // Tiempo Aproximado en formato "HH:mm"
+            });
+        }   
+
+        // Si no se agregaron filas, mostrar mensaje
+        if (modelo.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, 
+                "No se encontraron viajes en su historial.", 
+                "Sin Viajes", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        tabla_viajes.setModel(modelo);
+    }
     
     
     /**
