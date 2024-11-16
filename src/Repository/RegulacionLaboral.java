@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RegulacionLaboral {
     private static final String RUTA_ARCHIVO = "src/resources/regulacion_laboral.json";
-    private static int limite_dias_descanso;
+    private static int limite_dias_descanso = 4; // Establecer el límite directamente
 
     public int get_limite_dias_descanso() {
         return limite_dias_descanso;

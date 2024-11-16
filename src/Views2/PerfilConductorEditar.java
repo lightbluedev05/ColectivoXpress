@@ -1,23 +1,26 @@
+package Views2;
+
+import Models.Conductor;
+import Repository.ConductorRepository;
+import Repository.RegulacionLaboral;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vista;
-
-import Models.Conductor;
 
 /**
  *
  * @author Mihae
  */
-public class PerfilConductor extends javax.swing.JPanel {
+public class PerfilConductorEditar extends javax.swing.JPanel {
 
     /**
      * Creates new form PerfilAdmin
      */
     
     private Conductor conductor;
-    public PerfilConductor(Conductor conductor) {
+    public PerfilConductorEditar(Conductor conductor) {
         this.conductor = conductor;
         initComponents();
         nuevo_contra_label.setVisible(false);
@@ -39,6 +42,11 @@ public class PerfilConductor extends javax.swing.JPanel {
         nuevo_departamento_label.setVisible(false);
         nuevo_departamento_input.setVisible(false);
         nuevo_departamento_button.setVisible(false);
+        
+        nuevo_dias_descanso_label1.setVisible(false);
+        nuevo_dias_descanso_input1.setVisible(false);
+        nuevo_dias_descanso_button1.setVisible(false);
+        
     }
 
     /**
@@ -74,6 +82,10 @@ public class PerfilConductor extends javax.swing.JPanel {
         nuevo_departamento_input = new javax.swing.JTextField();
         nuevo_departamento_button = new javax.swing.JButton();
         nuevo_departamento_message = new javax.swing.JLabel();
+        nuevo_dias_descanso_label1 = new javax.swing.JLabel();
+        nuevo_dias_descanso_input1 = new javax.swing.JTextField();
+        nuevo_dias_descanso_button1 = new javax.swing.JButton();
+        nuevo_dias_descanso_message = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
@@ -179,6 +191,23 @@ public class PerfilConductor extends javax.swing.JPanel {
             }
         });
 
+        nuevo_dias_descanso_label1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_dias_descanso_label1.setForeground(new java.awt.Color(20, 20, 20));
+        nuevo_dias_descanso_label1.setText("Actualiza dias de descanso");
+
+        nuevo_dias_descanso_input1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo_dias_descanso_input1ActionPerformed(evt);
+            }
+        });
+
+        nuevo_dias_descanso_button1.setText("Modificar");
+        nuevo_dias_descanso_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo_dias_descanso_button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,13 +215,14 @@ public class PerfilConductor extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(146, 146, 146)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuevo_departamento_label)
+                    .addComponent(nuevo_dias_descanso_label1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_button)
-                        .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_message))
+                        .addComponent(nuevo_dias_descanso_button1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nuevo_dias_descanso_message))
+                    .addComponent(nuevo_departamento_label)
                     .addComponent(nuevo_nombre_label)
                     .addComponent(jLabel1)
                     .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +255,13 @@ public class PerfilConductor extends javax.swing.JPanel {
                             .addComponent(nuevo_nombre_message)
                             .addComponent(nuevo_contra_message)
                             .addComponent(nuevo_distrito_message)
-                            .addComponent(nuevo_provincia_message))))
+                            .addComponent(nuevo_provincia_message)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_departamento_button)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_departamento_message)))
                 .addContainerGap(377, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -272,7 +308,14 @@ public class PerfilConductor extends javax.swing.JPanel {
                     .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_departamento_button)
                     .addComponent(nuevo_departamento_message))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nuevo_dias_descanso_label1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevo_dias_descanso_button1)
+                    .addComponent(nuevo_dias_descanso_message))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -311,6 +354,10 @@ public class PerfilConductor extends javax.swing.JPanel {
             nuevo_departamento_label.setVisible(true);
             nuevo_departamento_input.setVisible(true);
             nuevo_departamento_button.setVisible(true);
+            
+            nuevo_dias_descanso_label1.setVisible(true);
+            nuevo_dias_descanso_input1.setVisible(true);
+            nuevo_dias_descanso_button1.setVisible(true);
         }
     }//GEN-LAST:event_ingresar_buttonActionPerformed
 
@@ -414,6 +461,61 @@ public class PerfilConductor extends javax.swing.JPanel {
         nuevo_departamento_message.setText("Departamento cambiado exitosamente!!");
     }//GEN-LAST:event_nuevo_departamento_buttonActionPerformed
 
+    private void nuevo_dias_descanso_input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_input1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevo_dias_descanso_input1ActionPerformed
+
+    private void nuevo_dias_descanso_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_button1ActionPerformed
+    // Obtener el valor ingresado por el usuario para los nuevos días de descanso
+    String input = nuevo_dias_descanso_input1.getText();
+    
+    if (input.isEmpty()) {
+        nuevo_dias_descanso_message.setText("Ingrese un valor válido para los días de descanso");
+        return;
+    }
+    
+    try {
+        String[] diasDescanso = input.split(",");
+        int cantidadDias = diasDescanso.length;
+
+        // Obtener la instancia de RegulacionLaboral y validar el límite de días de descanso
+        RegulacionLaboral regulacion = RegulacionLaboral.obtener_configuraciones();
+        int limiteDias = regulacion.get_limite_dias_descanso();
+
+        // Validar que la cantidad de días de descanso no supere el límite establecido
+        if (cantidadDias > limiteDias) {
+            nuevo_dias_descanso_message.setText("La cantidad de días de descanso no puede superar el límite de " + limiteDias + " días.");
+            return;
+        }
+
+        // Obtener el DNI del conductor actual (esto depende de tu lógica de aplicación)
+        String dniConductor = conductor.get_dni(); // Asumiendo que tienes acceso al objeto conductor
+        ConductorRepository conductorRepo = new ConductorRepository();
+        Conductor conductor = conductorRepo.buscar(dniConductor); // Busca el conductor usando su DNI
+        
+        if (conductor != null) {
+            conductor.set_dias_descanso(input);
+            boolean actualizado = conductorRepo.actualizar(conductor);
+            if (!actualizado) {
+                nuevo_dias_descanso_message.setText("No se pudo actualizar los días de descanso del conductor");
+                return;
+            }
+        } else {
+            nuevo_dias_descanso_message.setText("Conductor no encontrado.");
+            return;
+        }
+        
+        // Mostrar mensaje de éxito
+        nuevo_dias_descanso_message.setText("Días de descanso actualizados exitosamente!!");
+        nuevo_dias_descanso_input1.setText(""); // Limpiar el campo de entrada
+    } catch (Exception e) {
+        nuevo_dias_descanso_message.setText("Por favor, ingrese los días de descanso en el formato correcto.");
+    }
+
+
+    
+    }//GEN-LAST:event_nuevo_dias_descanso_button1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contra_input;
@@ -428,6 +530,10 @@ public class PerfilConductor extends javax.swing.JPanel {
     private javax.swing.JTextField nuevo_departamento_input;
     private javax.swing.JLabel nuevo_departamento_label;
     private javax.swing.JLabel nuevo_departamento_message;
+    private javax.swing.JButton nuevo_dias_descanso_button1;
+    private javax.swing.JTextField nuevo_dias_descanso_input1;
+    private javax.swing.JLabel nuevo_dias_descanso_label1;
+    private javax.swing.JLabel nuevo_dias_descanso_message;
     private javax.swing.JButton nuevo_distrito_button;
     private javax.swing.JTextField nuevo_distrito_input;
     private javax.swing.JLabel nuevo_distrito_label;
@@ -441,4 +547,5 @@ public class PerfilConductor extends javax.swing.JPanel {
     private javax.swing.JLabel nuevo_provincia_label;
     private javax.swing.JLabel nuevo_provincia_message;
     // End of variables declaration//GEN-END:variables
+
 }

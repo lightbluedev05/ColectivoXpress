@@ -4,7 +4,8 @@
  */
 package Views2;
 
-import Models.Pasajero;
+import Models.Conductor;
+import Vista.DashboardConductor;
 import Vista.DashboardPasajero;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -14,31 +15,35 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Mihae
  */
-public class PasajeroPerfil extends javax.swing.JPanel {
+public class ConductorPerfil extends javax.swing.JPanel {
 
     /**
      * Creates new form PerfilAdmin
      */
-    private Pasajero pasajero;
-    public PasajeroPerfil(Pasajero pasajero) {
-        this.pasajero = pasajero;
+    
+    private Conductor conductor;
+    public ConductorPerfil(Conductor conductor) {
+        this.conductor = conductor;
         initComponents();
-        mostrarDatosPasajero();
+        mostrarDatosConductor();
     }
+    
+    private void mostrarDatosConductor() {
+    actual_nombre_label2.setText(conductor.get_nombre());
+    actual_correo_label3.setText(conductor.get_correo());
+    actual_dni_label5.setText(conductor.get_dni());
+    
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        actual_fecha_label4.setText(conductor.get_fecha_nacimiento().format(formatter));
+        
+    actual_fecha_label4.setText(conductor.get_fecha_nacimiento().toString()); 
+    actual_distrito_label8.setText(conductor.get_distrito());
+    actual_provincia_label6.setText(conductor.get_provincia());
+    actual_departamento_label7.setText(conductor.get_departamento());
+    actual_dias_descanso_label.setText(conductor.get_dias_descanso());
+    
+}
 
-    private void mostrarDatosPasajero() {
-        actual_nombre_label2.setText(pasajero.get_nombre());
-        actual_correo_label3.setText(pasajero.get_correo());
-        actual_dni_label5.setText(pasajero.get_dni());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        actual_fecha_label4.setText(pasajero.get_fecha_nacimiento().format(formatter));
-
-        actual_fecha_label4.setText(pasajero.get_fecha_nacimiento().toString());
-        actual_distrito_label8.setText(pasajero.get_distrito());
-        actual_provincia_label6.setText(pasajero.get_provincia());
-        actual_departamento_label7.setText(pasajero.get_departamento());
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +73,8 @@ public class PasajeroPerfil extends javax.swing.JPanel {
         actual_distrito_label8 = new javax.swing.JLabel();
         actual_provincia_label6 = new javax.swing.JLabel();
         actual_departamento_label7 = new javax.swing.JLabel();
+        dias_descanso_label = new javax.swing.JLabel();
+        actual_dias_descanso_label = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
@@ -76,7 +83,7 @@ public class PasajeroPerfil extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
-        jLabel1.setText("DATOS DEL PASAJERO");
+        jLabel1.setText("DATOS DEL CONDUCTOR");
 
         editar_perfil_button.setText("Editar Perfil");
         editar_perfil_button.addActionListener(new java.awt.event.ActionListener() {
@@ -152,16 +159,21 @@ public class PasajeroPerfil extends javax.swing.JPanel {
         actual_departamento_label7.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         actual_departamento_label7.setForeground(new java.awt.Color(20, 20, 20));
 
+        dias_descanso_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        dias_descanso_label.setForeground(new java.awt.Color(20, 20, 20));
+        dias_descanso_label.setText("Dias de Descanso:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(editar_perfil_button)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -199,18 +211,22 @@ public class PasajeroPerfil extends javax.swing.JPanel {
                                 .addGap(26, 26, 26)
                                 .addComponent(foto_label, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)))
-                        .addGap(226, 226, 226))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addComponent(editar_perfil_button)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(226, 226, 226))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(dias_descanso_label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(actual_dias_descanso_label))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,39 +256,46 @@ public class PasajeroPerfil extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(departamento_label2)
                             .addComponent(actual_departamento_label7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dias_descanso_label)
+                            .addComponent(actual_dias_descanso_label))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editar_perfil_button)
+                        .addGap(65, 65, 65))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(foto_label, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)))
-                .addComponent(editar_perfil_button)
-                .addGap(65, 65, 65))
+                        .addGap(128, 128, 128))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void editar_perfil_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_perfil_buttonActionPerformed
-        ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroPerfilEditar(pasajero));
+        ((DashboardConductor) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PerfilConductorEditar(conductor));
     }//GEN-LAST:event_editar_perfil_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel actual_correo_label3;
     private javax.swing.JLabel actual_departamento_label7;
+    private javax.swing.JLabel actual_dias_descanso_label;
     private javax.swing.JLabel actual_distrito_label8;
     private javax.swing.JLabel actual_dni_label5;
     private javax.swing.JLabel actual_fecha_label4;
@@ -280,6 +303,7 @@ public class PasajeroPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel actual_provincia_label6;
     private javax.swing.JLabel correo_label;
     private javax.swing.JLabel departamento_label2;
+    private javax.swing.JLabel dias_descanso_label;
     private javax.swing.JLabel distrito_label3;
     private javax.swing.JLabel dni_label;
     private javax.swing.JButton editar_perfil_button;
@@ -291,5 +315,4 @@ public class PasajeroPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel nombre_label1;
     private javax.swing.JLabel provincia_label4;
     // End of variables declaration//GEN-END:variables
-
 }

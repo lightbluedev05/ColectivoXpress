@@ -47,5 +47,12 @@
     "hora_salida": "12:12",
     "id_ruta": "80420",
     "dni_conductor": "33445566"
+  },
+  {
+    "id_viaje": "32532",
+    "fecha_salida": "2024-12-25",
+    "hora_salida": "16:00",
+    "id_ruta": "80420",
+    "dni_conductor": "33445566"
   }
 ]
