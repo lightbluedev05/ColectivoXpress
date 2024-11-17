@@ -40,34 +40,31 @@ public class LoginAdmin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         contra_input = new javax.swing.JPasswordField();
         ingresar_button = new javax.swing.JButton();
-        registro_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(62, 82, 162));
+        jPanel1.setBackground(new java.awt.Color(240, 245, 247));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Login Admin");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 82, 85));
         jLabel2.setText("DNI");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 82, 85));
         jLabel3.setText("Contraseña");
 
-        ingresar_button.setBackground(new java.awt.Color(80, 99, 161));
-        ingresar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
-        ingresar_button.setForeground(new java.awt.Color(255, 255, 255));
+        ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
+        ingresar_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ingresar_button.setForeground(new java.awt.Color(240, 245, 247));
         ingresar_button.setText("Ingresar");
+        ingresar_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresar_buttonActionPerformed(evt);
-            }
-        });
-
-        registro_button.setBackground(new java.awt.Color(255, 255, 255));
-        registro_button.setForeground(new java.awt.Color(63, 149, 236));
-        registro_button.setText("Crearme una cuenta");
-        registro_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registro_buttonActionPerformed(evt);
             }
         });
 
@@ -86,15 +83,12 @@ public class LoginAdmin extends javax.swing.JFrame {
                             .addComponent(contra_input)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(registro_button, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 107, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(110, 110, 110))
+                .addGap(101, 101, 101))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,9 +105,7 @@ public class LoginAdmin extends javax.swing.JFrame {
                 .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(registro_button)
-                .addGap(21, 21, 21))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,22 +149,6 @@ public class LoginAdmin extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_ingresar_buttonActionPerformed
-
-    private void registro_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registro_buttonActionPerformed
-        LoginAdmin ventana_actual = this;
-        
-        RegistroPasajero registro = new RegistroPasajero();
-        registro.setVisible(true);
-        ventana_actual.setVisible(false);
-        
-        registro.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                // Cuando se cierra Dashboard, se vuelve a mostrar `this`
-                ventana_actual.setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_registro_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +196,5 @@ public class LoginAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton registro_button;
     // End of variables declaration//GEN-END:variables
 }
