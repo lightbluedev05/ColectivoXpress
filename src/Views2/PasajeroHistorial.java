@@ -134,10 +134,12 @@ public class PasajeroHistorial extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setText("Listado de Viajes ");
 
+        tabla_viajes.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_viajes.setForeground(new java.awt.Color(22, 38, 35));
         tabla_viajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -194,7 +196,7 @@ public class PasajeroHistorial extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

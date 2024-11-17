@@ -48,6 +48,8 @@ public class LoginPasajero extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Login Pasajero");
 
+        dni_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 82, 85));
         jLabel2.setText("DNI");
@@ -55,6 +57,8 @@ public class LoginPasajero extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(41, 82, 85));
         jLabel3.setText("Contraseña");
+
+        contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
         ingresar_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -116,7 +120,7 @@ public class LoginPasajero extends javax.swing.JFrame {
                 .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(registro_button, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );

@@ -59,6 +59,8 @@ public class RegistroPasajero extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(240, 245, 247));
 
+        dni_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 82, 85));
         jLabel2.setText("DNI");
@@ -67,10 +69,13 @@ public class RegistroPasajero extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(41, 82, 85));
         jLabel3.setText("Contraseña");
 
+        contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(41, 82, 85));
         jLabel4.setText("Correo");
 
+        correo_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         correo_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 correo_inputActionPerformed(evt);
@@ -81,21 +86,31 @@ public class RegistroPasajero extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(41, 82, 85));
         jLabel5.setText("Fecha de Nacimiento (aaaa/mm/dd)");
 
+        fecha_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(41, 82, 85));
         jLabel6.setText("Nombres y Apellidos");
+
+        nombres_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(41, 82, 85));
         jLabel7.setText("Distrito");
 
+        distrito_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(41, 82, 85));
         jLabel8.setText("Provincia");
 
+        provincia_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(41, 82, 85));
         jLabel9.setText("Departamento");
+
+        departamento_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(22, 38, 35));
@@ -184,7 +199,7 @@ public class RegistroPasajero extends javax.swing.JFrame {
                 .addComponent(departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(registrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

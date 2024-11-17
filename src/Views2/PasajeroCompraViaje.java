@@ -125,16 +125,17 @@ private void listar_viajes() {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setText("Listado de Viajes Disponibles");
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(23, 23, 23));
         jLabel2.setText("COMPRAR BOLETO");
 
-        Comprar_Boleto.setBackground(new java.awt.Color(30, 30, 30));
-        Comprar_Boleto.setForeground(new java.awt.Color(245, 245, 245));
+        Comprar_Boleto.setBackground(new java.awt.Color(41, 82, 85));
+        Comprar_Boleto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Comprar_Boleto.setForeground(new java.awt.Color(240, 245, 247));
         Comprar_Boleto.setText("Comprar");
         Comprar_Boleto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
         Comprar_Boleto.setMaximumSize(new java.awt.Dimension(161, 40));
@@ -146,8 +147,9 @@ private void listar_viajes() {
             }
         });
 
-        Terminar_Compra.setBackground(new java.awt.Color(30, 30, 30));
-        Terminar_Compra.setForeground(new java.awt.Color(245, 245, 245));
+        Terminar_Compra.setBackground(new java.awt.Color(41, 82, 85));
+        Terminar_Compra.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Terminar_Compra.setForeground(new java.awt.Color(240, 245, 247));
         Terminar_Compra.setText("Terminar");
         Terminar_Compra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
         Terminar_Compra.setMaximumSize(new java.awt.Dimension(161, 40));
@@ -159,6 +161,8 @@ private void listar_viajes() {
             }
         });
 
+        tabla_viajes.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_viajes.setForeground(new java.awt.Color(22, 38, 35));
         tabla_viajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -195,11 +199,11 @@ private void listar_viajes() {
             tabla_viajes.getColumnModel().getColumn(7).setMaxWidth(150);
         }
 
-        jLabel4.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(23, 23, 23));
         jLabel4.setText("Elija el ID del viaje");
 
-        ID_viajes.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        ID_viajes.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ID_viajes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ID_viajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +220,7 @@ private void listar_viajes() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -254,7 +258,7 @@ private void listar_viajes() {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
