@@ -132,25 +132,32 @@ public class RutaRepository implements CRUD<Ruta>{
             
             RutaDTO rutaDto = convertirRuta_Dto(ruta_editar);
             
-            String query = "UPDATE rutas SET "
-             + "origen = '" + rutaDto.origen + "', "
-             + "destino = '" + rutaDto.destino + "', "
-             + "tiempo_aproximado = '" + rutaDto.tiempo_aproximado + "', "
-             + "precio = " + rutaDto.precio + " " // Sin comillas porque es float
-             + "WHERE id_ruta = '" + rutaDto.id_ruta + "' "
-             + "AND NOT EXISTS ("
-             + "    SELECT 1 FROM rutas "
-             + "    WHERE origen = '" + rutaDto.origen + "' "
-             + "    AND destino = '" + rutaDto.destino + "' "
-             + "    AND id_ruta != '" + rutaDto.id_ruta + "'"
-             + ")";
+            // Primero, verifica si existe una ruta con el mismo origen y destino
+            String checkQuery = "SELECT COUNT(*) FROM rutas "
+                              + "WHERE origen = '" + rutaDto.origen + "' "
+                              + "AND destino = '" + rutaDto.destino + "' "
+                              + "AND id_ruta != '" + rutaDto.id_ruta + "'";
 
             Statement st = cx.conectar().createStatement();
-            int rows_update = st.executeUpdate(query);
-            
-            cx.desconectar();
-            
-            return rows_update > 0;
+            ResultSet rs = st.executeQuery(checkQuery);
+
+            if (rs.next() && rs.getInt(1) == 0) { // Si no existe ninguna ruta duplicada
+                // Si no hay duplicados, realizar la actualización
+                String updateQuery = "UPDATE rutas SET "
+                                   + "origen = '" + rutaDto.origen + "', "
+                                   + "destino = '" + rutaDto.destino + "', "
+                                   + "tiempo_aproximado = '" + rutaDto.tiempo_aproximado + "', "
+                                   + "precio = " + rutaDto.precio + " "
+                                   + "WHERE id_ruta = '" + rutaDto.id_ruta + "'";
+
+                int rows_update = st.executeUpdate(updateQuery);
+                cx.desconectar();
+
+                return rows_update > 0;
+            } else {
+                cx.desconectar();
+                return false; // Si existe una ruta duplicada, no hacer la actualización
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);

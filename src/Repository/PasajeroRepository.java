@@ -127,33 +127,38 @@ public class PasajeroRepository implements CRUD<Pasajero>{
     }
 
     @Override
-    public boolean actualizar(Pasajero pasajero_editar){
+    public boolean actualizar(Pasajero pasajero_editar) {
         try {
-            
             PasajeroDTO pasajeroDto = convertirPasajero_Dto(pasajero_editar);
 
-            String query = "UPDATE pasajeros SET "
-                + "nombre = '" + pasajeroDto.nombre + "', "
-                + "correo = '" + pasajeroDto.correo + "', "
-                + "fecha_nacimiento = '" + pasajeroDto.fecha_nacimiento + "', "
-                + "contrasena = '" + pasajeroDto.contrasena + "', "
-                + "distrito = '" + pasajeroDto.distrito + "', "
-                + "provincia = '" + pasajeroDto.provincia + "', "
-                + "departamento = '" + pasajeroDto.departamento + "' "
-                + "WHERE dni = '" + pasajeroDto.dni + "' "
-                + "AND NOT EXISTS ("
-                + "    SELECT 1 FROM pasajeros "
-                + "    WHERE correo = '" + pasajeroDto.correo + "' "
-                + "    AND dni != '" + pasajeroDto.dni + "'"
-                + ")";
+            // Verificar si el correo ya está registrado con otro dni
+            String checkQuery = "SELECT COUNT(*) FROM pasajeros "
+                              + "WHERE correo = '" + pasajeroDto.correo + "' "
+                              + "AND dni != '" + pasajeroDto.dni + "'";
 
             Statement st = cx.conectar().createStatement();
-            int rows_update = st.executeUpdate(query);
-            
-            cx.desconectar();
-            
-            return rows_update > 0;
-            
+            ResultSet rs = st.executeQuery(checkQuery);
+
+            if (rs.next() && rs.getInt(1) == 0) { // Si no existe otro pasajero con el mismo correo
+                // Si el correo no está duplicado, realizar el UPDATE
+                String updateQuery = "UPDATE pasajeros SET "
+                                   + "nombre = '" + pasajeroDto.nombre + "', "
+                                   + "correo = '" + pasajeroDto.correo + "', "
+                                   + "fecha_nacimiento = '" + pasajeroDto.fecha_nacimiento + "', "
+                                   + "contrasena = '" + pasajeroDto.contrasena + "', "
+                                   + "distrito = '" + pasajeroDto.distrito + "', "
+                                   + "provincia = '" + pasajeroDto.provincia + "', "
+                                   + "departamento = '" + pasajeroDto.departamento + "' "
+                                   + "WHERE dni = '" + pasajeroDto.dni + "'";
+
+                int rows_update = st.executeUpdate(updateQuery);
+                cx.desconectar();
+                return rows_update > 0;
+            } else {
+                cx.desconectar();
+                return false; // Si el correo ya está en uso, no realizar el UPDATE
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
             cx.desconectar();

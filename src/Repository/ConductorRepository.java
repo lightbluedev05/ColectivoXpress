@@ -66,30 +66,36 @@ public class ConductorRepository implements CRUD<Conductor>{
             
             ConductorDTO conductorDto = convertirConductor_Dto(nuevo_conductor);
             
-            String query = "INSERT INTO conductores (dni, nombre, correo, fecha_nacimiento, contrasena, "
-             + "distrito, provincia, departamento, dias_descanso) "
-             + "SELECT '"
-             + conductorDto.dni + "', '"
-             + conductorDto.nombre + "', '"
-             + conductorDto.correo + "', '"
-             + conductorDto.fecha_nacimiento + "', '"
-             + conductorDto.contrasena + "', '"
-             + conductorDto.distrito + "', '"
-             + conductorDto.provincia + "', '"
-             + conductorDto.departamento + "', '"
-             + conductorDto.dias_descanso + "' "
-             + "WHERE NOT EXISTS ("
-             + "    SELECT 1 FROM conductores "
-             + "    WHERE dni = '" + conductorDto.dni + "' "
-             + "    OR correo = '" + conductorDto.correo + "'"
-             + ")";
-
+            // Verificar si el dni o correo ya existen
+            String checkQuery = "SELECT COUNT(*) FROM conductores "
+                              + "WHERE dni = '" + conductorDto.dni + "' "
+                              + "OR correo = '" + conductorDto.correo + "'";
 
             Statement st = cx.conectar().createStatement();
-            int filas_afectadas = st.executeUpdate(query);
-            
-            cx.desconectar();
-            return filas_afectadas > 0;
+            ResultSet rs = st.executeQuery(checkQuery);
+
+            if (rs.next() && rs.getInt(1) == 0) { // Si no existe ningún conductor con el dni o correo
+                // Si no existen duplicados, insertar el nuevo conductor
+                String insertQuery = "INSERT INTO conductores (dni, nombre, correo, fecha_nacimiento, contrasena, "
+                                   + "distrito, provincia, departamento, dias_descanso) "
+                                   + "VALUES ('"
+                                   + conductorDto.dni + "', '"
+                                   + conductorDto.nombre + "', '"
+                                   + conductorDto.correo + "', '"
+                                   + conductorDto.fecha_nacimiento + "', '"
+                                   + conductorDto.contrasena + "', '"
+                                   + conductorDto.distrito + "', '"
+                                   + conductorDto.provincia + "', '"
+                                   + conductorDto.departamento + "', '"
+                                   + conductorDto.dias_descanso + "')";
+
+                int filas_afectadas = st.executeUpdate(insertQuery);
+                cx.desconectar();
+                return filas_afectadas > 0;
+            } else {
+                cx.desconectar();
+                return false; // Si ya existe un conductor con el dni o correo, no hacer la inserción
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
