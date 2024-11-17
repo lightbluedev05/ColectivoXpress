@@ -5,29 +5,16 @@
 package Views2;
 
 import Models.Boleto;
-import Models.PagoMP;
-import Models.Ruta;
 import Models.Pasajero;
 import Models.Viaje;
 import Repository.BoletoRepository;
-import Repository.ViajeRepository;
-import Vista.DashboardPasajero;
-import com.mercadopago.resources.Preference;
 import java.awt.Color;
 import java.util.List;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import kotlin.random.Random;
 import java.time.Duration;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 
 /**
  *
