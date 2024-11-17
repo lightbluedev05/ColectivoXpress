@@ -92,11 +92,11 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
         jLabel1.setText("Ingrese su contraseña para modificar sus datos");
 
-        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_contra_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_contra_label.setText("Actualizar contraseña");
 
@@ -117,7 +117,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_nombre_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_nombre_label.setText("Actualizar nombre");
 
@@ -138,7 +138,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_distrito_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_distrito_label.setText("Actualizar distrito");
 
@@ -159,7 +159,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_provincia_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_provincia_label.setText("Actualizar provincia");
 
@@ -180,7 +180,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_departamento_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_departamento_label.setText("Actualizar departamento");
 
@@ -280,7 +280,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_departamento_button))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

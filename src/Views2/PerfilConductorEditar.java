@@ -90,15 +90,18 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1010, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
         contra_input.setBackground(new java.awt.Color(240, 245, 247));
+        contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         contra_input.setMinimumSize(new java.awt.Dimension(370, 22));
         contra_input.setPreferredSize(new java.awt.Dimension(370, 22));
 
         ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
         ingresar_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ingresar_button.setForeground(new java.awt.Color(240, 245, 247));
         ingresar_button.setText("Ingresar");
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +118,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_contra_label.setText("Actualizar contraseña");
 
         nuevo_contra_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_contra_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_contra_inputActionPerformed(evt);
@@ -123,6 +127,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         nuevo_contra_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_contra_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_contra_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_contra_button.setText("Modificar");
         nuevo_contra_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +140,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_nombre_label.setText("Actualiza nombre");
 
         nuevo_nombre_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_nombre_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_nombre_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_nombre_inputActionPerformed(evt);
@@ -143,6 +149,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         nuevo_nombre_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_nombre_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_nombre_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_nombre_button.setText("Modificar");
         nuevo_nombre_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +162,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_distrito_label.setText("Actualiza distrito");
 
         nuevo_distrito_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_distrito_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_distrito_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_distrito_inputActionPerformed(evt);
@@ -163,6 +171,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         nuevo_distrito_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_distrito_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_distrito_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_distrito_button.setText("Modificar");
         nuevo_distrito_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +184,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_provincia_label.setText("Actualiza provincia");
 
         nuevo_provincia_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_provincia_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_provincia_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_provincia_inputActionPerformed(evt);
@@ -183,6 +193,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         nuevo_provincia_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_provincia_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_provincia_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_provincia_button.setText("Modificar");
         nuevo_provincia_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +206,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_departamento_label.setText("Actualiza departamento");
 
         nuevo_departamento_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_departamento_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_departamento_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_departamento_inputActionPerformed(evt);
@@ -203,6 +215,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         nuevo_departamento_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_departamento_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_departamento_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_departamento_button.setText("Modificar");
         nuevo_departamento_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,6 +228,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_dias_descanso_label1.setText("Actualiza dias de descanso");
 
         nuevo_dias_descanso_input1.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_dias_descanso_input1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_dias_descanso_input1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_dias_descanso_input1ActionPerformed(evt);
@@ -223,6 +237,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         nuevo_dias_descanso_button1.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_dias_descanso_button1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_dias_descanso_button1.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_dias_descanso_button1.setText("Modificar");
         nuevo_dias_descanso_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,7 +361,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
                             .addComponent(nuevo_dias_descanso_button1))))
                 .addGap(18, 18, 18)
                 .addComponent(nuevo_dias_descanso_message)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

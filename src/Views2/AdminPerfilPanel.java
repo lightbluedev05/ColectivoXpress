@@ -57,6 +57,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
         contra_input.setBackground(new java.awt.Color(240, 245, 247));
+        contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         contra_input.setMinimumSize(new java.awt.Dimension(370, 22));
         contra_input.setPreferredSize(new java.awt.Dimension(370, 22));
 
@@ -76,6 +77,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
         nuevo_codigo_label.setText("Actualizar codigo");
 
         nuevo_codigo_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_codigo_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         nuevo_codigo_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_codigo_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -97,6 +99,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
         nuevo_contra_label.setText("Actualizar contraseña");
 
         nuevo_contra_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         nuevo_contra_button.setBackground(new java.awt.Color(41, 82, 85));
         nuevo_contra_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -159,7 +162,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
                     .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_contra_button)
                     .addComponent(nuevo_contra_message))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
