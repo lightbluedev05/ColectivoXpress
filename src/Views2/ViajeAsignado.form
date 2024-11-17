@@ -60,7 +60,7 @@
                   <Component id="ListarViajes" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ListarViajesss" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +69,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Sans" size="14" style="1"/>
+          <Font name="Arial" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="17" green="17" red="17" type="rgb"/>
@@ -86,6 +86,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tabla_viajes">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="1"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="7" rowCount="0">
                 <Column editable="true" title="DNI Conductor" type="java.lang.String"/>
@@ -145,6 +148,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="ListarViajes">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Asignar Viaje"/>
       </Properties>
       <Events>
@@ -153,6 +159,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="ListarViajesss">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Lista"/>
       </Properties>
       <Events>

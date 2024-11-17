@@ -83,6 +83,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 620));
 
+        jPanelConEncabezadoColectivo1.setBackground(new java.awt.Color(87, 120, 119));
         jPanelConEncabezadoColectivo1.setPreferredSize(new java.awt.Dimension(1280, 90));
 
         javax.swing.GroupLayout jPanelConEncabezadoColectivo1Layout = new javax.swing.GroupLayout(jPanelConEncabezadoColectivo1);
@@ -96,7 +97,7 @@ public class DashboardConductor extends javax.swing.JFrame {
             .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        menu.setBackground(new java.awt.Color(0, 0, 204));
+        menu.setBackground(new java.awt.Color(87, 120, 119));
 
         buttonInicio.setBackground(new java.awt.Color(0,0,0,0));
         buttonInicio.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
@@ -172,11 +173,11 @@ public class DashboardConductor extends javax.swing.JFrame {
                 .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        header.setBackground(new java.awt.Color(0, 153, 255));
+        header.setBackground(new java.awt.Color(255, 255, 255));
 
         fecha.setBackground(new java.awt.Color(255, 255, 255));
         fecha.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        fecha.setForeground(new java.awt.Color(255, 255, 255));
+        fecha.setForeground(new java.awt.Color(22, 38, 35));
         fecha.setText("Hoy es {dayname} {day} de {month} del {year}");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);

@@ -3,6 +3,7 @@ package Views2;
 import Models.Conductor;
 import Repository.ConductorRepository;
 import Repository.RegulacionLaboral;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -92,9 +93,12 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         jPanel1.setMaximumSize(new java.awt.Dimension(1010, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
+        contra_input.setBackground(new java.awt.Color(240, 245, 247));
         contra_input.setMinimumSize(new java.awt.Dimension(370, 22));
         contra_input.setPreferredSize(new java.awt.Dimension(370, 22));
 
+        ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
+        ingresar_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ingresar_button.setText("Ingresar");
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,20 +106,23 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
         jLabel1.setText("Ingrese su contraseña para modificar sus datos");
 
-        nuevo_contra_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_contra_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_contra_label.setText("Actualizar contraseña");
 
+        nuevo_contra_input.setBackground(new java.awt.Color(240, 245, 247));
         nuevo_contra_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_contra_inputActionPerformed(evt);
             }
         });
 
+        nuevo_contra_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_contra_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_contra_button.setText("Modificar");
         nuevo_contra_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,16 +130,19 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_nombre_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_nombre_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_nombre_label.setText("Actualiza nombre");
 
+        nuevo_nombre_input.setBackground(new java.awt.Color(240, 245, 247));
         nuevo_nombre_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_nombre_inputActionPerformed(evt);
             }
         });
 
+        nuevo_nombre_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_nombre_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_nombre_button.setText("Modificar");
         nuevo_nombre_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,16 +150,19 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_distrito_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_distrito_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_distrito_label.setText("Actualiza distrito");
 
+        nuevo_distrito_input.setBackground(new java.awt.Color(240, 245, 247));
         nuevo_distrito_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_distrito_inputActionPerformed(evt);
             }
         });
 
+        nuevo_distrito_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_distrito_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_distrito_button.setText("Modificar");
         nuevo_distrito_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,16 +170,19 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_provincia_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_provincia_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_provincia_label.setText("Actualiza provincia");
 
+        nuevo_provincia_input.setBackground(new java.awt.Color(240, 245, 247));
         nuevo_provincia_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_provincia_inputActionPerformed(evt);
             }
         });
 
+        nuevo_provincia_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_provincia_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_provincia_button.setText("Modificar");
         nuevo_provincia_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,16 +190,19 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_departamento_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_departamento_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_departamento_label.setText("Actualiza departamento");
 
+        nuevo_departamento_input.setBackground(new java.awt.Color(240, 245, 247));
         nuevo_departamento_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_departamento_inputActionPerformed(evt);
             }
         });
 
+        nuevo_departamento_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_departamento_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_departamento_button.setText("Modificar");
         nuevo_departamento_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,16 +210,19 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_dias_descanso_label1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_dias_descanso_label1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_dias_descanso_label1.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_dias_descanso_label1.setText("Actualiza dias de descanso");
 
+        nuevo_dias_descanso_input1.setBackground(new java.awt.Color(240, 245, 247));
         nuevo_dias_descanso_input1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_dias_descanso_input1ActionPerformed(evt);
             }
         });
 
+        nuevo_dias_descanso_button1.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_dias_descanso_button1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_dias_descanso_button1.setText("Modificar");
         nuevo_dias_descanso_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,109 +235,118 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(152, 152, 152)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_dias_descanso_label1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nuevo_dias_descanso_button1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nuevo_dias_descanso_message))
+                        .addComponent(nuevo_dias_descanso_button1))
                     .addComponent(nuevo_departamento_label)
                     .addComponent(nuevo_nombre_label)
-                    .addComponent(jLabel1)
-                    .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_contra_label)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(nuevo_provincia_label, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_provincia_button)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_nombre_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_contra_button))
+                            .addComponent(nuevo_distrito_label, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_distrito_button))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(nuevo_provincia_label, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_provincia_button)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_nombre_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_contra_button))
-                                .addComponent(nuevo_distrito_label, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_distrito_button))))
+                        .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_departamento_button)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nuevo_dias_descanso_message)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nuevo_nombre_message)
                             .addComponent(nuevo_contra_message)
                             .addComponent(nuevo_distrito_message)
-                            .addComponent(nuevo_provincia_message)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_button)
-                        .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_message)))
-                .addContainerGap(377, Short.MAX_VALUE))
+                            .addComponent(nuevo_provincia_message)
+                            .addComponent(nuevo_departamento_message))))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ingresar_button)
-                .addGap(40, 40, 40)
-                .addComponent(nuevo_contra_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_contra_button)
-                    .addComponent(nuevo_contra_message))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(nuevo_contra_message)
+                        .addGap(69, 69, 69)
+                        .addComponent(nuevo_nombre_message)
+                        .addGap(69, 69, 69)
+                        .addComponent(nuevo_distrito_message)
+                        .addGap(69, 69, 69)
+                        .addComponent(nuevo_provincia_message)
+                        .addGap(69, 69, 69)
+                        .addComponent(nuevo_departamento_message))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ingresar_button)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_contra_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nuevo_contra_button))
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_nombre_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nuevo_nombre_button))
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_distrito_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nuevo_distrito_button))
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_provincia_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nuevo_provincia_button))
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_departamento_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nuevo_departamento_button))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nuevo_dias_descanso_label1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nuevo_dias_descanso_button1))))
                 .addGap(18, 18, 18)
-                .addComponent(nuevo_nombre_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_nombre_button)
-                    .addComponent(nuevo_nombre_message))
-                .addGap(18, 18, 18)
-                .addComponent(nuevo_distrito_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_distrito_button)
-                    .addComponent(nuevo_distrito_message))
-                .addGap(18, 18, 18)
-                .addComponent(nuevo_provincia_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_provincia_button)
-                    .addComponent(nuevo_provincia_message))
-                .addGap(18, 18, 18)
-                .addComponent(nuevo_departamento_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_departamento_button)
-                    .addComponent(nuevo_departamento_message))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nuevo_dias_descanso_label1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_dias_descanso_button1)
-                    .addComponent(nuevo_dias_descanso_message))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(nuevo_dias_descanso_message)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -326,9 +357,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -358,7 +387,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             nuevo_dias_descanso_label1.setVisible(true);
             nuevo_dias_descanso_input1.setVisible(true);
             nuevo_dias_descanso_button1.setVisible(true);
-        }
+        } else {
+        // Si la contraseña es incorrecta, mostrar un mensaje de error
+        JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_ingresar_buttonActionPerformed
 
     private void nuevo_contra_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_contra_buttonActionPerformed
@@ -371,10 +403,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         
         boolean exito = conductor.actualizar_contrasena(contra);
         if(!exito){
-            nuevo_contra_message.setText("No se pudo cambiar la contraseña");
-            return;
-        }
-        nuevo_contra_message.setText("Contraseña cambiada exitosamente!!");
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Contraseña cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_contra_buttonActionPerformed
 
     private void nuevo_nombre_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_nombre_inputActionPerformed
@@ -407,10 +439,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
      
         boolean exito = conductor.actualizar_nombre(nombre);
         if(!exito){
-            nuevo_nombre_message.setText("No se pudo cambiar el nombre");
-            return;
-        }
-        nuevo_nombre_message.setText("Nombre cambiado exitosamente!!");
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Nombre cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_nombre_buttonActionPerformed
 
     private void nuevo_distrito_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_distrito_buttonActionPerformed
@@ -423,10 +455,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
      
         boolean exito = conductor.actualizar_distrito(distrito);
         if(!exito){
-            nuevo_distrito_message.setText("No se pudo cambiar el distrito");
-            return;
-        }
-        nuevo_distrito_message.setText("Distrito cambiado exitosamente!!");
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el distrito", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Distrito cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_distrito_buttonActionPerformed
 
     private void nuevo_provincia_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_provincia_buttonActionPerformed
@@ -439,10 +471,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
      
         boolean exito = conductor.actualizar_provincia(provincia);
         if(!exito){
-            nuevo_provincia_message.setText("No se pudo cambiar la provincia");
-            return;
-        }
-        nuevo_provincia_message.setText("Provincia cambiada exitosamente!!");
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar la provincia", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Provincia cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_provincia_buttonActionPerformed
 
     private void nuevo_departamento_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_departamento_buttonActionPerformed
@@ -455,10 +487,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
      
         boolean exito = conductor.actualizar_departamento(departamento);
         if(!exito){
-            nuevo_departamento_message.setText("No se pudo cambiar el departamento");
-            return;
-        }
-        nuevo_departamento_message.setText("Departamento cambiado exitosamente!!");
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el departamento", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Departamento cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_departamento_buttonActionPerformed
 
     private void nuevo_dias_descanso_input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_input1ActionPerformed
@@ -470,7 +502,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
     String input = nuevo_dias_descanso_input1.getText();
     
     if (input.isEmpty()) {
-        nuevo_dias_descanso_message.setText("Ingrese un valor válido para los días de descanso");
+        JOptionPane.showMessageDialog(this, "Ingrese un valor válido para los días de descanso", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
     
@@ -484,7 +516,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         // Validar que la cantidad de días de descanso no supere el límite establecido
         if (cantidadDias > limiteDias) {
-            nuevo_dias_descanso_message.setText("La cantidad de días de descanso no puede superar el límite de " + limiteDias + " días.");
+            JOptionPane.showMessageDialog(this, "La cantidad de días de descanso no puede superar el límite de " + limiteDias + " días.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -497,20 +529,21 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             conductor.set_dias_descanso(input);
             boolean actualizado = conductorRepo.actualizar(conductor);
             if (!actualizado) {
-                nuevo_dias_descanso_message.setText("No se pudo actualizar los días de descanso del conductor");
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar los días de descanso del conductor", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } else {
-            nuevo_dias_descanso_message.setText("Conductor no encontrado.");
+            JOptionPane.showMessageDialog(this, "Conductor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         // Mostrar mensaje de éxito
-        nuevo_dias_descanso_message.setText("Días de descanso actualizados exitosamente!!");
+        JOptionPane.showMessageDialog(this, "Días de descanso actualizados exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         nuevo_dias_descanso_input1.setText(""); // Limpiar el campo de entrada
     } catch (Exception e) {
-        nuevo_dias_descanso_message.setText("Por favor, ingrese los días de descanso en el formato correcto.");
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese los días de descanso en el formato correcto.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+
 
 
     

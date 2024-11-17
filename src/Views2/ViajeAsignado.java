@@ -167,10 +167,11 @@ private void listar_viaje_asignado() {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setText("Viajes Asignados");
 
+        tabla_viajes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tabla_viajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -206,6 +207,7 @@ private void listar_viaje_asignado() {
             tabla_viajes.getColumnModel().getColumn(6).setMaxWidth(280);
         }
 
+        ListarViajes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ListarViajes.setText("Asignar Viaje");
         ListarViajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +215,7 @@ private void listar_viaje_asignado() {
             }
         });
 
+        ListarViajesss.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ListarViajesss.setText("Lista");
         ListarViajesss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,7 +253,7 @@ private void listar_viaje_asignado() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ListarViajes)
                     .addComponent(ListarViajesss))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

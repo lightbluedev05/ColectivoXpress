@@ -7,6 +7,7 @@ package Vista;
 import Models.Conductor;
 import Models.Pasajero;
 import Repository.ConductorRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,12 +48,16 @@ public class LoginConductor extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Login Conductor");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 82, 85));
         jLabel2.setText("DNI");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 82, 85));
         jLabel3.setText("Contraseña");
 
-        ingresar_button.setBackground(new java.awt.Color(80, 99, 161));
-        ingresar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
+        ingresar_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ingresar_button.setForeground(new java.awt.Color(255, 255, 255));
         ingresar_button.setText("Ingresar");
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
@@ -124,9 +129,10 @@ public class LoginConductor extends javax.swing.JFrame {
         boolean login = Conductor.login(dni, contra);
         
         if(!login){
-            System.out.println("no se logueo");
+            // Si el inicio de sesión falla, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "DNI o contraseña incorrectos. Vuelva a intentar.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+        } 
         System.out.println("SE LOGUEO");
         LoginConductor ventana_actual = this;
         

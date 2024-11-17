@@ -149,37 +149,43 @@ public class ConductorRepository implements CRUD<Conductor>{
     public boolean actualizar(Conductor conductor_editar){
         try {
             
-            ConductorDTO conductorDto = convertirConductor_Dto(conductor_editar);
+    ConductorDTO conductorDto = convertirConductor_Dto(conductor_editar);
 
-            String query = "UPDATE conductores SET "
-             + "nombre = '" + conductorDto.nombre + "', "
-             + "correo = '" + conductorDto.correo + "', "
-             + "fecha_nacimiento = '" + conductorDto.fecha_nacimiento + "', "
-             + "contrasena = '" + conductorDto.contrasena + "', "
-             + "distrito = '" + conductorDto.distrito + "', "
-             + "provincia = '" + conductorDto.provincia + "', "
-             + "departamento = '" + conductorDto.departamento + "', "
-             + "dias_descanso = '" + conductorDto.dias_descanso + "', "
-             + "capacidad_vehiculo = " + conductorDto.capacidad_vehiculo + " "
-             + "WHERE dni = '" + conductorDto.dni + "' "
-             + "AND NOT EXISTS ("
-             + "    SELECT 1 FROM conductores "
-             + "    WHERE correo = '" + conductorDto.correo + "' "
-             + "    AND dni != '" + conductorDto.dni + "'"
-             + ")";
+    // Verificar si el correo ya está registrado con otro dni
+    String checkQuery = "SELECT COUNT(*) FROM conductores "
+                      + "WHERE correo = '" + conductorDto.correo + "' "
+                      + "AND dni != '" + conductorDto.dni + "'";
 
-            Statement st = cx.conectar().createStatement();
-            int rows_update = st.executeUpdate(query);
+    Statement st = cx.conectar().createStatement();
+    ResultSet rs = st.executeQuery(checkQuery);
+
+    if (rs.next() && rs.getInt(1) == 0) { // Si no existe otro conductor con el mismo correo
+        // Si el correo no está duplicado, realizar el UPDATE
+        String updateQuery = "UPDATE conductores SET "
+                           + "nombre = '" + conductorDto.nombre + "', "
+                           + "correo = '" + conductorDto.correo + "', "
+                           + "fecha_nacimiento = '" + conductorDto.fecha_nacimiento + "', "
+                           + "contrasena = '" + conductorDto.contrasena + "', "
+                           + "distrito = '" + conductorDto.distrito + "', "
+                           + "provincia = '" + conductorDto.provincia + "', "
+                           + "departamento = '" + conductorDto.departamento + "', "
+                           + "dias_descanso = '" + conductorDto.dias_descanso + "', "
+                           + "capacidad_vehiculo = " + conductorDto.capacidad_vehiculo + " "
+                           + "WHERE dni = '" + conductorDto.dni + "'";
+
+        int rows_update = st.executeUpdate(updateQuery);
+        cx.desconectar();
             
-            cx.desconectar();
-            
-            return rows_update > 0;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
+        return rows_update > 0;
+    } else {
+        cx.desconectar();
+        return false; // Si el correo ya está en uso, no realizar el UPDATE
+    }
+} catch (SQLException ex) {
+    Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+    cx.desconectar();
             return false;
-        }
+}
     }
     
     @Override

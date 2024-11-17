@@ -163,6 +163,8 @@ public class ConductorPerfil extends javax.swing.JPanel {
         dias_descanso_label.setForeground(new java.awt.Color(20, 20, 20));
         dias_descanso_label.setText("Dias de Descanso:");
 
+        actual_dias_descanso_label.setForeground(new java.awt.Color(20, 20, 20));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
