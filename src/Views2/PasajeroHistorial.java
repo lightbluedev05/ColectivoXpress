@@ -11,6 +11,7 @@ import Models.Pasajero;
 import Models.Viaje;
 import Repository.BoletoRepository;
 import Repository.ViajeRepository;
+import Vista.DashboardPasajero;
 import com.mercadopago.resources.Preference;
 import java.awt.Color;
 import java.util.List;
@@ -24,6 +25,8 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -34,10 +37,23 @@ public class PasajeroHistorial extends javax.swing.JPanel {
 
     private Pasajero pasajero;
     public PasajeroHistorial(Pasajero pasajero) {
-        this.pasajero = pasajero;
-        initComponents();
-        correcciones_iniciales();
+    this.pasajero = pasajero;
+    
+    List<Viaje> viajes = pasajero.ver_historial_viajes();
+    
+    if (viajes == null || viajes.isEmpty()) {
+        JOptionPane.showMessageDialog(
+            null, 
+            "No tiene viajes en su historial.", 
+            "Sin Viajes", 
+            JOptionPane.INFORMATION_MESSAGE
+        );         
     }
+    
+    initComponents();
+    correcciones_iniciales();
+    listar_viajes();
+}
     
     private void correcciones_iniciales(){ 
         tabla_viajes.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -96,6 +112,8 @@ public class PasajeroHistorial extends javax.swing.JPanel {
 
             LocalTime horaSalida = viaje.get_hora_salida();
             String horaSalidaString = horaSalida.toString(); // Convertir LocalTime a String
+            
+            String estadoTexto = viaje.get_estado() ? "Disponible" : "Terminado"; // Convertir booleano a texto
 
             modelo.addRow(new Object[]{
                 idBoleto, // ID Boleto
@@ -104,7 +122,8 @@ public class PasajeroHistorial extends javax.swing.JPanel {
                 origen, // Origen
                 destino, // Destino
                 horaSalidaString,
-                tiempo_string // Tiempo Aproximado en formato "HH:mm"
+                tiempo_string, // Tiempo Aproximado en formato "HH:mm"
+                estadoTexto
             });
         }   
 
@@ -130,7 +149,6 @@ public class PasajeroHistorial extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        listar_viajes_button = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_viajes = new javax.swing.JTable();
 
@@ -142,31 +160,19 @@ public class PasajeroHistorial extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setText("Listado de Viajes ");
 
-        listar_viajes_button.setBackground(new java.awt.Color(30, 30, 30));
-        listar_viajes_button.setForeground(new java.awt.Color(245, 245, 245));
-        listar_viajes_button.setText("Listar Viajes");
-        listar_viajes_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
-        listar_viajes_button.setMaximumSize(new java.awt.Dimension(170, 40));
-        listar_viajes_button.setPreferredSize(new java.awt.Dimension(170, 40));
-        listar_viajes_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listar_viajes_buttonActionPerformed(evt);
-            }
-        });
-
         tabla_viajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Boleto", "ID Viaje", "Fecha", "Origen", "Destino", "Hora de Salida (HH:MM)", "Duracion (HH:MM)"
+                "ID Boleto", "ID Viaje", "Fecha", "Origen", "Destino", "Hora de Salida (HH:MM)", "Duracion (HH:MM)", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -187,24 +193,21 @@ public class PasajeroHistorial extends javax.swing.JPanel {
             tabla_viajes.getColumnModel().getColumn(4).setMaxWidth(150);
             tabla_viajes.getColumnModel().getColumn(5).setMaxWidth(400);
             tabla_viajes.getColumnModel().getColumn(6).setMaxWidth(280);
+            tabla_viajes.getColumnModel().getColumn(7).setMaxWidth(150);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 87, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addComponent(listar_viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,22 +215,15 @@ public class PasajeroHistorial extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(listar_viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void listar_viajes_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_viajes_buttonActionPerformed
-        listar_viajes();
-    }//GEN-LAST:event_listar_viajes_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton listar_viajes_button;
     private javax.swing.JTable tabla_viajes;
     // End of variables declaration//GEN-END:variables
 }
