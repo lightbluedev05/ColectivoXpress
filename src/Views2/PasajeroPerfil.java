@@ -6,7 +6,6 @@ package Views2;
 
 import Models.Pasajero;
 import Vista.DashboardPasajero;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.time.format.DateTimeFormatter;
 

@@ -2,8 +2,6 @@
 package Vista;
 
 import Models.Pasajero;
-import Views2.Destinos;
-import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
 import Views2.Nosotros;
 import Views2.PasajeroPerfil;

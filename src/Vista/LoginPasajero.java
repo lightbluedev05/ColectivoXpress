@@ -42,17 +42,23 @@ public class LoginPasajero extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(62, 82, 162));
+        jPanel1.setBackground(new java.awt.Color(240, 245, 247));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Login Pasajero");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 82, 85));
         jLabel2.setText("DNI");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 82, 85));
         jLabel3.setText("Contraseña");
 
-        ingresar_button.setBackground(new java.awt.Color(80, 99, 161));
-        ingresar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
-        ingresar_button.setForeground(new java.awt.Color(255, 255, 255));
+        ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
+        ingresar_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ingresar_button.setForeground(new java.awt.Color(240, 245, 247));
         ingresar_button.setText("Ingresar");
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,8 +66,9 @@ public class LoginPasajero extends javax.swing.JFrame {
             }
         });
 
-        registro_button.setBackground(new java.awt.Color(255, 255, 255));
-        registro_button.setForeground(new java.awt.Color(63, 149, 236));
+        registro_button.setBackground(new java.awt.Color(0, 102, 102));
+        registro_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        registro_button.setForeground(new java.awt.Color(255, 255, 255));
         registro_button.setText("Crearme una cuenta");
         registro_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,8 +116,8 @@ public class LoginPasajero extends javax.swing.JFrame {
                 .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(registro_button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addComponent(registro_button, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
@@ -122,9 +129,7 @@ public class LoginPasajero extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
