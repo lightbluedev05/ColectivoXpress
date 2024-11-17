@@ -3,9 +3,6 @@ package Models;
 import Repository.RutaRepository;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 public class Ruta {
 

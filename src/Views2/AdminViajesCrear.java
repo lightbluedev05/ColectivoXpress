@@ -6,15 +6,13 @@ package Views2;
 
 import Models.Admin;
 import Models.Conductor;
-import Vista.*;
-import Models.Pasajero;
 import Models.Ruta;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.Random;
 
 /**
  *
@@ -51,13 +49,11 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         fecha_salida_input = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         hora_salida_input = new javax.swing.JTextField();
         anadir_button = new javax.swing.JButton();
         resultado_text = new javax.swing.JLabel();
         ruta_combobox = new javax.swing.JComboBox<>();
-        conductor_combobox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         LabelError = new javax.swing.JLabel();
 
@@ -70,8 +66,6 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         jLabel2.setText("Fecha salida (aaaa/mm/dd)");
 
         jLabel3.setText("Ruta");
-
-        jLabel4.setText("Conductor");
 
         jLabel5.setText("Hora de Salida (HH:MM)");
 
@@ -94,8 +88,6 @@ public class AdminViajesCrear extends javax.swing.JFrame {
             }
         });
 
-        conductor_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,12 +108,10 @@ public class AdminViajesCrear extends javax.swing.JFrame {
                                 .addGap(82, 82, 82)
                                 .addComponent(jLabel1))
                             .addComponent(jLabel5)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(fecha_salida_input, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                             .addComponent(hora_salida_input)
-                            .addComponent(ruta_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(conductor_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ruta_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,18 +127,15 @@ public class AdminViajesCrear extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(2, 2, 2)
                 .addComponent(ruta_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(4, 4, 4)
-                .addComponent(conductor_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hora_salida_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(anadir_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(resultado_text))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resultado_text)
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,7 +153,7 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LabelError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,17 +165,6 @@ public class AdminViajesCrear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void combo_box(){
-        List<Conductor> conductores = admin.ver_conductores();
-        
-        conductor_combobox.removeAllItems();
-        
-        if(conductores!= null){
-            for(Conductor conductor:conductores){
-                conductor_combobox.addItem(conductor.get_dni() + ": " + conductor.get_nombre());
-            }
-        }    
-        
-        
         List<Ruta> rutas = admin.ver_rutas();
         
         ruta_combobox.removeAllItems();
@@ -224,10 +200,37 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         }
         
         String id_ruta = ruta_combobox.getSelectedItem().toString().split(":")[0].trim();
+        /*
         
-        String id_conductor = conductor_combobox.getSelectedItem().toString().split(":")[0].trim();
+        List<Viaje> viajes_activos = admin.ver_viajes_activos();
+        List<Ruta> rutas = admin.ver_rutas();
         
-        boolean exito = admin.crear_viaje(fecha, id_ruta, id_conductor, hora_salida);
+        Ruta ruta_elegida = null;
+        int menor_repeticion = -1;
+        for(Ruta ruta:rutas){
+            int aux=0;
+            for(Viaje viaje:viajes_activos){
+                if(viaje.get_ruta().get_id_ruta().equals(ruta.get_id_ruta())){
+                    aux++;
+                }
+            }
+            
+            if(menor_repeticion != -1){
+                if(aux<menor_repeticion){
+                    menor_repeticion = aux;
+                    ruta_elegida = ruta;
+                }
+                continue;
+            }
+            menor_repeticion = aux;
+            ruta_elegida = ruta;
+        }
+        */
+        List<Conductor> conductores = admin.ver_conductores_libres();
+        Random random = new Random();
+        int indice = random.nextInt(conductores.size());
+        
+        boolean exito = admin.crear_viaje(fecha, id_ruta, conductores.get(indice).get_dni(), hora_salida);
         
         if(!exito){
             resultado_text.setText("No se pudo crear el viaje");
@@ -297,7 +300,6 @@ public class AdminViajesCrear extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelError;
     private javax.swing.JButton anadir_button;
-    private javax.swing.JComboBox<String> conductor_combobox;
     private javax.swing.JTextField fecha_salida_input;
     private javax.swing.JTextField hora_salida_input;
     private org.jdatepicker.JDateComponentFactory jDateComponentFactory1;
@@ -306,7 +308,6 @@ public class AdminViajesCrear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel resultado_text;

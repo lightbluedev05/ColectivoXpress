@@ -56,9 +56,9 @@ public class Admin {
     //------------------  ACCIONES SOBRE CONDUCTORES ---------------------
 
     public boolean crear_conductor(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
-                                   String distrito, String provincia, String departamento){
+                                   String distrito, String provincia, String departamento, int capacidad_vehiculo){
         Conductor nuevo_conductor = new Conductor(nombre, correo, dni, fecha_nacimiento,
-                contrasena, distrito, provincia, departamento);
+                contrasena, distrito, provincia, departamento, capacidad_vehiculo);
 
         return new ConductorRepository().crear(nuevo_conductor);
     }
@@ -73,6 +73,10 @@ public class Admin {
 
     public List<Conductor> ver_conductores(){
         return new ConductorRepository().listar();
+    }
+    
+    public List<Conductor> ver_conductores_libres(){
+        return new ConductorRepository().listar_libres();
     }
 
     //--------------------- ACCIONES SOBRE PASAJEROS -----------------------
@@ -158,11 +162,11 @@ public class Admin {
             id_viaje = String.valueOf(codigo);
         } while(new ViajeRepository().buscar(id_viaje)!=null);
 
-        Viaje nuevo_viaje = new Viaje(id_viaje, fecha_salida, ruta, conductor, hora_salida);
+        Viaje nuevo_viaje = new Viaje(id_viaje, fecha_salida, ruta, conductor, hora_salida, true);
         return new ViajeRepository().crear(nuevo_viaje);
     }
 
-    public boolean editar_viaje(String id_viaje, LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida){
+    public boolean editar_viaje(String id_viaje, LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida, boolean estado){
         Viaje viaje_editar = new ViajeRepository().buscar(id_viaje);
         if(viaje_editar == null){
             return false;
@@ -180,8 +184,13 @@ public class Admin {
         if(hora_salida != null){
             viaje_editar.set_hora_salida(hora_salida);
         }
+        viaje_editar.set_estado(estado);
 
         return new ViajeRepository().actualizar(viaje_editar);
+    }
+    
+    public List<Viaje> ver_viajes_activos(){
+        return new ViajeRepository().listar_activos();
     }
 
     public boolean eliminar_viaje(String dni){

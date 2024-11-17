@@ -2,12 +2,7 @@ package Repository;
 import Models.Conductor;
 import Models.Ruta;
 import Models.Viaje;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.*;
-import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,12 +23,20 @@ public class ViajeRepository implements CRUD<Viaje>{
         private String hora_salida;
         private String id_ruta;
         private String dni_conductor; 
+        private boolean estado;
     }
 
     private static Viaje convertirDto_Viaje(ViajeDTO dto) {
-        Ruta ruta = new RutaRepository().buscar(dto.id_ruta); // Buscar ruta por id_ruta
-        Conductor conductor = new ConductorRepository().buscar(dto.dni_conductor); // Buscar conductor por DNI
-        return new Viaje(dto.id_viaje, LocalDate.parse(dto.fecha_salida), ruta, conductor, LocalTime.parse(dto.hora_salida));
+        Ruta ruta = new RutaRepository().buscar(dto.id_ruta); 
+        Conductor conductor = new ConductorRepository().buscar(dto.dni_conductor); 
+        return new Viaje(
+            dto.id_viaje, 
+            LocalDate.parse(dto.fecha_salida), 
+            ruta, 
+            conductor, 
+            LocalTime.parse(dto.hora_salida),
+            dto.estado
+        );
     }
 
     private static ViajeDTO convertirViaje_Dto(Viaje viaje) {
@@ -41,8 +44,9 @@ public class ViajeRepository implements CRUD<Viaje>{
         dto.id_viaje = viaje.get_id_viaje();
         dto.fecha_salida = viaje.get_fecha_salida().toString();
         dto.hora_salida = viaje.get_hora_salida().toString();
-        dto.id_ruta = viaje.get_ruta().get_id_ruta(); // Suponiendo que Ruta tiene un método get_id_ruta()
-        dto.dni_conductor = viaje.get_conductor().get_dni(); // Suponiendo que el Conductor tiene un método get_dni()
+        dto.id_ruta = viaje.get_ruta().get_id_ruta();
+        dto.dni_conductor = viaje.get_conductor().get_dni();
+        dto.estado = viaje.get_estado();
         return dto;
     }
     
@@ -55,12 +59,13 @@ public class ViajeRepository implements CRUD<Viaje>{
             
             ViajeDTO viajeDto = convertirViaje_Dto(nuevo_viaje);
             
-            String query = "INSERT INTO viajes (id_viaje, fecha_salida, hora_salida, id_ruta, dni_conductor) "
+            String query = "INSERT INTO viajes (id_viaje, fecha_salida, hora_salida, id_ruta, dni_conductor, estado) "
              + "SELECT '" + viajeDto.id_viaje + "', "
              + "'" + viajeDto.fecha_salida + "', "
              + "'" + viajeDto.hora_salida + "', "
              + "'" + viajeDto.id_ruta + "', "
-             + "'" + viajeDto.dni_conductor + "' "
+             + "'" + viajeDto.dni_conductor + "', "
+             + viajeDto.estado + " "
              + "WHERE NOT EXISTS ("
              + "    SELECT 1 FROM viajes "
              + "    WHERE id_viaje = '" + viajeDto.id_viaje + "')";
@@ -100,7 +105,7 @@ public class ViajeRepository implements CRUD<Viaje>{
             viajeDto.hora_salida = rs.getString("hora_salida");
             viajeDto.id_ruta = rs.getString("id_ruta");
             viajeDto.dni_conductor = rs.getString("dni_conductor");
-
+            viajeDto.estado = rs.getBoolean("estado");
 
             cx.desconectar();
             
@@ -123,7 +128,8 @@ public class ViajeRepository implements CRUD<Viaje>{
              + "fecha_salida = '" + viajeDto.fecha_salida + "', "
              + "hora_salida = '" + viajeDto.hora_salida + "', "
              + "id_ruta = '" + viajeDto.id_ruta + "', "
-             + "dni_conductor = '" + viajeDto.dni_conductor + "' "
+             + "dni_conductor = '" + viajeDto.dni_conductor + "', "
+             + "estado = " + viajeDto.estado + " "
              + "WHERE id_viaje = '" + viajeDto.id_viaje + "'";
 
 
@@ -183,6 +189,44 @@ public class ViajeRepository implements CRUD<Viaje>{
                 viajeDto.hora_salida = rs.getString("hora_salida");
                 viajeDto.id_ruta = rs.getString("id_ruta");
                 viajeDto.dni_conductor = rs.getString("dni_conductor");
+                viajeDto.estado = rs.getBoolean("estado");
+
+                viajes.add(convertirDto_Viaje(viajeDto));
+            } while (rs.next());
+
+
+            
+            cx.desconectar();
+            return viajes;
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            cx.desconectar();
+            return null;
+        }
+    }
+    
+    public List<Viaje> listar_activos(){
+        try {
+            String query = "SELECT * FROM viajes WHERE estado = TRUE";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                cx.desconectar();
+                return null;  
+            } 
+            
+            List<Viaje> viajes;
+            viajes = new ArrayList<>();
+            
+            do {
+                ViajeDTO viajeDto = new ViajeDTO();
+                viajeDto.id_viaje = rs.getString("id_viaje");
+                viajeDto.fecha_salida = rs.getString("fecha_salida");
+                viajeDto.hora_salida = rs.getString("hora_salida");
+                viajeDto.id_ruta = rs.getString("id_ruta");
+                viajeDto.dni_conductor = rs.getString("dni_conductor");
+                viajeDto.estado = rs.getBoolean("estado");
 
                 viajes.add(convertirDto_Viaje(viajeDto));
             } while (rs.next());

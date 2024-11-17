@@ -56,10 +56,12 @@ public class AdminViajesEditar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         hora_salida_input = new javax.swing.JTextField();
-        editar_button = new javax.swing.JButton();
-        resultado_text = new javax.swing.JLabel();
         ruta_combobox = new javax.swing.JComboBox<>();
         conductor_combobox = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        estado_combobox = new javax.swing.JComboBox<>();
+        editar_button = new javax.swing.JButton();
+        resultado_text = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         LabelError = new javax.swing.JLabel();
 
@@ -77,6 +79,14 @@ public class AdminViajesEditar extends javax.swing.JFrame {
 
         jLabel5.setText("Hora de Salida (HH:MM)");
 
+        ruta_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        conductor_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Estado");
+
+        estado_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Terminado" }));
+
         editar_button.setBackground(new java.awt.Color(80, 99, 161));
         editar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
         editar_button.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,37 +99,36 @@ public class AdminViajesEditar extends javax.swing.JFrame {
 
         resultado_text.setText("Respuesta");
 
-        ruta_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        conductor_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(fecha_salida_input, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(hora_salida_input)
+                    .addComponent(ruta_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(conductor_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(estado_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(116, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(resultado_text))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(fecha_salida_input, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                            .addComponent(hora_salida_input)
-                            .addComponent(ruta_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(conductor_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(resultado_text)
+                        .addGap(119, 119, 119))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,10 +151,15 @@ public class AdminViajesEditar extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hora_salida_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(estado_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(resultado_text))
+                .addGap(18, 18, 18)
+                .addComponent(resultado_text)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,8 +181,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LabelError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel10))
         );
 
         pack();
@@ -242,7 +255,14 @@ public class AdminViajesEditar extends javax.swing.JFrame {
             id_conductor = "";
         }
         
-        boolean exito = admin.editar_viaje(id_viaje, fecha, id_ruta, id_conductor, hora_salida);
+        boolean estado;
+        if(estado_combobox.getSelectedItem().toString().equals("Activo")){
+            estado = true;
+        } else {
+            estado = false;
+        }
+        
+        boolean exito = admin.editar_viaje(id_viaje, fecha, id_ruta, id_conductor, hora_salida, estado);
         
         if(!exito){
             resultado_text.setText("No se pudo editar el viaje");
@@ -325,6 +345,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
     private javax.swing.JLabel LabelError;
     private javax.swing.JComboBox<String> conductor_combobox;
     private javax.swing.JButton editar_button;
+    private javax.swing.JComboBox<String> estado_combobox;
     private javax.swing.JTextField fecha_salida_input;
     private javax.swing.JTextField hora_salida_input;
     private org.jdatepicker.JDateComponentFactory jDateComponentFactory1;
@@ -335,6 +356,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel resultado_text;
     private javax.swing.JComboBox<String> ruta_combobox;

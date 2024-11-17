@@ -65,6 +65,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
             modelo.addRow(new Object[]{"Nombres", conductor.get_nombre()});
             modelo.addRow(new Object[]{"Correo", conductor.get_correo()});
             modelo.addRow(new Object[]{"Fecha de Nacimiento", conductor.get_fecha_nacimiento()});
+            modelo.addRow(new Object[]{"Capacidad de Vehiculo", conductor.get_capacidad_vehiculo()});
             modelo.addRow(new Object[]{"Distrito", conductor.get_distrito()});
             modelo.addRow(new Object[]{"Provincia", conductor.get_provincia()});
             modelo.addRow(new Object[]{"Departamento", conductor.get_departamento()});

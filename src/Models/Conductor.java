@@ -1,9 +1,6 @@
 package Models;
 
-import Models.Viaje;
-import Repository.AdminRepository;
 import Repository.ConductorRepository;
-import Repository.PasajeroRepository;
 import Repository.RegulacionLaboral;
 import Repository.ViajeRepository;
 
@@ -11,17 +8,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class Conductor extends Usuario{
     private String dias_descanso;
+    private int capacidad_vehiculo;
 
     public static ConductorRepository cr = new ConductorRepository();
 
     public Conductor(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
-                     String distrito, String provincia, String departamento){
+                     String distrito, String provincia, String departamento, int capacidad_vehiculo){
         this.nombre = nombre;
         this.correo = correo;
         this.dni = dni;
@@ -31,6 +27,7 @@ public class Conductor extends Usuario{
         this.provincia = provincia;
         this.departamento = departamento;
         this.dias_descanso = "";
+        this.capacidad_vehiculo = capacidad_vehiculo;
     }
     public List<Viaje> ver_viaje_asignado() {
         List<Viaje> todos_viajes = new ViajeRepository().listar();
@@ -100,10 +97,19 @@ public class Conductor extends Usuario{
     public String get_dias_descanso(){
         return dias_descanso;
     }
-
     public void set_dias_descanso(String dias_descanso){
         this.dias_descanso = dias_descanso;
     }
+    
+    public int get_capacidad_vehiculo(){
+        return this.capacidad_vehiculo;
+    }
+    public void set_capacidad_vehiculo(int capacidad_vehiculo){
+        this.capacidad_vehiculo = capacidad_vehiculo;
+    }
+    
+    
+    
     public boolean tieneViajeActivo() {
     List<Viaje> viajesAsignados = ver_viaje_asignado();
     if (viajesAsignados.isEmpty()) {

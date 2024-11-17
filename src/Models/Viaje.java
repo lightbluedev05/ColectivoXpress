@@ -4,9 +4,6 @@ import Repository.ViajeRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Viaje {
 
@@ -15,15 +12,17 @@ public class Viaje {
     private LocalTime hora_salida;
     private Ruta ruta;
     private Conductor conductor;
+    private boolean estado;
 
     static ViajeRepository vr = new ViajeRepository();
 
-    public Viaje(String id_viaje, LocalDate fecha_salida, Ruta ruta, Conductor conductor, LocalTime hora_salida) {
+    public Viaje(String id_viaje, LocalDate fecha_salida, Ruta ruta, Conductor conductor, LocalTime hora_salida, boolean estado) {
         this.id_viaje = id_viaje;
         this.fecha_salida = fecha_salida;
         this.hora_salida = hora_salida;
         this.ruta = ruta;
         this.conductor = conductor;
+        this.estado = estado;
     }
 
     public boolean validar_fecha(){
@@ -68,5 +67,12 @@ public class Viaje {
     
     public void set_hora_salida(LocalTime hora_salida){
         this.hora_salida = hora_salida;
+    }
+    
+    public boolean get_estado(){
+        return this.estado;
+    }
+    public void set_estado(boolean estado){
+        this.estado = estado;
     }
 } 

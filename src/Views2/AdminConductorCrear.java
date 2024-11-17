@@ -58,6 +58,8 @@ public class AdminConductorCrear extends javax.swing.JFrame {
         provincia_input = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         departamento_input = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        capacidad_vehiculo_input = new javax.swing.JTextField();
         registrar_button = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         LabelError = new javax.swing.JLabel();
@@ -90,6 +92,8 @@ public class AdminConductorCrear extends javax.swing.JFrame {
 
         jLabel9.setText("Departamento");
 
+        jLabel11.setText("Capacidad Vehiculo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -101,6 +105,7 @@ public class AdminConductorCrear extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11)
                     .addComponent(jLabel9)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6)
@@ -116,7 +121,8 @@ public class AdminConductorCrear extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(departamento_input)
                     .addComponent(provincia_input)
-                    .addComponent(distrito_input))
+                    .addComponent(distrito_input)
+                    .addComponent(capacidad_vehiculo_input))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,7 +162,11 @@ public class AdminConductorCrear extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(capacidad_vehiculo_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         registrar_button.setBackground(new java.awt.Color(80, 99, 161));
@@ -174,16 +184,16 @@ public class AdminConductorCrear extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(registrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
             .addGroup(layout.createSequentialGroup()
                 .addGap(132, 132, 132)
                 .addComponent(LabelError)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(registrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +205,7 @@ public class AdminConductorCrear extends javax.swing.JFrame {
                 .addComponent(LabelError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,7 +221,8 @@ public class AdminConductorCrear extends javax.swing.JFrame {
         try{
             fecha = LocalDate.parse(fecha_input.getText());
         } catch(Exception e){
-            fecha_input.setText("Ingrese bien el formato");
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+            LabelError.setText("Ingrese bien el formato de Fecha");
             return;
         }
         
@@ -219,7 +230,16 @@ public class AdminConductorCrear extends javax.swing.JFrame {
         String provincia = provincia_input.getText();
         String departamento = departamento_input.getText();
         
-        boolean registro = admin.crear_conductor(nombre, correo, dni, fecha, contra, distrito, provincia, departamento);
+        int capacidad_vehiculo;
+        try{
+            capacidad_vehiculo = Integer.parseInt(capacidad_vehiculo_input.getText());
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+            LabelError.setText("Ingrese un numero entero en 'Capacidad vehiculo'");
+            return;
+        }
+        
+        boolean registro = admin.crear_conductor(nombre, correo, dni, fecha, contra, distrito, provincia, departamento, capacidad_vehiculo);
         
         if(!registro){
             LabelError.setText("No se pudo registrar");
@@ -273,6 +293,7 @@ public class AdminConductorCrear extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelError;
+    private javax.swing.JTextField capacidad_vehiculo_input;
     private javax.swing.JPasswordField contra_input;
     private javax.swing.JTextField correo_input;
     private javax.swing.JTextField departamento_input;
@@ -283,6 +304,7 @@ public class AdminConductorCrear extends javax.swing.JFrame {
     private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

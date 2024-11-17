@@ -5,16 +5,10 @@
 package Views2;
 
 import Models.Admin;
-import Models.Conductor;
-import Models.Ruta;
 import Models.Viaje;
 import java.awt.Color;
-import java.time.LocalDate;
 import java.util.List;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import kotlin.random.Random;
 
 /**
  *
@@ -69,6 +63,13 @@ public class AdminViajesPanel extends javax.swing.JPanel {
             long minutos = viaje.get_ruta().get_tiempo_aproximado().toMinutesPart();
             
             modelo.addRow(new Object[]{"ID Viaje", viaje.get_id_viaje()});
+            String estado_viaje;
+            if(viaje.get_estado()){
+                estado_viaje = "Activo";
+            } else {
+                estado_viaje = "Terminado";
+            }
+            modelo.addRow(new Object[]{"Estado del viaje: ", estado_viaje});
             modelo.addRow(new Object[]{"Conductor", viaje.get_conductor().get_dni()});
             modelo.addRow(new Object[]{"Precio", viaje.get_ruta().get_precio()});
             modelo.addRow(new Object[]{"Origen", viaje.get_ruta().get_origen()});
