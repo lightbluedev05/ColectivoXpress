@@ -55,53 +55,42 @@
                           <Component id="nuevo_departamento_input" min="-2" pref="370" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="nuevo_departamento_button" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_departamento_message" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="nuevo_nombre_label" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="ingresar_button" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
                       <Component id="contra_input" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_contra_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="nuevo_provincia_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="nuevo_provincia_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="nuevo_provincia_button" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="nuevo_nombre_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="nuevo_nombre_button" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="nuevo_contra_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="nuevo_contra_button" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="nuevo_distrito_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="nuevo_distrito_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="nuevo_distrito_button" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="nuevo_provincia_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nuevo_provincia_input" min="-2" pref="370" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="nuevo_provincia_button" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nuevo_nombre_message" min="-2" max="-2" attributes="0"/>
-                              <Component id="nuevo_contra_message" min="-2" max="-2" attributes="0"/>
-                              <Component id="nuevo_distrito_message" min="-2" max="-2" attributes="0"/>
-                              <Component id="nuevo_provincia_message" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nuevo_nombre_input" min="-2" pref="370" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="nuevo_nombre_button" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nuevo_contra_input" min="-2" pref="370" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="nuevo_contra_button" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="nuevo_distrito_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nuevo_distrito_input" min="-2" pref="370" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="nuevo_distrito_button" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="377" max="32767" attributes="0"/>
+                  <EmptySpace pref="395" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,7 +109,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nuevo_contra_input" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_contra_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_contra_message" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="nuevo_nombre_label" min="-2" max="-2" attributes="0"/>
@@ -128,7 +116,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nuevo_nombre_input" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_nombre_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_nombre_message" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="nuevo_distrito_label" min="-2" max="-2" attributes="0"/>
@@ -136,7 +123,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nuevo_distrito_input" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_distrito_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_distrito_message" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="nuevo_provincia_label" min="-2" max="-2" attributes="0"/>
@@ -144,7 +130,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nuevo_provincia_input" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_provincia_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_provincia_message" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="nuevo_departamento_label" min="-2" max="-2" attributes="0"/>
@@ -152,7 +137,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nuevo_departamento_input" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_departamento_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_departamento_message" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="99" max="32767" attributes="0"/>
               </Group>
@@ -213,8 +197,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_contra_buttonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_contra_message">
-        </Component>
         <Component class="javax.swing.JLabel" name="nuevo_nombre_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -223,7 +205,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza nombre"/>
+            <Property name="text" type="java.lang.String" value="Actualizar nombre"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nuevo_nombre_input">
@@ -239,8 +221,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_nombre_buttonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_nombre_message">
-        </Component>
         <Component class="javax.swing.JLabel" name="nuevo_distrito_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -249,7 +229,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza distrito"/>
+            <Property name="text" type="java.lang.String" value="Actualizar distrito"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nuevo_distrito_input">
@@ -265,8 +245,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_distrito_buttonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_distrito_message">
-        </Component>
         <Component class="javax.swing.JLabel" name="nuevo_provincia_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -275,7 +253,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza provincia"/>
+            <Property name="text" type="java.lang.String" value="Actualizar provincia"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nuevo_provincia_input">
@@ -291,8 +269,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_provincia_buttonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_provincia_message">
-        </Component>
         <Component class="javax.swing.JLabel" name="nuevo_departamento_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -301,7 +277,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza departamento"/>
+            <Property name="text" type="java.lang.String" value="Actualizar departamento"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nuevo_departamento_input">
@@ -316,8 +292,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_departamento_buttonActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_departamento_message">
         </Component>
       </SubComponents>
     </Container>

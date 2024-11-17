@@ -42,14 +42,14 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
     }
     
     private void correcciones_iniciales(){
-        id_buscar_input.setBackground(new Color(168, 168, 168));   
+        ID_viajes.setBackground(new Color(168, 168, 168));   
         tabla_viajes.getColumnModel().getColumn(0).setPreferredWidth(10);
         tabla_viajes.setBackground(new Color(230, 230, 230));
     }
     
 private void listar_viajes() {
-    DefaultTableModel modelo = (DefaultTableModel)tabla_viajes.getModel();
-    modelo.setRowCount(0);      
+    DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
+    modelo.setRowCount(0); // Limpiar la tabla antes de llenarla
     
     // Verificar si la lista de viajes es null
     List<Viaje> viajes = pasajero.ver_viajes(); 
@@ -63,11 +63,16 @@ private void listar_viajes() {
             "Sin Viajes", 
             JOptionPane.INFORMATION_MESSAGE);
         
-        return;
+        // Limpiar el JComboBox
+        ID_viajes.removeAllItems();
+        return; // Salir del método si no hay viajes
     }
 
+    // Limpiar el JComboBox antes de llenarlo
+    ID_viajes.removeAllItems();
+
     // Si hay viajes, continuar con el llenado de la tabla
-    for(Viaje viaje : viajes){
+    for (Viaje viaje : viajes) {
         String origen = viaje.get_ruta().get_origen(); 
         String destino = viaje.get_ruta().get_destino(); 
         
@@ -93,13 +98,17 @@ private void listar_viajes() {
             precio,
             estadoTexto
         });
+
+        // Agregar el ID del viaje al JComboBox
+        ID_viajes.addItem(viaje.get_id_viaje());
     }   
+
+    // Actualizar la tabla con el modelo
     tabla_viajes.setModel(modelo);
     
     // Habilitar el botón de compra si hay viajes
-    Comprar_Boleto.setEnabled(!viajes.isEmpty());
-}
-    
+    Comprar_Boleto.setEnabled(true);
+} 
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,11 +122,11 @@ private void listar_viajes() {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Comprar_Boleto = new javax.swing.JButton();
-        id_buscar_input = new javax.swing.JTextField();
         Terminar_Compra = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_viajes = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        ID_viajes = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1010, 580));
@@ -141,13 +150,6 @@ private void listar_viajes() {
         Comprar_Boleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Comprar_BoletoActionPerformed(evt);
-            }
-        });
-
-        id_buscar_input.setCaretColor(new java.awt.Color(168, 168, 168));
-        id_buscar_input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_buscar_inputActionPerformed(evt);
             }
         });
 
@@ -202,7 +204,15 @@ private void listar_viajes() {
 
         jLabel4.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(23, 23, 23));
-        jLabel4.setText("Ingresar ID del viaje");
+        jLabel4.setText("Elija el ID del viaje");
+
+        ID_viajes.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        ID_viajes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ID_viajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ID_viajesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -215,19 +225,21 @@ private void listar_viajes() {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(25, 25, 25))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Comprar_Boleto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Terminar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(50, 50, 50)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(id_buscar_input, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Terminar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Comprar_Boleto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addComponent(ID_viajes, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,11 +252,11 @@ private void listar_viajes() {
                         .addComponent(jLabel2)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(id_buscar_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ID_viajes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Comprar_Boleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
+                        .addGap(93, 93, 93)
                         .addComponent(Terminar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -254,12 +266,8 @@ private void listar_viajes() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Comprar_BoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar_BoletoActionPerformed
-    String id_viaje = id_buscar_input.getText().trim();
-    
-    if (id_viaje.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Ingrese un ID de viaje", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+    // Obtener el ID del viaje seleccionado en el JComboBox
+    String id_viaje = (String) ID_viajes.getSelectedItem();
     
     Viaje viaje = new ViajeRepository().buscar(id_viaje);
     
@@ -275,108 +283,105 @@ private void listar_viajes() {
     }
     
     try {
-        PagoMP.init();
-        
-        Preference preference = PagoMP.crearPreferencia(
-            "Boleto de Viaje", 
-            "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino(), 
-            viaje.get_ruta().get_precio(),
-            pasajero.get_correo()
+    PagoMP.init();
+    
+    Preference preference = PagoMP.crearPreferencia(
+        "Boleto de Viaje", 
+        "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino(), 
+        viaje.get_ruta().get_precio(),
+        pasajero.get_correo()
+    );
+    
+    // Redirigir a la página de pago
+    PagoMP.redirigirAWeb(preference);
+
+    // Mostrar diálogo para confirmar pago
+    boolean continuar = true;
+    while (continuar) {
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this, 
+            "¿Has completado el pago en Mercado Pago?\n" +
+            "Si desea cancelar, pulse NO",
+            "Confirmar Pago", 
+            JOptionPane.YES_NO_OPTION
         );
-        
-        // Redirigir a la página de pago
-        PagoMP.redirigirAWeb(preference);
 
-        // Mostrar diálogo para confirmar pago
-        boolean continuar = true;
-        while (continuar) {
-            int confirmacion = JOptionPane.showConfirmDialog(
-                this, 
-                "¿Has completado el pago en Mercado Pago?\n" +
-                "Si desea cancelar, pulse NO",
-                "Confirmar Pago", 
-                JOptionPane.YES_NO_OPTION
-            );
-
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                // Verificar estado del pago usando la preferencia
-                boolean pagoExitoso = PagoMP.verificarEstadoPago(preference);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            // Verificar estado del pago usando la preferencia
+            boolean pagoExitoso = PagoMP.verificarEstadoPago(preference);
+            
+            if (pagoExitoso) {
+                // Procesar compra de boleto
+                boolean compraRealizada = pasajero.comprar_boleto(id_viaje);
                 
-                if (pagoExitoso) {
-                    // Procesar compra de boleto
-                    boolean compraRealizada = pasajero.comprar_boleto(id_viaje);
-                    
-                    if (compraRealizada) {
-                        JOptionPane.showMessageDialog(this, "Pago Verificado!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                        Terminar_Compra.setVisible(true);
-                        continuar = false;
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Error con el boleto", "Error", JOptionPane.ERROR_MESSAGE);
-                        continuar = false;
-                    }
+                if (compraRealizada) {
+                    JOptionPane.showMessageDialog(this, "Pago Verificado!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    Terminar_Compra.setVisible(true);
+                    continuar = false;
                 } else {
-                    // Si el pago no fue exitoso, preguntar si desea intentar nuevamente
-                    int reintentar = JOptionPane.showConfirmDialog(
-                        this, 
-                        "El pago no fue verificado. ¿Deseas intentar nuevamente?", 
-                        "Pago No Verificado", 
-                        JOptionPane.YES_NO_OPTION
-                    );
-
-                    if (reintentar == JOptionPane.NO_OPTION) {
-                        // Si elige NO, salir del bucle
-                        continuar = false;
-                    }
-                    // Si elige SI, el bucle continuará y volverá a preguntar sobre el pago
+                    JOptionPane.showMessageDialog(this, "Error con el boleto", "Error", JOptionPane.ERROR_MESSAGE);
+                    continuar = false;
                 }
-            } else if (confirmacion == JOptionPane.NO_OPTION) {
-                // Preguntar si realmente quiere cancelar
-                int cancelarConfirmacion = JOptionPane.showConfirmDialog(
-                    this,
-                    "¿Está seguro que desea cancelar el pago?",
-                    "Cancelar Pago",
+            } else {
+                // Si el pago no fue exitoso, preguntar si desea intentar nuevamente
+                int reintentar = JOptionPane.showConfirmDialog(
+                    this, 
+                    "El pago no fue verificado. ¿Deseas intentar nuevamente?", 
+                    "Pago No Verificado", 
                     JOptionPane.YES_NO_OPTION
                 );
 
-                if (cancelarConfirmacion == JOptionPane.YES_OPTION) {
-                    // Cancelar el proceso de pago
-                    JOptionPane.showMessageDialog(this, "Pago cancelado.", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                if (reintentar == JOptionPane.NO_OPTION) {
+                    // Si elige NO, salir del bucle
                     continuar = false;
                 }
-                // Si elige NO, el bucle continuará
             }
-        }
-        
-        // Añadir esta parte después del bucle while
-        if (!Terminar_Compra.isVisible()) {
-            // Si no se completó el pago, mostrar mensaje de pago cancelado
-            JOptionPane.showMessageDialog(
-                this, 
-                "Pago cancelado o no completado.", 
-                "Pago Cancelado", 
-                JOptionPane.INFORMATION_MESSAGE
+        } else if (confirmacion == JOptionPane.NO_OPTION) {
+            // Preguntar si realmente quiere cancelar
+            int cancelarConfirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro que desea cancelar el pago?",
+                "Cancelar Pago",
+                JOptionPane.YES_NO_OPTION
             );
+
+            if (cancelarConfirmacion == JOptionPane.YES_OPTION) {
+                continuar = false;
+            }
+            // Si elige NO en la confirmación de cancelación, el bucle continúa
         }
-        
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al procesar el pago", "Error", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
     }
+    
+    // Añadir esta parte después del bucle while
+    if (!Terminar_Compra.isVisible()) {
+        // Si no se completó el pago, mostrar mensaje de pago cancelado
+        JOptionPane.showMessageDialog(
+            this, 
+            "Pago cancelado o no completado.", 
+            "Pago Cancelado", 
+            JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+    
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error al procesar el pago", "Error", JOptionPane.ERROR_MESSAGE);
+    e.printStackTrace();
+}
     }//GEN-LAST:event_Comprar_BoletoActionPerformed
 
     private void Terminar_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Terminar_CompraActionPerformed
         ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroHistorial(pasajero));
     }//GEN-LAST:event_Terminar_CompraActionPerformed
 
-    private void id_buscar_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_buscar_inputActionPerformed
+    private void ID_viajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_viajesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_id_buscar_inputActionPerformed
+    }//GEN-LAST:event_ID_viajesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Comprar_Boleto;
+    private javax.swing.JComboBox<String> ID_viajes;
     private javax.swing.JButton Terminar_Compra;
-    private javax.swing.JTextField id_buscar_input;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

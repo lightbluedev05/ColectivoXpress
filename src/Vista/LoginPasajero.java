@@ -6,6 +6,7 @@ package Vista;
 
 import Models.Pasajero;
 import Repository.PasajeroRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -136,9 +137,10 @@ public class LoginPasajero extends javax.swing.JFrame {
         boolean login = Pasajero.login(dni, contra);
         
         if(!login){
-            System.out.println("no se logueo");
+            // Si el inicio de sesión falla, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "DNI o contraseña incorrectos. Vuelva a intentar.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+        } 
         System.out.println("SE LOGUEO");
         LoginPasajero ventana_actual = this;
         

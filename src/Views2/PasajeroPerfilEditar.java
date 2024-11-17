@@ -5,6 +5,7 @@
 package Views2;
 
 import Models.Pasajero;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +40,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         nuevo_departamento_label.setVisible(false);
         nuevo_departamento_input.setVisible(false);
         nuevo_departamento_button.setVisible(false);
+ 
     }
 
     /**
@@ -57,23 +59,18 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         nuevo_contra_label = new javax.swing.JLabel();
         nuevo_contra_input = new javax.swing.JPasswordField();
         nuevo_contra_button = new javax.swing.JButton();
-        nuevo_contra_message = new javax.swing.JLabel();
         nuevo_nombre_label = new javax.swing.JLabel();
         nuevo_nombre_input = new javax.swing.JTextField();
         nuevo_nombre_button = new javax.swing.JButton();
-        nuevo_nombre_message = new javax.swing.JLabel();
         nuevo_distrito_label = new javax.swing.JLabel();
         nuevo_distrito_input = new javax.swing.JTextField();
         nuevo_distrito_button = new javax.swing.JButton();
-        nuevo_distrito_message = new javax.swing.JLabel();
         nuevo_provincia_label = new javax.swing.JLabel();
         nuevo_provincia_input = new javax.swing.JTextField();
         nuevo_provincia_button = new javax.swing.JButton();
-        nuevo_provincia_message = new javax.swing.JLabel();
         nuevo_departamento_label = new javax.swing.JLabel();
         nuevo_departamento_input = new javax.swing.JTextField();
         nuevo_departamento_button = new javax.swing.JButton();
-        nuevo_departamento_message = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
@@ -113,7 +110,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
 
         nuevo_nombre_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         nuevo_nombre_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_nombre_label.setText("Actualiza nombre");
+        nuevo_nombre_label.setText("Actualizar nombre");
 
         nuevo_nombre_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +127,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
 
         nuevo_distrito_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         nuevo_distrito_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_distrito_label.setText("Actualiza distrito");
+        nuevo_distrito_label.setText("Actualizar distrito");
 
         nuevo_distrito_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +144,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
 
         nuevo_provincia_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         nuevo_provincia_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_provincia_label.setText("Actualiza provincia");
+        nuevo_provincia_label.setText("Actualizar provincia");
 
         nuevo_provincia_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +161,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
 
         nuevo_departamento_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         nuevo_departamento_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_departamento_label.setText("Actualiza departamento");
+        nuevo_departamento_label.setText("Actualizar departamento");
 
         nuevo_departamento_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,43 +187,34 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_button)
-                        .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_message))
+                        .addComponent(nuevo_departamento_button))
                     .addComponent(nuevo_nombre_label)
                     .addComponent(jLabel1)
                     .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_contra_label)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(nuevo_provincia_label, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_provincia_button)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_nombre_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_contra_button))
-                                .addComponent(nuevo_distrito_label, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nuevo_distrito_button))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nuevo_nombre_message)
-                            .addComponent(nuevo_contra_message)
-                            .addComponent(nuevo_distrito_message)
-                            .addComponent(nuevo_provincia_message))))
-                .addContainerGap(377, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(nuevo_provincia_label, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_provincia_button)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_nombre_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_contra_button))
+                            .addComponent(nuevo_distrito_label, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nuevo_distrito_button)))))
+                .addContainerGap(395, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,36 +230,31 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_contra_button)
-                    .addComponent(nuevo_contra_message))
+                    .addComponent(nuevo_contra_button))
                 .addGap(18, 18, 18)
                 .addComponent(nuevo_nombre_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_nombre_button)
-                    .addComponent(nuevo_nombre_message))
+                    .addComponent(nuevo_nombre_button))
                 .addGap(18, 18, 18)
                 .addComponent(nuevo_distrito_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_distrito_button)
-                    .addComponent(nuevo_distrito_message))
+                    .addComponent(nuevo_distrito_button))
                 .addGap(18, 18, 18)
                 .addComponent(nuevo_provincia_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_provincia_button)
-                    .addComponent(nuevo_provincia_message))
+                    .addComponent(nuevo_provincia_button))
                 .addGap(18, 18, 18)
                 .addComponent(nuevo_departamento_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_departamento_button)
-                    .addComponent(nuevo_departamento_message))
+                    .addComponent(nuevo_departamento_button))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
@@ -311,23 +294,26 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             nuevo_departamento_label.setVisible(true);
             nuevo_departamento_input.setVisible(true);
             nuevo_departamento_button.setVisible(true);
-        }
+        } else {
+        // Si la contraseña es incorrecta, mostrar un mensaje de error
+        JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_ingresar_buttonActionPerformed
 
     private void nuevo_contra_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_contra_buttonActionPerformed
         String contra = new String(nuevo_contra_input.getPassword());
-        
-        if(contra.isEmpty()){
-            nuevo_contra_message.setText("Ingrese una contraseña valida");
-            return;
-        }
-        
-        boolean exito = pasajero.actualizar_contrasena(contra);
-        if(!exito){
-            nuevo_contra_message.setText("No se pudo cambiar la contraseña");
-            return;
-        }
-        nuevo_contra_message.setText("Contraseña cambiada exitosamente!!");
+    
+    if(contra.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Ingrese una contraseña válida", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    boolean exito = pasajero.actualizar_contrasena(contra);
+    if(!exito){
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Contraseña cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_contra_buttonActionPerformed
 
     private void nuevo_nombre_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_nombre_inputActionPerformed
@@ -351,67 +337,67 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
     }//GEN-LAST:event_nuevo_departamento_inputActionPerformed
 
     private void nuevo_nombre_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_nombre_buttonActionPerformed
-        String nombre = new String(nuevo_nombre_input.getText());
-        
-        if(nombre.isEmpty()){
-            nuevo_nombre_message.setText("Ingrese un nombre valido");
-            return;
-        }
-     
-        boolean exito = pasajero.actualizar_nombre(nombre);
-        if(!exito){
-            nuevo_nombre_message.setText("No se pudo cambiar el nombre");
-            return;
-        }
-        nuevo_nombre_message.setText("Nombre cambiado exitosamente!!");
+        String nombre = nuevo_nombre_input.getText();
+    
+    if(nombre.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Ingrese un nombre válido", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean exito = pasajero.actualizar_nombre(nombre);
+    if(!exito){
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Nombre cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_nombre_buttonActionPerformed
 
     private void nuevo_distrito_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_distrito_buttonActionPerformed
-        String distrito = new String(nuevo_distrito_input.getText());
-        
-        if(distrito.isEmpty()){
-            nuevo_distrito_message.setText("Ingrese un distrito valido");
-            return;
-        }
-     
-        boolean exito = pasajero.actualizar_distrito(distrito);
-        if(!exito){
-            nuevo_distrito_message.setText("No se pudo cambiar el distrito");
-            return;
-        }
-        nuevo_distrito_message.setText("Distrito cambiado exitosamente!!");
+        String distrito = nuevo_distrito_input.getText();
+    
+    if(distrito.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Ingrese un distrito válido", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean exito = pasajero.actualizar_distrito(distrito);
+    if(!exito){
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el distrito", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Distrito cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_distrito_buttonActionPerformed
 
     private void nuevo_provincia_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_provincia_buttonActionPerformed
-        String provincia = new String(nuevo_provincia_input.getText());
-        
-        if(provincia.isEmpty()){
-            nuevo_provincia_message.setText("Ingrese una provincia valida");
-            return;
-        }
-     
-        boolean exito = pasajero.actualizar_provincia(provincia);
-        if(!exito){
-            nuevo_provincia_message.setText("No se pudo cambiar la provincia");
-            return;
-        }
-        nuevo_provincia_message.setText("Provincia cambiada exitosamente!!");
+        String provincia = nuevo_provincia_input.getText();
+    
+    if(provincia.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Ingrese una provincia válida", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean exito = pasajero.actualizar_provincia(provincia);
+    if(!exito){
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar la provincia", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Provincia cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_provincia_buttonActionPerformed
 
     private void nuevo_departamento_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_departamento_buttonActionPerformed
-        String departamento = new String(nuevo_departamento_input.getText());
-        
-        if(departamento.isEmpty()){
-            nuevo_departamento_message.setText("Ingrese un departamento valido");
-            return;
-        }
-     
-        boolean exito = pasajero.actualizar_departamento(departamento);
-        if(!exito){
-            nuevo_departamento_message.setText("No se pudo cambiar el departamento");
-            return;
-        }
-        nuevo_departamento_message.setText("Departamento cambiado exitosamente!!");
+        String departamento = nuevo_departamento_input.getText();
+    
+    if(departamento.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Ingrese un departamento válido", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean exito = pasajero.actualizar_departamento(departamento);
+    if(!exito){
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el departamento", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Departamento cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_departamento_buttonActionPerformed
 
 
@@ -423,22 +409,17 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
     private javax.swing.JButton nuevo_contra_button;
     private javax.swing.JPasswordField nuevo_contra_input;
     private javax.swing.JLabel nuevo_contra_label;
-    private javax.swing.JLabel nuevo_contra_message;
     private javax.swing.JButton nuevo_departamento_button;
     private javax.swing.JTextField nuevo_departamento_input;
     private javax.swing.JLabel nuevo_departamento_label;
-    private javax.swing.JLabel nuevo_departamento_message;
     private javax.swing.JButton nuevo_distrito_button;
     private javax.swing.JTextField nuevo_distrito_input;
     private javax.swing.JLabel nuevo_distrito_label;
-    private javax.swing.JLabel nuevo_distrito_message;
     private javax.swing.JButton nuevo_nombre_button;
     private javax.swing.JTextField nuevo_nombre_input;
     private javax.swing.JLabel nuevo_nombre_label;
-    private javax.swing.JLabel nuevo_nombre_message;
     private javax.swing.JButton nuevo_provincia_button;
     private javax.swing.JTextField nuevo_provincia_input;
     private javax.swing.JLabel nuevo_provincia_label;
-    private javax.swing.JLabel nuevo_provincia_message;
     // End of variables declaration//GEN-END:variables
 }

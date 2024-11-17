@@ -41,15 +41,6 @@ public class PasajeroHistorial extends javax.swing.JPanel {
     
     List<Viaje> viajes = pasajero.ver_historial_viajes();
     
-    if (viajes == null || viajes.isEmpty()) {
-        JOptionPane.showMessageDialog(
-            null, 
-            "No tiene viajes en su historial.", 
-            "Sin Viajes", 
-            JOptionPane.INFORMATION_MESSAGE
-        );         
-    }
-    
     initComponents();
     correcciones_iniciales();
     listar_viajes();
