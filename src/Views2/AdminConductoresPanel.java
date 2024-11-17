@@ -30,8 +30,8 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
     }
     
     private void correcciones_iniciales(){
-        dni_buscar_input.setBackground(new Color(168, 168, 168));
-        dni_eliminar_input.setBackground(new Color(168, 168, 168));
+        dni_buscar_input.setBackground(new Color(240,245,247));
+        dni_eliminar_input.setBackground(new Color(240,245,247));
         
         tabla_conductores.getColumnModel().getColumn(0).setPreferredWidth(10);
         tabla_conductores.setBackground(new Color(230, 230, 230));
@@ -114,14 +114,15 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setText("Listado de Conductores");
 
-        jButton1.setBackground(new java.awt.Color(30, 30, 30));
-        jButton1.setForeground(new java.awt.Color(245, 245, 245));
+        jButton1.setBackground(new java.awt.Color(41, 82, 85));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(240, 245, 247));
         jButton1.setText("Listar Conductores");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setMaximumSize(new java.awt.Dimension(170, 40));
         jButton1.setPreferredSize(new java.awt.Dimension(170, 40));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,14 +131,15 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(23, 23, 23));
         jLabel2.setText("Buscar Conductor por DNI");
 
-        buscar_conductor_button.setBackground(new java.awt.Color(30, 30, 30));
-        buscar_conductor_button.setForeground(new java.awt.Color(245, 245, 245));
+        buscar_conductor_button.setBackground(new java.awt.Color(41, 82, 85));
+        buscar_conductor_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buscar_conductor_button.setForeground(new java.awt.Color(240, 245, 247));
         buscar_conductor_button.setText("Buscar Conductor");
-        buscar_conductor_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        buscar_conductor_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscar_conductor_button.setMaximumSize(new java.awt.Dimension(161, 40));
         buscar_conductor_button.setMinimumSize(new java.awt.Dimension(161, 40));
         buscar_conductor_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -149,14 +151,15 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
 
         dni_buscar_input.setCaretColor(new java.awt.Color(168, 168, 168));
 
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(23, 23, 23));
         jLabel3.setText("Eliminar Conductor por DNI");
 
-        eliminar_conductor_button.setBackground(new java.awt.Color(30, 30, 30));
-        eliminar_conductor_button.setForeground(new java.awt.Color(245, 245, 245));
+        eliminar_conductor_button.setBackground(new java.awt.Color(41, 82, 85));
+        eliminar_conductor_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        eliminar_conductor_button.setForeground(new java.awt.Color(240, 245, 247));
         eliminar_conductor_button.setText("Eliminar Conductor");
-        eliminar_conductor_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        eliminar_conductor_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminar_conductor_button.setMaximumSize(new java.awt.Dimension(161, 40));
         eliminar_conductor_button.setMinimumSize(new java.awt.Dimension(161, 40));
         eliminar_conductor_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -169,10 +172,11 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
         resultado_eliminar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         resultado_eliminar.setForeground(new java.awt.Color(44, 73, 168));
 
-        jButton4.setBackground(new java.awt.Color(30, 30, 30));
-        jButton4.setForeground(new java.awt.Color(245, 245, 245));
+        jButton4.setBackground(new java.awt.Color(41, 82, 85));
+        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(240, 245, 247));
         jButton4.setText("Agregar Conductor");
-        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setMaximumSize(new java.awt.Dimension(161, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(161, 40));
         jButton4.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -182,6 +186,8 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
             }
         });
 
+        tabla_conductores.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_conductores.setForeground(new java.awt.Color(22, 38, 35));
         tabla_conductores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -200,6 +206,8 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tabla_conductores);
 
+        tabla_datos_conductor.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_datos_conductor.setForeground(new java.awt.Color(22, 38, 35));
         tabla_datos_conductor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -264,7 +272,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -291,7 +299,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

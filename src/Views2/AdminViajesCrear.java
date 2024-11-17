@@ -59,20 +59,29 @@ public class AdminViajesCrear extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(62, 82, 162));
+        jPanel1.setBackground(new java.awt.Color(240, 245, 247));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Añadir Viaje");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(22, 38, 35));
         jLabel2.setText("Fecha salida (aaaa/mm/dd)");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(22, 38, 35));
         jLabel3.setText("Ruta");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(22, 38, 35));
         jLabel5.setText("Hora de Salida (HH:MM)");
 
-        anadir_button.setBackground(new java.awt.Color(80, 99, 161));
-        anadir_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
-        anadir_button.setForeground(new java.awt.Color(255, 255, 255));
+        anadir_button.setBackground(new java.awt.Color(41, 82, 85));
+        anadir_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        anadir_button.setForeground(new java.awt.Color(240, 245, 247));
         anadir_button.setText("Añadir");
+        anadir_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         anadir_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anadir_buttonActionPerformed(evt);
@@ -104,15 +113,16 @@ public class AdminViajesCrear extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jLabel1))
                             .addComponent(jLabel5)
                             .addComponent(jLabel3)
                             .addComponent(fecha_salida_input, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                             .addComponent(hora_salida_input)
                             .addComponent(ruta_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(104, 104, 104))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

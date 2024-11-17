@@ -27,8 +27,8 @@ public class AdminViajesPanel extends javax.swing.JPanel {
     }
     
     private void correcciones_iniciales(){
-        id_buscar_input.setBackground(new Color(168, 168, 168));
-        id_eliminar_input.setBackground(new Color(168, 168, 168));
+        id_buscar_input.setBackground(new Color(240,245,247));
+        id_eliminar_input.setBackground(new Color(240,245,247));
         
         tabla_viajes.getColumnModel().getColumn(0).setPreferredWidth(10);
         tabla_viajes.setBackground(new Color(230, 230, 230));
@@ -123,14 +123,15 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Listado de Viajes");
 
-        listar_viajes_button.setBackground(new java.awt.Color(30, 30, 30));
-        listar_viajes_button.setForeground(new java.awt.Color(245, 245, 245));
+        listar_viajes_button.setBackground(new java.awt.Color(41, 82, 85));
+        listar_viajes_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        listar_viajes_button.setForeground(new java.awt.Color(240, 245, 247));
         listar_viajes_button.setText("Listar Viajes");
-        listar_viajes_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        listar_viajes_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listar_viajes_button.setMaximumSize(new java.awt.Dimension(170, 40));
         listar_viajes_button.setPreferredSize(new java.awt.Dimension(170, 40));
         listar_viajes_button.addActionListener(new java.awt.event.ActionListener() {
@@ -139,14 +140,15 @@ public class AdminViajesPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(22, 38, 35));
         jLabel2.setText("Buscar Viaje por ID");
 
-        buscar_viaje_button.setBackground(new java.awt.Color(30, 30, 30));
-        buscar_viaje_button.setForeground(new java.awt.Color(245, 245, 245));
+        buscar_viaje_button.setBackground(new java.awt.Color(41, 82, 85));
+        buscar_viaje_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buscar_viaje_button.setForeground(new java.awt.Color(240, 245, 247));
         buscar_viaje_button.setText("Buscar Viaje");
-        buscar_viaje_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        buscar_viaje_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscar_viaje_button.setMaximumSize(new java.awt.Dimension(161, 40));
         buscar_viaje_button.setMinimumSize(new java.awt.Dimension(161, 40));
         buscar_viaje_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -158,14 +160,15 @@ public class AdminViajesPanel extends javax.swing.JPanel {
 
         id_buscar_input.setCaretColor(new java.awt.Color(168, 168, 168));
 
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(22, 38, 35));
         jLabel3.setText("Eliminar Viaje por ID");
 
-        eliminar_viaje_button.setBackground(new java.awt.Color(30, 30, 30));
-        eliminar_viaje_button.setForeground(new java.awt.Color(245, 245, 245));
+        eliminar_viaje_button.setBackground(new java.awt.Color(41, 82, 85));
+        eliminar_viaje_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        eliminar_viaje_button.setForeground(new java.awt.Color(240, 245, 247));
         eliminar_viaje_button.setText("Eliminar Viaje");
-        eliminar_viaje_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        eliminar_viaje_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminar_viaje_button.setMaximumSize(new java.awt.Dimension(161, 40));
         eliminar_viaje_button.setMinimumSize(new java.awt.Dimension(161, 40));
         eliminar_viaje_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -178,10 +181,11 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         resultado_eliminar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         resultado_eliminar.setForeground(new java.awt.Color(44, 73, 168));
 
-        agregar_viaje_button.setBackground(new java.awt.Color(30, 30, 30));
-        agregar_viaje_button.setForeground(new java.awt.Color(245, 245, 245));
+        agregar_viaje_button.setBackground(new java.awt.Color(41, 82, 85));
+        agregar_viaje_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        agregar_viaje_button.setForeground(new java.awt.Color(240, 245, 247));
         agregar_viaje_button.setText("Agregar Viaje");
-        agregar_viaje_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        agregar_viaje_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregar_viaje_button.setMaximumSize(new java.awt.Dimension(161, 40));
         agregar_viaje_button.setMinimumSize(new java.awt.Dimension(161, 40));
         agregar_viaje_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -191,6 +195,8 @@ public class AdminViajesPanel extends javax.swing.JPanel {
             }
         });
 
+        tabla_viajes.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_viajes.setForeground(new java.awt.Color(22, 38, 35));
         tabla_viajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -209,6 +215,8 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tabla_viajes);
 
+        tabla_datos_viaje.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_datos_viaje.setForeground(new java.awt.Color(22, 38, 35));
         tabla_datos_viaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -234,10 +242,11 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tabla_datos_viaje);
 
-        editar_viaje_button.setBackground(new java.awt.Color(30, 30, 30));
-        editar_viaje_button.setForeground(new java.awt.Color(255, 255, 255));
+        editar_viaje_button.setBackground(new java.awt.Color(41, 82, 85));
+        editar_viaje_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        editar_viaje_button.setForeground(new java.awt.Color(240, 245, 247));
         editar_viaje_button.setText("Editar Viaje");
-        editar_viaje_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        editar_viaje_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editar_viaje_button.setMaximumSize(new java.awt.Dimension(161, 40));
         editar_viaje_button.setMinimumSize(new java.awt.Dimension(161, 40));
         editar_viaje_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -289,7 +298,7 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -318,7 +327,7 @@ public class AdminViajesPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addComponent(listar_viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

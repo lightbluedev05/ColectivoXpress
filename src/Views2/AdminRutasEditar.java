@@ -61,14 +61,22 @@ public class AdminRutasEditar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(62, 82, 162));
+        jPanel1.setBackground(new java.awt.Color(240, 245, 247));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Editar Ruta");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(22, 38, 35));
         jLabel2.setText("Origen");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(22, 38, 35));
         jLabel3.setText("Destino");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(22, 38, 35));
         jLabel4.setText("Tiempo aproximado (HH:MM)");
 
         tiempo_aproximado_input.addActionListener(new java.awt.event.ActionListener() {
@@ -77,11 +85,13 @@ public class AdminRutasEditar extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(22, 38, 35));
         jLabel5.setText("Precio");
 
-        editar_button.setBackground(new java.awt.Color(80, 99, 161));
-        editar_button.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
-        editar_button.setForeground(new java.awt.Color(255, 255, 255));
+        editar_button.setBackground(new java.awt.Color(41, 82, 85));
+        editar_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        editar_button.setForeground(new java.awt.Color(240, 245, 247));
         editar_button.setText("Editar");
         editar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +153,7 @@ public class AdminRutasEditar extends javax.swing.JFrame {
                 .addComponent(precio_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(resultado_text))
         );
 

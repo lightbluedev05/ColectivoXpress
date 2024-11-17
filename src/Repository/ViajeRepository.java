@@ -190,7 +190,7 @@ public class ViajeRepository implements CRUD<Viaje>{
                 viajeDto.id_ruta = rs.getString("id_ruta");
                 viajeDto.dni_conductor = rs.getString("dni_conductor");
                 viajeDto.estado = rs.getBoolean("estado");
-
+                System.out.println("Viaje: "+ viajeDto.id_viaje+" recuperado");
                 viajes.add(convertirDto_Viaje(viajeDto));
             } while (rs.next());
 

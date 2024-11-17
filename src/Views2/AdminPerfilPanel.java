@@ -55,36 +55,53 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
         jPanel1.setMaximumSize(new java.awt.Dimension(1010, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
+        contra_input.setBackground(new java.awt.Color(240, 245, 247));
         contra_input.setMinimumSize(new java.awt.Dimension(370, 22));
         contra_input.setPreferredSize(new java.awt.Dimension(370, 22));
 
+        ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
+        ingresar_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ingresar_button.setForeground(new java.awt.Color(240, 245, 247));
         ingresar_button.setText("Ingresar");
+        ingresar_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresar_buttonActionPerformed(evt);
             }
         });
 
-        nuevo_codigo_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_codigo_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_codigo_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_codigo_label.setText("Actualizar codigo");
 
+        nuevo_codigo_input.setBackground(new java.awt.Color(240, 245, 247));
+
+        nuevo_codigo_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_codigo_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_codigo_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_codigo_button.setText("Modificar");
+        nuevo_codigo_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevo_codigo_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_codigo_buttonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
         jLabel1.setText("Ingrese su contraseña para modificar sus datos");
 
-        nuevo_contra_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_contra_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_contra_label.setText("Actualizar contraseña");
 
+        nuevo_contra_input.setBackground(new java.awt.Color(240, 245, 247));
+
+        nuevo_contra_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_contra_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_contra_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_contra_button.setText("Modificar");
+        nuevo_contra_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevo_contra_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_contra_buttonActionPerformed(evt);
@@ -141,7 +158,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
                     .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_contra_button)
                     .addComponent(nuevo_contra_message))
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -31,8 +31,8 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
     }
     
     private void correcciones_iniciales(){
-        dni_buscar_input.setBackground(new Color(168, 168, 168));
-        dni_eliminar_input.setBackground(new Color(168, 168, 168));
+        dni_buscar_input.setBackground(new Color(240,245,247));
+        dni_eliminar_input.setBackground(new Color(240,245,247));
         
         tabla_pasajeros.getColumnModel().getColumn(0).setPreferredWidth(10);
         tabla_pasajeros.setBackground(new Color(230, 230, 230));
@@ -116,14 +116,15 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setText("Listado de Pasajeros");
 
-        listar_pasajeros_button.setBackground(new java.awt.Color(30, 30, 30));
-        listar_pasajeros_button.setForeground(new java.awt.Color(245, 245, 245));
+        listar_pasajeros_button.setBackground(new java.awt.Color(41, 82, 85));
+        listar_pasajeros_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        listar_pasajeros_button.setForeground(new java.awt.Color(240, 245, 247));
         listar_pasajeros_button.setText("Listar Pasajeros");
-        listar_pasajeros_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        listar_pasajeros_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listar_pasajeros_button.setMaximumSize(new java.awt.Dimension(170, 40));
         listar_pasajeros_button.setPreferredSize(new java.awt.Dimension(170, 40));
         listar_pasajeros_button.addActionListener(new java.awt.event.ActionListener() {
@@ -132,14 +133,15 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(23, 23, 23));
         jLabel2.setText("Buscar Pasajero por DNI");
 
-        buscar_pasajero_button.setBackground(new java.awt.Color(30, 30, 30));
-        buscar_pasajero_button.setForeground(new java.awt.Color(245, 245, 245));
+        buscar_pasajero_button.setBackground(new java.awt.Color(41, 82, 85));
+        buscar_pasajero_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buscar_pasajero_button.setForeground(new java.awt.Color(240, 245, 247));
         buscar_pasajero_button.setText("Buscar Pasajero");
-        buscar_pasajero_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        buscar_pasajero_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscar_pasajero_button.setMaximumSize(new java.awt.Dimension(161, 40));
         buscar_pasajero_button.setMinimumSize(new java.awt.Dimension(161, 40));
         buscar_pasajero_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -151,14 +153,15 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
 
         dni_buscar_input.setCaretColor(new java.awt.Color(168, 168, 168));
 
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(23, 23, 23));
         jLabel3.setText("Eliminar Pasajero por DNI");
 
-        eliminar_pasajero_button.setBackground(new java.awt.Color(30, 30, 30));
-        eliminar_pasajero_button.setForeground(new java.awt.Color(245, 245, 245));
+        eliminar_pasajero_button.setBackground(new java.awt.Color(41, 82, 85));
+        eliminar_pasajero_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        eliminar_pasajero_button.setForeground(new java.awt.Color(240, 245, 247));
         eliminar_pasajero_button.setText("Eliminar Pasajero");
-        eliminar_pasajero_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        eliminar_pasajero_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminar_pasajero_button.setMaximumSize(new java.awt.Dimension(161, 40));
         eliminar_pasajero_button.setMinimumSize(new java.awt.Dimension(161, 40));
         eliminar_pasajero_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -171,10 +174,11 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         resultado_eliminar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         resultado_eliminar.setForeground(new java.awt.Color(44, 73, 168));
 
-        agregar_pasajero_button.setBackground(new java.awt.Color(30, 30, 30));
-        agregar_pasajero_button.setForeground(new java.awt.Color(245, 245, 245));
+        agregar_pasajero_button.setBackground(new java.awt.Color(41, 82, 85));
+        agregar_pasajero_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        agregar_pasajero_button.setForeground(new java.awt.Color(240, 245, 247));
         agregar_pasajero_button.setText("Agregar Pasajero");
-        agregar_pasajero_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        agregar_pasajero_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregar_pasajero_button.setMaximumSize(new java.awt.Dimension(161, 40));
         agregar_pasajero_button.setMinimumSize(new java.awt.Dimension(161, 40));
         agregar_pasajero_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -184,6 +188,8 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
             }
         });
 
+        tabla_pasajeros.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_pasajeros.setForeground(new java.awt.Color(22, 38, 35));
         tabla_pasajeros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -202,6 +208,8 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tabla_pasajeros);
 
+        tabla_datos_pasajero.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_datos_pasajero.setForeground(new java.awt.Color(22, 38, 35));
         tabla_datos_pasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -266,7 +274,7 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -293,7 +301,7 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addComponent(listar_pasajeros_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
