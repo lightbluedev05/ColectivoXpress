@@ -95,15 +95,17 @@ public class DashboardPasajero extends javax.swing.JFrame {
             .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        menu.setBackground(new java.awt.Color(0, 0, 204));
+        menu.setBackground(new java.awt.Color(87, 120, 119));
 
         buttonPerfil.setBackground(new java.awt.Color(0,0,0,0));
-        buttonPerfil.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        buttonPerfil.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonPerfil.setForeground(new java.awt.Color(240, 245, 247));
+        buttonPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar-de-usuario.png"))); // NOI18N
         buttonPerfil.setText("PERFIL");
         buttonPerfil.setBorder(null);
         buttonPerfil.setBorderPainted(false);
         buttonPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonPerfil.setMargin(new java.awt.Insets(0, 30, 0, 0));
         buttonPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonPerfilActionPerformed(evt);
@@ -111,8 +113,9 @@ public class DashboardPasajero extends javax.swing.JFrame {
         });
 
         buttonComprar.setBackground(new java.awt.Color(0,0,0,0));
-        buttonComprar.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonComprar.setForeground(new java.awt.Color(255, 255, 255));
+        buttonComprar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonComprar.setForeground(new java.awt.Color(240, 245, 247));
+        buttonComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/viaje.png"))); // NOI18N
         buttonComprar.setText("COMPRAR");
         buttonComprar.setBorder(null);
         buttonComprar.setBorderPainted(false);
@@ -124,8 +127,9 @@ public class DashboardPasajero extends javax.swing.JFrame {
         });
 
         buttonHistorial.setBackground(new java.awt.Color(0,0,0,0));
-        buttonHistorial.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        buttonHistorial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonHistorial.setForeground(new java.awt.Color(240, 245, 247));
+        buttonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ruta (2).png"))); // NOI18N
         buttonHistorial.setText("HISTORIAL");
         buttonHistorial.setBorder(null);
         buttonHistorial.setBorderPainted(false);
@@ -137,8 +141,9 @@ public class DashboardPasajero extends javax.swing.JFrame {
         });
 
         buttonNosotros.setBackground(new java.awt.Color(0,0,0,0));
-        buttonNosotros.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonNosotros.setForeground(new java.awt.Color(255, 255, 255));
+        buttonNosotros.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonNosotros.setForeground(new java.awt.Color(240, 245, 247));
+        buttonNosotros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carro.png"))); // NOI18N
         buttonNosotros.setText("NOSOTROS");
         buttonNosotros.setBorder(null);
         buttonNosotros.setBorderPainted(false);
@@ -150,8 +155,8 @@ public class DashboardPasajero extends javax.swing.JFrame {
         });
 
         buttonInicio.setBackground(new java.awt.Color(0,0,0,0));
-        buttonInicio.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonInicio.setForeground(new java.awt.Color(255, 255, 255));
+        buttonInicio.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonInicio.setForeground(new java.awt.Color(240, 245, 247));
         buttonInicio.setText("INICIO");
         buttonInicio.setBorder(null);
         buttonInicio.setBorderPainted(false);
@@ -178,24 +183,24 @@ public class DashboardPasajero extends javax.swing.JFrame {
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(buttonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(buttonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
 
-        header.setBackground(new java.awt.Color(0, 153, 255));
+        header.setBackground(new java.awt.Color(255, 255, 255));
 
         fecha.setBackground(new java.awt.Color(255, 255, 255));
         fecha.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        fecha.setForeground(new java.awt.Color(255, 255, 255));
+        fecha.setForeground(new java.awt.Color(22, 38, 35));
         fecha.setText("Hoy es {dayname} {day} de {month} del {year}");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -210,8 +215,9 @@ public class DashboardPasajero extends javax.swing.JFrame {
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(fecha)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         content.setBackground(new java.awt.Color(0, 0, 0));
@@ -245,12 +251,13 @@ public class DashboardPasajero extends javax.swing.JFrame {
                 .addComponent(jPanelConEncabezadoColectivo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,6 +325,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new DashboardPasajero().setVisible(true);
             }

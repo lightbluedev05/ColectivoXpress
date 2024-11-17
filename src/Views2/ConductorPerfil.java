@@ -64,6 +64,7 @@ public class ConductorPerfil extends javax.swing.JPanel {
         distrito_label3 = new javax.swing.JLabel();
         provincia_label4 = new javax.swing.JLabel();
         departamento_label2 = new javax.swing.JLabel();
+        dias_descanso_label = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         foto_label = new javax.swing.JLabel();
         actual_nombre_label2 = new javax.swing.JLabel();
@@ -73,11 +74,11 @@ public class ConductorPerfil extends javax.swing.JPanel {
         actual_distrito_label8 = new javax.swing.JLabel();
         actual_provincia_label6 = new javax.swing.JLabel();
         actual_departamento_label7 = new javax.swing.JLabel();
-        dias_descanso_label = new javax.swing.JLabel();
         actual_dias_descanso_label = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1010, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
@@ -85,6 +86,9 @@ public class ConductorPerfil extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
         jLabel1.setText("DATOS DEL CONDUCTOR");
 
+        editar_perfil_button.setBackground(new java.awt.Color(41, 82, 85));
+        editar_perfil_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        editar_perfil_button.setForeground(new java.awt.Color(240, 245, 247));
         editar_perfil_button.setText("Editar Perfil");
         editar_perfil_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,33 +96,37 @@ public class ConductorPerfil extends javax.swing.JPanel {
             }
         });
 
-        nombre_label1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nombre_label1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nombre_label1.setForeground(new java.awt.Color(20, 20, 20));
         nombre_label1.setText("Nombre: ");
 
-        correo_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        correo_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         correo_label.setForeground(new java.awt.Color(20, 20, 20));
         correo_label.setText("Correo:");
 
-        dni_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        dni_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         dni_label.setForeground(new java.awt.Color(20, 20, 20));
         dni_label.setText("DNI:");
 
-        fecha_label1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        fecha_label1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         fecha_label1.setForeground(new java.awt.Color(20, 20, 20));
         fecha_label1.setText("Fecha de Nacimiento: ");
 
-        distrito_label3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        distrito_label3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         distrito_label3.setForeground(new java.awt.Color(20, 20, 20));
         distrito_label3.setText("Distrito:");
 
-        provincia_label4.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        provincia_label4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         provincia_label4.setForeground(new java.awt.Color(20, 20, 20));
         provincia_label4.setText("Provincia:");
 
-        departamento_label2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        departamento_label2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         departamento_label2.setForeground(new java.awt.Color(20, 20, 20));
         departamento_label2.setText("Departamento:");
+
+        dias_descanso_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        dias_descanso_label.setForeground(new java.awt.Color(20, 20, 20));
+        dias_descanso_label.setText("Dias de Descanso:");
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -138,31 +146,28 @@ public class ConductorPerfil extends javax.swing.JPanel {
         foto_label.setForeground(new java.awt.Color(20, 20, 20));
         foto_label.setText("FOTO DE PERFIL");
 
-        actual_nombre_label2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_nombre_label2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_nombre_label2.setForeground(new java.awt.Color(20, 20, 20));
 
-        actual_correo_label3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_correo_label3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_correo_label3.setForeground(new java.awt.Color(20, 20, 20));
 
-        actual_dni_label5.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_dni_label5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_dni_label5.setForeground(new java.awt.Color(20, 20, 20));
 
-        actual_fecha_label4.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_fecha_label4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_fecha_label4.setForeground(new java.awt.Color(20, 20, 20));
 
-        actual_distrito_label8.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_distrito_label8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_distrito_label8.setForeground(new java.awt.Color(20, 20, 20));
 
-        actual_provincia_label6.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_provincia_label6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_provincia_label6.setForeground(new java.awt.Color(20, 20, 20));
 
-        actual_departamento_label7.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        actual_departamento_label7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         actual_departamento_label7.setForeground(new java.awt.Color(20, 20, 20));
 
-        dias_descanso_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        dias_descanso_label.setForeground(new java.awt.Color(20, 20, 20));
-        dias_descanso_label.setText("Dias de Descanso:");
-
+        actual_dias_descanso_label.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         actual_dias_descanso_label.setForeground(new java.awt.Color(20, 20, 20));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -206,7 +211,7 @@ public class ConductorPerfil extends javax.swing.JPanel {
                                 .addComponent(nombre_label1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(actual_nombre_label2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -277,9 +282,7 @@ public class ConductorPerfil extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

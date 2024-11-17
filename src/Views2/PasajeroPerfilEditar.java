@@ -74,12 +74,17 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1010, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
+        contra_input.setBackground(new java.awt.Color(240, 245, 247));
+        contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         contra_input.setMinimumSize(new java.awt.Dimension(370, 22));
         contra_input.setPreferredSize(new java.awt.Dimension(370, 22));
 
+        ingresar_button.setBackground(new java.awt.Color(41, 82, 85));
+        ingresar_button.setForeground(new java.awt.Color(240, 245, 247));
         ingresar_button.setText("Ingresar");
         ingresar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,20 +92,24 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
         jLabel1.setText("Ingrese su contraseña para modificar sus datos");
 
-        nuevo_contra_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_contra_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_contra_label.setText("Actualizar contraseña");
 
+        nuevo_contra_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_contra_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_contra_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_contra_inputActionPerformed(evt);
             }
         });
 
+        nuevo_contra_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_contra_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_contra_button.setText("Modificar");
         nuevo_contra_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,16 +117,20 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_nombre_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_nombre_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_nombre_label.setText("Actualizar nombre");
 
+        nuevo_nombre_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_nombre_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_nombre_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_nombre_inputActionPerformed(evt);
             }
         });
 
+        nuevo_nombre_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_nombre_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_nombre_button.setText("Modificar");
         nuevo_nombre_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,16 +138,20 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_distrito_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_distrito_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_distrito_label.setText("Actualizar distrito");
 
+        nuevo_distrito_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_distrito_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_distrito_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_distrito_inputActionPerformed(evt);
             }
         });
 
+        nuevo_distrito_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_distrito_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_distrito_button.setText("Modificar");
         nuevo_distrito_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,16 +159,20 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_provincia_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_provincia_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_provincia_label.setText("Actualizar provincia");
 
+        nuevo_provincia_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_provincia_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_provincia_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_provincia_inputActionPerformed(evt);
             }
         });
 
+        nuevo_provincia_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_provincia_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_provincia_button.setText("Modificar");
         nuevo_provincia_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,16 +180,20 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_departamento_label.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_departamento_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_departamento_label.setText("Actualizar departamento");
 
+        nuevo_departamento_input.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_departamento_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         nuevo_departamento_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_departamento_inputActionPerformed(evt);
             }
         });
 
+        nuevo_departamento_button.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_departamento_button.setForeground(new java.awt.Color(240, 245, 247));
         nuevo_departamento_button.setText("Modificar");
         nuevo_departamento_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

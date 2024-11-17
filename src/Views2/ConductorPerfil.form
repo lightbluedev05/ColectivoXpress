@@ -21,10 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -39,6 +36,9 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1010, 580]"/>
         </Property>
@@ -96,7 +96,7 @@
                                   <Component id="actual_nombre_label2" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="220" max="32767" attributes="0"/>
+                          <EmptySpace pref="221" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
@@ -199,6 +199,15 @@
         </Component>
         <Component class="javax.swing.JButton" name="editar_perfil_button">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="55" green="52" red="29" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f7" green="f5" red="f0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Editar Perfil"/>
           </Properties>
           <Events>
@@ -208,7 +217,7 @@
         <Component class="javax.swing.JLabel" name="nombre_label1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -219,7 +228,7 @@
         <Component class="javax.swing.JLabel" name="correo_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -230,7 +239,7 @@
         <Component class="javax.swing.JLabel" name="dni_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -241,7 +250,7 @@
         <Component class="javax.swing.JLabel" name="fecha_label1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -252,7 +261,7 @@
         <Component class="javax.swing.JLabel" name="distrito_label3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -263,7 +272,7 @@
         <Component class="javax.swing.JLabel" name="provincia_label4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -274,12 +283,23 @@
         <Component class="javax.swing.JLabel" name="departamento_label2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Departamento:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="dias_descanso_label">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="14" green="14" red="14" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Dias de Descanso:"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -319,7 +339,7 @@
         <Component class="javax.swing.JLabel" name="actual_nombre_label2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -329,7 +349,7 @@
         <Component class="javax.swing.JLabel" name="actual_correo_label3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -339,7 +359,7 @@
         <Component class="javax.swing.JLabel" name="actual_dni_label5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -349,7 +369,7 @@
         <Component class="javax.swing.JLabel" name="actual_fecha_label4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -359,7 +379,7 @@
         <Component class="javax.swing.JLabel" name="actual_distrito_label8">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -369,7 +389,7 @@
         <Component class="javax.swing.JLabel" name="actual_provincia_label6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
@@ -379,26 +399,18 @@
         <Component class="javax.swing.JLabel" name="actual_departamento_label7">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
+              <Font name="Arial" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="dias_descanso_label">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Sans" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="14" green="14" red="14" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Dias de Descanso:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="actual_dias_descanso_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="0"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="14" red="14" type="rgb"/>
             </Property>
