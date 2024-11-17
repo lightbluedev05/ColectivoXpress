@@ -31,13 +31,13 @@ public class AdminRutasPanel extends javax.swing.JPanel {
     }
     
     private void correcciones_iniciales(){
-        id_buscar_input.setBackground(new Color(168, 168, 168));
-        id_eliminar_input.setBackground(new Color(168, 168, 168));
+        id_buscar_input.setBackground(new Color(240,245,247));
+        id_eliminar_input.setBackground(new Color(240,245,247));
         
         tabla_rutas.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tabla_rutas.setBackground(new Color(230, 230, 230));
+        tabla_rutas.setBackground(new Color(240,245,247));
         tabla_datos_ruta.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tabla_datos_ruta.setBackground(new Color(230, 230, 230));
+        tabla_datos_ruta.setBackground(new Color(240,245,247));
     }
     
     private void listar_rutas(){
@@ -117,14 +117,15 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1010, 580));
         setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Listado de Rutas");
 
-        listar_rutas_button.setBackground(new java.awt.Color(30, 30, 30));
-        listar_rutas_button.setForeground(new java.awt.Color(245, 245, 245));
+        listar_rutas_button.setBackground(new java.awt.Color(41, 82, 85));
+        listar_rutas_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        listar_rutas_button.setForeground(new java.awt.Color(240, 245, 247));
         listar_rutas_button.setText("Listar Rutas");
-        listar_rutas_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        listar_rutas_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listar_rutas_button.setMaximumSize(new java.awt.Dimension(170, 40));
         listar_rutas_button.setPreferredSize(new java.awt.Dimension(170, 40));
         listar_rutas_button.addActionListener(new java.awt.event.ActionListener() {
@@ -133,14 +134,15 @@ public class AdminRutasPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(22, 38, 35));
         jLabel2.setText("Buscar Ruta por ID");
 
-        buscar_ruta_button.setBackground(new java.awt.Color(30, 30, 30));
-        buscar_ruta_button.setForeground(new java.awt.Color(245, 245, 245));
+        buscar_ruta_button.setBackground(new java.awt.Color(41, 82, 85));
+        buscar_ruta_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buscar_ruta_button.setForeground(new java.awt.Color(240, 245, 247));
         buscar_ruta_button.setText("Buscar Ruta");
-        buscar_ruta_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        buscar_ruta_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscar_ruta_button.setMaximumSize(new java.awt.Dimension(161, 40));
         buscar_ruta_button.setMinimumSize(new java.awt.Dimension(161, 40));
         buscar_ruta_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -150,16 +152,18 @@ public class AdminRutasPanel extends javax.swing.JPanel {
             }
         });
 
+        id_buscar_input.setForeground(new java.awt.Color(22, 38, 35));
         id_buscar_input.setCaretColor(new java.awt.Color(168, 168, 168));
 
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(22, 38, 35));
         jLabel3.setText("Eliminar Ruta por ID");
 
-        eliminar_ruta_button.setBackground(new java.awt.Color(30, 30, 30));
-        eliminar_ruta_button.setForeground(new java.awt.Color(245, 245, 245));
+        eliminar_ruta_button.setBackground(new java.awt.Color(41, 82, 85));
+        eliminar_ruta_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        eliminar_ruta_button.setForeground(new java.awt.Color(240, 245, 247));
         eliminar_ruta_button.setText("Eliminar Ruta");
-        eliminar_ruta_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        eliminar_ruta_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminar_ruta_button.setMaximumSize(new java.awt.Dimension(161, 40));
         eliminar_ruta_button.setMinimumSize(new java.awt.Dimension(161, 40));
         eliminar_ruta_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -172,10 +176,11 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         resultado_eliminar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         resultado_eliminar.setForeground(new java.awt.Color(44, 73, 168));
 
-        agregar_ruta_button.setBackground(new java.awt.Color(30, 30, 30));
-        agregar_ruta_button.setForeground(new java.awt.Color(245, 245, 245));
+        agregar_ruta_button.setBackground(new java.awt.Color(41, 82, 85));
+        agregar_ruta_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        agregar_ruta_button.setForeground(new java.awt.Color(240, 245, 247));
         agregar_ruta_button.setText("Agregar Ruta");
-        agregar_ruta_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        agregar_ruta_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregar_ruta_button.setMaximumSize(new java.awt.Dimension(161, 40));
         agregar_ruta_button.setMinimumSize(new java.awt.Dimension(161, 40));
         agregar_ruta_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -185,6 +190,8 @@ public class AdminRutasPanel extends javax.swing.JPanel {
             }
         });
 
+        tabla_rutas.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_rutas.setForeground(new java.awt.Color(22, 38, 35));
         tabla_rutas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -203,6 +210,8 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tabla_rutas);
 
+        tabla_datos_ruta.setBackground(new java.awt.Color(240, 245, 247));
+        tabla_datos_ruta.setForeground(new java.awt.Color(22, 38, 35));
         tabla_datos_ruta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -228,10 +237,11 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tabla_datos_ruta);
 
-        editar_ruta_button.setBackground(new java.awt.Color(30, 30, 30));
-        editar_ruta_button.setForeground(new java.awt.Color(255, 255, 255));
+        editar_ruta_button.setBackground(new java.awt.Color(41, 82, 85));
+        editar_ruta_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        editar_ruta_button.setForeground(new java.awt.Color(240, 245, 247));
         editar_ruta_button.setText("Editar Ruta");
-        editar_ruta_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        editar_ruta_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editar_ruta_button.setMaximumSize(new java.awt.Dimension(161, 40));
         editar_ruta_button.setMinimumSize(new java.awt.Dimension(161, 40));
         editar_ruta_button.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -246,15 +256,14 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addGap(10, 10, 10)
                                 .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(179, 179, 179)
@@ -272,18 +281,23 @@ public class AdminRutasPanel extends javax.swing.JPanel {
                                     .addComponent(id_eliminar_input)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(eliminar_ruta_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(resultado_eliminar))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)))))
+                                        .addGap(31, 31, 31))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
+                        .addGap(135, 135, 135)
                         .addComponent(listar_rutas_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultado_eliminar)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(390, 390, 390)
+                .addComponent(resultado_eliminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -302,9 +316,7 @@ public class AdminRutasPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(id_eliminar_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eliminar_ruta_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(resultado_eliminar))
+                        .addComponent(eliminar_ruta_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addComponent(agregar_ruta_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -312,7 +324,7 @@ public class AdminRutasPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addComponent(listar_rutas_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 

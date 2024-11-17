@@ -12,6 +12,7 @@ import Views2.AdminPerfilPanel;
 import Views2.AdminRutasPanel;
 import Views2.AdminViajesPanel;
 import java.awt.BorderLayout;
+import java.awt.Insets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -34,6 +35,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
         initComponents();
         setDate();
         initContent();
+        perfil_button.setMargin(new Insets(10, 20, 10, 10));
+        perfil_button.setContentAreaFilled(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
@@ -44,9 +47,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new Inicio());
-        ShowJPanel(new Nosotros());
-        ShowJPanel(new Destinos());
+        ShowJPanel(new AdminPerfilPanel(admin));
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -103,15 +104,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        menu.setBackground(new java.awt.Color(0, 0, 204));
+        menu.setBackground(new java.awt.Color(87, 120, 119));
 
         perfil_button.setBackground(new java.awt.Color(0,0,0,0));
-        perfil_button.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        perfil_button.setForeground(new java.awt.Color(255, 255, 255));
+        perfil_button.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        perfil_button.setForeground(new java.awt.Color(240, 245, 247));
+        perfil_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar-de-usuario.png"))); // NOI18N
         perfil_button.setText("PERFIL");
         perfil_button.setBorder(null);
         perfil_button.setBorderPainted(false);
         perfil_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        perfil_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        perfil_button.setIconTextGap(10);
+        perfil_button.setMargin(new java.awt.Insets(0, 30, 0, 0));
         perfil_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 perfil_buttonActionPerformed(evt);
@@ -119,12 +124,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         rutas_button.setBackground(new java.awt.Color(0,0,0,0));
-        rutas_button.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        rutas_button.setForeground(new java.awt.Color(255, 255, 255));
+        rutas_button.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        rutas_button.setForeground(new java.awt.Color(240, 245, 247));
+        rutas_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ruta (2).png"))); // NOI18N
         rutas_button.setText("RUTAS");
         rutas_button.setBorder(null);
         rutas_button.setBorderPainted(false);
         rutas_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rutas_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        rutas_button.setIconTextGap(10);
         rutas_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rutas_buttonActionPerformed(evt);
@@ -132,12 +140,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         conductores_button.setBackground(new java.awt.Color(0,0,0,0));
-        conductores_button.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        conductores_button.setForeground(new java.awt.Color(255, 255, 255));
+        conductores_button.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        conductores_button.setForeground(new java.awt.Color(240, 245, 247));
+        conductores_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carro.png"))); // NOI18N
         conductores_button.setText("CONDUCTORES");
         conductores_button.setBorder(null);
         conductores_button.setBorderPainted(false);
         conductores_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        conductores_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        conductores_button.setIconTextGap(10);
         conductores_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 conductores_buttonActionPerformed(evt);
@@ -145,12 +156,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         viajes_button.setBackground(new java.awt.Color(0,0,0,0));
-        viajes_button.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        viajes_button.setForeground(new java.awt.Color(255, 255, 255));
+        viajes_button.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        viajes_button.setForeground(new java.awt.Color(240, 245, 247));
+        viajes_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/viaje.png"))); // NOI18N
         viajes_button.setText("VIAJES");
         viajes_button.setBorder(null);
         viajes_button.setBorderPainted(false);
         viajes_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viajes_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        viajes_button.setIconTextGap(10);
         viajes_button.setMargin(new java.awt.Insets(0, 14, 2, 14));
         viajes_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,12 +173,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         pasajeros_button.setBackground(new java.awt.Color(0,0,0,0));
-        pasajeros_button.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        pasajeros_button.setForeground(new java.awt.Color(255, 255, 255));
+        pasajeros_button.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        pasajeros_button.setForeground(new java.awt.Color(240, 245, 247));
+        pasajeros_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pasajero.png"))); // NOI18N
         pasajeros_button.setText("PASAJEROS");
         pasajeros_button.setBorder(null);
         pasajeros_button.setBorderPainted(false);
         pasajeros_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pasajeros_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        pasajeros_button.setIconTextGap(10);
         pasajeros_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pasajeros_buttonActionPerformed(evt);
@@ -202,11 +219,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        header.setBackground(new java.awt.Color(0, 153, 255));
+        header.setBackground(new java.awt.Color(255, 255, 255));
 
         fecha.setBackground(new java.awt.Color(255, 255, 255));
         fecha.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        fecha.setForeground(new java.awt.Color(255, 255, 255));
+        fecha.setForeground(new java.awt.Color(22, 38, 35));
         fecha.setText("Hoy es {dayname} {day} de {month} del {year}");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
