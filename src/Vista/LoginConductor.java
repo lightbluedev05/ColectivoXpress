@@ -38,12 +38,13 @@ public class LoginConductor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         contra_input = new javax.swing.JPasswordField();
         ingresar_button = new javax.swing.JButton();
-        registro_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(62, 82, 162));
+        jPanel1.setBackground(new java.awt.Color(240, 245, 247));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(22, 38, 35));
         jLabel1.setText("Login Conductor");
 
         jLabel2.setText("DNI");
@@ -60,23 +61,10 @@ public class LoginConductor extends javax.swing.JFrame {
             }
         });
 
-        registro_button.setBackground(new java.awt.Color(255, 255, 255));
-        registro_button.setForeground(new java.awt.Color(63, 149, 236));
-        registro_button.setText("Crearme una cuenta");
-        registro_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registro_buttonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(100, 100, 100))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -88,18 +76,19 @@ public class LoginConductor extends javax.swing.JFrame {
                             .addComponent(contra_input)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(registro_button, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(79, 79, 79)
                 .addComponent(jLabel1)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dni_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,9 +98,7 @@ public class LoginConductor extends javax.swing.JFrame {
                 .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(registro_button)
-                .addGap(21, 21, 21))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,22 +142,6 @@ public class LoginConductor extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_ingresar_buttonActionPerformed
-
-    private void registro_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registro_buttonActionPerformed
-        LoginConductor ventana_actual = this;
-        
-        RegistroPasajero registro = new RegistroPasajero();
-        registro.setVisible(true);
-        ventana_actual.setVisible(false);
-        
-        registro.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                // Cuando se cierra Dashboard, se vuelve a mostrar `this`
-                ventana_actual.setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_registro_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +187,5 @@ public class LoginConductor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton registro_button;
     // End of variables declaration//GEN-END:variables
 }
