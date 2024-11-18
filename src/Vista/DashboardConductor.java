@@ -70,7 +70,6 @@ public class DashboardConductor extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        jPanelConEncabezadoColectivo1 = new Vista.JPanelConEncabezadoColectivo();
         menu = new javax.swing.JPanel();
         buttonInicio = new javax.swing.JButton();
         buttonDestinos = new javax.swing.JButton();
@@ -79,23 +78,10 @@ public class DashboardConductor extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         fecha = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 620));
-
-        jPanelConEncabezadoColectivo1.setBackground(new java.awt.Color(87, 120, 119));
-        jPanelConEncabezadoColectivo1.setPreferredSize(new java.awt.Dimension(1280, 90));
-
-        javax.swing.GroupLayout jPanelConEncabezadoColectivo1Layout = new javax.swing.GroupLayout(jPanelConEncabezadoColectivo1);
-        jPanelConEncabezadoColectivo1.setLayout(jPanelConEncabezadoColectivo1Layout);
-        jPanelConEncabezadoColectivo1Layout.setHorizontalGroup(
-            jPanelConEncabezadoColectivo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanelConEncabezadoColectivo1Layout.setVerticalGroup(
-            jPanelConEncabezadoColectivo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
 
         menu.setBackground(new java.awt.Color(87, 120, 119));
 
@@ -187,7 +173,7 @@ public class DashboardConductor extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(fecha)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,19 +188,21 @@ public class DashboardConductor extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/EncabexadoColexXpres.jpg"))); // NOI18N
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelConEncabezadoColectivo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(270, 270, 270)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,15 +212,18 @@ public class DashboardConductor extends javax.swing.JFrame {
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(jPanelConEncabezadoColectivo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(140, 140, 140)
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,7 +304,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     private javax.swing.JPanel content;
     private javax.swing.JLabel fecha;
     private javax.swing.JPanel header;
-    private Vista.JPanelConEncabezadoColectivo jPanelConEncabezadoColectivo1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }

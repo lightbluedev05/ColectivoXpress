@@ -66,7 +66,6 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        jPanelConEncabezadoColectivo1 = new Vista.JPanelConEncabezadoColectivo();
         menu = new javax.swing.JPanel();
         buttonInicio = new javax.swing.JButton();
         buttonDestinos = new javax.swing.JButton();
@@ -78,19 +77,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 620));
-
-        jPanelConEncabezadoColectivo1.setPreferredSize(new java.awt.Dimension(1280, 90));
-
-        javax.swing.GroupLayout jPanelConEncabezadoColectivo1Layout = new javax.swing.GroupLayout(jPanelConEncabezadoColectivo1);
-        jPanelConEncabezadoColectivo1.setLayout(jPanelConEncabezadoColectivo1Layout);
-        jPanelConEncabezadoColectivo1Layout.setHorizontalGroup(
-            jPanelConEncabezadoColectivo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanelConEncabezadoColectivo1Layout.setVerticalGroup(
-            jPanelConEncabezadoColectivo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
 
         menu.setBackground(new java.awt.Color(0, 0, 204));
 
@@ -208,7 +194,6 @@ public class Dashboard extends javax.swing.JFrame {
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelConEncabezadoColectivo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(270, 270, 270)
@@ -219,8 +204,7 @@ public class Dashboard extends javax.swing.JFrame {
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(jPanelConEncabezadoColectivo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(142, 142, 142)
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
@@ -305,7 +289,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel content;
     private javax.swing.JLabel fecha;
     private javax.swing.JPanel header;
-    private Vista.JPanelConEncabezadoColectivo jPanelConEncabezadoColectivo1;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,7 +41,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanelConEncabezadoColectivo1" max="32767" attributes="0"/>
               <Component id="menu" min="-2" max="-2" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
@@ -55,8 +54,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="jPanelConEncabezadoColectivo1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                   <Component id="content" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -71,26 +69,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="Vista.JPanelConEncabezadoColectivo" name="jPanelConEncabezadoColectivo1">
-          <Properties>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[1280, 90]"/>
-            </Property>
-          </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="90" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
         <Container class="javax.swing.JPanel" name="menu">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
