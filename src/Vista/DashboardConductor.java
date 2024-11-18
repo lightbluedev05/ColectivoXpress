@@ -2,6 +2,11 @@
 package Vista;
 
 import Models.Conductor;
+import Models.Ruta;
+import Models.Viaje;
+import Repository.ConductorRepository;
+import Repository.RutaRepository;
+import Repository.ViajeRepository;
 import Views2.ConductorPerfil;
 import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
@@ -10,8 +15,11 @@ import Views2.Nosotros;
 import Views2.ViajeAsignado;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +34,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     private Conductor conductor;
     public DashboardConductor(Conductor conductor) {
         this.conductor = conductor;
+        comprobar_viaje();
         initComponents();
         setDate();
         initContent();
@@ -48,6 +57,67 @@ public class DashboardConductor extends javax.swing.JFrame {
         content.add(in, BorderLayout.CENTER);
         content.revalidate();
         content.repaint(); 
+    }
+    private void comprobar_viaje(){
+        ConductorRepository cr = new ConductorRepository();
+        List<Conductor> conductores_libres = cr.listar_libres();
+        if(conductores_libres == null){
+            return;
+        }
+        
+        for(Conductor conductor_libre:conductores_libres){
+            if(conductor_libre.get_dni().equals(conductor.get_dni())){
+                List<Viaje> viajes_activos = new ViajeRepository().listar_activos();
+                
+                Ruta ruta_elegida = null;
+                List<Ruta> rutas = new RutaRepository().listar();
+                if(rutas == null){
+                    return;
+                }
+                if(viajes_activos != null){
+                    
+                    
+                    int menor_repeticion = -1;
+                    for(Ruta ruta:rutas){
+                        int aux=0;
+                        for(Viaje viaje:viajes_activos){
+                            if(viaje.get_ruta().get_id_ruta().equals(ruta.get_id_ruta())){
+                                aux++;
+                            }
+                        }
+
+                        if(menor_repeticion != -1){
+                            if(aux<menor_repeticion){
+                                menor_repeticion = aux;
+                                ruta_elegida = ruta;
+                            }
+                            continue;
+                        }
+                        menor_repeticion = aux;
+                        ruta_elegida = ruta;
+                    }
+                } else {
+                    ruta_elegida = rutas.get(new Random().nextInt(rutas.size()));
+                }
+                
+                String id_viaje;
+                Random random = new Random();
+                do{
+                    int codigo = 10000 + random.nextInt(90000);
+                    id_viaje = String.valueOf(codigo);
+                } while(new ViajeRepository().buscar(id_viaje)!=null);
+                
+                LocalDate fecha_salida = LocalDate.now().plusDays(1);
+                LocalTime hora_salida = LocalTime.of(8 + new Random().nextInt(9), 0);
+                
+                Viaje nuevo_viaje= new Viaje(id_viaje, fecha_salida, ruta_elegida, conductor, hora_salida, true);
+                
+                new ViajeRepository().crear(nuevo_viaje);
+                return;
+            }
+        }
+        
+        
     }
     
     
@@ -192,7 +262,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 579, Short.MAX_VALUE)
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/EncabexadoColexXpres.jpg"))); // NOI18N
@@ -212,9 +282,6 @@ public class DashboardConductor extends javax.swing.JFrame {
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(BackgroundLayout.createSequentialGroup()
@@ -223,7 +290,9 @@ public class DashboardConductor extends javax.swing.JFrame {
                         .addGap(90, 90, 90)
                         .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
