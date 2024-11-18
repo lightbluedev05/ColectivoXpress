@@ -3,7 +3,7 @@ package Views2;
 public class Inicio extends javax.swing.JPanel {
 
     /**
-     * Creates new form Inicio
+     * Creates new form Iniciogaa
      */
     public Inicio() {
         initComponents();
