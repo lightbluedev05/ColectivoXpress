@@ -41,7 +41,15 @@ public class AdminRepository implements CRUD<Admin>{
         return adminDto;
     }
     
-    Conexion cx = new Conexion();
+    private Statement st;
+    
+    public AdminRepository(Statement st){
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public boolean crear(Admin nuevo_admin) {
@@ -55,15 +63,12 @@ public class AdminRepository implements CRUD<Admin>{
              + ")";
 
             
-            Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             
-            cx.desconectar();
             return filas_afectadas > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -75,26 +80,22 @@ public class AdminRepository implements CRUD<Admin>{
         
         try {
             String query = "SELECT * FROM admins WHERE codigo='"+ codigo +"'";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
-                cx.desconectar();
                 return null;
             }
             
             AdminDTO admindto = new AdminDTO();
             admindto.codigo = rs.getString("codigo");
             admindto.contrasena = rs.getString("contrasena");
-            cx.desconectar();
             
             return convertirDto_Admin(admindto);
             
         } catch (SQLException ex) {
             Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
         
@@ -105,16 +106,13 @@ public class AdminRepository implements CRUD<Admin>{
         
         try {
             String query = "UPDATE admins SET contrasena ='"+ admin_editar.get_contrasena()+"' WHERE codigo = '"+ admin_editar.get_codigo() +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_update > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -124,16 +122,13 @@ public class AdminRepository implements CRUD<Admin>{
         
         try {
             String query = "DELETE FROM admins WHERE codigo = '"+ codigo +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_deleted = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_deleted > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -143,11 +138,9 @@ public class AdminRepository implements CRUD<Admin>{
         
         try {
             String query = "SELECT * FROM admins";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -163,11 +156,9 @@ public class AdminRepository implements CRUD<Admin>{
                 
             } while(rs.next());
             
-            cx.desconectar();
             return admins;
         } catch (SQLException ex) {
             Logger.getLogger(AdminRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }

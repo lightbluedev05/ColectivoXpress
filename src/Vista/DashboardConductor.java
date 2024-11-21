@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import javax.swing.JPanel;
+import java.sql.Statement;
+
 
 /**
  *
@@ -32,7 +34,10 @@ public class DashboardConductor extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     private Conductor conductor;
-    public DashboardConductor(Conductor conductor) {
+    private Statement st;
+
+    public DashboardConductor(Conductor conductor, Statement st) {
+        this.st = st;
         this.conductor = conductor;
         comprobar_viaje();
         initComponents();
@@ -48,7 +53,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new ConductorPerfil(conductor));
+        ShowJPanel(new ConductorPerfil(conductor, st));
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -59,7 +64,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         content.repaint(); 
     }
     private void comprobar_viaje(){
-        ConductorRepository cr = new ConductorRepository();
+        ConductorRepository cr = new ConductorRepository(st);
         List<Conductor> conductores_libres = cr.listar_libres();
         if(conductores_libres == null){
             return;
@@ -67,10 +72,10 @@ public class DashboardConductor extends javax.swing.JFrame {
         
         for(Conductor conductor_libre:conductores_libres){
             if(conductor_libre.get_dni().equals(conductor.get_dni())){
-                List<Viaje> viajes_activos = new ViajeRepository().listar_activos();
+                List<Viaje> viajes_activos = new ViajeRepository(st).listar_activos();
                 
                 Ruta ruta_elegida = null;
-                List<Ruta> rutas = new RutaRepository().listar();
+                List<Ruta> rutas = new RutaRepository(st).listar();
                 if(rutas == null){
                     return;
                 }
@@ -105,14 +110,14 @@ public class DashboardConductor extends javax.swing.JFrame {
                 do{
                     int codigo = 10000 + random.nextInt(90000);
                     id_viaje = String.valueOf(codigo);
-                } while(new ViajeRepository().buscar(id_viaje)!=null);
+                } while(new ViajeRepository(st).buscar(id_viaje)!=null);
                 
                 LocalDate fecha_salida = LocalDate.now().plusDays(1);
                 LocalTime hora_salida = LocalTime.of(8 + new Random().nextInt(9), 0);
                 
                 Viaje nuevo_viaje= new Viaje(id_viaje, fecha_salida, ruta_elegida, conductor, hora_salida, true);
                 
-                new ViajeRepository().crear(nuevo_viaje);
+                new ViajeRepository(st).crear(nuevo_viaje);
                 return;
             }
         }
@@ -311,7 +316,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInicioActionPerformed
-        ShowJPanel(new ConductorPerfil(conductor));
+        ShowJPanel(new ConductorPerfil(conductor, st));
     }//GEN-LAST:event_buttonInicioActionPerformed
 
     private void buttonDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDestinosActionPerformed
@@ -319,7 +324,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDestinosActionPerformed
 
     private void buttonViajeAsignadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViajeAsignadoActionPerformed
-        ShowJPanel (new ViajeAsignado(conductor));
+        ShowJPanel (new ViajeAsignado(conductor, st));
     }//GEN-LAST:event_buttonViajeAsignadoActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed

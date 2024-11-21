@@ -5,6 +5,8 @@
 package Views2;
 
 import Models.Admin;
+import java.sql.Statement;
+
 
 /**
  *
@@ -17,8 +19,10 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
      */
     
     private Admin admin;
-    public AdminPerfilPanel(Admin admin) {
+    private Statement st;
+    public AdminPerfilPanel(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         nuevo_codigo_label.setVisible(false);
         nuevo_codigo_input.setVisible(false);
@@ -197,7 +201,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
             return;
         }
         
-        boolean exito = admin.actualizar_codigo(codigo);
+        boolean exito = admin.actualizar_codigo(codigo, st);
         if(!exito){
             nuevo_codigo_message.setText("No se pudo cambiar el codigo");
             return;
@@ -213,7 +217,7 @@ public class AdminPerfilPanel extends javax.swing.JPanel {
             return;
         }
         
-        boolean exito = admin.actualizar_contrasena(contra);
+        boolean exito = admin.actualizar_contrasena(contra, st);
         if(!exito){
             nuevo_contra_message.setText("No se pudo cambiar la contraseña");
             return;

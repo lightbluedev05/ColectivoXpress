@@ -14,7 +14,6 @@ public class Viaje {
     private Conductor conductor;
     private boolean estado;
 
-    static ViajeRepository vr = new ViajeRepository();
 
     public Viaje(String id_viaje, LocalDate fecha_salida, Ruta ruta, Conductor conductor, LocalTime hora_salida, boolean estado) {
         this.id_viaje = id_viaje;

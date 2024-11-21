@@ -1,6 +1,7 @@
 package Models;
 
 import Repository.BoletoRepository;
+import java.sql.Statement;
 
 import java.util.Random;
 
@@ -18,10 +19,10 @@ public class Boleto {
         this.precio = precio;
     }
 
-    public static String generarIdBoleto() {
+    public static String generarIdBoleto(Statement st) {
         Random random = new Random();
         String id;
-        BoletoRepository repository = new BoletoRepository();
+        BoletoRepository repository = new BoletoRepository(st);
         
         do {
             int id_aux = 10000 + random.nextInt(90000);
@@ -32,8 +33,8 @@ public class Boleto {
     }
 
     // Método para guardar el boleto
-    public static boolean guardar(Boleto boleto) {
-        return new BoletoRepository().crear(boleto);
+    public static boolean guardar(Boleto boleto, Statement st) {
+        return new BoletoRepository(st).crear(boleto);
     }
 
 

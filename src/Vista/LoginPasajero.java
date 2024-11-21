@@ -7,6 +7,8 @@ package Vista;
 import Models.Pasajero;
 import Repository.PasajeroRepository;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -17,7 +19,10 @@ public class LoginPasajero extends javax.swing.JFrame {
     /**
      * Creates new form LoginPasajero
      */
-    public LoginPasajero() {
+    private Statement st;
+
+    public LoginPasajero(Statement st) {
+        this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -143,7 +148,7 @@ public class LoginPasajero extends javax.swing.JFrame {
         String dni = dni_input.getText();
         String contra = new String(contra_input.getPassword());
         
-        boolean login = Pasajero.login(dni, contra);
+        boolean login = Pasajero.login(dni, contra, st);
         
         if(!login){
             // Si el inicio de sesión falla, mostrar un mensaje de error
@@ -153,7 +158,7 @@ public class LoginPasajero extends javax.swing.JFrame {
         System.out.println("SE LOGUEO");
         LoginPasajero ventana_actual = this;
         
-        DashboardPasajero dashPasajero = new DashboardPasajero(new PasajeroRepository().buscar(dni));
+        DashboardPasajero dashPasajero = new DashboardPasajero(new PasajeroRepository(st).buscar(dni), st);
         dashPasajero.setVisible(true);
         ventana_actual.setVisible(false);
         
@@ -169,7 +174,7 @@ public class LoginPasajero extends javax.swing.JFrame {
     private void registro_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registro_buttonActionPerformed
         LoginPasajero ventana_actual = this;
         
-        RegistroPasajero registro = new RegistroPasajero();
+        RegistroPasajero registro = new RegistroPasajero(st);
         registro.setVisible(true);
         ventana_actual.setVisible(false);
         
@@ -212,7 +217,7 @@ public class LoginPasajero extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPasajero().setVisible(true);
+                //new LoginPasajero().setVisible(true);
             }
         });
     }

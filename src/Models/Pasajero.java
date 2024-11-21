@@ -7,10 +7,10 @@ import Repository.ViajeRepository;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+import java.sql.Statement;
+
 
 public class Pasajero extends Usuario {
-
-    public static PasajeroRepository pr = new PasajeroRepository();
 
     public Pasajero(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
                     String distrito, String provincia, String departamento) {
@@ -26,46 +26,46 @@ public class Pasajero extends Usuario {
 
 
     @Override
-    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento) {
+    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, Statement st) {
         this.nombre = nombre;
         this.distrito = distrito;
         this.provincia = provincia;
         this.departamento = departamento;
-        return new PasajeroRepository().actualizar(this);
+        return new PasajeroRepository(st).actualizar(this);
     }
 
     @Override
-    public boolean actualizar_contrasena(String nueva_contrasena) {
+    public boolean actualizar_contrasena(String nueva_contrasena, Statement st) {
         this.contrasena = nueva_contrasena;
-        return new PasajeroRepository().actualizar(this);
+        return new PasajeroRepository(st).actualizar(this);
     }
     
-    public boolean actualizar_nombre(String nueva_nombre) {
+    public boolean actualizar_nombre(String nueva_nombre, Statement st) {
         this.nombre = nueva_nombre;
-        return new PasajeroRepository().actualizar(this);
+        return new PasajeroRepository(st).actualizar(this);
     }
     
-    public boolean actualizar_distrito(String nueva_distrito) {
+    public boolean actualizar_distrito(String nueva_distrito, Statement st) {
         this.distrito = nueva_distrito;
-        return new PasajeroRepository().actualizar(this);
+        return new PasajeroRepository(st).actualizar(this);
     }
     
-    public boolean actualizar_provincia(String nueva_provincia) {
+    public boolean actualizar_provincia(String nueva_provincia, Statement st) {
         this.provincia = nueva_provincia;
-        return new PasajeroRepository().actualizar(this);
+        return new PasajeroRepository(st).actualizar(this);
     }
     
-    public boolean actualizar_departamento(String nueva_departamento) {
+    public boolean actualizar_departamento(String nueva_departamento, Statement st) {
         this.departamento = nueva_departamento;
-        return new PasajeroRepository().actualizar(this);
+        return new PasajeroRepository(st).actualizar(this);
     }
     
-    public static boolean registro_pasajero(Pasajero nuevo_pasajero){
-        return new PasajeroRepository().crear(nuevo_pasajero);
+    public static boolean registro_pasajero(Pasajero nuevo_pasajero, Statement st){
+        return new PasajeroRepository(st).crear(nuevo_pasajero);
     }
 
-    public static boolean login(String dni, String contrasena) {
-        Pasajero pasajero = new PasajeroRepository().buscar(dni);
+    public static boolean login(String dni, String contrasena, Statement st) {
+        Pasajero pasajero = new PasajeroRepository(st).buscar(dni);
         if(pasajero==null){
             return false;
         }
@@ -73,15 +73,15 @@ public class Pasajero extends Usuario {
         return pasajero.contrasena.equals(contrasena);
     }
 
-     public boolean comprar_boleto(String id_viaje) {
+     public boolean comprar_boleto(String id_viaje, Statement st) {
     // Buscar el viaje
-    Viaje viaje = new ViajeRepository().buscar(id_viaje);
+    Viaje viaje = new ViajeRepository(st).buscar(id_viaje);
     if (viaje == null) {
         return false;
     }
 
     // Generar el boleto
-    String idBoleto = Boleto.generarIdBoleto();
+    String idBoleto = Boleto.generarIdBoleto(st);
     Boleto nuevoBoleto = new Boleto(
         idBoleto, 
         this, 
@@ -93,7 +93,7 @@ public class Pasajero extends Usuario {
     String descripcionRuta = "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino();
 
     // Guardar el boleto
-    boolean guardado = Boleto.guardar(nuevoBoleto);
+    boolean guardado = Boleto.guardar(nuevoBoleto,st);
     
     // Si se guardó, enviar correo
     if (guardado) {
@@ -112,16 +112,16 @@ public class Pasajero extends Usuario {
     return false;
 }
   
-     public List<Viaje> ver_viajes(){
-        return new ViajeRepository().listar();
+     public List<Viaje> ver_viajes(Statement st){
+        return new ViajeRepository(st).listar();
     }
      
-    public List<Viaje> ver_historial_viajes() {
+    public List<Viaje> ver_historial_viajes(Statement st) {
         List<Viaje> viajes_historico = new ArrayList<>();
 
         try {
             // Obtener la lista de boletos
-            List<Boleto> boletos = new BoletoRepository().listar();
+            List<Boleto> boletos = new BoletoRepository(st).listar();
 
             // Si boletos es null, devolver lista vacía
             if (boletos == null) {

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
+import java.sql.Statement;
 //arturo vidal
 public class Admin {
     private String codigo;
@@ -17,14 +18,15 @@ public class Admin {
         this.codigo = codigo;
         this.contrasena = contrasena;
     }
+    
 
-    public static boolean registrar_admin(String codigo, String contrasena){
+    public static boolean registrar_admin(String codigo, String contrasena, Statement st){
         Admin nuevo_admin = new Admin(codigo, contrasena);
-        return new AdminRepository().crear(nuevo_admin);
+        return new AdminRepository(st).crear(nuevo_admin);
     }
 
-    public static boolean login_admin(String codigo, String contrasena){
-        Admin admin = new AdminRepository().buscar(codigo);
+    public static boolean login_admin(String codigo, String contrasena, Statement st){
+        Admin admin = new AdminRepository(st).buscar(codigo);
         if(admin == null){
             return false;
         }
@@ -32,88 +34,88 @@ public class Admin {
         return admin.get_contrasena().equals(contrasena);
     }
 
-    public boolean actualizar_codigo(String nuevo_codigo){
-        if(new AdminRepository().buscar(nuevo_codigo) != null){
+    public boolean actualizar_codigo(String nuevo_codigo, Statement st){
+        if(new AdminRepository(st).buscar(nuevo_codigo) != null){
             return false;
         }
         
-        new AdminRepository().eliminar(this.get_codigo());
+        new AdminRepository(st).eliminar(this.get_codigo());
 
         this.set_codigo(nuevo_codigo);
-        return new AdminRepository().crear(this);
+        return new AdminRepository(st).crear(this);
     }
 
-    public boolean actualizar_contrasena(String nueva_contrasena){
-        Admin admin = new AdminRepository().buscar(this.get_codigo());
+    public boolean actualizar_contrasena(String nueva_contrasena, Statement st){
+        Admin admin = new AdminRepository(st).buscar(this.get_codigo());
         if(admin == null){
             return false;
         }
         admin.set_contrasena(nueva_contrasena);
 
-        return new AdminRepository().actualizar(admin);
+        return new AdminRepository(st).actualizar(admin);
     }
 
     //------------------  ACCIONES SOBRE CONDUCTORES ---------------------
 
     public boolean crear_conductor(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
-                                   String distrito, String provincia, String departamento, int capacidad_vehiculo){
+                                   String distrito, String provincia, String departamento, int capacidad_vehiculo, Statement st){
         Conductor nuevo_conductor = new Conductor(nombre, correo, dni, fecha_nacimiento,
                 contrasena, distrito, provincia, departamento, capacidad_vehiculo);
 
-        return new ConductorRepository().crear(nuevo_conductor);
+        return new ConductorRepository(st).crear(nuevo_conductor);
     }
 
-    public boolean eliminar_conductor(String dni){
-        return new ConductorRepository().eliminar(dni);
+    public boolean eliminar_conductor(String dni, Statement st){
+        return new ConductorRepository(st).eliminar(dni);
     }
 
-    public Conductor buscar_conductor(String dni){
-        return new ConductorRepository().buscar(dni);
+    public Conductor buscar_conductor(String dni, Statement st){
+        return new ConductorRepository(st).buscar(dni);
     }
 
-    public List<Conductor> ver_conductores(){
-        return new ConductorRepository().listar();
+    public List<Conductor> ver_conductores( Statement st){
+        return new ConductorRepository(st).listar();
     }
     
-    public List<Conductor> ver_conductores_libres(){
-        return new ConductorRepository().listar_libres();
+    public List<Conductor> ver_conductores_libres(Statement st){
+        return new ConductorRepository(st).listar_libres();
     }
 
     //--------------------- ACCIONES SOBRE PASAJEROS -----------------------
     public boolean crear_pasajero(String nombre, String correo, String dni, LocalDate fecha_nacimiento,
-                                  String contrasena, String distrito, String provincia, String departamento){
+                                  String contrasena, String distrito, String provincia, String departamento, Statement st){
         Pasajero nuevo_pasajero = new Pasajero(nombre, correo, dni, fecha_nacimiento,
                 contrasena, distrito, provincia, departamento);
 
-        return new PasajeroRepository().crear(nuevo_pasajero);
+        return new PasajeroRepository(st).crear(nuevo_pasajero);
     }
-    public boolean eliminar_pasajero(String dni) {
-        return new PasajeroRepository().eliminar(dni);
-    }
-
-    public Pasajero buscar_pasajero(String dni) {
-        return new PasajeroRepository().buscar(dni);
+    public boolean eliminar_pasajero(String dni, Statement st) {
+        return new PasajeroRepository(st).eliminar(dni);
     }
 
-    public List<Pasajero> ver_pasajeros() {
-        return new PasajeroRepository().listar();
+    public Pasajero buscar_pasajero(String dni, Statement st) {
+        return new PasajeroRepository(st).buscar(dni);
+    }
+
+    public List<Pasajero> ver_pasajeros(Statement st) {
+        return new PasajeroRepository(st).listar();
     }
 
     //--------------------- ACCIONES SOBRE RUTAS -----------------------
-    public boolean crear_ruta(String origen, String destino, Duration tiempo_aproximado, float precio){
+    public boolean crear_ruta(String origen, String destino, Duration tiempo_aproximado, float precio, Statement st){
         String id_ruta;
         Random random = new Random();
         do{
             int codigo = 10000 + random.nextInt(90000);
             id_ruta = String.valueOf(codigo);
-        } while(new RutaRepository().buscar(id_ruta)!=null);
+        } while(new RutaRepository(st).buscar(id_ruta)!=null);
 
         Ruta nueva_ruta = new Ruta(id_ruta, origen, destino, tiempo_aproximado, precio);
-        return new RutaRepository().crear(nueva_ruta);
+        return new RutaRepository(st).crear(nueva_ruta);
     }
 
-    public boolean editar_ruta(String id_ruta, String origen, String destino, Duration tiempo_aproximado, float precio){
-        Ruta ruta_editar = new RutaRepository().buscar(id_ruta);
+    public boolean editar_ruta(String id_ruta, String origen, String destino, Duration tiempo_aproximado, float precio, Statement st){
+        Ruta ruta_editar = new RutaRepository(st).buscar(id_ruta);
         if(ruta_editar == null){
             return false;
         }
@@ -129,28 +131,28 @@ public class Admin {
         if(precio != 0){
             ruta_editar.set_precio(precio);
         }
-        return new RutaRepository().actualizar(ruta_editar);
+        return new RutaRepository(st).actualizar(ruta_editar);
     }
 
-    public boolean eliminar_ruta(String id_ruta){
-        return new RutaRepository().eliminar(id_ruta);
+    public boolean eliminar_ruta(String id_ruta, Statement st){
+        return new RutaRepository(st).eliminar(id_ruta);
     }
 
-    public Ruta buscar_ruta(String id_ruta){
-        return new RutaRepository().buscar(id_ruta);
+    public Ruta buscar_ruta(String id_ruta, Statement st){
+        return new RutaRepository(st).buscar(id_ruta);
     }
 
-    public List<Ruta> ver_rutas(){
-        return new RutaRepository().listar();
+    public List<Ruta> ver_rutas(Statement st){
+        return new RutaRepository(st).listar();
     }
 
     //--------------------- ACCIONES SOBRE VIAJES -----------------------
-    public boolean crear_viaje(LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida){
-        Ruta ruta = new RutaRepository().buscar(id_ruta);
+    public boolean crear_viaje(LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida, Statement st){
+        Ruta ruta = new RutaRepository(st).buscar(id_ruta);
         if(ruta == null){
             return false;
         }
-        Conductor conductor = new ConductorRepository().buscar(dni_conductor);
+        Conductor conductor = new ConductorRepository(st).buscar(dni_conductor);
         if(conductor == null){
             return false;
         }
@@ -160,14 +162,14 @@ public class Admin {
         do{
             int codigo = 10000 + random.nextInt(90000);
             id_viaje = String.valueOf(codigo);
-        } while(new ViajeRepository().buscar(id_viaje)!=null);
+        } while(new ViajeRepository(st).buscar(id_viaje)!=null);
 
         Viaje nuevo_viaje = new Viaje(id_viaje, fecha_salida, ruta, conductor, hora_salida, true);
-        return new ViajeRepository().crear(nuevo_viaje);
+        return new ViajeRepository(st).crear(nuevo_viaje);
     }
 
-    public boolean editar_viaje(String id_viaje, LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida, boolean estado){
-        Viaje viaje_editar = new ViajeRepository().buscar(id_viaje);
+    public boolean editar_viaje(String id_viaje, LocalDate fecha_salida, String id_ruta, String dni_conductor, LocalTime hora_salida, boolean estado, Statement st){
+        Viaje viaje_editar = new ViajeRepository(st).buscar(id_viaje);
         if(viaje_editar == null){
             return false;
         }
@@ -176,37 +178,37 @@ public class Admin {
             viaje_editar.set_fecha_salida(fecha_salida);
         }
         if(!id_ruta.isEmpty()){
-            viaje_editar.set_ruta(new RutaRepository().buscar(id_ruta));
+            viaje_editar.set_ruta(new RutaRepository(st).buscar(id_ruta));
         }
         if(!dni_conductor.isEmpty()){
-            viaje_editar.set_conductor(new ConductorRepository().buscar(dni_conductor));
+            viaje_editar.set_conductor(new ConductorRepository(st).buscar(dni_conductor));
         }
         if(hora_salida != null){
             viaje_editar.set_hora_salida(hora_salida);
         }
         viaje_editar.set_estado(estado);
 
-        return new ViajeRepository().actualizar(viaje_editar);
+        return new ViajeRepository(st).actualizar(viaje_editar);
     }
     
-    public List<Viaje> ver_viajes_activos(){
-        return new ViajeRepository().listar_activos();
+    public List<Viaje> ver_viajes_activos(Statement st){
+        return new ViajeRepository(st).listar_activos();
     }
 
-    public boolean eliminar_viaje(String dni){
-        return new ViajeRepository().eliminar(dni);
+    public boolean eliminar_viaje(String dni, Statement st){
+        return new ViajeRepository(st).eliminar(dni);
     }
 
-    public Viaje buscar_viaje(String id_viaje){
-        return new ViajeRepository().buscar(id_viaje);
+    public Viaje buscar_viaje(String id_viaje, Statement st){
+        return new ViajeRepository(st).buscar(id_viaje);
     }
 
-    public List<Viaje> ver_viajes(){
-        return new ViajeRepository().listar();
+    public List<Viaje> ver_viajes(Statement st){
+        return new ViajeRepository(st).listar();
     }
 
-    public boolean editar_limite_dias_descanso(int limite_dias){
-        return new RegulacionLaboral().guardar_configuraciones(limite_dias);
+    public boolean editar_limite_dias_descanso(int limite_dias, Statement st){
+        return new RegulacionLaboral(st).guardar_configuraciones(limite_dias);
     }
 
 

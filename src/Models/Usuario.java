@@ -1,6 +1,8 @@
 package Models;
 
 import java.time.LocalDate;
+import java.sql.Statement;
+
 
 public abstract class Usuario {
     protected String nombre;
@@ -12,8 +14,8 @@ public abstract class Usuario {
     protected String provincia;
     protected String departamento;
 
-    public abstract boolean editar_perfil(String nombre, String distrito, String provincia, String departamento);
-    public abstract boolean actualizar_contrasena(String nueva_contrasena);
+    public abstract boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, Statement st);
+    public abstract boolean actualizar_contrasena(String nueva_contrasena, Statement st);
 
 
     public String get_nombre() {

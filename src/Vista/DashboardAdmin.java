@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JPanel;
+import java.sql.Statement;
+
 
 /**
  *
@@ -29,9 +31,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
      */
     
     private Admin admin;
+    private Statement st;
     
-    public DashboardAdmin(Admin admin) {
+    public DashboardAdmin(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         setDate();
         initContent();
@@ -47,7 +51,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new AdminPerfilPanel(admin));
+        ShowJPanel(new AdminPerfilPanel(admin, st));
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -282,23 +286,23 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pasajeros_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasajeros_buttonActionPerformed
-        ShowJPanel(new AdminPasajerosPanel(admin));
+        ShowJPanel(new AdminPasajerosPanel(admin, st));
     }//GEN-LAST:event_pasajeros_buttonActionPerformed
 
     private void viajes_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viajes_buttonActionPerformed
-        ShowJPanel(new AdminViajesPanel(admin));
+        ShowJPanel(new AdminViajesPanel(admin, st));
     }//GEN-LAST:event_viajes_buttonActionPerformed
 
     private void conductores_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conductores_buttonActionPerformed
-        ShowJPanel(new AdminConductoresPanel(admin));
+        ShowJPanel(new AdminConductoresPanel(admin, st));
     }//GEN-LAST:event_conductores_buttonActionPerformed
 
     private void rutas_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rutas_buttonActionPerformed
-        ShowJPanel(new AdminRutasPanel(admin));
+        ShowJPanel(new AdminRutasPanel(admin, st));
     }//GEN-LAST:event_rutas_buttonActionPerformed
 
     private void perfil_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil_buttonActionPerformed
-        ShowJPanel(new AdminPerfilPanel(admin));
+        ShowJPanel(new AdminPerfilPanel(admin, st));
     }//GEN-LAST:event_perfil_buttonActionPerformed
 
     /**

@@ -52,7 +52,14 @@ public class PasajeroRepository implements CRUD<Pasajero>{
         return pasajerodto;
     }
     
-    private Conexion cx = new Conexion();
+    private Statement st;
+    public PasajeroRepository(Statement st){
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public boolean crear(Pasajero nuevo_pasajero){
@@ -77,15 +84,12 @@ public class PasajeroRepository implements CRUD<Pasajero>{
              + "    OR correo = '" + pasajeroDto.correo + "'"
              + ")";
 
-            Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             
-            cx.desconectar();
             return filas_afectadas > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -96,13 +100,11 @@ public class PasajeroRepository implements CRUD<Pasajero>{
         
         try {
             String query = "SELECT * FROM pasajeros WHERE dni='"+ dni +"'";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
-                cx.desconectar();
                 return null;
             }
             
@@ -115,13 +117,11 @@ public class PasajeroRepository implements CRUD<Pasajero>{
             pasajeroDto.distrito = rs.getString("distrito");
             pasajeroDto.provincia = rs.getString("provincia");
             pasajeroDto.departamento = rs.getString("departamento");
-            cx.desconectar();
             
             return convertirDto_Pasajero(pasajeroDto);
             
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -136,7 +136,6 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                               + "WHERE correo = '" + pasajeroDto.correo + "' "
                               + "AND dni != '" + pasajeroDto.dni + "'";
 
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(checkQuery);
 
             if (rs.next() && rs.getInt(1) == 0) { // Si no existe otro pasajero con el mismo correo
@@ -152,16 +151,13 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                                    + "WHERE dni = '" + pasajeroDto.dni + "'";
 
                 int rows_update = st.executeUpdate(updateQuery);
-                cx.desconectar();
                 return rows_update > 0;
             } else {
-                cx.desconectar();
                 return false; // Si el correo ya está en uso, no realizar el UPDATE
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -170,16 +166,13 @@ public class PasajeroRepository implements CRUD<Pasajero>{
     public boolean eliminar(String dni){
         try {
             String query = "DELETE FROM pasajeros WHERE dni = '"+ dni +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_deleted = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_deleted > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -188,11 +181,9 @@ public class PasajeroRepository implements CRUD<Pasajero>{
     public List<Pasajero> listar(){
         try {
             String query = "SELECT * FROM pasajeros";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -214,11 +205,9 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                 
             } while(rs.next());
             
-            cx.desconectar();
             return pasajeros;
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }

@@ -13,6 +13,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import kotlin.random.Random;
+import java.sql.Statement;
+
 
 /**
  *
@@ -24,8 +26,10 @@ public class AdminRutasPanel extends javax.swing.JPanel {
      * Creates new form ConductoresAdmin
      */
     Admin admin;
-    public AdminRutasPanel(Admin admin) {
+    private Statement st;
+    public AdminRutasPanel(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         correcciones_iniciales();
     }
@@ -44,7 +48,7 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         DefaultTableModel modelo = (DefaultTableModel)tabla_rutas.getModel();
         modelo.setRowCount(0);
         
-        List<Ruta> rutas = admin.ver_rutas();
+        List<Ruta> rutas = admin.ver_rutas(st);
         for(Ruta ruta:rutas){
             modelo.addRow(new Object[]{ruta.get_id_ruta(), ruta.get_origen(), ruta.get_destino()});
         }
@@ -57,7 +61,7 @@ public class AdminRutasPanel extends javax.swing.JPanel {
         modelo.setRowCount(0);
         
         String id_ruta = id_buscar_input.getText();
-        Ruta ruta = admin.buscar_ruta(id_ruta);
+        Ruta ruta = admin.buscar_ruta(id_ruta, st);
         
         if(ruta==null){
             modelo.addRow(new Object[]{"ERROR", "ID NO EXISTE"});
@@ -78,7 +82,7 @@ public class AdminRutasPanel extends javax.swing.JPanel {
     
     private void eliminar_ruta(){
         String id_ruta = id_eliminar_input.getText();
-        boolean exito = admin.eliminar_ruta(id_ruta);
+        boolean exito = admin.eliminar_ruta(id_ruta, st);
         if(!exito){
             System.out.println("se deberia borrar");
             resultado_eliminar.setText("No se pudo borrar");
@@ -341,14 +345,14 @@ public class AdminRutasPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminar_ruta_buttonActionPerformed
 
     private void agregar_ruta_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_ruta_buttonActionPerformed
-        AdminRutasCrear crear_ruta = new AdminRutasCrear(admin);
+        AdminRutasCrear crear_ruta = new AdminRutasCrear(admin, st);
         crear_ruta.setVisible(true);
     }//GEN-LAST:event_agregar_ruta_buttonActionPerformed
 
     private void editar_ruta_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_ruta_buttonActionPerformed
         String id_ruta = id_buscar_input.getText();
         
-        Ruta ruta = admin.buscar_ruta(id_ruta);
+        Ruta ruta = admin.buscar_ruta(id_ruta, st);
         if(ruta == null){
             DefaultTableModel modelo = (DefaultTableModel)tabla_datos_ruta.getModel();
             modelo.setRowCount(0);
@@ -356,7 +360,7 @@ public class AdminRutasPanel extends javax.swing.JPanel {
             tabla_datos_ruta.setModel(modelo);
         }
         
-        AdminRutasEditar editar_ruta = new AdminRutasEditar(admin, id_ruta);
+        AdminRutasEditar editar_ruta = new AdminRutasEditar(admin, id_ruta, st);
         editar_ruta.setVisible(true);
     }//GEN-LAST:event_editar_ruta_buttonActionPerformed
 

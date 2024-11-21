@@ -56,7 +56,15 @@ public class RutaRepository implements CRUD<Ruta>{
         return dto;
     }
     
-    private Conexion cx = new Conexion();
+    private Statement st;
+    
+    public RutaRepository(Statement st){
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public boolean crear(Ruta nueva_ruta){
@@ -77,15 +85,12 @@ public class RutaRepository implements CRUD<Ruta>{
              + "           AND destino = '" + rutaDto.destino + "' "
              + "           OR id_ruta = '" + rutaDto.id_ruta + "'))";
             
-            Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             
-            cx.desconectar();
             return filas_afectadas > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -97,13 +102,11 @@ public class RutaRepository implements CRUD<Ruta>{
         
         try {
             String query = "SELECT * FROM rutas WHERE id_ruta='"+ id_ruta +"'";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
-                cx.desconectar();
                 return null;
             }
             
@@ -114,13 +117,11 @@ public class RutaRepository implements CRUD<Ruta>{
             rutaDto.tiempo_aproximado = rs.getString("tiempo_aproximado");
             rutaDto.precio = rs.getFloat("precio");
 
-            cx.desconectar();
             
             return convertirDto_Ruta(rutaDto);
             
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -138,7 +139,6 @@ public class RutaRepository implements CRUD<Ruta>{
                               + "AND destino = '" + rutaDto.destino + "' "
                               + "AND id_ruta != '" + rutaDto.id_ruta + "'";
 
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(checkQuery);
 
             if (rs.next() && rs.getInt(1) == 0) { // Si no existe ninguna ruta duplicada
@@ -151,17 +151,14 @@ public class RutaRepository implements CRUD<Ruta>{
                                    + "WHERE id_ruta = '" + rutaDto.id_ruta + "'";
 
                 int rows_update = st.executeUpdate(updateQuery);
-                cx.desconectar();
 
                 return rows_update > 0;
             } else {
-                cx.desconectar();
                 return false; // Si existe una ruta duplicada, no hacer la actualización
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -171,16 +168,13 @@ public class RutaRepository implements CRUD<Ruta>{
         
         try {
             String query = "DELETE FROM rutas WHERE id_ruta = '"+ id_ruta +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_deleted = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_deleted > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -189,11 +183,9 @@ public class RutaRepository implements CRUD<Ruta>{
     public List<Ruta> listar(){
         try {
             String query = "SELECT * FROM rutas";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -212,11 +204,9 @@ public class RutaRepository implements CRUD<Ruta>{
             } while (rs.next());
 
             
-            cx.desconectar();
             return rutas;
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }

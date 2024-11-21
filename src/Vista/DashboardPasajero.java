@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JPanel;
+import java.sql.Statement;
+
 
 /**
  *
@@ -23,7 +25,10 @@ public class DashboardPasajero extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     private Pasajero pasajero;
-    public DashboardPasajero(Pasajero pasajero) {
+    private Statement st;
+
+    public DashboardPasajero(Pasajero pasajero, Statement st) {
+        this.st = st;
         this.pasajero = pasajero;          
         initComponents();
         setDate();
@@ -266,11 +271,11 @@ public class DashboardPasajero extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonInicioActionPerformed
 
     private void buttonComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonComprarActionPerformed
-        ShowJPanel(new PasajeroCompraViaje(pasajero));
+        ShowJPanel(new PasajeroCompraViaje(pasajero, st));
     }//GEN-LAST:event_buttonComprarActionPerformed
 
     private void buttonPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPerfilActionPerformed
-    ShowJPanel(new PasajeroPerfil(pasajero));
+    ShowJPanel(new PasajeroPerfil(pasajero, st));
     }//GEN-LAST:event_buttonPerfilActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed
@@ -278,7 +283,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonNosotrosActionPerformed
 
     private void buttonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHistorialActionPerformed
-        ShowJPanel(new PasajeroHistorial(pasajero));
+        ShowJPanel(new PasajeroHistorial(pasajero, st));
     }//GEN-LAST:event_buttonHistorialActionPerformed
 
     /**

@@ -11,6 +11,8 @@ import Models.Pasajero;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -22,9 +24,11 @@ public class AdminPasajeroCrear extends javax.swing.JFrame {
      * Creates new form LoginPasajero
      */
     Admin admin;
-   
-    public AdminPasajeroCrear(Admin admin) {
+    private Statement st;
+    
+    public AdminPasajeroCrear(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -239,7 +243,7 @@ public class AdminPasajeroCrear extends javax.swing.JFrame {
         String provincia = provincia_input.getText();
         String departamento = departamento_input.getText();
         
-        boolean registro = admin.crear_pasajero(nombre, correo, dni, fecha, contra, distrito, provincia, departamento);
+        boolean registro = admin.crear_pasajero(nombre, correo, dni, fecha, contra, distrito, provincia, departamento, st);
         
         if(!registro){
             LabelError.setText("No se pudo registrar");

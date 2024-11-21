@@ -8,6 +8,8 @@ import Models.Conductor;
 import Models.Pasajero;
 import Repository.ConductorRepository;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -18,7 +20,10 @@ public class LoginConductor extends javax.swing.JFrame {
     /**
      * Creates new form LoginPasajero
      */
-    public LoginConductor() {
+    private Statement st;
+
+    public LoginConductor(Statement st) {
+        this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -128,7 +133,7 @@ public class LoginConductor extends javax.swing.JFrame {
         String dni = dni_input.getText();
         String contra = new String(contra_input.getPassword());
         
-        boolean login = Conductor.login(dni, contra);
+        boolean login = Conductor.login(dni, contra, st);
         
         if(!login){
             // Si el inicio de sesión falla, mostrar un mensaje de error
@@ -138,7 +143,7 @@ public class LoginConductor extends javax.swing.JFrame {
         System.out.println("SE LOGUEO");
         LoginConductor ventana_actual = this;
         
-        DashboardConductor dashConductor = new DashboardConductor(new ConductorRepository().buscar(dni));
+        DashboardConductor dashConductor = new DashboardConductor(new ConductorRepository(st).buscar(dni), st);
         dashConductor.setVisible(true);
         ventana_actual.setVisible(false);
         
@@ -182,7 +187,7 @@ public class LoginConductor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginConductor().setVisible(true);
+                //new LoginConductor().setVisible(true);
             }
         });
     }

@@ -26,6 +26,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.Timer;
+import java.sql.Statement;
+
 
 /**
  *
@@ -34,7 +36,10 @@ import javax.swing.Timer;
 public class ViajeAsignado extends javax.swing.JPanel {
 
     private Conductor conductor;
-    public ViajeAsignado(Conductor conductor) {
+    private Statement st;
+
+    public ViajeAsignado(Conductor conductor, Statement st) {
+        this.st = st;
         this.conductor = conductor;
         initComponents();
         correcciones_iniciales();
@@ -45,7 +50,7 @@ public class ViajeAsignado extends javax.swing.JPanel {
         tabla_viajes.setBackground(new Color(230, 230, 230));
     }
  private void asignarViajeAlConductor() {
-    ViajeRepository viajeRepo = new ViajeRepository();
+    ViajeRepository viajeRepo = new ViajeRepository(st);
     List<Viaje> viajesDisponibles = viajeRepo.listar();
     
     // Crear una lista de viajes que no tienen conductor asignado
@@ -65,7 +70,7 @@ public class ViajeAsignado extends javax.swing.JPanel {
     }
     
     // Verificar si el conductor ya tiene un viaje activo
-    if (conductor.tieneViajeActivo()) {
+    if (conductor.tieneViajeActivo(st)) {
         JOptionPane.showMessageDialog(this, 
             "El conductor ya tiene un viaje activo.", 
             "Viaje activo", 
@@ -129,7 +134,7 @@ private void listar_viaje_asignado() {
     DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
     modelo.setRowCount(0);
     
-    List<Viaje> viajes = conductor.ver_viaje_asignado();
+    List<Viaje> viajes = conductor.ver_viaje_asignado(st);
     
     for (Viaje viaje : viajes) {
         modelo.addRow(new Object[]{
@@ -146,11 +151,11 @@ private void listar_viaje_asignado() {
     tabla_viajes.setModel(modelo);
 }
     private void finalizar_viaje_actual(){
-        List<Viaje> viajes_activos = new ViajeRepository().listar_activos();
+        List<Viaje> viajes_activos = new ViajeRepository(st).listar_activos();
         for(Viaje viaje_activo:viajes_activos){
             if(viaje_activo.get_conductor().get_dni().equals(conductor.get_dni())){
                 viaje_activo.set_estado(false);
-                new ViajeRepository().actualizar(viaje_activo);
+                new ViajeRepository(st).actualizar(viaje_activo);
                 JOptionPane.showMessageDialog(null, "Viaje Finalizado", "Viaje Finalizado", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }

@@ -4,6 +4,8 @@ import Models.Conductor;
 import Repository.ConductorRepository;
 import Repository.RegulacionLaboral;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,7 +23,10 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
      */
     
     private Conductor conductor;
-    public PerfilConductorEditar(Conductor conductor) {
+    private Statement st;
+
+    public PerfilConductorEditar(Conductor conductor, Statement st) {
+        this.st = st;
         this.conductor = conductor;
         initComponents();
         nuevo_contra_label.setVisible(false);
@@ -416,7 +421,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             return;
         }
         
-        boolean exito = conductor.actualizar_contrasena(contra);
+        boolean exito = conductor.actualizar_contrasena(contra, st);
         if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -452,7 +457,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = conductor.actualizar_nombre(nombre);
+        boolean exito = conductor.actualizar_nombre(nombre, st);
         if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar el nombre", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -468,7 +473,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = conductor.actualizar_distrito(distrito);
+        boolean exito = conductor.actualizar_distrito(distrito, st);
         if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar el distrito", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -484,7 +489,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = conductor.actualizar_provincia(provincia);
+        boolean exito = conductor.actualizar_provincia(provincia, st);
         if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar la provincia", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -500,7 +505,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             return;
         }
      
-        boolean exito = conductor.actualizar_departamento(departamento);
+        boolean exito = conductor.actualizar_departamento(departamento, st);
         if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar el departamento", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -526,7 +531,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         int cantidadDias = diasDescanso.length;
 
         // Obtener la instancia de RegulacionLaboral y validar el límite de días de descanso
-        RegulacionLaboral regulacion = new RegulacionLaboral();
+        RegulacionLaboral regulacion = new RegulacionLaboral(st);
         int limiteDias = regulacion.get_limite_dias_descanso();
 
         // Validar que la cantidad de días de descanso no supere el límite establecido
@@ -537,7 +542,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
 
         // Obtener el DNI del conductor actual (esto depende de tu lógica de aplicación)
         String dniConductor = conductor.get_dni(); // Asumiendo que tienes acceso al objeto conductor
-        ConductorRepository conductorRepo = new ConductorRepository();
+        ConductorRepository conductorRepo = new ConductorRepository(st);
         Conductor conductor = conductorRepo.buscar(dniConductor); // Busca el conductor usando su DNI
         
         if (conductor != null) {

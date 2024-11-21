@@ -9,6 +9,8 @@ import Models.Viaje;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Statement;
+
 
 /**
  *
@@ -19,9 +21,13 @@ public class AdminViajesPanel extends javax.swing.JPanel {
     /**
      * Creates new form ConductoresAdmin
      */
+
     Admin admin;
-    public AdminViajesPanel(Admin admin) {
+    private Statement st;
+
+    public AdminViajesPanel(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         correcciones_iniciales();
     }
@@ -40,7 +46,7 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         DefaultTableModel modelo = (DefaultTableModel)tabla_viajes.getModel();
         modelo.setRowCount(0);
         
-        List<Viaje> viajes = admin.ver_viajes();
+        List<Viaje> viajes = admin.ver_viajes(st);
         for(Viaje viaje:viajes){
             modelo.addRow(new Object[]{viaje.get_id_viaje(), viaje.get_ruta().get_origen(), viaje.get_ruta().get_destino()});
         }
@@ -53,7 +59,7 @@ public class AdminViajesPanel extends javax.swing.JPanel {
         modelo.setRowCount(0);
         
         String id_viaje = id_buscar_input.getText();
-        Viaje viaje = admin.buscar_viaje(id_viaje);
+        Viaje viaje = admin.buscar_viaje(id_viaje, st);
         
         if(viaje==null){
             modelo.addRow(new Object[]{"ERROR", "ID NO EXISTE"});
@@ -84,7 +90,7 @@ public class AdminViajesPanel extends javax.swing.JPanel {
     
     private void eliminar_viaje(){
         String id_viaje = id_eliminar_input.getText();
-        boolean exito = admin.eliminar_viaje(id_viaje);
+        boolean exito = admin.eliminar_viaje(id_viaje, st);
         if(!exito){
             System.out.println("se deberia borrar");
             resultado_eliminar.setText("No se pudo borrar");
@@ -344,14 +350,14 @@ public class AdminViajesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminar_viaje_buttonActionPerformed
 
     private void agregar_viaje_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_viaje_buttonActionPerformed
-        AdminViajesCrear crear_viaje = new AdminViajesCrear(admin);
+        AdminViajesCrear crear_viaje = new AdminViajesCrear(admin, st);
         crear_viaje.setVisible(true);
     }//GEN-LAST:event_agregar_viaje_buttonActionPerformed
 
     private void editar_viaje_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_viaje_buttonActionPerformed
         String id_viaje = id_buscar_input.getText();
         
-        Viaje viaje = admin.buscar_viaje(id_viaje);
+        Viaje viaje = admin.buscar_viaje(id_viaje, st);
         if(viaje == null){
             DefaultTableModel modelo = (DefaultTableModel)tabla_datos_viaje.getModel();
             modelo.setRowCount(0);
@@ -359,7 +365,7 @@ public class AdminViajesPanel extends javax.swing.JPanel {
             tabla_datos_viaje.setModel(modelo);
         }
         
-        AdminViajesEditar editar_viaje = new AdminViajesEditar(admin, id_viaje);
+        AdminViajesEditar editar_viaje = new AdminViajesEditar(admin, id_viaje, st);
         editar_viaje.setVisible(true);
     }//GEN-LAST:event_editar_viaje_buttonActionPerformed
 

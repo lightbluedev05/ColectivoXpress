@@ -12,6 +12,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import kotlin.random.Random;
+import java.sql.Statement;
+
 
 /**
  *
@@ -23,7 +25,9 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
      * Creates new form ConductoresAdmin
      */
     Admin admin;
-    public AdminConductoresPanel(Admin admin) {
+    private Statement st;
+    public AdminConductoresPanel(Admin admin, Statement st) {
+        this.st = st;
         this.admin = admin;
         initComponents();
         correcciones_iniciales();
@@ -43,7 +47,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
         DefaultTableModel modelo = (DefaultTableModel)tabla_conductores.getModel();
         modelo.setRowCount(0);
         
-        List<Conductor> conductores = admin.ver_conductores();
+        List<Conductor> conductores = admin.ver_conductores(st);
         for(Conductor conductor:conductores){
             modelo.addRow(new Object[]{conductor.get_dni(), conductor.get_correo(), conductor.get_departamento()});
         }
@@ -56,7 +60,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
         modelo.setRowCount(0);
         
         String dni = dni_buscar_input.getText();
-        Conductor conductor = admin.buscar_conductor(dni);
+        Conductor conductor = admin.buscar_conductor(dni, st);
         
         if(conductor==null){
             modelo.addRow(new Object[]{"ERROR", "DNI NO EXISTE"});
@@ -78,7 +82,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
     
     private void eliminar_conductor(){
         String dni = dni_eliminar_input.getText();
-        boolean exito = admin.eliminar_conductor(dni);
+        boolean exito = admin.eliminar_conductor(dni,  st);
         if(!exito){
             resultado_eliminar.setText("No se pudo borrar");
             return;
@@ -317,7 +321,7 @@ public class AdminConductoresPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        AdminConductorCrear crear_conductor = new AdminConductorCrear(admin);
+        AdminConductorCrear crear_conductor = new AdminConductorCrear(admin, st);
         crear_conductor.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 

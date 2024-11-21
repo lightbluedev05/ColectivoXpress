@@ -6,6 +6,8 @@ package Views2;
 
 import Models.Pasajero;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -18,7 +20,10 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
      */
     
     private Pasajero pasajero;
-    public PasajeroPerfilEditar(Pasajero pasajero) {
+    private Statement st;
+
+    public PasajeroPerfilEditar(Pasajero pasajero, Statement st) {
+        this.st = st;
         this.pasajero = pasajero;
         initComponents();
         nuevo_contra_label.setVisible(false);
@@ -333,7 +338,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         return;
     }
     
-    boolean exito = pasajero.actualizar_contrasena(contra);
+    boolean exito = pasajero.actualizar_contrasena(contra, st);
     if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -369,7 +374,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         return;
     }
 
-    boolean exito = pasajero.actualizar_nombre(nombre);
+    boolean exito = pasajero.actualizar_nombre(nombre, st);
     if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar el nombre", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -385,7 +390,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         return;
     }
 
-    boolean exito = pasajero.actualizar_distrito(distrito);
+    boolean exito = pasajero.actualizar_distrito(distrito, st);
     if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar el distrito", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -401,7 +406,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         return;
     }
 
-    boolean exito = pasajero.actualizar_provincia(provincia);
+    boolean exito = pasajero.actualizar_provincia(provincia, st);
     if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar la provincia", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -417,7 +422,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         return;
     }
 
-    boolean exito = pasajero.actualizar_departamento(departamento);
+    boolean exito = pasajero.actualizar_departamento(departamento, st);
     if(!exito){
         JOptionPane.showMessageDialog(this, "No se pudo cambiar el departamento", "Error", JOptionPane.ERROR_MESSAGE);
         return;

@@ -12,7 +12,6 @@ public class Ruta {
     private Duration tiempo_aproximado;
     private float precio;
 
-    public static RutaRepository rr = new RutaRepository();
 
     public Ruta(String id_ruta, String origen, String destino, Duration tiempo_aproximado, float precio) {
         this.id_ruta = id_ruta;

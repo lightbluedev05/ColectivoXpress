@@ -8,6 +8,8 @@ import Models.Pasajero;
 import Vista.DashboardPasajero;
 import javax.swing.SwingUtilities;
 import java.time.format.DateTimeFormatter;
+import java.sql.Statement;
+
 
 /**
  *
@@ -19,8 +21,11 @@ public class PasajeroPerfil extends javax.swing.JPanel {
      * Creates new form PerfilAdmin
      */
     private Pasajero pasajero;
-    public PasajeroPerfil(Pasajero pasajero) {
+    private Statement st;
+
+    public PasajeroPerfil(Pasajero pasajero, Statement st) {
         this.pasajero = pasajero;
+        this.st = st;
         initComponents();
         mostrarDatosPasajero();
     }
@@ -267,7 +272,7 @@ public class PasajeroPerfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editar_perfil_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_perfil_buttonActionPerformed
-        ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroPerfilEditar(pasajero));
+        ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroPerfilEditar(pasajero, st));
     }//GEN-LAST:event_editar_perfil_buttonActionPerformed
 
 

@@ -27,8 +27,8 @@ public class ViajeRepository implements CRUD<Viaje>{
     }
 
     private static Viaje convertirDto_Viaje(ViajeDTO dto) {
-        Ruta ruta = new RutaRepository().buscar(dto.id_ruta); 
-        Conductor conductor = new ConductorRepository().buscar(dto.dni_conductor); 
+        Ruta ruta = new RutaRepository(st).buscar(dto.id_ruta); 
+        Conductor conductor = new ConductorRepository(st).buscar(dto.dni_conductor); 
         return new Viaje(
             dto.id_viaje, 
             LocalDate.parse(dto.fecha_salida), 
@@ -50,7 +50,14 @@ public class ViajeRepository implements CRUD<Viaje>{
         return dto;
     }
     
-    private Conexion cx = new Conexion();
+    private static Statement st;
+    public ViajeRepository(Statement st){
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public boolean crear(Viaje nuevo_viaje) {
@@ -70,15 +77,12 @@ public class ViajeRepository implements CRUD<Viaje>{
              + "    SELECT 1 FROM viajes "
              + "    WHERE id_viaje = '" + viajeDto.id_viaje + "')";
             
-            Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             
-            cx.desconectar();
             return filas_afectadas > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -89,13 +93,11 @@ public class ViajeRepository implements CRUD<Viaje>{
         
         try {
             String query = "SELECT * FROM viajes WHERE id_viaje='"+ id_viaje +"'";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
-                cx.desconectar();
                 return null;
             }
             
@@ -107,13 +109,11 @@ public class ViajeRepository implements CRUD<Viaje>{
             viajeDto.dni_conductor = rs.getString("dni_conductor");
             viajeDto.estado = rs.getBoolean("estado");
 
-            cx.desconectar();
             
             return convertirDto_Viaje(viajeDto);
             
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -133,16 +133,13 @@ public class ViajeRepository implements CRUD<Viaje>{
              + "WHERE id_viaje = '" + viajeDto.id_viaje + "'";
 
 
-            Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_update > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -152,16 +149,13 @@ public class ViajeRepository implements CRUD<Viaje>{
         
         try {
             String query = "DELETE FROM viajes WHERE id_viaje = '"+ id_viaje +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_deleted = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_deleted > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
         
@@ -171,11 +165,9 @@ public class ViajeRepository implements CRUD<Viaje>{
     public List<Viaje> listar() {
         try {
             String query = "SELECT * FROM viajes";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -196,11 +188,9 @@ public class ViajeRepository implements CRUD<Viaje>{
 
 
             
-            cx.desconectar();
             return viajes;
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -208,11 +198,9 @@ public class ViajeRepository implements CRUD<Viaje>{
     public List<Viaje> listar_activos(){
         try {
             String query = "SELECT * FROM viajes WHERE estado = TRUE";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -233,11 +221,9 @@ public class ViajeRepository implements CRUD<Viaje>{
 
 
             
-            cx.desconectar();
             return viajes;
         } catch (SQLException ex) {
             Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }

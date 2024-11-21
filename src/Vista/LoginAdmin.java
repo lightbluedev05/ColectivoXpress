@@ -9,6 +9,8 @@ import Models.Conductor;
 import Models.Pasajero;
 import Repository.AdminRepository;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -19,7 +21,10 @@ public class LoginAdmin extends javax.swing.JFrame {
     /**
      * Creates new form LoginPasajero
      */
-    public LoginAdmin() {
+    private Statement st;
+    
+    public LoginAdmin(Statement st) {
+        this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -128,7 +133,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         String dni = dni_input.getText();
         String contra = new String(contra_input.getPassword());
         
-        boolean login = Admin.login_admin(dni, contra);
+        boolean login = Admin.login_admin(dni, contra, st);
         
         if(!login){
             JOptionPane.showMessageDialog(null, "No se pudo ingresar", "No se pudo ingresar", JOptionPane.INFORMATION_MESSAGE);
@@ -137,7 +142,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         
         LoginAdmin ventana_actual = this;
         
-        DashboardAdmin dashAdmin = new DashboardAdmin(new AdminRepository().buscar(dni));
+        DashboardAdmin dashAdmin = new DashboardAdmin(new AdminRepository(st).buscar(dni), st);
         dashAdmin.setVisible(true);
         ventana_actual.setVisible(false);
         
@@ -183,7 +188,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginAdmin().setVisible(true);
+                //new LoginAdmin().setVisible(true);
             }
         });
     }

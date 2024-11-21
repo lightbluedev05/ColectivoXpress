@@ -4,7 +4,14 @@
  */
 package Vista;
 
+import Repository.Conexion;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -15,7 +22,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public MenuPrincipal() {
+     private Statement st;
+    
+    public MenuPrincipal(Statement st) {
+        this.st = st;
         initComponents();
     }
 
@@ -123,7 +133,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         final JFrame ventana = this;
-        LoginPasajero login = new LoginPasajero();
+        LoginPasajero login = new LoginPasajero(st);
         login.setVisible(true);
         ventana.setVisible(false);
         
@@ -139,7 +149,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         final JFrame ventana = this;
-        LoginConductor login = new LoginConductor();
+        LoginConductor login = new LoginConductor(st);
         login.setVisible(true);
         ventana.setVisible(false);
         
@@ -155,7 +165,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         final JFrame ventana = this;
-        LoginAdmin login = new LoginAdmin();
+        LoginAdmin login = new LoginAdmin(st);
         login.setVisible(true);
         ventana.setVisible(false);
         
@@ -200,7 +210,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                try {
+                    Conexion cx = new Conexion();
+                    Statement st = cx.conectar().createStatement();
+                    
+                    new MenuPrincipal(st).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

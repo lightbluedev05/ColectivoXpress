@@ -8,6 +8,8 @@ import Models.Pasajero;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -18,7 +20,10 @@ public class RegistroPasajero extends javax.swing.JFrame {
     /**
      * Creates new form LoginPasajero
      */
-    public RegistroPasajero() {
+    private Statement st;
+
+    public RegistroPasajero(Statement st) {
+        this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -243,7 +248,7 @@ public class RegistroPasajero extends javax.swing.JFrame {
         
         Pasajero pasajero = new Pasajero(nombre, correo, dni, fecha, contra, distrito, provincia, departamento);
         
-        boolean registro = Pasajero.registro_pasajero(pasajero);
+        boolean registro = Pasajero.registro_pasajero(pasajero, st);
         
         if(!registro){
             JOptionPane.showMessageDialog(this, "No se pudo registrar.", "Error de registro", JOptionPane.ERROR_MESSAGE);
@@ -287,7 +292,7 @@ public class RegistroPasajero extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroPasajero().setVisible(true);
+                //new RegistroPasajero().setVisible(true);
             }
         });
     }

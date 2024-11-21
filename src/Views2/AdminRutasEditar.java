@@ -12,6 +12,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -24,10 +26,13 @@ public class AdminRutasEditar extends javax.swing.JFrame {
      */
     Admin admin;
     String id_ruta;
-   
-    public AdminRutasEditar(Admin admin, String id_ruta) {
+    private Statement st;
+    
+    
+    public AdminRutasEditar(Admin admin, String id_ruta, Statement st) {
         this.admin = admin;
         this.id_ruta = id_ruta;
+        this.st = st;
         initComponents();
         resultado_text.setText("");
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -212,7 +217,7 @@ public class AdminRutasEditar extends javax.swing.JFrame {
             return;
         }
         
-        boolean editar = admin.editar_ruta(id_ruta, origen, destino, tiempo_duration, precio);
+        boolean editar = admin.editar_ruta(id_ruta, origen, destino, tiempo_duration, precio, st);
         
         if(!editar){
             resultado_text.setText("No se pudo editar");

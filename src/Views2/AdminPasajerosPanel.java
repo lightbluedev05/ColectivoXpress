@@ -13,6 +13,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import kotlin.random.Random;
+import java.sql.Statement;
+
 
 /**
  *
@@ -24,7 +26,10 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
      * Creates new form ConductoresAdmin
      */
     Admin admin;
-    public AdminPasajerosPanel(Admin admin) {
+    private Statement st;
+    
+    public AdminPasajerosPanel(Admin admin, Statement st) {
+        this.st = st;
         this.admin = admin;
         initComponents();
         correcciones_iniciales();
@@ -44,7 +49,7 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         DefaultTableModel modelo = (DefaultTableModel)tabla_pasajeros.getModel();
         modelo.setRowCount(0);
         
-        List<Pasajero> pasajeros = admin.ver_pasajeros();
+        List<Pasajero> pasajeros = admin.ver_pasajeros(st);
         if(pasajeros == null){
             return;
         }
@@ -60,7 +65,7 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
         modelo.setRowCount(0);
         
         String dni = dni_buscar_input.getText();
-        Pasajero pasajero = admin.buscar_pasajero(dni);
+        Pasajero pasajero = admin.buscar_pasajero(dni, st);
         
         if(pasajero==null){
             modelo.addRow(new Object[]{"ERROR", "DNI NO EXISTE"});
@@ -80,7 +85,7 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
     
     private void eliminar_conductor(){
         String dni = dni_eliminar_input.getText();
-        boolean exito = admin.eliminar_pasajero(dni);
+        boolean exito = admin.eliminar_pasajero(dni, st);
         if(!exito){
             resultado_eliminar.setText("No se pudo borrar");
             return;
@@ -319,7 +324,7 @@ public class AdminPasajerosPanel extends javax.swing.JPanel {
 
     private void agregar_pasajero_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_pasajero_buttonActionPerformed
 
-        AdminPasajeroCrear crear_pasajero = new AdminPasajeroCrear(admin);
+        AdminPasajeroCrear crear_pasajero = new AdminPasajeroCrear(admin, st);
         crear_pasajero.setVisible(true);
     }//GEN-LAST:event_agregar_pasajero_buttonActionPerformed
 

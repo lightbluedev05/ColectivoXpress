@@ -33,8 +33,8 @@ public class BoletoRepository implements CRUD<Boleto>{
     }
 
     private static Boleto convertirDto_Boleto(BoletoDTO boletoDTO) {
-        Pasajero pasajero = new PasajeroRepository().buscar(boletoDTO.dni_pasajero);
-        Viaje viaje = new ViajeRepository().buscar(boletoDTO.id_viaje);
+        Pasajero pasajero = new PasajeroRepository(st).buscar(boletoDTO.dni_pasajero);
+        Viaje viaje = new ViajeRepository(st).buscar(boletoDTO.id_viaje);
         return new Boleto(boletoDTO.id_boleto, pasajero, viaje, boletoDTO.precio);
     }
 
@@ -47,7 +47,15 @@ public class BoletoRepository implements CRUD<Boleto>{
         return boletoDto;
     }
     
-    private Conexion cx = new Conexion();
+    private static Statement st;
+    
+    public BoletoRepository(Statement st){
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public boolean crear(Boleto nuevo_boleto) {
@@ -64,15 +72,12 @@ public class BoletoRepository implements CRUD<Boleto>{
              + "    SELECT 1 FROM boletos WHERE id_boleto = '" + boletoDto.id_boleto + "'"
              + ")";
 
-            Statement st = cx.conectar().createStatement();
             int filas_afectadas = st.executeUpdate(query);
             
-            cx.desconectar();
             return filas_afectadas > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -83,11 +88,9 @@ public class BoletoRepository implements CRUD<Boleto>{
         
         try {
             String query = "SELECT * FROM boletos WHERE id_boleto='"+ id_boleto +"'";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;
             }
             
@@ -96,13 +99,11 @@ public class BoletoRepository implements CRUD<Boleto>{
             boletoDto.dni_pasajero = rs.getString("dni_pasajero");
             boletoDto.id_viaje = rs.getString("id_viaje");
             boletoDto.precio = rs.getFloat("precio");
-            cx.desconectar();
             
             return convertirDto_Boleto(boletoDto);
             
         } catch (SQLException ex) {
             Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -119,16 +120,13 @@ public class BoletoRepository implements CRUD<Boleto>{
              + "precio = " + boletoDto.precio + " "
              + "WHERE id_boleto = '" + boletoDto.id_boleto + "'";
 
-            Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_update > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -137,16 +135,13 @@ public class BoletoRepository implements CRUD<Boleto>{
     public boolean eliminar(String id_boleto) {
         try {
             String query = "DELETE FROM boletos WHERE id_boleto = '"+ id_boleto +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_deleted = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_deleted > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -155,11 +150,9 @@ public class BoletoRepository implements CRUD<Boleto>{
     public List<Boleto> listar() {
         try {
             String query = "SELECT * FROM boletos";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -177,11 +170,9 @@ public class BoletoRepository implements CRUD<Boleto>{
                 
             } while(rs.next());
             
-            cx.desconectar();
             return boletos;
         } catch (SQLException ex) {
             Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }

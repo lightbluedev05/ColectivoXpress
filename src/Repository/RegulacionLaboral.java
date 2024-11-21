@@ -31,10 +31,16 @@ public class RegulacionLaboral {
         this.limite_dias_descanso = limite_dias_descanso;
     }
     
-    private Conexion cx = new Conexion();
+    private Statement st;
     
-    public RegulacionLaboral(){
+    
+    public RegulacionLaboral(Statement st){
         this.obtener_configuraciones();
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean obtener_configuraciones(){  
@@ -42,13 +48,11 @@ public class RegulacionLaboral {
         
         try {
             String query = "SELECT * FROM regulacion";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
-                cx.desconectar();
                 return false;
             }
             
@@ -56,7 +60,6 @@ public class RegulacionLaboral {
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -70,16 +73,13 @@ public class RegulacionLaboral {
                 + "WHERE limite_dias_descanso = 'limite_dias_descanso' "
                 + ")";
 
-            Statement st = cx.conectar().createStatement();
             int rows_update = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_update > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }

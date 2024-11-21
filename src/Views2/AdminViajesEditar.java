@@ -15,6 +15,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -27,10 +29,12 @@ public class AdminViajesEditar extends javax.swing.JFrame {
      */
     Admin admin;
     String id_viaje;
-   
-    public AdminViajesEditar(Admin admin, String id_viaje) {
+    private Statement st;
+    
+    public AdminViajesEditar(Admin admin, String id_viaje, Statement st) {
         this.id_viaje = id_viaje;
         this.admin = admin;
+        this.st = st;
         initComponents();
         resultado_text.setText("");
         combo_box();
@@ -203,7 +207,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void combo_box(){
-        List<Conductor> conductores = admin.ver_conductores();
+        List<Conductor> conductores = admin.ver_conductores(st);
         
         conductor_combobox.removeAllItems();
         
@@ -215,7 +219,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
         conductor_combobox.addItem("-----");
         conductor_combobox.setSelectedItem("-----");
         
-        List<Ruta> rutas = admin.ver_rutas();
+        List<Ruta> rutas = admin.ver_rutas(st);
         
         ruta_combobox.removeAllItems();
         
@@ -277,7 +281,7 @@ public class AdminViajesEditar extends javax.swing.JFrame {
             estado = false;
         }
         
-        boolean exito = admin.editar_viaje(id_viaje, fecha, id_ruta, id_conductor, hora_salida, estado);
+        boolean exito = admin.editar_viaje(id_viaje, fecha, id_ruta, id_conductor, hora_salida, estado, st);
         
         if(!exito){
             resultado_text.setText("No se pudo editar el viaje");

@@ -10,6 +10,8 @@ import Vista.DashboardPasajero;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.time.format.DateTimeFormatter;
+import java.sql.Statement;
+
 
 /**
  *
@@ -22,8 +24,11 @@ public class ConductorPerfil extends javax.swing.JPanel {
      */
     
     private Conductor conductor;
-    public ConductorPerfil(Conductor conductor) {
+    private Statement st;
+
+    public ConductorPerfil(Conductor conductor, Statement st) {
         this.conductor = conductor;
+        this.st = st;
         initComponents();
         mostrarDatosConductor();
     }
@@ -293,7 +298,7 @@ public class ConductorPerfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editar_perfil_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_perfil_buttonActionPerformed
-        ((DashboardConductor) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PerfilConductorEditar(conductor));
+        ((DashboardConductor) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PerfilConductorEditar(conductor, st));
     }//GEN-LAST:event_editar_perfil_buttonActionPerformed
 
 

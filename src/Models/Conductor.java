@@ -9,12 +9,13 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Statement;
+
 
 public class Conductor extends Usuario{
     private String dias_descanso;
     private int capacidad_vehiculo;
 
-    public static ConductorRepository cr = new ConductorRepository();
 
     public Conductor(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
                      String distrito, String provincia, String departamento, int capacidad_vehiculo){
@@ -29,8 +30,8 @@ public class Conductor extends Usuario{
         this.dias_descanso = "";
         this.capacidad_vehiculo = capacidad_vehiculo;
     }
-    public List<Viaje> ver_viaje_asignado() {
-        List<Viaje> todos_viajes = new ViajeRepository().listar();
+    public List<Viaje> ver_viaje_asignado(Statement st) {
+        List<Viaje> todos_viajes = new ViajeRepository(st).listar();
         List<Viaje> viajes_asignados = new ArrayList<>();
         
         for (Viaje viaje : todos_viajes) {
@@ -43,22 +44,22 @@ public class Conductor extends Usuario{
     }
 
     @Override
-    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento) {
+    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, Statement st) {
         this.nombre = nombre;
         this.distrito = distrito;
         this.provincia = provincia;
         this.departamento = departamento;
-        return new ConductorRepository().actualizar(this);
+        return new ConductorRepository(st).actualizar(this);
     }
 
     @Override
-    public boolean actualizar_contrasena(String nueva_contrasena) {
+    public boolean actualizar_contrasena(String nueva_contrasena, Statement st) {
         this.contrasena = nueva_contrasena;
-        return new ConductorRepository().actualizar(this);
+        return new ConductorRepository(st).actualizar(this);
     }
 
-    public static boolean login(String dni, String contrasena) {
-        Conductor conductor = new ConductorRepository().buscar(dni);
+    public static boolean login(String dni, String contrasena, Statement st) {
+        Conductor conductor = new ConductorRepository(st).buscar(dni);
         if(conductor == null){
             return false;
         }
@@ -66,10 +67,10 @@ public class Conductor extends Usuario{
         return contrasena.equals(conductor.get_contrasena());
     }
 
-    public boolean verificar_dias_descanso(){
+    public boolean verificar_dias_descanso(Statement st){
         String[] dias = this.dias_descanso.split(",");
         
-        return dias.length <= new RegulacionLaboral().get_limite_dias_descanso();
+        return dias.length <= new RegulacionLaboral(st).get_limite_dias_descanso();
     }
 
     public int calcular_edad(){
@@ -77,22 +78,22 @@ public class Conductor extends Usuario{
         return Period.between(this.fecha_nacimiento, hoy).getYears();
     }
     
-    public boolean actualizar_departamento(String nueva_departamento) {
+    public boolean actualizar_departamento(String nueva_departamento, Statement st) {
         this.departamento = nueva_departamento;
-        return new ConductorRepository().actualizar(this);
+        return new ConductorRepository(st).actualizar(this);
     }
-    public boolean actualizar_distrito(String nueva_distrito) {
+    public boolean actualizar_distrito(String nueva_distrito, Statement st) {
         this.distrito = nueva_distrito;
-        return new ConductorRepository().actualizar(this);
+        return new ConductorRepository(st).actualizar(this);
     }
     
-    public boolean actualizar_provincia(String nueva_provincia) {
+    public boolean actualizar_provincia(String nueva_provincia, Statement st) {
         this.provincia = nueva_provincia;
-        return new ConductorRepository().actualizar(this);
+        return new ConductorRepository(st).actualizar(this);
     }
-    public boolean actualizar_nombre(String nueva_nombre) {
+    public boolean actualizar_nombre(String nueva_nombre, Statement st) {
         this.nombre = nueva_nombre;
-        return new ConductorRepository().actualizar(this);
+        return new ConductorRepository(st).actualizar(this);
     }
     public String get_dias_descanso(){
         return dias_descanso;
@@ -110,8 +111,8 @@ public class Conductor extends Usuario{
     
     
     
-    public boolean tieneViajeActivo() {
-    List<Viaje> viajesAsignados = ver_viaje_asignado();
+    public boolean tieneViajeActivo(Statement st) {
+    List<Viaje> viajesAsignados = ver_viaje_asignado(st);
     if (viajesAsignados.isEmpty()) {
         return false;
     }

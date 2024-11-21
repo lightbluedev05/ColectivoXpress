@@ -15,6 +15,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.sql.Statement;
+
 
 /**
  *
@@ -23,10 +25,13 @@ import java.util.ArrayList;
 public class PasajeroHistorial extends javax.swing.JPanel {
 
     private Pasajero pasajero;
-    public PasajeroHistorial(Pasajero pasajero) {
+    private Statement st;
+    
+    public PasajeroHistorial(Pasajero pasajero, Statement st) {
+        this.st = st;
     this.pasajero = pasajero;
     
-    List<Viaje> viajes = pasajero.ver_historial_viajes();
+    List<Viaje> viajes = pasajero.ver_historial_viajes(st);
     
     initComponents();
     correcciones_iniciales();
@@ -43,7 +48,7 @@ public class PasajeroHistorial extends javax.swing.JPanel {
         modelo.setRowCount(0);      
 
         // Obtener el historial de viajes
-        List<Viaje> viajes = pasajero.ver_historial_viajes(); 
+        List<Viaje> viajes = pasajero.ver_historial_viajes(st); 
 
         // Verificar si la lista de viajes está vacía
         if (viajes.isEmpty()) {
@@ -58,7 +63,7 @@ public class PasajeroHistorial extends javax.swing.JPanel {
         }
 
         // Obtener la lista de boletos
-        List<Boleto> boletos = new BoletoRepository().listar();
+        List<Boleto> boletos = new BoletoRepository(st).listar();
 
         // Si boletos es null, inicializar como lista vacía
         if (boletos == null) {

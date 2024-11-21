@@ -17,6 +17,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import java.sql.Statement;
+
 
 /**
  *
@@ -25,8 +27,11 @@ import javax.swing.SwingUtilities;
 public class PasajeroCompraViaje extends javax.swing.JPanel {
 
     private Pasajero pasajero;
-    public PasajeroCompraViaje(Pasajero pasajero) {
+    private Statement st;
+    
+    public PasajeroCompraViaje(Pasajero pasajero, Statement st) {
         this.pasajero = pasajero;
+        this.st = st;
         initComponents();
         correcciones_iniciales();
         Terminar_Compra.setVisible(false);
@@ -45,7 +50,7 @@ private void listar_viajes() {
     modelo.setRowCount(0); // Limpiar la tabla antes de llenarla
     
     // Verificar si la lista de viajes es null
-    List<Viaje> viajes = pasajero.ver_viajes(); 
+    List<Viaje> viajes = pasajero.ver_viajes(st); 
     if (viajes == null || viajes.isEmpty()) {
         // Deshabilitar botón de compra
         Comprar_Boleto.setEnabled(false);
@@ -66,6 +71,9 @@ private void listar_viajes() {
 
     // Si hay viajes, continuar con el llenado de la tabla
     for (Viaje viaje : viajes) {
+        if(!viaje.get_estado()){
+            continue;
+        }
         String origen = viaje.get_ruta().get_origen(); 
         String destino = viaje.get_ruta().get_destino(); 
         
@@ -266,7 +274,7 @@ private void listar_viajes() {
     // Obtener el ID del viaje seleccionado en el JComboBox
     String id_viaje = (String) ID_viajes.getSelectedItem();
     
-    Viaje viaje = new ViajeRepository().buscar(id_viaje);
+    Viaje viaje = new ViajeRepository(st).buscar(id_viaje);
     
     if (viaje == null) {
         JOptionPane.showMessageDialog(this, "El viaje no existe", "Error", JOptionPane.ERROR_MESSAGE);
@@ -309,7 +317,7 @@ private void listar_viajes() {
             
             if (pagoExitoso) {
                 // Procesar compra de boleto
-                boolean compraRealizada = pasajero.comprar_boleto(id_viaje);
+                boolean compraRealizada = pasajero.comprar_boleto(id_viaje, st);
                 
                 if (compraRealizada) {
                     JOptionPane.showMessageDialog(this, "Pago Verificado!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -367,7 +375,7 @@ private void listar_viajes() {
     }//GEN-LAST:event_Comprar_BoletoActionPerformed
 
     private void Terminar_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Terminar_CompraActionPerformed
-        ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroHistorial(pasajero));
+        ((DashboardPasajero) SwingUtilities.getWindowAncestor(this)).ShowJPanel(new PasajeroHistorial(pasajero, st));
     }//GEN-LAST:event_Terminar_CompraActionPerformed
 
     private void ID_viajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_viajesActionPerformed

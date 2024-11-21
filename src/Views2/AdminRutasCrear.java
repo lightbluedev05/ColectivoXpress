@@ -12,6 +12,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
+
 
 /**
  *
@@ -23,9 +25,11 @@ public class AdminRutasCrear extends javax.swing.JFrame {
      * Creates new form LoginPasajero
      */
     Admin admin;
+    private Statement st;
    
-    public AdminRutasCrear(Admin admin) {
+    public AdminRutasCrear(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         resultado_text.setText("");
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -205,7 +209,7 @@ public class AdminRutasCrear extends javax.swing.JFrame {
             return;
         }
         
-        boolean registro = admin.crear_ruta(origen, destino, tiempo_duration, precio);
+        boolean registro = admin.crear_ruta(origen, destino, tiempo_duration, precio, st);
         
         if(!registro){
             resultado_text.setText("No se pudo crear");

@@ -59,7 +59,14 @@ public class ConductorRepository implements CRUD<Conductor>{
         return conductordto;
     }
     
-    private Conexion cx = new Conexion();
+    private Statement st;
+    public ConductorRepository(Statement st){
+        try {
+            this.st = st.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public boolean crear(Conductor nuevo_conductor) {
@@ -73,7 +80,6 @@ public class ConductorRepository implements CRUD<Conductor>{
                               + "WHERE dni = '" + conductorDto.dni + "' "
                               + "OR correo = '" + conductorDto.correo + "'";
 
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(checkQuery);
 
             if (rs.next() && rs.getInt(1) == 0) { // Si no existe ningún conductor con el dni o correo
@@ -93,16 +99,13 @@ public class ConductorRepository implements CRUD<Conductor>{
                                    + conductorDto.capacidad_vehiculo +" )";
 
                 int filas_afectadas = st.executeUpdate(insertQuery);
-                cx.desconectar();
                 return filas_afectadas > 0;
             } else {
-                cx.desconectar();
                 return false; // Si ya existe un conductor con el dni o correo, no hacer la inserción
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -113,13 +116,11 @@ public class ConductorRepository implements CRUD<Conductor>{
         
         try {
             String query = "SELECT * FROM conductores WHERE dni='"+ dni +"'";
-            Statement st = cx.conectar().createStatement();
             rs = st.executeQuery(query);
             
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
-                cx.desconectar();
                 return null;
             }
             
@@ -134,13 +135,11 @@ public class ConductorRepository implements CRUD<Conductor>{
             conductorDto.departamento = rs.getString("departamento");
             conductorDto.dias_descanso = rs.getString("dias_descanso");
             conductorDto.capacidad_vehiculo = rs.getInt("capacidad_vehiculo");
-            cx.desconectar();
             
             return convertirDto_Conductor(conductorDto);
             
         } catch (SQLException ex) {
             Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -156,7 +155,6 @@ public class ConductorRepository implements CRUD<Conductor>{
                       + "WHERE correo = '" + conductorDto.correo + "' "
                       + "AND dni != '" + conductorDto.dni + "'";
 
-    Statement st = cx.conectar().createStatement();
     ResultSet rs = st.executeQuery(checkQuery);
 
     if (rs.next() && rs.getInt(1) == 0) { // Si no existe otro conductor con el mismo correo
@@ -174,16 +172,13 @@ public class ConductorRepository implements CRUD<Conductor>{
                            + "WHERE dni = '" + conductorDto.dni + "'";
 
         int rows_update = st.executeUpdate(updateQuery);
-        cx.desconectar();
             
         return rows_update > 0;
     } else {
-        cx.desconectar();
         return false; // Si el correo ya está en uso, no realizar el UPDATE
     }
 } catch (SQLException ex) {
     Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-    cx.desconectar();
             return false;
 }
     }
@@ -192,16 +187,13 @@ public class ConductorRepository implements CRUD<Conductor>{
     public boolean eliminar(String dni){
         try {
             String query = "DELETE FROM conductores WHERE dni = '"+ dni +"'";
-            Statement st = cx.conectar().createStatement();
             int rows_deleted = st.executeUpdate(query);
             
-            cx.desconectar();
             
             return rows_deleted > 0;
             
         } catch (SQLException ex) {
             Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return false;
         }
     }
@@ -211,11 +203,9 @@ public class ConductorRepository implements CRUD<Conductor>{
 
         try {
             String query = "SELECT * FROM conductores";
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
             
             if(!rs.next()){
-                cx.desconectar();
                 return null;  
             } 
             
@@ -239,11 +229,9 @@ public class ConductorRepository implements CRUD<Conductor>{
                 
             } while(rs.next());
             
-            cx.desconectar();
             return conductores;
         } catch (SQLException ex) {
             Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }
@@ -256,11 +244,9 @@ public class ConductorRepository implements CRUD<Conductor>{
                            "    WHERE v.dni_conductor = c.dni AND v.estado = TRUE" +
                            ")";
 
-            Statement st = cx.conectar().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             if (!rs.next()) {
-                cx.desconectar();
                 return null;
             }
 
@@ -283,12 +269,10 @@ public class ConductorRepository implements CRUD<Conductor>{
 
             } while (rs.next());
 
-            cx.desconectar();
             return conductores;
 
         } catch (SQLException ex) {
             Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
-            cx.desconectar();
             return null;
         }
     }

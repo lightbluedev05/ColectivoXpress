@@ -13,6 +13,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.Random;
+import java.sql.Statement;
+
 
 /**
  *
@@ -24,9 +26,11 @@ public class AdminViajesCrear extends javax.swing.JFrame {
      * Creates new form LoginPasajero
      */
     Admin admin;
-   
-    public AdminViajesCrear(Admin admin) {
+    private Statement st;
+    
+    public AdminViajesCrear(Admin admin, Statement st) {
         this.admin = admin;
+        this.st = st;
         initComponents();
         resultado_text.setText("");
         combo_box();
@@ -175,7 +179,7 @@ public class AdminViajesCrear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void combo_box(){
-        List<Ruta> rutas = admin.ver_rutas();
+        List<Ruta> rutas = admin.ver_rutas(st);
         
         ruta_combobox.removeAllItems();
         
@@ -236,11 +240,11 @@ public class AdminViajesCrear extends javax.swing.JFrame {
             ruta_elegida = ruta;
         }
         */
-        List<Conductor> conductores = admin.ver_conductores_libres();
+        List<Conductor> conductores = admin.ver_conductores_libres(st);
         Random random = new Random();
         int indice = random.nextInt(conductores.size());
         
-        boolean exito = admin.crear_viaje(fecha, id_ruta, conductores.get(indice).get_dni(), hora_salida);
+        boolean exito = admin.crear_viaje(fecha, id_ruta, conductores.get(indice).get_dni(), hora_salida, st);
         
         if(!exito){
             resultado_text.setText("No se pudo crear el viaje");
