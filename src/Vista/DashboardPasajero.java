@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JPanel;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -79,6 +80,7 @@ public class DashboardPasajero extends javax.swing.JFrame {
         buttonHistorial = new javax.swing.JButton();
         buttonNosotros = new javax.swing.JButton();
         buttonInicio = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         fecha = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
@@ -159,6 +161,19 @@ public class DashboardPasajero extends javax.swing.JFrame {
             }
         });
 
+        salir.setBackground(new java.awt.Color(0,0,0,0));
+        salir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        salir.setForeground(new java.awt.Color(240, 245, 247));
+        salir.setText("SALIR");
+        salir.setBorder(null);
+        salir.setBorderPainted(false);
+        salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
@@ -168,9 +183,11 @@ public class DashboardPasajero extends javax.swing.JFrame {
                     .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                    .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,9 +200,11 @@ public class DashboardPasajero extends javax.swing.JFrame {
                 .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
                 .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         header.setBackground(new java.awt.Color(255, 255, 255));
@@ -286,6 +305,23 @@ public class DashboardPasajero extends javax.swing.JFrame {
         ShowJPanel(new PasajeroHistorial(pasajero, st));
     }//GEN-LAST:event_buttonHistorialActionPerformed
 
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+            // Crear un mensaje de confirmación
+        int respuesta = JOptionPane.showConfirmDialog(this, 
+            "¿Desea salir del programa?", 
+            "Confirmar salida", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+
+        // Verificar la respuesta del usuario
+        if (respuesta == JOptionPane.YES_OPTION) {
+            System.exit(0); // Cierra el programa
+        } else if (respuesta == JOptionPane.NO_OPTION) {
+            // Regresar al menú principal
+            ShowJPanel(new Inicio()); // Por ejemplo, regresar al panel de inicio
+        }
+    }//GEN-LAST:event_salirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,5 +371,6 @@ public class DashboardPasajero extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel menu;
+    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }
