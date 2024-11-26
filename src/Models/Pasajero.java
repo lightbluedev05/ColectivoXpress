@@ -114,8 +114,8 @@ public class Pasajero extends Usuario {
   
      public List<Viaje> ver_viajes(Statement st){
         return new ViajeRepository(st).listar();
-    }
-     
+        }
+        
     public List<Viaje> ver_historial_viajes(Statement st) {
         List<Viaje> viajes_historico = new ArrayList<>();
 

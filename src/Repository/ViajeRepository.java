@@ -25,7 +25,7 @@ public class ViajeRepository implements CRUD<Viaje>{
         private String dni_conductor; 
         private boolean estado;
     }
-
+    
     private static Viaje convertirDto_Viaje(ViajeDTO dto) {
         Ruta ruta = new RutaRepository(st).buscar(dto.id_ruta); 
         Conductor conductor = new ConductorRepository(st).buscar(dto.dni_conductor); 
@@ -52,13 +52,13 @@ public class ViajeRepository implements CRUD<Viaje>{
     
     private static Statement st;
     public ViajeRepository(Statement st){
-        try {
+            try {
             this.st = st.getConnection().createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
-
+    
     @Override
     public boolean crear(Viaje nuevo_viaje) {
         
@@ -90,17 +90,17 @@ public class ViajeRepository implements CRUD<Viaje>{
     @Override
     public Viaje buscar(String id_viaje) {
         ResultSet rs;
-        
+
         try {
             String query = "SELECT * FROM viajes WHERE id_viaje='"+ id_viaje +"'";
             rs = st.executeQuery(query);
-            
+
             if(rs.next()){
                 System.out.println("Se encontro en la bd");
             } else {
                 return null;
             }
-            
+
             ViajeDTO viajeDto = new ViajeDTO();
             viajeDto.id_viaje = rs.getString("id_viaje");
             viajeDto.fecha_salida = rs.getString("fecha_salida");
@@ -109,14 +109,14 @@ public class ViajeRepository implements CRUD<Viaje>{
             viajeDto.dni_conductor = rs.getString("dni_conductor");
             viajeDto.estado = rs.getBoolean("estado");
 
-            
+
             return convertirDto_Viaje(viajeDto);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+            }
         }
-    }
 
     @Override
     public boolean actualizar(Viaje viaje_editar) {
