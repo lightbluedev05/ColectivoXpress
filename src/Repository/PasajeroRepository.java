@@ -29,12 +29,13 @@ public class PasajeroRepository implements CRUD<Pasajero>{
         private String distrito;
         private String provincia;
         private String departamento;
+        private String telefono;
     }
 
     private static Pasajero convertirDto_Pasajero(PasajeroDTO dto){
         LocalDate fecha = LocalDate.parse(dto.fecha_nacimiento);
         return new Pasajero(dto.nombre, dto.correo, dto.dni, fecha, dto.contrasena,
-                dto.distrito, dto.provincia, dto.departamento);
+                dto.distrito, dto.provincia, dto.departamento, dto.telefono);
     }
     private static PasajeroDTO convertirPasajero_Dto(Pasajero pasajero){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -49,6 +50,7 @@ public class PasajeroRepository implements CRUD<Pasajero>{
         pasajerodto.distrito = pasajero.get_distrito();
         pasajerodto.provincia = pasajero.get_provincia();
         pasajerodto.departamento = pasajero.get_departamento();
+        pasajerodto.telefono = pasajero.get_telefono();
         return pasajerodto;
     }
     
@@ -68,7 +70,7 @@ public class PasajeroRepository implements CRUD<Pasajero>{
             PasajeroDTO pasajeroDto = convertirPasajero_Dto(nuevo_pasajero);
             
             String query = "INSERT INTO pasajeros (dni, nombre, correo, fecha_nacimiento, contrasena, "
-             + "distrito, provincia, departamento) "
+             + "distrito, provincia, departamento, telefono) "
              + "SELECT '"
              + pasajeroDto.dni + "', '"
              + pasajeroDto.nombre + "', '"
@@ -77,7 +79,8 @@ public class PasajeroRepository implements CRUD<Pasajero>{
              + pasajeroDto.contrasena + "', '"
              + pasajeroDto.distrito + "', '"
              + pasajeroDto.provincia + "', '"
-             + pasajeroDto.departamento + "' "
+             + pasajeroDto.departamento + "', '"
+             + pasajeroDto.telefono + "' "
              + "WHERE NOT EXISTS ("
              + "    SELECT 1 FROM pasajeros "
              + "    WHERE dni = '" + pasajeroDto.dni + "' "
@@ -117,6 +120,7 @@ public class PasajeroRepository implements CRUD<Pasajero>{
             pasajeroDto.distrito = rs.getString("distrito");
             pasajeroDto.provincia = rs.getString("provincia");
             pasajeroDto.departamento = rs.getString("departamento");
+            pasajeroDto.telefono = rs.getString("telefono");
             
             return convertirDto_Pasajero(pasajeroDto);
             
@@ -147,7 +151,8 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                                    + "contrasena = '" + pasajeroDto.contrasena + "', "
                                    + "distrito = '" + pasajeroDto.distrito + "', "
                                    + "provincia = '" + pasajeroDto.provincia + "', "
-                                   + "departamento = '" + pasajeroDto.departamento + "' "
+                                   + "departamento = '" + pasajeroDto.departamento + "', "
+                                   + "telefono = '"+ pasajeroDto.telefono + "' "
                                    + "WHERE dni = '" + pasajeroDto.dni + "'";
 
                 int rows_update = st.executeUpdate(updateQuery);
@@ -200,6 +205,7 @@ public class PasajeroRepository implements CRUD<Pasajero>{
                 pasajeroDto.provincia = rs.getString("provincia");
                 pasajeroDto.departamento = rs.getString("departamento");
                 pasajeroDto.dni = rs.getString("dni");
+                pasajeroDto.telefono = rs.getString("telefono");
                 
                 pasajeros.add(convertirDto_Pasajero(pasajeroDto));
                 

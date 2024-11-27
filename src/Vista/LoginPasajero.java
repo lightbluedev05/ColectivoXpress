@@ -25,7 +25,7 @@ public class LoginPasajero extends javax.swing.JFrame {
         this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null); // Centrar la ventana
+        this.setLocationRelativeTo(null); // Centrar la ventana
     }
 
     /**

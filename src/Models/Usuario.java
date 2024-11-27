@@ -13,8 +13,9 @@ public abstract class Usuario {
     protected String distrito;
     protected String provincia;
     protected String departamento;
+    protected String telefono;
 
-    public abstract boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, Statement st);
+    public abstract boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, String telefono, Statement st);
     public abstract boolean actualizar_contrasena(String nueva_contrasena, Statement st);
 
 
@@ -80,5 +81,13 @@ public abstract class Usuario {
 
     public void set_departamento(String departamento) {
         this.departamento = departamento;
+    }
+    
+    public String get_telefono(){
+        return telefono;
+    }
+    
+    public void set_telefono(String telefono){
+        this.telefono = telefono;
     }
 }

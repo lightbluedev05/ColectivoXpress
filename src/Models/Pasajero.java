@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class Pasajero extends Usuario {
 
     public Pasajero(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
-                    String distrito, String provincia, String departamento) {
+                    String distrito, String provincia, String departamento, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
         this.dni = dni;
@@ -22,15 +22,17 @@ public class Pasajero extends Usuario {
         this.distrito = distrito;
         this.provincia = provincia;
         this.departamento = departamento;
+        this.telefono = telefono;
     }
 
 
     @Override
-    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, Statement st) {
+    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, String telefono, Statement st) {
         this.nombre = nombre;
         this.distrito = distrito;
         this.provincia = provincia;
         this.departamento = departamento;
+        this.telefono = telefono;
         return new PasajeroRepository(st).actualizar(this);
     }
 
@@ -74,47 +76,47 @@ public class Pasajero extends Usuario {
     }
 
      public boolean comprar_boleto(String id_viaje, Statement st) {
-    // Buscar el viaje
-    Viaje viaje = new ViajeRepository(st).buscar(id_viaje);
-    if (viaje == null) {
+        // Buscar el viaje
+        Viaje viaje = new ViajeRepository(st).buscar(id_viaje);
+        if (viaje == null) {
+            return false;
+        }
+
+        // Generar el boleto
+        String idBoleto = Boleto.generarIdBoleto(st);
+        Boleto nuevoBoleto = new Boleto(
+            idBoleto, 
+            this, 
+            viaje, 
+            (float)viaje.get_ruta().get_precio()
+        );
+
+        // Generar descripción de la ruta
+        String descripcionRuta = "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino();
+
+        // Guardar el boleto
+        boolean guardado = Boleto.guardar(nuevoBoleto,st);
+
+        // Si se guardó, enviar correo
+        if (guardado) {
+            PagoMP.enviarCorreo(
+                this.get_nombre(),                     // nombreCliente
+                viaje.get_conductor().get_nombre(),    // nombreConductor
+                descripcionRuta,                       // nombreRuta
+                String.valueOf(viaje.get_ruta().get_precio()),  // precio
+                viaje.get_fecha_salida().toString(),   // fechaSalida
+                idBoleto,                              // codigoTicket
+                this.get_correo()                      // emailTo
+            );
+            return true;
+        }
+
         return false;
     }
-
-    // Generar el boleto
-    String idBoleto = Boleto.generarIdBoleto(st);
-    Boleto nuevoBoleto = new Boleto(
-        idBoleto, 
-        this, 
-        viaje, 
-        (float)viaje.get_ruta().get_precio()
-    );
-    
-    // Generar descripción de la ruta
-    String descripcionRuta = "Viaje " + viaje.get_ruta().get_origen() + " -> " + viaje.get_ruta().get_destino();
-
-    // Guardar el boleto
-    boolean guardado = Boleto.guardar(nuevoBoleto,st);
-    
-    // Si se guardó, enviar correo
-    if (guardado) {
-        PagoMP.enviarCorreo(
-            this.get_nombre(),                     // nombreCliente
-            viaje.get_conductor().get_nombre(),    // nombreConductor
-            descripcionRuta,                       // nombreRuta
-            String.valueOf(viaje.get_ruta().get_precio()),  // precio
-            viaje.get_fecha_salida().toString(),   // fechaSalida
-            idBoleto,                              // codigoTicket
-            this.get_correo()                      // emailTo
-        );
-        return true;
-    }
-
-    return false;
-}
   
      public List<Viaje> ver_viajes(Statement st){
         return new ViajeRepository(st).listar();
-        }
+    }
         
     public List<Viaje> ver_historial_viajes(Statement st) {
         List<Viaje> viajes_historico = new ArrayList<>();
@@ -153,33 +155,5 @@ public class Pasajero extends Usuario {
     public int calcular_edad(){
         return Period.between(this.fecha_nacimiento, LocalDate.now()).getYears();
     }
-    
-    public String get_nombre() {
-    return nombre;
-    }
-
-    public String get_correo() {
-        return correo;
-    }
-
-    public String get_dni() {
-        return dni;
-    }
-
-    public LocalDate get_fecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public String get_distrito() {
-        return distrito;
-    }
-
-    public String get_provincia() {
-        return provincia;
-    }
-
-    public String get_departamento() {
-        return departamento;
-}
     
 }

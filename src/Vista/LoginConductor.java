@@ -26,6 +26,7 @@ public class LoginConductor extends javax.swing.JFrame {
         this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     /**

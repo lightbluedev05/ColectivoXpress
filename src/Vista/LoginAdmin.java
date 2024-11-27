@@ -27,6 +27,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         this.st = st;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     /**

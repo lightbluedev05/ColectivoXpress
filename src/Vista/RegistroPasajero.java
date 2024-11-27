@@ -58,7 +58,8 @@ public class RegistroPasajero extends javax.swing.JFrame {
         departamento_input = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         registrar_button = new javax.swing.JButton();
-        LabelError = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        telefono_input = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +132,12 @@ public class RegistroPasajero extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(41, 82, 85));
+        jLabel10.setText("Telefono");
+
+        telefono_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,8 +149,12 @@ public class RegistroPasajero extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(registrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
@@ -159,10 +170,8 @@ public class RegistroPasajero extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(departamento_input)
                             .addComponent(provincia_input)
-                            .addComponent(distrito_input)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(registrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(distrito_input)
+                            .addComponent(telefono_input))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -202,27 +211,26 @@ public class RegistroPasajero extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(telefono_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(registrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(LabelError)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LabelError))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,8 +253,9 @@ public class RegistroPasajero extends javax.swing.JFrame {
         String distrito = distrito_input.getText();
         String provincia = provincia_input.getText();
         String departamento = departamento_input.getText();
+        String telefono = telefono_input.getText();
         
-        Pasajero pasajero = new Pasajero(nombre, correo, dni, fecha, contra, distrito, provincia, departamento);
+        Pasajero pasajero = new Pasajero(nombre, correo, dni, fecha, contra, distrito, provincia, departamento, telefono);
         
         boolean registro = Pasajero.registro_pasajero(pasajero, st);
         
@@ -298,7 +307,6 @@ public class RegistroPasajero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelError;
     private javax.swing.JPasswordField contra_input;
     private javax.swing.JTextField correo_input;
     private javax.swing.JTextField departamento_input;
@@ -307,6 +315,7 @@ public class RegistroPasajero extends javax.swing.JFrame {
     private javax.swing.JTextField fecha_input;
     private org.jdatepicker.JDateComponentFactory jDateComponentFactory1;
     private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -320,5 +329,6 @@ public class RegistroPasajero extends javax.swing.JFrame {
     private javax.swing.JTextField nombres_input;
     private javax.swing.JTextField provincia_input;
     private javax.swing.JButton registrar_button;
+    private javax.swing.JTextField telefono_input;
     // End of variables declaration//GEN-END:variables
 }

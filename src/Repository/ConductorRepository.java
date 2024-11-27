@@ -32,12 +32,16 @@ public class ConductorRepository implements CRUD<Conductor>{
         private String departamento;
         private String dias_descanso;
         private int capacidad_vehiculo;
+        private String placa_vehiculo;
+        private String modelo_vehiculo;
+        private String telefono;
     }
 
     private static Conductor convertirDto_Conductor(ConductorDTO dto){
         LocalDate fecha = LocalDate.parse(dto.fecha_nacimiento);
         Conductor conductor = new Conductor(dto.nombre, dto.correo, dto.dni, fecha, dto.contrasena,
-                dto.distrito, dto.provincia, dto.departamento, dto.capacidad_vehiculo);
+                dto.distrito, dto.provincia, dto.departamento, dto.capacidad_vehiculo,
+                dto.modelo_vehiculo, dto.placa_vehiculo, dto.telefono);
         conductor.set_dias_descanso(dto.dias_descanso);
         return conductor;
     }
@@ -56,6 +60,9 @@ public class ConductorRepository implements CRUD<Conductor>{
         conductordto.departamento = conductor.get_departamento();
         conductordto.dias_descanso = conductor.get_dias_descanso();
         conductordto.capacidad_vehiculo = conductor.get_capacidad_vehiculo();
+        conductordto.placa_vehiculo = conductor.get_placa_vehiculo();
+        conductordto.modelo_vehiculo = conductor.get_modelo_vehiculo();
+        conductordto.telefono = conductor.get_telefono();
         return conductordto;
     }
     
@@ -85,7 +92,8 @@ public class ConductorRepository implements CRUD<Conductor>{
             if (rs.next() && rs.getInt(1) == 0) { // Si no existe ningún conductor con el dni o correo
                 // Si no existen duplicados, insertar el nuevo conductor
                 String insertQuery = "INSERT INTO conductores (dni, nombre, correo, fecha_nacimiento, contrasena, "
-                                   + "distrito, provincia, departamento, dias_descanso, capacidad_vehiculo) "
+                                   + "distrito, provincia, departamento, dias_descanso, capacidad_vehiculo, telefono, "
+                                   + "placa_vehiculo, modelo_vehiculo ) "
                                    + "VALUES ('"
                                    + conductorDto.dni + "', '"
                                    + conductorDto.nombre + "', '"
@@ -96,7 +104,10 @@ public class ConductorRepository implements CRUD<Conductor>{
                                    + conductorDto.provincia + "', '"
                                    + conductorDto.departamento + "', '"
                                    + conductorDto.dias_descanso + "', "
-                                   + conductorDto.capacidad_vehiculo +" )";
+                                   + conductorDto.capacidad_vehiculo +", '"
+                                   + conductorDto.telefono + "', '"
+                                   + conductorDto.placa_vehiculo + "', '"
+                                   + conductorDto.modelo_vehiculo + "' )";
 
                 int filas_afectadas = st.executeUpdate(insertQuery);
                 return filas_afectadas > 0;
@@ -135,6 +146,9 @@ public class ConductorRepository implements CRUD<Conductor>{
             conductorDto.departamento = rs.getString("departamento");
             conductorDto.dias_descanso = rs.getString("dias_descanso");
             conductorDto.capacidad_vehiculo = rs.getInt("capacidad_vehiculo");
+            conductorDto.telefono = rs.getString("telefono");
+            conductorDto.placa_vehiculo = rs.getString("placa_vehiculo");
+            conductorDto.modelo_vehiculo = rs.getString("modelo_vehiculo");
             
             return convertirDto_Conductor(conductorDto);
             
@@ -168,7 +182,10 @@ public class ConductorRepository implements CRUD<Conductor>{
                            + "provincia = '" + conductorDto.provincia + "', "
                            + "departamento = '" + conductorDto.departamento + "', "
                            + "dias_descanso = '" + conductorDto.dias_descanso + "', "
-                           + "capacidad_vehiculo = " + conductorDto.capacidad_vehiculo + " "
+                           + "capacidad_vehiculo = " + conductorDto.capacidad_vehiculo + ", "
+                           + "telefono = '" + conductorDto.telefono + "', "
+                           + "placa_vehiculo = '" + conductorDto.placa_vehiculo + "', "
+                           + "modelo_vehiculo = '" + conductorDto.modelo_vehiculo + "' "
                            + "WHERE dni = '" + conductorDto.dni + "'";
 
         int rows_update = st.executeUpdate(updateQuery);
@@ -224,6 +241,9 @@ public class ConductorRepository implements CRUD<Conductor>{
                 conductorDto.dias_descanso = rs.getString("dias_descanso");
                 conductorDto.dni = rs.getString("dni");
                 conductorDto.capacidad_vehiculo = rs.getInt("capacidad_vehiculo");
+                conductorDto.telefono = rs.getString("telefono");
+                conductorDto.placa_vehiculo = rs.getString("placa_vehiculo");
+                conductorDto.modelo_vehiculo = rs.getString("modelo_vehiculo");
                 
                 conductores.add(convertirDto_Conductor(conductorDto));
                 
@@ -264,6 +284,9 @@ public class ConductorRepository implements CRUD<Conductor>{
                 conductorDto.dias_descanso = rs.getString("dias_descanso");
                 conductorDto.dni = rs.getString("dni");
                 conductorDto.capacidad_vehiculo = rs.getInt("capacidad_vehiculo");
+                conductorDto.telefono = rs.getString("telefono");
+                conductorDto.placa_vehiculo = rs.getString("placa_vehiculo");
+                conductorDto.modelo_vehiculo = rs.getString("modelo_vehiculo");
 
                 conductores.add(convertirDto_Conductor(conductorDto));
 

@@ -58,9 +58,12 @@ public class Admin {
     //------------------  ACCIONES SOBRE CONDUCTORES ---------------------
 
     public boolean crear_conductor(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
-                                   String distrito, String provincia, String departamento, int capacidad_vehiculo, Statement st){
+                                   String distrito, String provincia, String departamento, int capacidad_vehiculo,
+                                   String modelo_vehiculo, String placa_vehiculo, String telefono, Statement st){
+        
         Conductor nuevo_conductor = new Conductor(nombre, correo, dni, fecha_nacimiento,
-                contrasena, distrito, provincia, departamento, capacidad_vehiculo);
+                contrasena, distrito, provincia, departamento, capacidad_vehiculo,
+                modelo_vehiculo, placa_vehiculo, telefono);
 
         return new ConductorRepository(st).crear(nuevo_conductor);
     }
@@ -83,9 +86,11 @@ public class Admin {
 
     //--------------------- ACCIONES SOBRE PASAJEROS -----------------------
     public boolean crear_pasajero(String nombre, String correo, String dni, LocalDate fecha_nacimiento,
-                                  String contrasena, String distrito, String provincia, String departamento, Statement st){
+                                  String contrasena, String distrito, String provincia, String departamento,
+                                  String telefono, Statement st){
+        
         Pasajero nuevo_pasajero = new Pasajero(nombre, correo, dni, fecha_nacimiento,
-                contrasena, distrito, provincia, departamento);
+                contrasena, distrito, provincia, departamento, telefono);
 
         return new PasajeroRepository(st).crear(nuevo_pasajero);
     }

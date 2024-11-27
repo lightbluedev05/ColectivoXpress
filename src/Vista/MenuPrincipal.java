@@ -27,6 +27,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal(Statement st) {
         this.st = st;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

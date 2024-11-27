@@ -15,10 +15,12 @@ import java.sql.Statement;
 public class Conductor extends Usuario{
     private String dias_descanso;
     private int capacidad_vehiculo;
-
+    private String modelo_vehiculo;
+    private String placa_vehiculo;
 
     public Conductor(String nombre, String correo, String dni, LocalDate fecha_nacimiento, String contrasena,
-                     String distrito, String provincia, String departamento, int capacidad_vehiculo){
+                     String distrito, String provincia, String departamento,int capacidad_vehiculo,
+                     String modelo_vehiculo, String placa_vehiculo, String telefono){
         this.nombre = nombre;
         this.correo = correo;
         this.dni = dni;
@@ -29,6 +31,9 @@ public class Conductor extends Usuario{
         this.departamento = departamento;
         this.dias_descanso = "";
         this.capacidad_vehiculo = capacidad_vehiculo;
+        this.modelo_vehiculo = modelo_vehiculo;
+        this.placa_vehiculo = placa_vehiculo;
+        this.telefono = telefono;
     }
     public List<Viaje> ver_viaje_asignado(Statement st) {
         List<Viaje> todos_viajes = new ViajeRepository(st).listar();
@@ -44,11 +49,12 @@ public class Conductor extends Usuario{
     }
 
     @Override
-    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, Statement st) {
+    public boolean editar_perfil(String nombre, String distrito, String provincia, String departamento, String telefono, Statement st) {
         this.nombre = nombre;
         this.distrito = distrito;
         this.provincia = provincia;
         this.departamento = departamento;
+        this.telefono = telefono;
         return new ConductorRepository(st).actualizar(this);
     }
 
@@ -102,11 +108,32 @@ public class Conductor extends Usuario{
         this.dias_descanso = dias_descanso;
     }
     
+    public boolean actualizar_vehiculo(String placa_vehiculo, String modelo_vehiculo, int capacidad_vehiculo, Statement st){
+        this.placa_vehiculo = placa_vehiculo;
+        this.modelo_vehiculo = modelo_vehiculo;
+        this.capacidad_vehiculo = capacidad_vehiculo;
+        return new ConductorRepository(st).actualizar(this);
+    }
+    
     public int get_capacidad_vehiculo(){
         return this.capacidad_vehiculo;
     }
     public void set_capacidad_vehiculo(int capacidad_vehiculo){
         this.capacidad_vehiculo = capacidad_vehiculo;
+    }
+    
+    public String get_modelo_vehiculo(){
+        return this.modelo_vehiculo;
+    }
+    public void set_modelo_vehiculo(String modelo_vehiculo){
+        this.modelo_vehiculo = modelo_vehiculo;
+    }
+    
+    public String get_placa_vehiculo(){
+        return this.placa_vehiculo;
+    }
+    public void set_placa_vehiculo(String placa_vehiculo){
+        this.placa_vehiculo = placa_vehiculo;
     }
     
     
