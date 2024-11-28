@@ -38,9 +38,10 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         initComponents();
         correcciones_iniciales();
         Terminar_Compra.setVisible(false); 
-        
-        // Cargar orígenes y destinos de manera segura
-        cargarOrigenesYDestinos();
+       
+ 
+    cargarViajesIniciales();
+
     }
     
     private void correcciones_iniciales(){
@@ -49,35 +50,104 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         tabla_viajes.setBackground(new Color(230, 230, 230));
     }
     
+  
     
-    private void cargarOrigenesYDestinos() {
-        // Obtener los viajes una sola vez
-        List<Viaje> viajes = pasajero.ver_viajes(st);
+private void cargarViajesIniciales() {
+    // Obtener todos los viajes disponibles
+    List<Viaje> viajes = pasajero.ver_viajes(st);
 
-        if (viajes != null && !viajes.isEmpty()) {
-            // Usar SwingUtilities.invokeLater para operaciones de UI
-            SwingUtilities.invokeLater(() -> {
-                // Cargar orígenes
-                Set<String> origenes = viajes.stream()
-                    .filter(Viaje::get_estado)
-                    .map(viaje -> viaje.get_ruta().get_origen())
-                    .collect(Collectors.toCollection(TreeSet::new));
+    if (viajes != null && !viajes.isEmpty()) {
+        // Limpiar modelos
+        DefaultTableModel modeloViajes = (DefaultTableModel) tabla_viajes.getModel();
+        modeloViajes.setRowCount(0);
 
-                origen.removeAllItems();
-                origenes.forEach(origen::addItem);
+        ID_viajes.removeAllItems();
+        ID_c.removeAllItems();
+        ID_c.addItem("Todos"); // Agregar opción "Todos"
 
-                // Cargar destinos
-                Set<String> destinos = viajes.stream()
-                    .filter(Viaje::get_estado)
-                    .map(viaje -> viaje.get_ruta().get_destino())
-                    .collect(Collectors.toCollection(TreeSet::new));
+        // Filtrar viajes activos
+        List<Viaje> viajesActivos = viajes.stream()
+            .filter(Viaje::get_estado)
+            .collect(Collectors.toList());
 
-                destino.removeAllItems();
-                destinos.forEach(destino::addItem);
+        // Llenar tabla de viajes
+        for (Viaje viaje : viajesActivos) {
+            Duration tiempoAprox = viaje.get_ruta().get_tiempo_aproximado(); 
+            long horas = tiempoAprox.toHours();
+            long minutos = tiempoAprox.toMinutesPart(); 
+            String tiempo_string = String.format("%02d:%02d", horas, minutos); 
+
+            LocalTime horaSalida = viaje.get_hora_salida();
+            String horaSalidaString = horaSalida.toString();
+
+            modeloViajes.addRow(new Object[]{
+                viaje.get_id_viaje(),
+                viaje.get_fecha_salida(),
+                viaje.get_ruta().get_origen(),
+                viaje.get_ruta().get_destino(),
+                horaSalidaString,
+                tiempo_string,
+                viaje.get_ruta().get_precio()
             });
+
+            // Agregar el ID del viaje a ambos ComboBox
+            ID_viajes.addItem(viaje.get_id_viaje());
+            ID_c.addItem(viaje.get_id_viaje());
         }
+
+        // Actualizar el modelo de la tabla
+        tabla_viajes.setModel(modeloViajes);
+
+        // Habilitar/deshabilitar botón de compra
+        Comprar_Boleto.setEnabled(!viajesActivos.isEmpty());
+
+        // Cargar todos los conductores
+        cargarTodosLosConductores(viajesActivos);
+    } else {
+        JOptionPane.showMessageDialog(this, 
+            "No se pudieron cargar los viajes.", 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE);
     }
-        
+}
+
+private void cargarTodosLosConductores(List<Viaje> viajes) {
+    // Limpiar la tabla de datos del conductor
+    DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
+    modeloConductor.setRowCount(0);
+
+    for (Viaje viaje : viajes) {
+                // Llenar tabla de conductor
+                if (viaje.get_conductor() != null) {
+                    modeloConductor.addRow(new Object[]{
+                        viaje.get_id_viaje(), // ID Viaje
+                        viaje.get_conductor().get_nombre() != null && !viaje.get_conductor().get_nombre().isEmpty() 
+                            ? viaje.get_conductor().get_nombre() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_correo() != null && !viaje.get_conductor().get_correo().isEmpty() 
+                            ? viaje.get_conductor().get_correo() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_telefono() != null && !viaje.get_conductor().get_telefono().isEmpty() 
+                            ? viaje.get_conductor().get_telefono() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_placa_vehiculo() != null && !viaje.get_conductor().get_placa_vehiculo().isEmpty()
+                            ? viaje.get_conductor().get_placa_vehiculo()
+                            : "N/A",
+
+                        viaje.get_conductor().get_modelo_vehiculo() != null && !viaje.get_conductor().get_modelo_vehiculo().isEmpty()
+                            ? viaje.get_conductor().get_modelo_vehiculo()
+                            : "N/A"
+                    });
+                }
+    }
+
+    // Actualizar la tabla de datos del conductor
+    datos_conductor.setModel(modeloConductor);
+}
+
       
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,19 +167,16 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         ID_viajes = new javax.swing.JComboBox<>();
         Terminar_Compra = new javax.swing.JButton();
         Comprar_Boleto = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        destino = new javax.swing.JComboBox<>();
-        origen = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        Buscar_viaje = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         ID_c = new javax.swing.JComboBox<>();
         Buscar_c = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         datos_conductor = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        filtrar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -133,14 +200,14 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID ", "Fecha", "Hora de Salida (HH:MM)", "Duracion (HH:MM)", "Precio"
+                "ID Viaje", "Fecha", "Origen", "Destino", "Hora de Salida (HH:MM)", "Duracion (HH:MM)", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -154,11 +221,13 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         tabla_viajes.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tabla_viajes);
         if (tabla_viajes.getColumnModel().getColumnCount() > 0) {
-            tabla_viajes.getColumnModel().getColumn(0).setMaxWidth(180);
-            tabla_viajes.getColumnModel().getColumn(1).setMaxWidth(120);
-            tabla_viajes.getColumnModel().getColumn(2).setMaxWidth(400);
-            tabla_viajes.getColumnModel().getColumn(3).setMaxWidth(280);
-            tabla_viajes.getColumnModel().getColumn(4).setMaxWidth(50);
+            tabla_viajes.getColumnModel().getColumn(0).setMaxWidth(140);
+            tabla_viajes.getColumnModel().getColumn(1).setMaxWidth(100);
+            tabla_viajes.getColumnModel().getColumn(2).setMaxWidth(70);
+            tabla_viajes.getColumnModel().getColumn(3).setMaxWidth(70);
+            tabla_viajes.getColumnModel().getColumn(4).setMaxWidth(380);
+            tabla_viajes.getColumnModel().getColumn(5).setMaxWidth(270);
+            tabla_viajes.getColumnModel().getColumn(6).setMaxWidth(50);
         }
 
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -224,13 +293,16 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
                     .addComponent(Comprar_Boleto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Terminar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 21, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ID_viajes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,94 +316,6 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(23, 23, 23));
         jLabel3.setText("Listado de Viajes Disponibles");
-
-        jPanel2.setForeground(new java.awt.Color(153, 153, 153));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(23, 23, 23));
-        jLabel5.setText("DESTINO");
-
-        destino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        destino.setToolTipText("");
-        destino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                destinoActionPerformed(evt);
-            }
-        });
-
-        origen.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        origen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                origenActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(23, 23, 23));
-        jLabel7.setText("ORIGEN");
-
-        Buscar_viaje.setBackground(new java.awt.Color(41, 82, 85));
-        Buscar_viaje.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Buscar_viaje.setForeground(new java.awt.Color(240, 245, 247));
-        Buscar_viaje.setText("Buscar");
-        Buscar_viaje.setMaximumSize(new java.awt.Dimension(161, 40));
-        Buscar_viaje.setMinimumSize(new java.awt.Dimension(161, 40));
-        Buscar_viaje.setPreferredSize(new java.awt.Dimension(161, 40));
-        Buscar_viaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Buscar_viajeActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(23, 23, 23));
-        jLabel8.setText("FILTRAR");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(origen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(26, 26, 26))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(Buscar_viaje, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel8)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(origen, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Buscar_viaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
 
         ID_c.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ID_c.addActionListener(new java.awt.event.ActionListener() {
@@ -364,14 +348,14 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Correo", "Numero", "Placa", "Modelo"
+                "ID Viaje", "Nombre", "Correo", "Numero", "Placa", "Modelo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -385,67 +369,108 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         datos_conductor.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(datos_conductor);
         if (datos_conductor.getColumnModel().getColumnCount() > 0) {
-            datos_conductor.getColumnModel().getColumn(0).setMaxWidth(1000);
-            datos_conductor.getColumnModel().getColumn(1).setMaxWidth(500);
-            datos_conductor.getColumnModel().getColumn(2).setMaxWidth(100);
+            datos_conductor.getColumnModel().getColumn(0).setMaxWidth(60);
+            datos_conductor.getColumnModel().getColumn(1).setMaxWidth(1000);
+            datos_conductor.getColumnModel().getColumn(2).setMaxWidth(500);
             datos_conductor.getColumnModel().getColumn(3).setMaxWidth(100);
-            datos_conductor.getColumnModel().getColumn(4).setMaxWidth(150);
+            datos_conductor.getColumnModel().getColumn(4).setMaxWidth(100);
+            datos_conductor.getColumnModel().getColumn(5).setMaxWidth(100);
         }
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(23, 23, 23));
+        jLabel5.setText("Buscar Viaje");
+
+        filtrar.setBackground(new java.awt.Color(0, 102, 102));
+        filtrar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        filtrar.setForeground(new java.awt.Color(240, 245, 247));
+        filtrar.setText("Filtrar Busqueda");
+        filtrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(300, 300, 300)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(193, 193, 193)
+                                .addGap(131, 131, 131)
                                 .addComponent(Buscar_c, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ID_c, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(231, 231, 231)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                        .addGap(82, 82, 82))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Buscar_c, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ID_c, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(95, 95, 95))))
+                            .addComponent(ID_c, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -561,51 +586,17 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ID_viajesActionPerformed
 
-    private void destinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinoActionPerformed
-        // Limpiar información del conductor cuando cambia el destino
-        limpiarInformacionConductor();
+    private void ID_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_cActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ID_cActionPerformed
 
-        // Limpiar tabla y combos
-        DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
+    private void Buscar_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_cActionPerformed
+            // Obtener el ID del viaje seleccionado
+        String idViaje = (String) ID_c.getSelectedItem();
+
+        // Limpiar la tabla de datos del conductor
         DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
-
-        modelo.setRowCount(0);
         modeloConductor.setRowCount(0);
-
-        ID_viajes.removeAllItems();
-        ID_c.removeAllItems();
-    }//GEN-LAST:event_destinoActionPerformed
-
-    private void origenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origenActionPerformed
-        // Limpiar información del conductor cuando cambia el origen
-        limpiarInformacionConductor();
-
-        // Limpiar tabla y combos
-        DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
-        DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
-
-        modelo.setRowCount(0);
-        modeloConductor.setRowCount(0);
-
-        ID_viajes.removeAllItems();
-        ID_c.removeAllItems();
-    }//GEN-LAST:event_origenActionPerformed
-
-    private void Buscar_viajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_viajeActionPerformed
-        // Obtener origen y destino seleccionados
-        String origenSeleccionado = (String) origen.getSelectedItem();
-        String destinoSeleccionado = (String) destino.getSelectedItem();
-
-        // Limpiar la tabla
-        DefaultTableModel modelo = (DefaultTableModel) tabla_viajes.getModel();
-        modelo.setRowCount(0);
-
-        // Limpiar los ComboBox de IDs de viajes
-        ID_viajes.removeAllItems();
-        ID_c.removeAllItems(); // Limpiar también el ComboBox de IDs para conductor
-
-        // Limpiar información del conductor
-        limpiarInformacionConductor();
 
         // Obtener todos los viajes
         List<Viaje> viajes = pasajero.ver_viajes(st);
@@ -618,155 +609,117 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
             return;
         }
 
-        // Filtrar viajes según origen y destino
-        for (Viaje viaje : viajes) {
-            if (!viaje.get_estado()) {
-                continue;
+        if (idViaje.equals("Todos")) {
+            // Mostrar conductores de todos los viajes activos
+            for (Viaje viaje : viajes) {
+                if (viaje.get_estado() && viaje.get_conductor() != null) { // Solo viajes activos
+                    modeloConductor.addRow(new Object[]{
+                        viaje.get_id_viaje(), // ID Viaje
+                        viaje.get_conductor().get_nombre() != null && !viaje.get_conductor().get_nombre().isEmpty() 
+                            ? viaje.get_conductor().get_nombre() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_correo() != null && !viaje.get_conductor().get_correo().isEmpty() 
+                            ? viaje.get_conductor().get_correo() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_telefono() != null && !viaje.get_conductor().get_telefono().isEmpty() 
+                            ? viaje.get_conductor().get_telefono() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_placa_vehiculo() != null && !viaje.get_conductor().get_placa_vehiculo().isEmpty()
+                            ? viaje.get_conductor().get_placa_vehiculo()
+                            : "N/A",
+
+                        viaje.get_conductor().get_modelo_vehiculo() != null && !viaje.get_conductor().get_modelo_vehiculo().isEmpty()
+                            ? viaje.get_conductor().get_modelo_vehiculo()
+                            : "N/A"
+                    });
+                }
             }
-
-            // Verificar si el viaje coincide con los filtros
-            if (viaje.get_ruta().get_origen().equals(origenSeleccionado) && 
-                viaje.get_ruta().get_destino().equals(destinoSeleccionado)) {
-
-                Duration tiempoAprox = viaje.get_ruta().get_tiempo_aproximado(); 
-                long horas = tiempoAprox.toHours();
-                long minutos = tiempoAprox.toMinutesPart(); 
-                String tiempo_string = String.format("%02d:%02d", horas, minutos); 
-
-                double precio = viaje.get_ruta().get_precio(); 
-
-                LocalTime horaSalida = viaje.get_hora_salida();
-                String horaSalidaString = horaSalida.toString();
-
-                modelo.addRow(new Object[]{
-                    viaje.get_id_viaje(),
-                    viaje.get_fecha_salida(),
-                    horaSalidaString,
-                    tiempo_string,
-                    precio
-                });
-
-                // Agregar el ID del viaje a ambos ComboBox
-                ID_viajes.addItem(viaje.get_id_viaje());
-                ID_c.addItem(viaje.get_id_viaje());
-            }
-        }   
-
-        // Actualizar la tabla
-        tabla_viajes.setModel(modelo);
-
-        // Habilitar/deshabilitar botones según resultado
-        if (modelo.getRowCount() > 0) {
-            Comprar_Boleto.setEnabled(true);
         } else {
-            Comprar_Boleto.setEnabled(false);
-            JOptionPane.showMessageDialog(this, 
-                "No se encontraron viajes para la ruta seleccionada.", 
-                "Sin Resultados", 
-                JOptionPane.INFORMATION_MESSAGE);
+            // Buscar un viaje específico
+            Viaje viaje = new ViajeRepository(st).buscar(idViaje);
+
+            if (viaje == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "No se encontró el viaje.", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Verificar si el viaje tiene conductor
+            if (viaje.get_conductor() == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Este viaje no tiene conductor asignado.", 
+                    "Sin Conductor", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            // Agregar datos del conductor a la tabla
+                    modeloConductor.addRow(new Object[]{
+                        viaje.get_id_viaje(), // ID Viaje
+                        viaje.get_conductor().get_nombre() != null && !viaje.get_conductor().get_nombre().isEmpty() 
+                            ? viaje.get_conductor().get_nombre() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_correo() != null && !viaje.get_conductor().get_correo().isEmpty() 
+                            ? viaje.get_conductor().get_correo() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_telefono() != null && !viaje.get_conductor().get_telefono().isEmpty() 
+                            ? viaje.get_conductor().get_telefono() 
+                            : "N/A",
+
+                        viaje.get_conductor().get_placa_vehiculo() != null && !viaje.get_conductor().get_placa_vehiculo().isEmpty()
+                            ? viaje.get_conductor().get_placa_vehiculo()
+                            : "N/A",
+
+                        viaje.get_conductor().get_modelo_vehiculo() != null && !viaje.get_conductor().get_modelo_vehiculo().isEmpty()
+                            ? viaje.get_conductor().get_modelo_vehiculo()
+                            : "N/A"
+                    });
         }
-    }//GEN-LAST:event_Buscar_viajeActionPerformed
-
-    private void ID_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_cActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ID_cActionPerformed
-
-    private void Buscar_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_cActionPerformed
-        // Obtener el ID del viaje seleccionado
-        String idViaje = (String) ID_c.getSelectedItem();
-
-        if (idViaje == null) {
-            JOptionPane.showMessageDialog(this, 
-                "Seleccione un ID de viaje primero.", 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Buscar el viaje
-        Viaje viaje = new ViajeRepository(st).buscar(idViaje);
-
-        if (viaje == null) {
-            JOptionPane.showMessageDialog(this, 
-                "No se encontró el viaje.", 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Limpiar la tabla de datos del conductor
-        DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
-        modeloConductor.setRowCount(0);
-
-        // Verificar si el viaje tiene conductor
-        if (viaje.get_conductor() == null) {
-            JOptionPane.showMessageDialog(this, 
-                "Este viaje no tiene conductor asignado.", 
-                "Sin Conductor", 
-                JOptionPane.INFORMATION_MESSAGE);
-
-            // Limpiar los labels y la tabla
-            limpiarInformacionConductor();
-            return;
-        }
-
-        // Agregar datos del conductor a la tabla
-        modeloConductor.addRow(new Object[]{
-            
-            viaje.get_conductor().get_nombre() != null && !viaje.get_conductor().get_nombre().isEmpty() 
-                ? viaje.get_conductor().get_nombre() 
-                : "N/A",
-
-            viaje.get_conductor().get_correo() != null && !viaje.get_conductor().get_correo().isEmpty() 
-                ? viaje.get_conductor().get_correo() 
-                : "N/A",
-
-            viaje.get_conductor().get_telefono() != null && !viaje.get_conductor().get_telefono().isEmpty() 
-                ? viaje.get_conductor().get_telefono() 
-                : "N/A",
-
-            viaje.get_conductor().get_placa_vehiculo() != null && !viaje.get_conductor().get_placa_vehiculo().isEmpty()
-                ? viaje.get_conductor().get_placa_vehiculo()
-                : "N/A",
-
-            viaje.get_conductor().get_modelo_vehiculo() != null && !viaje.get_conductor().get_modelo_vehiculo().isEmpty()
-                ? viaje.get_conductor().get_modelo_vehiculo()
-                : "N/A"
-        });
 
         // Actualizar la tabla
         datos_conductor.setModel(modeloConductor);
-    }
 
-    private void limpiarInformacionConductor(){
-    // Limpiar tabla de datos del conductor
-    DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
-    modeloConductor.setRowCount(0);
+        // Si no hay conductores, mostrar mensaje
+        if (modeloConductor.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, 
+                "No se encontraron conductores.", 
+                "Sin Conductores", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_Buscar_cActionPerformed
+
+    private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
+        PasajeroComprarFiltrar filtrarViaje = new PasajeroComprarFiltrar(st, pasajero, this);
+        filtrarViaje.setVisible(true);
+    }//GEN-LAST:event_filtrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar_c;
-    private javax.swing.JButton Buscar_viaje;
     private javax.swing.JButton Comprar_Boleto;
-    private javax.swing.JComboBox<String> ID_c;
-    private javax.swing.JComboBox<String> ID_viajes;
+    public javax.swing.JComboBox<String> ID_c;
+    public javax.swing.JComboBox<String> ID_viajes;
     private javax.swing.JButton Terminar_Compra;
-    private javax.swing.JTable datos_conductor;
-    private javax.swing.JComboBox<String> destino;
+    public javax.swing.JTable datos_conductor;
+    private javax.swing.JButton filtrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JComboBox<String> origen;
-    private javax.swing.JTable tabla_viajes;
+    private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JTable tabla_viajes;
     // End of variables declaration//GEN-END:variables
 }
