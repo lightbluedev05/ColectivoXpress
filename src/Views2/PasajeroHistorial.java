@@ -659,7 +659,8 @@ public class PasajeroHistorial extends javax.swing.JPanel {
     }//GEN-LAST:event_box_origenActionPerformed
 
     private void fecha_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_buscarActionPerformed
-        // TODO add your handling code here:
+        PasajeroHistorialFecha ventanaFecha = new PasajeroHistorialFecha(st, pasajero, this);
+        ventanaFecha.setVisible(true);
     }//GEN-LAST:event_fecha_buscarActionPerformed
 
 
@@ -668,7 +669,7 @@ public class PasajeroHistorial extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> box_boletos;
     private javax.swing.JComboBox<String> box_destino;
     private javax.swing.JComboBox<String> box_origen;
-    private javax.swing.JTable datos_conductor;
+    public javax.swing.JTable datos_conductor;
     private javax.swing.JButton fecha_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -684,6 +685,6 @@ public class PasajeroHistorial extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tabla_viajes;
-    private javax.swing.JTable tabla_viajes1;
+    public javax.swing.JTable tabla_viajes1;
     // End of variables declaration//GEN-END:variables
 }
