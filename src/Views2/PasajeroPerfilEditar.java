@@ -45,6 +45,10 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         nuevo_departamento_label.setVisible(false);
         nuevo_departamento_input.setVisible(false);
         nuevo_departamento_button.setVisible(false);
+        
+        nuevo_numero_label1.setVisible(false);
+        nuevo_telefono_input1.setVisible(false);
+        nuevo_telefono_button1.setVisible(false);
  
     }
 
@@ -76,6 +80,9 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         nuevo_departamento_label = new javax.swing.JLabel();
         nuevo_departamento_input = new javax.swing.JTextField();
         nuevo_departamento_button = new javax.swing.JButton();
+        nuevo_telefono_button1 = new javax.swing.JButton();
+        nuevo_numero_label1 = new javax.swing.JLabel();
+        nuevo_telefono_input1 = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
@@ -97,11 +104,11 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
         jLabel1.setText("Ingrese su contraseña para modificar sus datos");
 
-        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nuevo_contra_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_contra_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_contra_label.setText("Actualizar contraseña");
 
@@ -122,7 +129,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_nombre_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_nombre_label.setText("Actualizar nombre");
 
@@ -143,7 +150,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_distrito_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_distrito_label.setText("Actualizar distrito");
 
@@ -164,7 +171,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_provincia_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_provincia_label.setText("Actualizar provincia");
 
@@ -185,7 +192,7 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         nuevo_departamento_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_departamento_label.setText("Actualizar departamento");
 
@@ -206,6 +213,27 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             }
         });
 
+        nuevo_telefono_button1.setBackground(new java.awt.Color(41, 82, 85));
+        nuevo_telefono_button1.setForeground(new java.awt.Color(240, 245, 247));
+        nuevo_telefono_button1.setText("Modificar");
+        nuevo_telefono_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo_telefono_button1ActionPerformed(evt);
+            }
+        });
+
+        nuevo_numero_label1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nuevo_numero_label1.setForeground(new java.awt.Color(20, 20, 20));
+        nuevo_numero_label1.setText("Actualizar Telefono");
+
+        nuevo_telefono_input1.setBackground(new java.awt.Color(240, 245, 247));
+        nuevo_telefono_input1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nuevo_telefono_input1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo_telefono_input1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -213,6 +241,11 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(146, 146, 146)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nuevo_numero_label1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nuevo_telefono_input1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_telefono_button1))
                     .addComponent(nuevo_departamento_label)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,13 +282,13 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ingresar_button)
-                .addGap(40, 40, 40)
+                .addGap(29, 29, 29)
                 .addComponent(nuevo_contra_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -285,7 +318,13 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_departamento_button))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(nuevo_numero_label1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevo_telefono_input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevo_telefono_button1))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -324,6 +363,10 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
             nuevo_departamento_label.setVisible(true);
             nuevo_departamento_input.setVisible(true);
             nuevo_departamento_button.setVisible(true);
+            
+            nuevo_numero_label1.setVisible(true);
+            nuevo_telefono_input1.setVisible(true);
+            nuevo_telefono_button1.setVisible(true);
         } else {
         // Si la contraseña es incorrecta, mostrar un mensaje de error
         JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -430,6 +473,26 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
     JOptionPane.showMessageDialog(this, "Departamento cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_nuevo_departamento_buttonActionPerformed
 
+    private void nuevo_telefono_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_telefono_button1ActionPerformed
+        String telefono = nuevo_telefono_input1.getText();
+    
+    if(telefono.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Ingrese un telefono válido", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean exito = pasajero.actualizar_numero(telefono, st);
+    if(!exito){
+        JOptionPane.showMessageDialog(this, "No se pudo cambiar el telefono", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    JOptionPane.showMessageDialog(this, "Telefonoo cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_nuevo_telefono_button1ActionPerformed
+
+    private void nuevo_telefono_input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_telefono_input1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevo_telefono_input1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contra_input;
@@ -448,8 +511,11 @@ public class PasajeroPerfilEditar extends javax.swing.JPanel {
     private javax.swing.JButton nuevo_nombre_button;
     private javax.swing.JTextField nuevo_nombre_input;
     private javax.swing.JLabel nuevo_nombre_label;
+    private javax.swing.JLabel nuevo_numero_label1;
     private javax.swing.JButton nuevo_provincia_button;
     private javax.swing.JTextField nuevo_provincia_input;
     private javax.swing.JLabel nuevo_provincia_label;
+    private javax.swing.JButton nuevo_telefono_button1;
+    private javax.swing.JTextField nuevo_telefono_input1;
     // End of variables declaration//GEN-END:variables
 }

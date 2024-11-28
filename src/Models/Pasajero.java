@@ -62,6 +62,11 @@ public class Pasajero extends Usuario {
         return new PasajeroRepository(st).actualizar(this);
     }
     
+        public boolean actualizar_numero(String nueva_telefono, Statement st) {
+        this.telefono = nueva_telefono;
+        return new PasajeroRepository(st).actualizar(this);
+    }
+    
     public static boolean registro_pasajero(Pasajero nuevo_pasajero, Statement st){
         return new PasajeroRepository(st).crear(nuevo_pasajero);
     }

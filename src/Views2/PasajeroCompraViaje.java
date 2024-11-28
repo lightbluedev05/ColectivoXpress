@@ -274,7 +274,6 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         Buscar_viaje.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Buscar_viaje.setForeground(new java.awt.Color(240, 245, 247));
         Buscar_viaje.setText("Buscar");
-        Buscar_viaje.setBorderPainted(false);
         Buscar_viaje.setMaximumSize(new java.awt.Dimension(161, 40));
         Buscar_viaje.setMinimumSize(new java.awt.Dimension(161, 40));
         Buscar_viaje.setPreferredSize(new java.awt.Dimension(161, 40));
@@ -419,7 +418,7 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63))))
         );
@@ -431,9 +430,9 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -673,80 +672,70 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
     }//GEN-LAST:event_ID_cActionPerformed
 
     private void Buscar_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_cActionPerformed
-              // Obtener el ID del viaje seleccionado
-    String idViaje = (String) ID_c.getSelectedItem();
+        // Obtener el ID del viaje seleccionado
+        String idViaje = (String) ID_c.getSelectedItem();
 
-    if (idViaje == null) {
-        JOptionPane.showMessageDialog(this, 
-            "Seleccione un ID de viaje primero.", 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (idViaje == null) {
+            JOptionPane.showMessageDialog(this, 
+                "Seleccione un ID de viaje primero.", 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Buscar el viaje
-    Viaje viaje = new ViajeRepository(st).buscar(idViaje);
+        // Buscar el viaje
+        Viaje viaje = new ViajeRepository(st).buscar(idViaje);
 
-    if (viaje == null) {
-        JOptionPane.showMessageDialog(this, 
-            "No se encontró el viaje.", 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (viaje == null) {
+            JOptionPane.showMessageDialog(this, 
+                "No se encontró el viaje.", 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Limpiar la tabla de datos del conductor
-    DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
-    modeloConductor.setRowCount(0);
+        // Limpiar la tabla de datos del conductor
+        DefaultTableModel modeloConductor = (DefaultTableModel) datos_conductor.getModel();
+        modeloConductor.setRowCount(0);
 
-    // Verificar si el viaje tiene conductor
-    if (viaje.get_conductor() == null) {
-        JOptionPane.showMessageDialog(this, 
-            "Este viaje no tiene conductor asignado.", 
-            "Sin Conductor", 
-            JOptionPane.INFORMATION_MESSAGE);
+        // Verificar si el viaje tiene conductor
+        if (viaje.get_conductor() == null) {
+            JOptionPane.showMessageDialog(this, 
+                "Este viaje no tiene conductor asignado.", 
+                "Sin Conductor", 
+                JOptionPane.INFORMATION_MESSAGE);
 
-        // Limpiar los labels y la tabla
-        limpiarInformacionConductor();
-        return;
-    }
+            // Limpiar los labels y la tabla
+            limpiarInformacionConductor();
+            return;
+        }
 
-    // Agregar datos del conductor a la tabla
-    modeloConductor.addRow(new Object[]{
-        viaje.get_conductor().get_nombre() != null 
-            ? viaje.get_conductor().get_nombre() 
-            : "N/A",
-        
-        viaje.get_conductor().get_correo() != null 
-            ? viaje.get_conductor().get_correo() 
-            : "N/A",
-        
-        // Comentar las siguientes líneas ya que los atributos no existen
-        /*
-        viaje.get_conductor().get_numero() != null 
-            ? viaje.get_conductor().get_numero() 
-            : "N/A",
-        
-        // Verificar y mostrar información del vehículo
-        viaje.get_conductor().get_vehiculo() != null && 
-        viaje.get_conductor().get_vehiculo().get_placa() != null
-            ? viaje.get_conductor().get_vehiculo().get_placa()
-            : "N/A",
-        
-        viaje.get_conductor().get_vehiculo() != null && 
-        viaje.get_conductor().get_vehiculo().get_modelo() != null
-            ? viaje.get_conductor().get_vehiculo().get_modelo()
-            : "N/A"
-        */
+        // Agregar datos del conductor a la tabla
+        modeloConductor.addRow(new Object[]{
+            
+            viaje.get_conductor().get_nombre() != null && !viaje.get_conductor().get_nombre().isEmpty() 
+                ? viaje.get_conductor().get_nombre() 
+                : "N/A",
 
-        // Mientras tanto, agregar "N/A" para mantener la estructura de la tabla
-        "N/A",
-        "N/A",
-        "N/A"
-    });
+            viaje.get_conductor().get_correo() != null && !viaje.get_conductor().get_correo().isEmpty() 
+                ? viaje.get_conductor().get_correo() 
+                : "N/A",
 
-    // Actualizar la tabla
-    datos_conductor.setModel(modeloConductor);
+            viaje.get_conductor().get_telefono() != null && !viaje.get_conductor().get_telefono().isEmpty() 
+                ? viaje.get_conductor().get_telefono() 
+                : "N/A",
+
+            viaje.get_conductor().get_placa_vehiculo() != null && !viaje.get_conductor().get_placa_vehiculo().isEmpty()
+                ? viaje.get_conductor().get_placa_vehiculo()
+                : "N/A",
+
+            viaje.get_conductor().get_modelo_vehiculo() != null && !viaje.get_conductor().get_modelo_vehiculo().isEmpty()
+                ? viaje.get_conductor().get_modelo_vehiculo()
+                : "N/A"
+        });
+
+        // Actualizar la tabla
+        datos_conductor.setModel(modeloConductor);
     }
 
     private void limpiarInformacionConductor(){
