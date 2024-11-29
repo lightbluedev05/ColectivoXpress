@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Views2;
 
 import Models.Boleto;
@@ -31,17 +27,19 @@ public class PasajeroHistorial extends javax.swing.JPanel {
     
     public PasajeroHistorial(Pasajero pasajero, Statement st) {
         this.st = st;
-    this.pasajero = pasajero;
-    
-    List<Viaje> viajes = pasajero.ver_historial_viajes(st);
-    
-    initComponents();
-    correcciones_iniciales();
-    listar_boletos();
-    listar_boxboletos();
-    listar_viajes_conductores();
-    tabla_boletos.setDefaultRenderer(Object.class, new EstadoBoletoRenderer());
-}
+        this.pasajero = pasajero;
+
+        //List<Viaje> viajes = pasajero.ver_historial_viajes(st);
+
+        initComponents();
+        correcciones_iniciales();
+        
+        listar_boletos();
+        listar_boxboletos();
+        listar_viajes_conductores();
+        
+        tabla_boletos.setDefaultRenderer(Object.class, new EstadoBoletoRenderer());
+    }
     
     private void correcciones_iniciales(){ 
         tabla_boletos.getColumnModel().getColumn(0).setPreferredWidth(10);
