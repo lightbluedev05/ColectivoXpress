@@ -40,7 +40,7 @@ public class PasajeroCompraViaje extends javax.swing.JPanel {
         Terminar_Compra.setVisible(false); 
        
  
-    cargarViajesIniciales();
+        cargarViajesIniciales();
 
     }
     

@@ -158,6 +158,74 @@ public class ConductorRepository implements CRUD<Conductor>{
         }
     }
     
+    public List<Conductor> buscar_pro(String dni, String nombre, String distrito, String provincia, String departamento, String telefono,
+            String placa_vehiculo, String modelo_vehiculo) {
+        
+        ResultSet rs;
+        List<Conductor> conductores = new ArrayList<>();
+
+        try {
+            
+            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM conductores WHERE 1=1");
+
+            
+            if (dni != null && !dni.isEmpty()) {
+                queryBuilder.append(" AND dni='").append(dni).append("'");
+            }
+            if (nombre != null && !nombre.isEmpty()) {
+                queryBuilder.append(" AND nombre='").append(nombre).append("'");
+            }
+            if (distrito != null && !distrito.isEmpty()) {
+                queryBuilder.append(" AND distrito='").append(distrito).append("'");
+            }
+            if (provincia != null && !provincia.isEmpty()) {
+                queryBuilder.append(" AND provincia='").append(provincia).append("'");
+            }
+            if (departamento != null && !departamento.isEmpty()) {
+                queryBuilder.append(" AND departamento='").append(departamento).append("'");
+            }
+            if (telefono != null && !telefono.isEmpty()) {
+                queryBuilder.append(" AND telefono='").append(telefono).append("'");
+            }
+            if (placa_vehiculo != null && !placa_vehiculo.isEmpty()) {
+                queryBuilder.append(" AND placa_vehiculo='").append(placa_vehiculo).append("'");
+            }
+            if (modelo_vehiculo != null && !modelo_vehiculo.isEmpty()) {
+                queryBuilder.append(" AND modelo_vehiculo='").append(modelo_vehiculo).append("'");
+            }
+
+            
+            String query = queryBuilder.toString();
+            rs = st.executeQuery(query);
+
+            
+            while (rs.next()) {
+                ConductorDTO conductorDto = new ConductorDTO();
+                conductorDto.dni = rs.getString("dni");
+                conductorDto.contrasena = rs.getString("contrasena");
+                conductorDto.nombre = rs.getString("nombre");
+                conductorDto.correo = rs.getString("correo");
+                conductorDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+                conductorDto.distrito = rs.getString("distrito");
+                conductorDto.provincia = rs.getString("provincia");
+                conductorDto.departamento = rs.getString("departamento");
+                conductorDto.dias_descanso = rs.getString("dias_descanso");
+                conductorDto.capacidad_vehiculo = rs.getInt("capacidad_vehiculo");
+                conductorDto.telefono = rs.getString("telefono");
+                conductorDto.placa_vehiculo = rs.getString("placa_vehiculo");
+                conductorDto.modelo_vehiculo = rs.getString("modelo_vehiculo");
+
+               
+                conductores.add(convertirDto_Conductor(conductorDto));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConductorRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return conductores; 
+    }
+    
     @Override
     public boolean actualizar(Conductor conductor_editar){
         try {
