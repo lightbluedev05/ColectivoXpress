@@ -33,25 +33,13 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_contra_input.setVisible(false);
         nuevo_contra_button.setVisible(false);
         
-        nuevo_nombre_label.setVisible(false);
-        nuevo_nombre_input.setVisible(false);
-        nuevo_nombre_button.setVisible(false);
+        nuevo_dias_descanso_label1.setVisible(false);
+        nuevo_dias_descanso_input1.setVisible(false);
+        nuevo_dias_descanso_button1.setVisible(false);
         
         nuevo_distrito_label.setVisible(false);
         nuevo_distrito_input.setVisible(false);
         nuevo_distrito_button.setVisible(false);
-        
-        nuevo_provincia_label.setVisible(false);
-        nuevo_provincia_input.setVisible(false);
-        nuevo_provincia_button.setVisible(false);
-        
-        nuevo_departamento_label.setVisible(false);
-        nuevo_departamento_input.setVisible(false);
-        nuevo_departamento_button.setVisible(false);
-        
-        nuevo_dias_descanso_label1.setVisible(false);
-        nuevo_dias_descanso_input1.setVisible(false);
-        nuevo_dias_descanso_button1.setVisible(false);
         
     }
 
@@ -72,21 +60,12 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_contra_input = new javax.swing.JPasswordField();
         nuevo_contra_button = new javax.swing.JButton();
         nuevo_contra_message = new javax.swing.JLabel();
-        nuevo_nombre_label = new javax.swing.JLabel();
-        nuevo_nombre_input = new javax.swing.JTextField();
-        nuevo_nombre_button = new javax.swing.JButton();
         nuevo_nombre_message = new javax.swing.JLabel();
         nuevo_distrito_label = new javax.swing.JLabel();
         nuevo_distrito_input = new javax.swing.JTextField();
         nuevo_distrito_button = new javax.swing.JButton();
         nuevo_distrito_message = new javax.swing.JLabel();
-        nuevo_provincia_label = new javax.swing.JLabel();
-        nuevo_provincia_input = new javax.swing.JTextField();
-        nuevo_provincia_button = new javax.swing.JButton();
         nuevo_provincia_message = new javax.swing.JLabel();
-        nuevo_departamento_label = new javax.swing.JLabel();
-        nuevo_departamento_input = new javax.swing.JTextField();
-        nuevo_departamento_button = new javax.swing.JButton();
         nuevo_departamento_message = new javax.swing.JLabel();
         nuevo_dias_descanso_label1 = new javax.swing.JLabel();
         nuevo_dias_descanso_input1 = new javax.swing.JTextField();
@@ -140,28 +119,6 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
             }
         });
 
-        nuevo_nombre_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        nuevo_nombre_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_nombre_label.setText("Actualiza nombre");
-
-        nuevo_nombre_input.setBackground(new java.awt.Color(240, 245, 247));
-        nuevo_nombre_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nuevo_nombre_input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_nombre_inputActionPerformed(evt);
-            }
-        });
-
-        nuevo_nombre_button.setBackground(new java.awt.Color(41, 82, 85));
-        nuevo_nombre_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nuevo_nombre_button.setForeground(new java.awt.Color(240, 245, 247));
-        nuevo_nombre_button.setText("Modificar");
-        nuevo_nombre_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_nombre_buttonActionPerformed(evt);
-            }
-        });
-
         nuevo_distrito_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nuevo_distrito_label.setForeground(new java.awt.Color(20, 20, 20));
         nuevo_distrito_label.setText("Actualiza distrito");
@@ -181,50 +138,6 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         nuevo_distrito_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_distrito_buttonActionPerformed(evt);
-            }
-        });
-
-        nuevo_provincia_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        nuevo_provincia_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_provincia_label.setText("Actualiza provincia");
-
-        nuevo_provincia_input.setBackground(new java.awt.Color(240, 245, 247));
-        nuevo_provincia_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nuevo_provincia_input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_provincia_inputActionPerformed(evt);
-            }
-        });
-
-        nuevo_provincia_button.setBackground(new java.awt.Color(41, 82, 85));
-        nuevo_provincia_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nuevo_provincia_button.setForeground(new java.awt.Color(240, 245, 247));
-        nuevo_provincia_button.setText("Modificar");
-        nuevo_provincia_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_provincia_buttonActionPerformed(evt);
-            }
-        });
-
-        nuevo_departamento_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        nuevo_departamento_label.setForeground(new java.awt.Color(20, 20, 20));
-        nuevo_departamento_label.setText("Actualiza departamento");
-
-        nuevo_departamento_input.setBackground(new java.awt.Color(240, 245, 247));
-        nuevo_departamento_input.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nuevo_departamento_input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_departamento_inputActionPerformed(evt);
-            }
-        });
-
-        nuevo_departamento_button.setBackground(new java.awt.Color(41, 82, 85));
-        nuevo_departamento_button.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nuevo_departamento_button.setForeground(new java.awt.Color(240, 245, 247));
-        nuevo_departamento_button.setText("Modificar");
-        nuevo_departamento_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_departamento_buttonActionPerformed(evt);
             }
         });
 
@@ -261,38 +174,20 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
                     .addComponent(ingresar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo_dias_descanso_label1)
+                    .addComponent(nuevo_contra_label)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_contra_button))
+                    .addComponent(nuevo_distrito_label)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nuevo_distrito_button))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nuevo_dias_descanso_button1))
-                    .addComponent(nuevo_departamento_label)
-                    .addComponent(nuevo_nombre_label)
-                    .addComponent(nuevo_contra_label)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(nuevo_provincia_label, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nuevo_provincia_button)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nuevo_nombre_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nuevo_contra_button))
-                            .addComponent(nuevo_distrito_label, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nuevo_distrito_button))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_button)))
+                        .addComponent(nuevo_dias_descanso_button1)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nuevo_dias_descanso_message)
@@ -335,38 +230,20 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
                             .addComponent(nuevo_contra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nuevo_contra_button))
                         .addGap(18, 18, 18)
-                        .addComponent(nuevo_nombre_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nuevo_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nuevo_nombre_button))
-                        .addGap(18, 18, 18)
                         .addComponent(nuevo_distrito_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nuevo_distrito_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nuevo_distrito_button))
                         .addGap(18, 18, 18)
-                        .addComponent(nuevo_provincia_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nuevo_provincia_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nuevo_provincia_button))
-                        .addGap(18, 18, 18)
-                        .addComponent(nuevo_departamento_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nuevo_departamento_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nuevo_departamento_button))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nuevo_dias_descanso_label1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nuevo_dias_descanso_input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nuevo_dias_descanso_button1))))
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addComponent(nuevo_dias_descanso_message)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -381,193 +258,119 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nuevo_dias_descanso_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_button1ActionPerformed
+        // Obtener el valor ingresado por el usuario para los nuevos días de descanso
+        String input = nuevo_dias_descanso_input1.getText();
+
+        if (input.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un valor válido para los días de descanso", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            String[] diasDescanso = input.split(",");
+            int cantidadDias = diasDescanso.length;
+
+            // Obtener la instancia de RegulacionLaboral y validar el límite de días de descanso
+            RegulacionLaboral regulacion = new RegulacionLaboral(st);
+            int limiteDias = regulacion.get_limite_dias_descanso();
+
+            // Validar que la cantidad de días de descanso no supere el límite establecido
+            if (cantidadDias > limiteDias) {
+                JOptionPane.showMessageDialog(this, "La cantidad de días de descanso no puede superar el límite de " + limiteDias + " días.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Obtener el DNI del conductor actual (esto depende de tu lógica de aplicación)
+            String dniConductor = conductor.get_dni(); // Asumiendo que tienes acceso al objeto conductor
+            ConductorRepository conductorRepo = new ConductorRepository(st);
+            Conductor conductor = conductorRepo.buscar(dniConductor); // Busca el conductor usando su DNI
+
+            if (conductor != null) {
+                conductor.set_dias_descanso(input);
+                boolean actualizado = conductorRepo.actualizar(conductor);
+                if (!actualizado) {
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar los días de descanso del conductor", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Conductor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Días de descanso actualizados exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            nuevo_dias_descanso_input1.setText(""); // Limpiar el campo de entrada
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese los días de descanso en el formato correcto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_nuevo_dias_descanso_button1ActionPerformed
+
+    private void nuevo_dias_descanso_input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_input1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevo_dias_descanso_input1ActionPerformed
+
+    private void nuevo_distrito_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_distrito_buttonActionPerformed
+        String distrito = new String(nuevo_distrito_input.getText());
+
+        if(distrito.isEmpty()){
+            nuevo_distrito_message.setText("Ingrese un distrito valido");
+            return;
+        }
+
+        boolean exito = conductor.actualizar_distrito(distrito, st);
+        if(!exito){
+            JOptionPane.showMessageDialog(this, "No se pudo cambiar el distrito", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Distrito cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_nuevo_distrito_buttonActionPerformed
+
+    private void nuevo_distrito_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_distrito_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevo_distrito_inputActionPerformed
+
+    private void nuevo_contra_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_contra_buttonActionPerformed
+        String contra = new String(nuevo_contra_input.getPassword());
+
+        if(contra.isEmpty()){
+            nuevo_contra_message.setText("Ingrese una contraseña valida");
+            return;
+        }
+
+        boolean exito = conductor.actualizar_contrasena(contra, st);
+        if(!exito){
+            JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Contraseña cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_nuevo_contra_buttonActionPerformed
+
+    private void nuevo_contra_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_contra_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevo_contra_inputActionPerformed
+
     private void ingresar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar_buttonActionPerformed
         String contra = new String(contra_input.getPassword());
         if(conductor.get_contrasena().equals(contra)){
             nuevo_contra_label.setVisible(true);
             nuevo_contra_input.setVisible(true);
             nuevo_contra_button.setVisible(true);
-            
-            nuevo_nombre_label.setVisible(true);
-            nuevo_nombre_input.setVisible(true);
-            nuevo_nombre_button.setVisible(true);
 
-            nuevo_distrito_label.setVisible(true);
-            nuevo_distrito_input.setVisible(true);
-            nuevo_distrito_button.setVisible(true);
 
-            nuevo_provincia_label.setVisible(true);
-            nuevo_provincia_input.setVisible(true);
-            nuevo_provincia_button.setVisible(true);
-
-            nuevo_departamento_label.setVisible(true);
-            nuevo_departamento_input.setVisible(true);
-            nuevo_departamento_button.setVisible(true);
-            
             nuevo_dias_descanso_label1.setVisible(true);
             nuevo_dias_descanso_input1.setVisible(true);
             nuevo_dias_descanso_button1.setVisible(true);
+            
+            nuevo_distrito_label.setVisible(true);
+            nuevo_distrito_input.setVisible(true);
+            nuevo_distrito_button.setVisible(true);
         } else {
-        // Si la contraseña es incorrecta, mostrar un mensaje de error
-        JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            // Si la contraseña es incorrecta, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_ingresar_buttonActionPerformed
-
-    private void nuevo_contra_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_contra_buttonActionPerformed
-        String contra = new String(nuevo_contra_input.getPassword());
-        
-        if(contra.isEmpty()){
-            nuevo_contra_message.setText("Ingrese una contraseña valida");
-            return;
-        }
-        
-        boolean exito = conductor.actualizar_contrasena(contra, st);
-        if(!exito){
-        JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    JOptionPane.showMessageDialog(this, "Contraseña cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_nuevo_contra_buttonActionPerformed
-
-    private void nuevo_nombre_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_nombre_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_nombre_inputActionPerformed
-
-    private void nuevo_contra_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_contra_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_contra_inputActionPerformed
-
-    private void nuevo_distrito_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_distrito_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_distrito_inputActionPerformed
-
-    private void nuevo_provincia_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_provincia_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_provincia_inputActionPerformed
-
-    private void nuevo_departamento_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_departamento_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_departamento_inputActionPerformed
-
-    private void nuevo_nombre_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_nombre_buttonActionPerformed
-        String nombre = new String(nuevo_nombre_input.getText());
-        
-        if(nombre.isEmpty()){
-            nuevo_nombre_message.setText("Ingrese un nombre valido");
-            return;
-        }
-     
-        boolean exito = conductor.actualizar_nombre(nombre, st);
-        if(!exito){
-        JOptionPane.showMessageDialog(this, "No se pudo cambiar el nombre", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    JOptionPane.showMessageDialog(this, "Nombre cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_nuevo_nombre_buttonActionPerformed
-
-    private void nuevo_distrito_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_distrito_buttonActionPerformed
-        String distrito = new String(nuevo_distrito_input.getText());
-        
-        if(distrito.isEmpty()){
-            nuevo_distrito_message.setText("Ingrese un distrito valido");
-            return;
-        }
-     
-        boolean exito = conductor.actualizar_distrito(distrito, st);
-        if(!exito){
-        JOptionPane.showMessageDialog(this, "No se pudo cambiar el distrito", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    JOptionPane.showMessageDialog(this, "Distrito cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_nuevo_distrito_buttonActionPerformed
-
-    private void nuevo_provincia_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_provincia_buttonActionPerformed
-        String provincia = new String(nuevo_provincia_input.getText());
-        
-        if(provincia.isEmpty()){
-            nuevo_provincia_message.setText("Ingrese una provincia valida");
-            return;
-        }
-     
-        boolean exito = conductor.actualizar_provincia(provincia, st);
-        if(!exito){
-        JOptionPane.showMessageDialog(this, "No se pudo cambiar la provincia", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    JOptionPane.showMessageDialog(this, "Provincia cambiada exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_nuevo_provincia_buttonActionPerformed
-
-    private void nuevo_departamento_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_departamento_buttonActionPerformed
-        String departamento = new String(nuevo_departamento_input.getText());
-        
-        if(departamento.isEmpty()){
-            nuevo_departamento_message.setText("Ingrese un departamento valido");
-            return;
-        }
-     
-        boolean exito = conductor.actualizar_departamento(departamento, st);
-        if(!exito){
-        JOptionPane.showMessageDialog(this, "No se pudo cambiar el departamento", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    JOptionPane.showMessageDialog(this, "Departamento cambiado exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_nuevo_departamento_buttonActionPerformed
-
-    private void nuevo_dias_descanso_input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_input1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_dias_descanso_input1ActionPerformed
-
-    private void nuevo_dias_descanso_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_dias_descanso_button1ActionPerformed
-    // Obtener el valor ingresado por el usuario para los nuevos días de descanso
-    String input = nuevo_dias_descanso_input1.getText();
-    
-    if (input.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Ingrese un valor válido para los días de descanso", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    try {
-        String[] diasDescanso = input.split(",");
-        int cantidadDias = diasDescanso.length;
-
-        // Obtener la instancia de RegulacionLaboral y validar el límite de días de descanso
-        RegulacionLaboral regulacion = new RegulacionLaboral(st);
-        int limiteDias = regulacion.get_limite_dias_descanso();
-
-        // Validar que la cantidad de días de descanso no supere el límite establecido
-        if (cantidadDias > limiteDias) {
-            JOptionPane.showMessageDialog(this, "La cantidad de días de descanso no puede superar el límite de " + limiteDias + " días.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Obtener el DNI del conductor actual (esto depende de tu lógica de aplicación)
-        String dniConductor = conductor.get_dni(); // Asumiendo que tienes acceso al objeto conductor
-        ConductorRepository conductorRepo = new ConductorRepository(st);
-        Conductor conductor = conductorRepo.buscar(dniConductor); // Busca el conductor usando su DNI
-        
-        if (conductor != null) {
-            conductor.set_dias_descanso(input);
-            boolean actualizado = conductorRepo.actualizar(conductor);
-            if (!actualizado) {
-                JOptionPane.showMessageDialog(this, "No se pudo actualizar los días de descanso del conductor", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Conductor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Mostrar mensaje de éxito
-        JOptionPane.showMessageDialog(this, "Días de descanso actualizados exitosamente!!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        nuevo_dias_descanso_input1.setText(""); // Limpiar el campo de entrada
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese los días de descanso en el formato correcto.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-
-
-    
-    }//GEN-LAST:event_nuevo_dias_descanso_button1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -579,9 +382,6 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
     private javax.swing.JPasswordField nuevo_contra_input;
     private javax.swing.JLabel nuevo_contra_label;
     private javax.swing.JLabel nuevo_contra_message;
-    private javax.swing.JButton nuevo_departamento_button;
-    private javax.swing.JTextField nuevo_departamento_input;
-    private javax.swing.JLabel nuevo_departamento_label;
     private javax.swing.JLabel nuevo_departamento_message;
     private javax.swing.JButton nuevo_dias_descanso_button1;
     private javax.swing.JTextField nuevo_dias_descanso_input1;
@@ -591,13 +391,7 @@ public class PerfilConductorEditar extends javax.swing.JPanel {
     private javax.swing.JTextField nuevo_distrito_input;
     private javax.swing.JLabel nuevo_distrito_label;
     private javax.swing.JLabel nuevo_distrito_message;
-    private javax.swing.JButton nuevo_nombre_button;
-    private javax.swing.JTextField nuevo_nombre_input;
-    private javax.swing.JLabel nuevo_nombre_label;
     private javax.swing.JLabel nuevo_nombre_message;
-    private javax.swing.JButton nuevo_provincia_button;
-    private javax.swing.JTextField nuevo_provincia_input;
-    private javax.swing.JLabel nuevo_provincia_label;
     private javax.swing.JLabel nuevo_provincia_message;
     // End of variables declaration//GEN-END:variables
 
