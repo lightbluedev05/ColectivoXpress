@@ -35,7 +35,16 @@ public class Pasajero extends Usuario {
         this.telefono = telefono;
         return new PasajeroRepository(st).actualizar(this);
     }
+    public String getNombre() {
+        return nombre; // Devuelve el nombre del pasajero
+    }
 
+    public String getDni() {
+        return dni; // Devuelve el DNI del pasajero
+    }
+    public String getTelefono() {
+    return telefono; // Or return get_telefono();
+}
     @Override
     public boolean actualizar_contrasena(String nueva_contrasena, Statement st) {
         this.contrasena = nueva_contrasena;

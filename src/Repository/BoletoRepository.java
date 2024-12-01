@@ -7,7 +7,8 @@ import Models.Viaje;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import java.sql.PreparedStatement;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -176,5 +177,34 @@ public class BoletoRepository implements CRUD<Boleto>{
             return null;
         }
     }
+    public List<Boleto> obtenerBoletosParaViaje(String idViaje) {
+    List<Boleto> boletos = new ArrayList<>();
+    
+    String query = "SELECT * FROM boletos WHERE id_viaje = ?";
+    
+    try (PreparedStatement pst = st.getConnection().prepareStatement(query)) {
+        pst.setString(1, idViaje);
+        
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                // Use the correct column names from the printed output
+                String boletoId = rs.getString("id_boleto");
+                String pasajeroId = rs.getString("dni_pasajero");
+                String viajeId = rs.getString("id_viaje");
+                float precio = rs.getFloat("precio");
+                
+                Pasajero pasajero = new PasajeroRepository(st).buscar(pasajeroId);
+                Viaje viaje = new ViajeRepository(st).buscar(viajeId);
+                
+                Boleto boleto = new Boleto(boletoId, pasajero, viaje, precio);
+                boletos.add(boleto);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return boletos;
+}
 }
 

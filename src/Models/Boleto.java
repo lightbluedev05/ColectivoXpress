@@ -70,5 +70,11 @@ public class Boleto {
     public void set_precio(float precio) {
         this.precio = precio;
     }
+    public Pasajero getPasajero() {
+        return this.pasajero;
+    }
+     public void setPasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
+    }
 }
 
