@@ -115,8 +115,68 @@ public class ViajeRepository implements CRUD<Viaje>{
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-            }
         }
+    }
+    
+    
+    
+    public List<Viaje> buscar_pro(String id_viaje, String origen, String destino, String fecha, String dni_conductor, String estado) {
+        ResultSet rs;
+        List<Viaje> viajes = new ArrayList<>();
+
+        try {
+            StringBuilder queryBuilder = new StringBuilder(
+                "SELECT v.*, r.origen, r.destino " +
+                "FROM viajes v " +
+                "JOIN rutas r ON v.id_ruta = r.id_ruta " +
+                "WHERE 1=1"
+            );
+
+            if (id_viaje != null && !id_viaje.isEmpty()) {
+                queryBuilder.append(" AND v.id_viaje='").append(id_viaje).append("'");
+            }
+            if (origen != null && !origen.isEmpty()) {
+                queryBuilder.append(" AND r.origen='").append(origen).append("'");
+            }
+            if (destino != null && !destino.isEmpty()) {
+                queryBuilder.append(" AND r.destino='").append(destino).append("'");
+            }
+            if (fecha != null && !fecha.isEmpty()) {
+                queryBuilder.append(" AND v.fecha_salida='").append(fecha).append("'");
+            }
+            if (dni_conductor != null && !dni_conductor.isEmpty()) {
+                queryBuilder.append(" AND v.dni_conductor='").append(dni_conductor).append("'");
+            }
+            if (estado != null && !estado.isEmpty() && !estado.equals("Cualquiera")) {
+                if (estado.equals("Activo")) {
+                    queryBuilder.append(" AND v.estado=").append(1);
+                } else {
+                    queryBuilder.append(" AND v.estado=").append(0);
+                }
+            }
+
+            String query = queryBuilder.toString();
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                ViajeDTO viajeDto = new ViajeDTO();
+                viajeDto.id_viaje = rs.getString("id_viaje");
+                viajeDto.fecha_salida = rs.getString("fecha_salida");
+                viajeDto.hora_salida = rs.getString("hora_salida");
+                viajeDto.id_ruta = rs.getString("id_ruta");
+                viajeDto.dni_conductor = rs.getString("dni_conductor");
+                viajeDto.estado = rs.getBoolean("estado");
+
+                viajes.add(convertirDto_Viaje(viajeDto));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return viajes; 
+    }
+
 
     @Override
     public boolean actualizar(Viaje viaje_editar) {

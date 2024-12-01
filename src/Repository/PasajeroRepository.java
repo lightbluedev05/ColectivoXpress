@@ -129,6 +129,59 @@ public class PasajeroRepository implements CRUD<Pasajero>{
             return null;
         }
     }
+    
+    public List<Pasajero> buscar_pro(String dni, String nombre, String distrito, String provincia, String departamento, String telefono) {
+        ResultSet rs;
+        List<Pasajero> pasajeros = new ArrayList<>();
+
+        try {
+            // Construir el query dinámico
+            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM pasajeros WHERE 1=1");
+
+            if (dni != null && !dni.isEmpty()) {
+                queryBuilder.append(" AND dni='").append(dni).append("'");
+            }
+            if (nombre != null && !nombre.isEmpty()) {
+                queryBuilder.append(" AND nombre='").append(nombre).append("'");
+            }
+            if (distrito != null && !distrito.isEmpty()) {
+                queryBuilder.append(" AND distrito='").append(distrito).append("'");
+            }
+            if (provincia != null && !provincia.isEmpty()) {
+                queryBuilder.append(" AND provincia='").append(provincia).append("'");
+            }
+            if (departamento != null && !departamento.isEmpty()) {
+                queryBuilder.append(" AND departamento='").append(departamento).append("'");
+            }
+            if (telefono != null && !telefono.isEmpty()) {
+                queryBuilder.append(" AND telefono='").append(telefono).append("'");
+            }
+
+            String query = queryBuilder.toString();
+            rs = st.executeQuery(query);
+
+            // Procesar el ResultSet y mapear a objetos Pasajero
+            while (rs.next()) {
+                PasajeroDTO pasajeroDto = new PasajeroDTO();
+                pasajeroDto.dni = rs.getString("dni");
+                pasajeroDto.nombre = rs.getString("nombre");
+                pasajeroDto.correo = rs.getString("correo");
+                pasajeroDto.fecha_nacimiento = rs.getString("fecha_nacimiento");
+                pasajeroDto.contrasena = rs.getString("contrasena");
+                pasajeroDto.distrito = rs.getString("distrito");
+                pasajeroDto.provincia = rs.getString("provincia");
+                pasajeroDto.departamento = rs.getString("departamento");
+                pasajeroDto.telefono = rs.getString("telefono");
+
+                pasajeros.add(convertirDto_Pasajero(pasajeroDto));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PasajeroRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return pasajeros; 
+    }
 
     @Override
     public boolean actualizar(Pasajero pasajero_editar) {

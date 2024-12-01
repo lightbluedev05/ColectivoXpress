@@ -125,6 +125,47 @@ public class RutaRepository implements CRUD<Ruta>{
             return null;
         }
     }
+    
+    public List<Ruta> buscar_pro(String id_ruta, String origen, String destino) {
+
+        ResultSet rs;
+        List<Ruta> rutas = new ArrayList<>();
+
+        try {
+
+            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM rutas WHERE 1=1");
+
+            if (id_ruta != null && !id_ruta.isEmpty()) {
+                queryBuilder.append(" AND id_ruta='").append(id_ruta).append("'");
+            }
+            if (origen != null && !origen.isEmpty()) {
+                queryBuilder.append(" AND origen='").append(origen).append("'");
+            }
+            if (destino != null && !destino.isEmpty()) {
+                queryBuilder.append(" AND destino='").append(destino).append("'");
+            }
+
+            String query = queryBuilder.toString();
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                RutaDTO rutaDto = new RutaDTO();
+                rutaDto.id_ruta = rs.getString("id_ruta");
+                rutaDto.origen = rs.getString("origen");
+                rutaDto.destino = rs.getString("destino");
+                rutaDto.tiempo_aproximado = rs.getString("tiempo_aproximado");
+                rutaDto.precio = rs.getFloat("precio");
+
+                rutas.add(convertirDto_Ruta(rutaDto));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rutas;
+    }
+
 
     @Override
     public boolean actualizar(Ruta ruta_editar){

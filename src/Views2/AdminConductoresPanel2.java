@@ -126,8 +126,11 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        ((DefaultTableModel) tabla_conductores.getModel()).removeRow(fila_seleccionada);
         JOptionPane.showMessageDialog(null, "Conductor Eliminado", "Exito", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -167,7 +170,6 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         limpiar_filtros_button = new javax.swing.JButton();
-        editar_conductor_button = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1010, 580));
@@ -221,14 +223,19 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tabla_conductores);
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(23, 23, 23));
         jLabel2.setText("MÓDULO DE CONDUCTORES");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.setPreferredSize(new java.awt.Dimension(286, 22));
         jPanel1.add(jLabel2, new java.awt.GridBagConstraints());
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         listar_conductores_button.setBackground(new java.awt.Color(41, 82, 85));
@@ -252,20 +259,38 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(41, 19, 47, 6);
         jPanel3.add(listar_conductores_button, gridBagConstraints);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("DNI");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Distrito");
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Telefono");
 
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Provincia");
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Placa Vehiculo");
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Departamento");
 
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Modelo Vehiculo");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -275,10 +300,10 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
                     .addComponent(dni_input, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(nombre_input))
+                    .addComponent(nombre_input)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -355,6 +380,7 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         limpiar_filtros_button.setBackground(new java.awt.Color(41, 82, 85));
@@ -393,20 +419,6 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        editar_conductor_button.setBackground(new java.awt.Color(41, 82, 85));
-        editar_conductor_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        editar_conductor_button.setForeground(new java.awt.Color(240, 245, 247));
-        editar_conductor_button.setText("Editar Conductor");
-        editar_conductor_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        editar_conductor_button.setMaximumSize(new java.awt.Dimension(161, 40));
-        editar_conductor_button.setMinimumSize(new java.awt.Dimension(161, 40));
-        editar_conductor_button.setPreferredSize(new java.awt.Dimension(161, 40));
-        editar_conductor_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editar_conductor_buttonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -416,12 +428,11 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregar_conductor_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editar_conductor_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminar_conductor_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
+                    .addComponent(agregar_conductor_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eliminar_conductor_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,11 +445,9 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
+                        .addGap(277, 277, 277)
                         .addComponent(agregar_conductor_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(editar_conductor_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(26, 26, 26)
                         .addComponent(eliminar_conductor_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -457,10 +466,6 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
         AdminConductorCrear crear_conductor = new AdminConductorCrear(admin, st);
         crear_conductor.setVisible(true);
     }//GEN-LAST:event_agregar_conductor_buttonActionPerformed
-
-    private void editar_conductor_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_conductor_buttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editar_conductor_buttonActionPerformed
 
     private void limpiar_filtros_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiar_filtros_buttonActionPerformed
         
@@ -481,7 +486,6 @@ public class AdminConductoresPanel2 extends javax.swing.JPanel {
     private javax.swing.JTextField departamento_input;
     private javax.swing.JTextField distrito_input;
     private javax.swing.JTextField dni_input;
-    private javax.swing.JButton editar_conductor_button;
     private javax.swing.JButton eliminar_conductor_button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
