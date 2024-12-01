@@ -113,7 +113,7 @@ public class AdminPasajerosPanel2 extends javax.swing.JPanel {
             return;
         }
         
-        String dni = tabla_pasajeros.getValueAt(1, 0).toString();
+        String dni = tabla_pasajeros.getValueAt(fila_seleccionada, 0).toString();
         
         boolean exito = admin.eliminar_pasajero(dni,  st);
         if(!exito){

@@ -91,6 +91,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         conductores_button = new javax.swing.JButton();
         viajes_button = new javax.swing.JButton();
         pasajeros_button = new javax.swing.JButton();
+        viajes_button1 = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         fecha = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
@@ -183,6 +184,23 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
+        viajes_button1.setBackground(new java.awt.Color(0,0,0,0));
+        viajes_button1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        viajes_button1.setForeground(new java.awt.Color(240, 245, 247));
+        viajes_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/viaje.png"))); // NOI18N
+        viajes_button1.setText("INFORMES");
+        viajes_button1.setBorder(null);
+        viajes_button1.setBorderPainted(false);
+        viajes_button1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viajes_button1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        viajes_button1.setIconTextGap(10);
+        viajes_button1.setMargin(new java.awt.Insets(0, 14, 2, 14));
+        viajes_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viajes_button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
@@ -192,6 +210,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addComponent(rutas_button, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(pasajeros_button, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(viajes_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +224,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(pasajeros_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(viajes_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viajes_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         header.setBackground(new java.awt.Color(22, 38, 35));
@@ -309,6 +331,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         ShowJPanel(new AdminPerfilPanel(admin, st));
     }//GEN-LAST:event_perfil_buttonActionPerformed
 
+    private void viajes_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viajes_button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viajes_button1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -359,5 +385,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton perfil_button;
     private javax.swing.JButton rutas_button;
     private javax.swing.JButton viajes_button;
+    private javax.swing.JButton viajes_button1;
     // End of variables declaration//GEN-END:variables
 }

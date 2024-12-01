@@ -35,12 +35,13 @@ public class RegulacionLaboral {
     
     
     public RegulacionLaboral(Statement st){
-        this.obtener_configuraciones();
         try {
             this.st = st.getConnection().createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(ViajeRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        this.obtener_configuraciones();
     }
 
     public boolean obtener_configuraciones(){  
@@ -69,9 +70,8 @@ public class RegulacionLaboral {
         try {
             
             String query = "UPDATE regulacion SET "
-                + "valor = " + limite_dias_descanso + ", "
-                + "WHERE limite_dias_descanso = 'limite_dias_descanso' "
-                + ")";
+                + "valor = " + limite_dias_descanso + " "
+                + "WHERE limite_dias_descanso = 'limite_dias_descanso'";
 
             int rows_update = st.executeUpdate(query);
             

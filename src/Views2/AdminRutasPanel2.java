@@ -108,7 +108,7 @@ public class AdminRutasPanel2 extends javax.swing.JPanel {
             return;
         }
         
-        String id_ruta = tabla_rutas.getValueAt(1, 0).toString();
+        String id_ruta = tabla_rutas.getValueAt(fila_seleccionada, 0).toString();
         
         boolean exito = admin.eliminar_ruta(id_ruta,  st);
         if(!exito){
