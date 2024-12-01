@@ -388,7 +388,7 @@ private void mostrar_pasajeros_viaje() {
     }//GEN-LAST:event_finalizar_viaje_actual_buttonActionPerformed
 
     private void lista_pasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_pasajerosActionPerformed
-       mostrar_pasajeros_viaje();
+        mostrar_pasajeros_viaje();
     }//GEN-LAST:event_lista_pasajerosActionPerformed
     
 
