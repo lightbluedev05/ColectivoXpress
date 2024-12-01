@@ -177,7 +177,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         buttonHistorial.setBackground(new java.awt.Color(0,0,0,0));
         buttonHistorial.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         buttonHistorial.setForeground(new java.awt.Color(255, 255, 255));
-        buttonHistorial.setText("Historial de Viajes");
+        buttonHistorial.setText("HISTORIAL DE VIAJES");
         buttonHistorial.setBorder(null);
         buttonHistorial.setBorderPainted(false);
         buttonHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
