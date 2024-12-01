@@ -54,46 +54,22 @@
                       <Component id="ingresar_button" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
                       <Component id="contra_input" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="nuevo_dias_descanso_label1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="nuevo_contra_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="nuevo_contra_input" min="-2" pref="370" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nuevo_contra_button" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="nuevo_distrito_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="nuevo_distrito_input" min="-2" pref="370" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nuevo_distrito_button" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="nuevo_dias_descanso_input1" min="-2" pref="370" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="nuevo_dias_descanso_button1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="nuevo_departamento_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_nombre_label" min="-2" max="-2" attributes="0"/>
-                      <Component id="nuevo_contra_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="nuevo_provincia_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nuevo_provincia_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nuevo_provincia_button" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nuevo_nombre_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nuevo_nombre_button" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nuevo_contra_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nuevo_contra_button" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="nuevo_distrito_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nuevo_distrito_input" min="-2" pref="370" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nuevo_distrito_button" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="nuevo_departamento_input" min="-2" pref="370" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_departamento_button" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -110,7 +86,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="376" max="32767" attributes="0"/>
+                  <EmptySpace pref="355" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,45 +121,24 @@
                               <Component id="nuevo_contra_button" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_nombre_label" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nuevo_nombre_input" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nuevo_nombre_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="nuevo_distrito_label" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="nuevo_distrito_input" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="nuevo_distrito_button" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_provincia_label" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nuevo_provincia_input" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nuevo_provincia_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="nuevo_departamento_label" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nuevo_departamento_input" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nuevo_departamento_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="nuevo_dias_descanso_label1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="nuevo_dias_descanso_input1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="nuevo_dias_descanso_button1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="nuevo_dias_descanso_message" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -276,47 +231,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="nuevo_contra_message">
         </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_nombre_label">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="14" green="14" red="14" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza nombre"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="nuevo_nombre_input">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f7" green="f5" red="f0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_nombre_inputActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="nuevo_nombre_button">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="55" green="52" red="29" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f7" green="f5" red="f0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_nombre_buttonActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="nuevo_nombre_message">
         </Component>
         <Component class="javax.swing.JLabel" name="nuevo_distrito_label">
@@ -362,89 +276,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="nuevo_distrito_message">
         </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_provincia_label">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="14" green="14" red="14" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza provincia"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="nuevo_provincia_input">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f7" green="f5" red="f0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_provincia_inputActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="nuevo_provincia_button">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="55" green="52" red="29" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f7" green="f5" red="f0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_provincia_buttonActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="nuevo_provincia_message">
-        </Component>
-        <Component class="javax.swing.JLabel" name="nuevo_departamento_label">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="14" green="14" red="14" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Actualiza departamento"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="nuevo_departamento_input">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f7" green="f5" red="f0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_departamento_inputActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="nuevo_departamento_button">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="55" green="52" red="29" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f7" green="f5" red="f0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_departamento_buttonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nuevo_departamento_message">
         </Component>
