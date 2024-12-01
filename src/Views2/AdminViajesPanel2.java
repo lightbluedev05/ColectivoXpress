@@ -126,7 +126,7 @@ public class AdminViajesPanel2 extends javax.swing.JPanel {
             return;
         }
         
-        String id_viaje = tabla_viajes.getValueAt(1, 0).toString();
+        String id_viaje = tabla_viajes.getValueAt(fila_seleccionada, 1).toString();
         
         boolean exito = admin.eliminar_viaje(id_viaje,  st);
         if(!exito){
@@ -476,7 +476,7 @@ public class AdminViajesPanel2 extends javax.swing.JPanel {
             return;
         }
         
-        String id_viaje = tabla_viajes.getValueAt(1, 1).toString();
+        String id_viaje = tabla_viajes.getValueAt(fila_seleccionada, 1).toString();
         
         AdminViajesEditar editar_viaje = new AdminViajesEditar(admin, id_viaje, st);
         editar_viaje.setVisible(true);

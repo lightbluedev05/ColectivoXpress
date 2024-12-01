@@ -14,6 +14,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.Random;
 import java.sql.Statement;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 
 /**
@@ -214,37 +216,42 @@ public class AdminViajesCrear extends javax.swing.JFrame {
         }
         
         String id_ruta = ruta_combobox.getSelectedItem().toString().split(":")[0].trim();
-        /*
         
-        List<Viaje> viajes_activos = admin.ver_viajes_activos();
-        List<Ruta> rutas = admin.ver_rutas();
+        List<Conductor> conductores = admin.ver_conductores_libres(st);
         
-        Ruta ruta_elegida = null;
-        int menor_repeticion = -1;
-        for(Ruta ruta:rutas){
-            int aux=0;
-            for(Viaje viaje:viajes_activos){
-                if(viaje.get_ruta().get_id_ruta().equals(ruta.get_id_ruta())){
-                    aux++;
+        if(conductores == null || conductores.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No hay Ningun Conductor Disponible", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String conductor_elegido = "";
+        String nombre_dia = LocalDate.now().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+        
+        for(Conductor conductor:conductores){
+            
+            String[] dias_descanso = conductor.get_dias_descanso().split(",");
+            boolean valido = true;
+            
+            for(String dia:dias_descanso){
+                if (dia.equals(nombre_dia)){
+                    valido = false;
+                    break;
                 }
             }
             
-            if(menor_repeticion != -1){
-                if(aux<menor_repeticion){
-                    menor_repeticion = aux;
-                    ruta_elegida = ruta;
-                }
+            if(!valido){
                 continue;
             }
-            menor_repeticion = aux;
-            ruta_elegida = ruta;
+            
+            conductor_elegido = conductor.get_dni();
+            break;
         }
-        */
-        List<Conductor> conductores = admin.ver_conductores_libres(st);
-        Random random = new Random();
-        int indice = random.nextInt(conductores.size());
         
-        boolean exito = admin.crear_viaje(fecha, id_ruta, conductores.get(indice).get_dni(), hora_salida, st);
+        if(conductor_elegido.equals("")){
+            JOptionPane.showMessageDialog(null, "No hay Ningun Conductor Disponibel", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        boolean exito = admin.crear_viaje(fecha, id_ruta, conductor_elegido, hora_salida, st);
         
         if(!exito){
             resultado_text.setText("No se pudo crear el viaje");
