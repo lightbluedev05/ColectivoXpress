@@ -17,12 +17,12 @@ public class ViajeRepository implements CRUD<Viaje>{
 
     private static final String RUTA_ARCHIVO = "src/resources/viajes.json";
 
-    private static class ViajeDTO {
-        private String id_viaje;
-        private String fecha_salida;
+    public static class ViajeDTO {
+        public String id_viaje;
+        public String fecha_salida;
         private String hora_salida;
         private String id_ruta;
-        private String dni_conductor; 
+        public String dni_conductor; 
         private boolean estado;
     }
     
@@ -244,6 +244,39 @@ public class ViajeRepository implements CRUD<Viaje>{
                 viajeDto.estado = rs.getBoolean("estado");
                 System.out.println("Viaje: "+ viajeDto.id_viaje+" recuperado");
                 viajes.add(convertirDto_Viaje(viajeDto));
+            } while (rs.next());
+
+
+            
+            return viajes;
+        } catch (SQLException ex) {
+            Logger.getLogger(RutaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public List<ViajeDTO> listar_dto() {
+        try {
+            String query = "SELECT * FROM viajes";
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                return null;  
+            } 
+            
+            List<ViajeDTO> viajes;
+            viajes = new ArrayList<>();
+            
+            do {
+                ViajeDTO viajeDto = new ViajeDTO();
+                viajeDto.id_viaje = rs.getString("id_viaje");
+                viajeDto.fecha_salida = rs.getString("fecha_salida");
+                viajeDto.hora_salida = rs.getString("hora_salida");
+                viajeDto.id_ruta = rs.getString("id_ruta");
+                viajeDto.dni_conductor = rs.getString("dni_conductor");
+                viajeDto.estado = rs.getBoolean("estado");
+                System.out.println("Viaje: "+ viajeDto.id_viaje+" recuperado");
+                viajes.add(viajeDto);
             } while (rs.next());
 
 

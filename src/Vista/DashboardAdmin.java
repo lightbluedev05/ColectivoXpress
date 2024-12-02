@@ -2,18 +2,15 @@
 package Vista;
 
 import Models.Admin;
-import Views2.AdminConductoresPanel;
 import Views2.AdminConductoresPanel2;
-import Views2.AdminPasajerosPanel;
+import Views2.AdminInformesPanel;
 import Views2.AdminPasajerosPanel2;
 import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
 import Views2.Nosotros;
 import Views2.AdminPerfilPanel;
-import Views2.AdminRutasPanel;
 import Views2.AdminRutasPanel2;
-import Views2.AdminViajesPanel;
 import Views2.AdminViajesPanel2;
 import java.awt.BorderLayout;
 import java.awt.Insets;
@@ -187,7 +184,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         viajes_button1.setBackground(new java.awt.Color(0,0,0,0));
         viajes_button1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         viajes_button1.setForeground(new java.awt.Color(240, 245, 247));
-        viajes_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/viaje.png"))); // NOI18N
+        viajes_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cuidado-de-la-salud.png"))); // NOI18N
         viajes_button1.setText("INFORMES");
         viajes_button1.setBorder(null);
         viajes_button1.setBorderPainted(false);
@@ -332,7 +329,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_perfil_buttonActionPerformed
 
     private void viajes_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viajes_button1ActionPerformed
-        // TODO add your handling code here:
+        ShowJPanel(new AdminInformesPanel(admin, st));
     }//GEN-LAST:event_viajes_button1ActionPerformed
 
     /**

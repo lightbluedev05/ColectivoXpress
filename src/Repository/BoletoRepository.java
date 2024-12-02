@@ -25,11 +25,11 @@ public class BoletoRepository implements CRUD<Boleto>{
 
     private static final String RUTA_ARCHIVO = "src/resources/boletos.json";
 
-    private static class BoletoDTO {
-        private String id_boleto;
-        private String dni_pasajero;
-        private String id_viaje;
-        private float precio;
+    public static class BoletoDTO {
+        public String id_boleto;
+        public String dni_pasajero;
+        public String id_viaje;
+        public float precio;
     }
 
     private static Boleto convertirDto_Boleto(BoletoDTO boletoDTO) {
@@ -167,6 +167,36 @@ public class BoletoRepository implements CRUD<Boleto>{
                 boletoDto.precio = rs.getFloat("precio");
                 
                 boletos.add(convertirDto_Boleto(boletoDto));
+                
+            } while(rs.next());
+            
+            return boletos;
+        } catch (SQLException ex) {
+            Logger.getLogger(BoletoRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public List<BoletoDTO> listar_dto() {
+        try {
+            String query = "SELECT * FROM boletos";
+            ResultSet rs = st.executeQuery(query);
+            
+            if(!rs.next()){
+                return null;  
+            } 
+            
+            List<BoletoDTO> boletos;
+            boletos = new ArrayList<>();
+            
+            do{
+                BoletoDTO boletoDto = new BoletoDTO();
+                boletoDto.id_boleto = rs.getString("id_boleto");
+                boletoDto.dni_pasajero = rs.getString("dni_pasajero");
+                boletoDto.id_viaje = rs.getString("id_viaje");
+                boletoDto.precio = rs.getFloat("precio");
+                
+                boletos.add(boletoDto);
                 
             } while(rs.next());
             
