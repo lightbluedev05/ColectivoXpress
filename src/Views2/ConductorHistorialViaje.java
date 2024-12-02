@@ -33,12 +33,13 @@ import java.sql.Statement;
  *
  * @author Mihae
  */
-public class ViajeAsignado extends javax.swing.JPanel {
+public class ConductorHistorialViaje extends javax.swing.JPanel {
 
     private Conductor conductor;
     private Statement st;
+    
 
-    public ViajeAsignado(Conductor conductor, Statement st) {
+    public ConductorHistorialViaje(Conductor conductor, Statement st) {
         this.st = st;
         this.conductor = conductor;
         initComponents();
@@ -137,6 +138,9 @@ private void listar_viaje_asignado() {
     List<Viaje> viajes = conductor.ver_viaje_asignado(st);
     
     for (Viaje viaje : viajes) {
+        //Para ver si el estado de viaje esta finalizado o no 
+        String estado = viaje.get_estado() ? "No" : "Si"; 
+        
         modelo.addRow(new Object[]{
             conductor.get_dni(),
             viaje.get_id_viaje(),
@@ -144,11 +148,74 @@ private void listar_viaje_asignado() {
             viaje.get_ruta().get_origen(),
             viaje.get_ruta().get_destino(),
             viaje.get_hora_salida(),
-            viaje.get_ruta().get_tiempo_aproximado()
+            viaje.get_ruta().get_tiempo_aproximado(),
+            estado 
         });
     }
  
     tabla_viajes.setModel(modelo);
+}
+private void mostrar_pasajeros_viaje() {
+    int selectedRow = tabla_viajes.getSelectedRow();
+    
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, 
+            "Por favor, seleccione un viaje primero.", 
+            "Seleccionar Viaje", 
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    String idViaje = (String) tabla_viajes.getValueAt(selectedRow, 1);
+    
+    // Buscar viaje del repo
+    ViajeRepository viajeRepo = new ViajeRepository(st);
+    Viaje viaje = viajeRepo.buscar(idViaje);
+    
+    if (viaje == null) {
+        JOptionPane.showMessageDialog(this, 
+            "No se encontró el viaje seleccionado.", 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // Debugging: print the ID to verify
+    System.out.println("Buscando pasajeros para viaje ID: " + idViaje);
+    
+    // Ver los pasajeros - añadir más debugging
+     BoletoRepository boletoRepo = new BoletoRepository(st);
+    List<Boleto> boletos = boletoRepo.obtenerBoletosParaViaje(idViaje);
+    
+    if (boletos != null && !boletos.isEmpty()) {
+        StringBuilder pasajerosInfo = new StringBuilder("Pasajeros del Viaje:\n");
+        for (Boleto boleto : boletos) {
+            Pasajero pasajero = boleto.getPasajero();
+            if (pasajero != null) {
+                pasajerosInfo.append(String.format("Nombre: %s, DNI: %s, Telefono: %s\n", 
+                    pasajero.getNombre(), 
+                    pasajero.getDni(), 
+                    pasajero.getTelefono()));
+            }
+        }
+        
+        if (pasajerosInfo.length() > 18) {  // More than "Pasajeros del Viaje:\n"
+            JOptionPane.showMessageDialog(this, 
+                pasajerosInfo.toString(), 
+                "Pasajeros - Viaje " + viaje.get_id_viaje(), 
+                JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "No hay pasajeros para este viaje.", 
+                "Sin pasajeros", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, 
+            "No hay boletos encontrados para este viaje.", 
+            "Sin pasajeros", 
+            JOptionPane.INFORMATION_MESSAGE);
+    }
 }
     private void finalizar_viaje_actual(){
         List<Viaje> viajes_activos = new ViajeRepository(st).listar_activos();
@@ -163,7 +230,7 @@ private void listar_viaje_asignado() {
         JOptionPane.showMessageDialog(null, "No hay ningun viaje activo", "ERROR", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,9 +244,9 @@ private void listar_viaje_asignado() {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_viajes = new javax.swing.JTable();
-        ListarViajes = new javax.swing.JButton();
-        ListarViajesss = new javax.swing.JButton();
-        finalizar_viaje_actual_button = new javax.swing.JButton();
+        ListarPasajero = new javax.swing.JButton();
+        ListarViaje = new javax.swing.JButton();
+        FiltrarBusqueda = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1010, 580));
@@ -188,7 +255,7 @@ private void listar_viaje_asignado() {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(23, 23, 23));
-        jLabel1.setText("Viajes Asignados");
+        jLabel1.setText("Historial de Viajes");
 
         tabla_viajes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tabla_viajes.setModel(new javax.swing.table.DefaultTableModel(
@@ -196,14 +263,14 @@ private void listar_viaje_asignado() {
 
             },
             new String [] {
-                "DNI Conductor", "ID Viaje", "Fecha", "Origen", "Destino", "Hora de Salida (HH:MM)", "Duracion (HH:MM)"
+                "DNI Conductor", "ID Viaje", "Fecha", "Origen", "Destino", "Hora de Salida (HH:MM)", "Duracion (HH:MM)", "Finalizado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -224,38 +291,39 @@ private void listar_viaje_asignado() {
             tabla_viajes.getColumnModel().getColumn(4).setMaxWidth(150);
             tabla_viajes.getColumnModel().getColumn(5).setMaxWidth(400);
             tabla_viajes.getColumnModel().getColumn(6).setMaxWidth(280);
+            tabla_viajes.getColumnModel().getColumn(7).setMaxWidth(120);
         }
 
-        ListarViajes.setBackground(new java.awt.Color(41, 82, 85));
-        ListarViajes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ListarViajes.setForeground(new java.awt.Color(240, 245, 247));
-        ListarViajes.setText("Asignar Viaje");
-        ListarViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ListarViajes.addActionListener(new java.awt.event.ActionListener() {
+        ListarPasajero.setBackground(new java.awt.Color(41, 82, 85));
+        ListarPasajero.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ListarPasajero.setForeground(new java.awt.Color(240, 245, 247));
+        ListarPasajero.setText("Lista Pasajeros");
+        ListarPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ListarPasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarViajesActionPerformed(evt);
+                ListarPasajeroActionPerformed(evt);
             }
         });
 
-        ListarViajesss.setBackground(new java.awt.Color(41, 82, 85));
-        ListarViajesss.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ListarViajesss.setForeground(new java.awt.Color(240, 245, 247));
-        ListarViajesss.setText("Lista");
-        ListarViajesss.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ListarViajesss.addActionListener(new java.awt.event.ActionListener() {
+        ListarViaje.setBackground(new java.awt.Color(41, 82, 85));
+        ListarViaje.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ListarViaje.setForeground(new java.awt.Color(240, 245, 247));
+        ListarViaje.setText("Lista");
+        ListarViaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ListarViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarViajesssActionPerformed(evt);
+                ListarViajeActionPerformed(evt);
             }
         });
 
-        finalizar_viaje_actual_button.setBackground(new java.awt.Color(41, 82, 85));
-        finalizar_viaje_actual_button.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        finalizar_viaje_actual_button.setForeground(new java.awt.Color(240, 245, 247));
-        finalizar_viaje_actual_button.setText("Finalizar Viaje Actual");
-        finalizar_viaje_actual_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        finalizar_viaje_actual_button.addActionListener(new java.awt.event.ActionListener() {
+        FiltrarBusqueda.setBackground(new java.awt.Color(41, 82, 85));
+        FiltrarBusqueda.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        FiltrarBusqueda.setForeground(new java.awt.Color(240, 245, 247));
+        FiltrarBusqueda.setText("Filtrar Busqueda");
+        FiltrarBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FiltrarBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finalizar_viaje_actual_buttonActionPerformed(evt);
+                FiltrarBusquedaActionPerformed(evt);
             }
         });
 
@@ -263,12 +331,6 @@ private void listar_viaje_asignado() {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ListarViajes)
-                .addGap(195, 195, 195)
-                .addComponent(ListarViajesss)
-                .addGap(397, 397, 397))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -276,55 +338,51 @@ private void listar_viaje_asignado() {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(397, 397, 397)
-                        .addComponent(finalizar_viaje_actual_button, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(108, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ListarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(FiltrarBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(ListarPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ListarViajes)
-                            .addComponent(ListarViajesss))
-                        .addGap(32, 32, 32)))
-                .addComponent(finalizar_viaje_actual_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ListarPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ListarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FiltrarBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ListarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarViajesActionPerformed
+    private void ListarPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarPasajeroActionPerformed
         // TODO add your handling code here:
-         // Llamar al método para asignar un viaje al conductor
-    asignarViajeAlConductor();
-    listar_viaje_asignado();
+       mostrar_pasajeros_viaje();
+    }//GEN-LAST:event_ListarPasajeroActionPerformed
 
-    }//GEN-LAST:event_ListarViajesActionPerformed
-
-    private void ListarViajesssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarViajesssActionPerformed
-        // TODO add your handling code here:
+    private void ListarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarViajeActionPerformed
         listar_viaje_asignado();
-    }//GEN-LAST:event_ListarViajesssActionPerformed
+    }//GEN-LAST:event_ListarViajeActionPerformed
 
-    private void finalizar_viaje_actual_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizar_viaje_actual_buttonActionPerformed
-        finalizar_viaje_actual();
-    }//GEN-LAST:event_finalizar_viaje_actual_buttonActionPerformed
+    private void FiltrarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarBusquedaActionPerformed
+        
+    }//GEN-LAST:event_FiltrarBusquedaActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ListarViajes;
-    private javax.swing.JButton ListarViajesss;
-    private javax.swing.JButton finalizar_viaje_actual_button;
+    private javax.swing.JButton FiltrarBusqueda;
+    private javax.swing.JButton ListarPasajero;
+    private javax.swing.JButton ListarViaje;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla_viajes;

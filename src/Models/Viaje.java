@@ -4,6 +4,7 @@ import Repository.ViajeRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Viaje {
 
@@ -13,7 +14,7 @@ public class Viaje {
     private Ruta ruta;
     private Conductor conductor;
     private boolean estado;
-
+    private List<Pasajero> pasajeros;
 
     public Viaje(String id_viaje, LocalDate fecha_salida, Ruta ruta, Conductor conductor, LocalTime hora_salida, boolean estado) {
         this.id_viaje = id_viaje;

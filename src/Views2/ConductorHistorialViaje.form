@@ -30,13 +30,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="ListarViajes" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
-              <Component id="ListarViajesss" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="397" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -47,12 +40,17 @@
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="826" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="397" max="-2" attributes="0"/>
-                      <Component id="finalizar_viaje_actual_button" min="-2" pref="155" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace pref="114" max="32767" attributes="0"/>
+              <EmptySpace pref="108" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="ListarViaje" min="-2" pref="155" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Component id="FiltrarBusqueda" min="-2" pref="155" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="ListarPasajero" min="-2" pref="155" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,23 +59,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="341" max="-2" attributes="0"/>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ListarViajes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ListarViajesss" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="341" max="-2" attributes="0"/>
+              <EmptySpace pref="87" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ListarPasajero" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="ListarViaje" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="FiltrarBusqueda" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <Component id="finalizar_viaje_actual_button" min="-2" pref="38" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,7 +81,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="17" green="17" red="17" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Viajes Asignados"/>
+        <Property name="text" type="java.lang.String" value="Historial de Viajes"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -107,14 +97,15 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
-                <Column editable="true" title="DNI Conductor" type="java.lang.String"/>
+              <Table columnCount="8" rowCount="0">
+                <Column editable="false" title="DNI Conductor" type="java.lang.String"/>
                 <Column editable="false" title="ID Viaje" type="java.lang.String"/>
                 <Column editable="false" title="Fecha" type="java.lang.String"/>
                 <Column editable="false" title="Origen" type="java.lang.String"/>
                 <Column editable="false" title="Destino" type="java.lang.String"/>
                 <Column editable="false" title="Hora de Salida (HH:MM)" type="java.lang.String"/>
                 <Column editable="false" title="Duracion (HH:MM)" type="java.lang.String"/>
+                <Column editable="false" title="Finalizado" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -154,6 +145,11 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="120" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -163,7 +159,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="ListarViajes">
+    <Component class="javax.swing.JButton" name="ListarPasajero">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="55" green="52" red="29" type="rgb"/>
@@ -174,16 +170,16 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f7" green="f5" red="f0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Asignar Viaje"/>
+        <Property name="text" type="java.lang.String" value="Lista Pasajeros"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarViajesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarPasajeroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ListarViajesss">
+    <Component class="javax.swing.JButton" name="ListarViaje">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="55" green="52" red="29" type="rgb"/>
@@ -200,10 +196,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarViajesssActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarViajeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="finalizar_viaje_actual_button">
+    <Component class="javax.swing.JButton" name="FiltrarBusqueda">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="55" green="52" red="29" type="rgb"/>
@@ -214,13 +210,13 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f7" green="f5" red="f0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Finalizar Viaje Actual"/>
+        <Property name="text" type="java.lang.String" value="Filtrar Busqueda"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalizar_viaje_actual_buttonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FiltrarBusquedaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

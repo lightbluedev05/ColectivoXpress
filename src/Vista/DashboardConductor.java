@@ -7,12 +7,14 @@ import Models.Viaje;
 import Repository.ConductorRepository;
 import Repository.RutaRepository;
 import Repository.ViajeRepository;
+import Views2.ConductorHistorialViaje;
 import Views2.ConductorPerfil;
+import Views2.ConductorPerfilVehiculo;
 import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
 import Views2.Nosotros;
-import Views2.ViajeAsignado;
+import Views2.ConductorViajeAsignado;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -53,7 +55,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new ConductorPerfil(conductor, st));
+        ShowJPanel(new ConductorViajeAsignado(conductor, st));
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -147,7 +149,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         buttonInicio = new javax.swing.JButton();
-        buttonDestinos = new javax.swing.JButton();
+        buttonHistorial = new javax.swing.JButton();
         buttonViajeAsignado = new javax.swing.JButton();
         buttonNosotros = new javax.swing.JButton();
         header = new javax.swing.JPanel();
@@ -173,16 +175,16 @@ public class DashboardConductor extends javax.swing.JFrame {
             }
         });
 
-        buttonDestinos.setBackground(new java.awt.Color(0,0,0,0));
-        buttonDestinos.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        buttonDestinos.setForeground(new java.awt.Color(255, 255, 255));
-        buttonDestinos.setText("DESTINOS");
-        buttonDestinos.setBorder(null);
-        buttonDestinos.setBorderPainted(false);
-        buttonDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonDestinos.addActionListener(new java.awt.event.ActionListener() {
+        buttonHistorial.setBackground(new java.awt.Color(0,0,0,0));
+        buttonHistorial.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        buttonHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        buttonHistorial.setText("HISTORIAL DE VIAJES");
+        buttonHistorial.setBorder(null);
+        buttonHistorial.setBorderPainted(false);
+        buttonHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDestinosActionPerformed(evt);
+                buttonHistorialActionPerformed(evt);
             }
         });
 
@@ -202,7 +204,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         buttonNosotros.setBackground(new java.awt.Color(0,0,0,0));
         buttonNosotros.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         buttonNosotros.setForeground(new java.awt.Color(255, 255, 255));
-        buttonNosotros.setText("NOSOTROS");
+        buttonNosotros.setText("VEHICULO");
         buttonNosotros.setBorder(null);
         buttonNosotros.setBorderPainted(false);
         buttonNosotros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -218,7 +220,7 @@ public class DashboardConductor extends javax.swing.JFrame {
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(buttonViajeAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(buttonDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         menuLayout.setVerticalGroup(
@@ -229,7 +231,7 @@ public class DashboardConductor extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(buttonViajeAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(buttonDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(buttonNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -319,16 +321,16 @@ public class DashboardConductor extends javax.swing.JFrame {
         ShowJPanel(new ConductorPerfil(conductor, st));
     }//GEN-LAST:event_buttonInicioActionPerformed
 
-    private void buttonDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDestinosActionPerformed
-        ShowJPanel(new Destinos());
-    }//GEN-LAST:event_buttonDestinosActionPerformed
+    private void buttonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHistorialActionPerformed
+        ShowJPanel(new ConductorHistorialViaje(conductor, st));
+    }//GEN-LAST:event_buttonHistorialActionPerformed
 
     private void buttonViajeAsignadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViajeAsignadoActionPerformed
-        ShowJPanel (new ViajeAsignado(conductor, st));
+        ShowJPanel (new ConductorViajeAsignado(conductor, st));
     }//GEN-LAST:event_buttonViajeAsignadoActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed
-        ShowJPanel(new Nosotros());
+        ShowJPanel(new ConductorPerfilVehiculo(conductor, st));
     }//GEN-LAST:event_buttonNosotrosActionPerformed
 
     /**
@@ -371,7 +373,7 @@ public class DashboardConductor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JButton buttonDestinos;
+    private javax.swing.JButton buttonHistorial;
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonNosotros;
     private javax.swing.JButton buttonViajeAsignado;
