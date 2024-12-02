@@ -9,6 +9,7 @@ import Repository.RutaRepository;
 import Repository.ViajeRepository;
 import Views2.ConductorHistorialViaje;
 import Views2.ConductorPerfil;
+import Views2.ConductorPerfilVehiculo;
 import Views2.Destinos;
 import Views2.IniciarSesionPrincipal;
 import Views2.Inicio;
@@ -54,7 +55,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }
     
     private void initContent(){
-        ShowJPanel(new ConductorPerfil(conductor, st));
+        ShowJPanel(new ConductorViajeAsignado(conductor, st));
     }
     public void ShowJPanel(JPanel in){
         in.setSize(1010, 580);
@@ -203,7 +204,7 @@ public class DashboardConductor extends javax.swing.JFrame {
         buttonNosotros.setBackground(new java.awt.Color(0,0,0,0));
         buttonNosotros.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         buttonNosotros.setForeground(new java.awt.Color(255, 255, 255));
-        buttonNosotros.setText("NOSOTROS");
+        buttonNosotros.setText("VEHICULO");
         buttonNosotros.setBorder(null);
         buttonNosotros.setBorderPainted(false);
         buttonNosotros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -329,7 +330,7 @@ public class DashboardConductor extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonViajeAsignadoActionPerformed
 
     private void buttonNosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNosotrosActionPerformed
-        ShowJPanel(new Nosotros());
+        ShowJPanel(new ConductorPerfilVehiculo(conductor, st));
     }//GEN-LAST:event_buttonNosotrosActionPerformed
 
     /**

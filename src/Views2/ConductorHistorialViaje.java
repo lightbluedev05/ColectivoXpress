@@ -37,6 +37,7 @@ public class ConductorHistorialViaje extends javax.swing.JPanel {
 
     private Conductor conductor;
     private Statement st;
+    
 
     public ConductorHistorialViaje(Conductor conductor, Statement st) {
         this.st = st;
@@ -244,7 +245,8 @@ private void mostrar_pasajeros_viaje() {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_viajes = new javax.swing.JTable();
         ListarPasajero = new javax.swing.JButton();
-        ListarViajesss1 = new javax.swing.JButton();
+        ListarViaje = new javax.swing.JButton();
+        FiltrarBusqueda = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1010, 580));
@@ -303,14 +305,25 @@ private void mostrar_pasajeros_viaje() {
             }
         });
 
-        ListarViajesss1.setBackground(new java.awt.Color(41, 82, 85));
-        ListarViajesss1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ListarViajesss1.setForeground(new java.awt.Color(240, 245, 247));
-        ListarViajesss1.setText("Lista");
-        ListarViajesss1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ListarViajesss1.addActionListener(new java.awt.event.ActionListener() {
+        ListarViaje.setBackground(new java.awt.Color(41, 82, 85));
+        ListarViaje.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ListarViaje.setForeground(new java.awt.Color(240, 245, 247));
+        ListarViaje.setText("Lista");
+        ListarViaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ListarViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarViajesss1ActionPerformed(evt);
+                ListarViajeActionPerformed(evt);
+            }
+        });
+
+        FiltrarBusqueda.setBackground(new java.awt.Color(41, 82, 85));
+        FiltrarBusqueda.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        FiltrarBusqueda.setForeground(new java.awt.Color(240, 245, 247));
+        FiltrarBusqueda.setText("Filtrar Busqueda");
+        FiltrarBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FiltrarBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FiltrarBusquedaActionPerformed(evt);
             }
         });
 
@@ -329,10 +342,12 @@ private void mostrar_pasajeros_viaje() {
                 .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ListarViajesss1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(204, 204, 204)
+                .addComponent(ListarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(FiltrarBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addComponent(ListarPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(249, 249, 249))
+                .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +359,8 @@ private void mostrar_pasajeros_viaje() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ListarPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ListarViajesss1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ListarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FiltrarBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -354,14 +370,19 @@ private void mostrar_pasajeros_viaje() {
        mostrar_pasajeros_viaje();
     }//GEN-LAST:event_ListarPasajeroActionPerformed
 
-    private void ListarViajesss1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarViajesss1ActionPerformed
+    private void ListarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarViajeActionPerformed
         listar_viaje_asignado();
-    }//GEN-LAST:event_ListarViajesss1ActionPerformed
+    }//GEN-LAST:event_ListarViajeActionPerformed
+
+    private void FiltrarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarBusquedaActionPerformed
+        
+    }//GEN-LAST:event_FiltrarBusquedaActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton FiltrarBusqueda;
     private javax.swing.JButton ListarPasajero;
-    private javax.swing.JButton ListarViajesss1;
+    private javax.swing.JButton ListarViaje;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla_viajes;

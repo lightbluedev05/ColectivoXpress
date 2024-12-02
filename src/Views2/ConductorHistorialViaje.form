@@ -45,10 +45,12 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="ListarViajesss1" min="-2" pref="155" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+              <Component id="ListarViaje" min="-2" pref="155" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Component id="FiltrarBusqueda" min="-2" pref="155" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Component id="ListarPasajero" min="-2" pref="155" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,7 +64,8 @@
               <EmptySpace pref="87" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ListarPasajero" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="ListarViajesss1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="ListarViaje" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="FiltrarBusqueda" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
@@ -176,7 +179,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarPasajeroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ListarViajesss1">
+    <Component class="javax.swing.JButton" name="ListarViaje">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="55" green="52" red="29" type="rgb"/>
@@ -193,7 +196,27 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarViajesss1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ListarViajeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="FiltrarBusqueda">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="55" green="52" red="29" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f7" green="f5" red="f0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Filtrar Busqueda"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FiltrarBusquedaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

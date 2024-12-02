@@ -46,10 +46,8 @@ public class ConductorPerfil extends javax.swing.JPanel {
     actual_provincia_label6.setText(conductor.get_provincia());
     actual_departamento_label7.setText(conductor.get_departamento());
     actual_dias_descanso_label.setText(conductor.get_dias_descanso());
-    actual_placa_vehiculo.setText(conductor.get_placa_vehiculo());
     actual_telefono.setText (conductor.get_telefono());
-    actual_modelo_vehiculo.setText (conductor.get_modelo_vehiculo());
-    actual_capacidad_vehiculo.setText(String.valueOf(conductor.get_capacidad_vehiculo()));
+
     
 }
 
@@ -64,9 +62,7 @@ public class ConductorPerfil extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        modelo_vehiculo = new javax.swing.JLabel();
         telefono = new javax.swing.JLabel();
-        Placa_Vehiculo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         editar_perfil_button = new javax.swing.JButton();
         nombre_label1 = new javax.swing.JLabel();
@@ -76,7 +72,6 @@ public class ConductorPerfil extends javax.swing.JPanel {
         distrito_label3 = new javax.swing.JLabel();
         provincia_label4 = new javax.swing.JLabel();
         departamento_label2 = new javax.swing.JLabel();
-        capacidad_vehiculo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         foto_label = new javax.swing.JLabel();
         actual_nombre_label2 = new javax.swing.JLabel();
@@ -87,11 +82,8 @@ public class ConductorPerfil extends javax.swing.JPanel {
         actual_provincia_label6 = new javax.swing.JLabel();
         actual_departamento_label7 = new javax.swing.JLabel();
         actual_telefono = new javax.swing.JLabel();
-        actual_modelo_vehiculo = new javax.swing.JLabel();
-        actual_placa_vehiculo = new javax.swing.JLabel();
         dias_descanso_label1 = new javax.swing.JLabel();
         actual_dias_descanso_label = new javax.swing.JLabel();
-        actual_capacidad_vehiculo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1010, 580));
 
@@ -99,17 +91,9 @@ public class ConductorPerfil extends javax.swing.JPanel {
         jPanel1.setMaximumSize(new java.awt.Dimension(1010, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(1010, 580));
 
-        modelo_vehiculo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        modelo_vehiculo.setForeground(new java.awt.Color(20, 20, 20));
-        modelo_vehiculo.setText("Modelo del Vehiculo");
-
         telefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         telefono.setForeground(new java.awt.Color(20, 20, 20));
         telefono.setText("Telefono:");
-
-        Placa_Vehiculo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Placa_Vehiculo.setForeground(new java.awt.Color(20, 20, 20));
-        Placa_Vehiculo.setText("Placa del Vehiculo:");
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 20, 20));
@@ -153,10 +137,6 @@ public class ConductorPerfil extends javax.swing.JPanel {
         departamento_label2.setForeground(new java.awt.Color(20, 20, 20));
         departamento_label2.setText("Departamento:");
 
-        capacidad_vehiculo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        capacidad_vehiculo.setForeground(new java.awt.Color(20, 20, 20));
-        capacidad_vehiculo.setText("Capacidad del Vehiculo:");
-
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(51, 51, 51));
 
@@ -184,17 +164,8 @@ public class ConductorPerfil extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(editar_perfil_button)
-                .addGap(310, 310, 310))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(capacidad_vehiculo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(actual_capacidad_vehiculo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -230,13 +201,9 @@ public class ConductorPerfil extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(actual_telefono))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(modelo_vehiculo)
+                                .addComponent(dias_descanso_label1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(actual_modelo_vehiculo))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Placa_Vehiculo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(actual_placa_vehiculo)))
+                                .addComponent(actual_dias_descanso_label)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,13 +213,12 @@ public class ConductorPerfil extends javax.swing.JPanel {
                                 .addGap(20, 20, 20)))
                         .addGap(226, 226, 226))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(dias_descanso_label1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(actual_dias_descanso_label))
-                            .addComponent(jLabel1))
+                        .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editar_perfil_button)
+                .addGap(354, 354, 354))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,18 +261,6 @@ public class ConductorPerfil extends javax.swing.JPanel {
                             .addComponent(actual_telefono))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(modelo_vehiculo)
-                            .addComponent(actual_modelo_vehiculo))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Placa_Vehiculo)
-                            .addComponent(actual_placa_vehiculo))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(capacidad_vehiculo)
-                            .addComponent(actual_capacidad_vehiculo))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dias_descanso_label1)
                             .addComponent(actual_dias_descanso_label))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -315,9 +269,9 @@ public class ConductorPerfil extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(foto_label, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
+                        .addGap(87, 87, 87)
                         .addComponent(editar_perfil_button)
-                        .addGap(19, 19, 19))))
+                        .addGap(20, 20, 20))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -338,20 +292,15 @@ public class ConductorPerfil extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Placa_Vehiculo;
-    private javax.swing.JLabel actual_capacidad_vehiculo;
     private javax.swing.JLabel actual_correo_label3;
     private javax.swing.JLabel actual_departamento_label7;
     private javax.swing.JLabel actual_dias_descanso_label;
     private javax.swing.JLabel actual_distrito_label8;
     private javax.swing.JLabel actual_dni_label5;
     private javax.swing.JLabel actual_fecha_label4;
-    private javax.swing.JLabel actual_modelo_vehiculo;
     private javax.swing.JLabel actual_nombre_label2;
-    private javax.swing.JLabel actual_placa_vehiculo;
     private javax.swing.JLabel actual_provincia_label6;
     private javax.swing.JLabel actual_telefono;
-    private javax.swing.JLabel capacidad_vehiculo;
     private javax.swing.JLabel correo_label;
     private javax.swing.JLabel departamento_label2;
     private javax.swing.JLabel dias_descanso_label1;
@@ -363,7 +312,6 @@ public class ConductorPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel modelo_vehiculo;
     private javax.swing.JLabel nombre_label1;
     private javax.swing.JLabel provincia_label4;
     private javax.swing.JLabel telefono;
